@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Details</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Stock Financial Analysis: <span id="stock-symbol-header">SYMBOL</span>
+      </h1>
+    </header>
+
+    <main>
+      <section id="balance-sheet-strength" class="financial-section">
+        <h2>Balance Sheet Strength</h2>
+        <div class="metrics-container">
+          <div class="metric">
+            <span class="metric-label"
+              >Tangible Equity / Total Liabilities:</span
+            >
+            <span id="tang_equity_over_tot_liab" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label">Capital Intensity (Reversed):</span>
+            <span id="capital_intensity_reverse" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label"
+              >CAGR Tangible Book Value Per Share:</span
+            >
+            <span id="cagr_tangible_book_per_share" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="profitability" class="financial-section">
+        <h2>Profitability</h2>
+        <div class="metrics-container">
+          <div class="metric">
+            <span class="metric-label">ROE (Tangible Equity):</span>
+            <span id="roe_tangible_equity" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label">ROIC / WACC:</span>
+            <span id="roic_over_wacc" class="metric-value">Loading...</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Rule of 40:</span>
+            <span id="rule_of_40" class="metric-value">Loading...</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Cash Conversion Ratio:</span>
+            <span id="cash_conversion_ratio" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="valuation" class="financial-section">
+        <h2>Valuation</h2>
+        <div class="metrics-container">
+          <div class="metric">
+            <span class="metric-label">Earnings Yield:</span>
+            <span id="earnings_yield" class="metric-value">Loading...</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Price to Earnings (P/E):</span>
+            <span id="price_to_earnings" class="metric-value">Loading...</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">FCF Yield:</span>
+            <span id="fcf_yield" class="metric-value">Loading...</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">PEG Ratio:</span>
+            <span id="peg" class="metric-value">Loading...</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Price to Tangible Book Value:</span>
+            <span id="price_to_tangible_book" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="growth" class="financial-section">
+        <h2>Growth</h2>
+        <div class="metrics-container">
+          <div class="metric">
+            <span class="metric-label">Avg. 5 Years EPS Growth:</span>
+            <span id="avg_5years_eps_growth" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label">Avg. 5 Years Revenue Growth:</span>
+            <span id="avg_5years_revenue_growth" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label">Expected Growth Market Cap (10Y):</span>
+            <span id="expected_growth_market_cap_10Y" class="metric-value"
+              >Loading...</span
+            >
+          </div>
+        </div>
+      </section>
+      <div class="navigation-links">
+        <a href="index.html">Back to Main Page</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; <span id="current-year"></span> Financial Portfolio Analysis</p>
+    </footer>
+
+    <script src="js/xlsx.full.min.js"></script>
+    <script src="js/stock_details_page.js"></script>
+    <script>
+      // Small script to set the current year in the footer
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
