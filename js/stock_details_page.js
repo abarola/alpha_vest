@@ -79,6 +79,27 @@ document.addEventListener("DOMContentLoaded", function () {
     "expected_growth_market_cap_10Y",
   ];
 
+  const higherIsBetterMetrics = [
+    "tang_equity_over_tot_liab",
+    "capital_intensity_reverse",
+    "cagr_tangible_book_per_share",
+    "roe_tangible_equity",
+    "roic_over_wacc",
+    "rule_of_40",
+    "cash_conversion_ratio",
+    "earnings_yield",
+    "fcf_yield",
+    "avg_5years_eps_growth",
+    "avg_5years_revenue_growth",
+    "expected_growth_market_cap_10Y",
+  ];
+
+  const lowerIsBetterMetrics = [
+    "price_to_earnings",
+    "peg",
+    "price_to_tangible_book",
+  ];
+
   if (stockSymbol) {
     // Update page title and header
     document.title = `Stock Details - ${stockSymbol}`;
@@ -116,6 +137,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (element) {
               const value = stockData[fieldId];
+              const medianValue = allMedians[fieldId];
+
+              // Clear previous comparison classes
+              element.classList.remove('metric-better', 'metric-worse');
+
+              // Perform comparison and apply classes if values are numbers
+              if (typeof value === 'number' && !isNaN(value) && 
+                  typeof medianValue === 'number' && !isNaN(medianValue)) {
+                
+                if (higherIsBetterMetrics.includes(fieldId)) {
+                  if (value > medianValue) {
+                    element.classList.add('metric-better');
+                  } else if (value < medianValue) {
+                    element.classList.add('metric-worse');
+                  }
+                } else if (lowerIsBetterMetrics.includes(fieldId)) {
+                  if (value < medianValue) {
+                    element.classList.add('metric-better');
+                  } else if (value > medianValue) {
+                    element.classList.add('metric-worse');
+                  }
+                }
+              }
+
               if (value !== undefined && value !== null) {
                 element.textContent = formatMetricValue(value, fieldId);
               } else {

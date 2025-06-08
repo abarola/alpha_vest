@@ -208,7 +208,10 @@ main {
 /* Container for metrics */
 .metrics-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Responsive columns */
   gap: 15px;
 }
 
@@ -232,7 +235,7 @@ main {
 }
 
 .metric-value {
-  font-family: 'Consolas', 'Courier New', Courier, monospace; /* Monospaced font for data */
+  font-family: "Consolas", "Courier New", Courier, monospace; /* Monospaced font for data */
   color: #333;
   background-color: #eef1f5;
   padding: 6px 10px;
@@ -240,6 +243,16 @@ main {
   font-weight: bold;
   font-size: 1.1em;
   align-self: flex-start; /* Align value to the start */
+}
+
+.metric-better {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Darker green text for contrast */
+}
+
+.metric-worse {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Darker red text for contrast */
 }
 
 /* Navigation links */
