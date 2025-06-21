@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
       case "avg_5years_eps_growth":
       case "avg_5years_revenue_growth":
       case "expected_growth_market_cap_10Y":
+      case "avg_5years_roe_growth":
+      case "implied_perpetual_growth_curr_market_cap": // Added here
         formattedValue = (value * 100).toFixed(2) + "%";
         break;
       case "final_earnings_for_10y_growth_10perc":
@@ -83,6 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "expected_growth_market_cap_10Y",
     "final_earnings_for_10y_growth_10perc",
     "final_earnings_for_10y_growth_15perc",
+    "avg_5years_roe_growth",
+    "implied_perpetual_growth_curr_market_cap",
   ];
 
   const higherIsBetterMetrics = [
@@ -98,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "avg_5years_eps_growth",
     "avg_5years_revenue_growth",
     "expected_growth_market_cap_10Y",
+    "avg_5years_roe_growth",
   ];
 
   const lowerIsBetterMetrics = [
@@ -106,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "price_to_tangible_book",
     "final_earnings_for_10y_growth_10perc",
     "final_earnings_for_10y_growth_15perc",
+    "implied_perpetual_growth_curr_market_cap",
   ];
 
   if (stockSymbol) {
@@ -148,23 +154,26 @@ document.addEventListener("DOMContentLoaded", function () {
               const medianValue = allMedians[fieldId];
 
               // Clear previous comparison classes
-              element.classList.remove('metric-better', 'metric-worse');
+              element.classList.remove("metric-better", "metric-worse");
 
               // Perform comparison and apply classes if values are numbers
-              if (typeof value === 'number' && !isNaN(value) && 
-                  typeof medianValue === 'number' && !isNaN(medianValue)) {
-                
+              if (
+                typeof value === "number" &&
+                !isNaN(value) &&
+                typeof medianValue === "number" &&
+                !isNaN(medianValue)
+              ) {
                 if (higherIsBetterMetrics.includes(fieldId)) {
                   if (value > medianValue) {
-                    element.classList.add('metric-better');
+                    element.classList.add("metric-better");
                   } else if (value < medianValue) {
-                    element.classList.add('metric-worse');
+                    element.classList.add("metric-worse");
                   }
                 } else if (lowerIsBetterMetrics.includes(fieldId)) {
                   if (value < medianValue) {
-                    element.classList.add('metric-better');
+                    element.classList.add("metric-better");
                   } else if (value > medianValue) {
-                    element.classList.add('metric-worse');
+                    element.classList.add("metric-worse");
                   }
                 }
               }
