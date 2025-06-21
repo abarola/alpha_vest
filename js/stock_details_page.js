@@ -44,6 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
       case "expected_growth_market_cap_10Y":
         formattedValue = (value * 100).toFixed(2) + "%";
         break;
+      case "final_earnings_for_10y_growth_10perc":
+      case "final_earnings_for_10y_growth_15perc":
+        formattedValue = (value / 1000000000).toFixed(2) + "B";
+        break;
       case "rule_of_40":
         formattedValue = (value * 100).toFixed(2);
         break;
@@ -77,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "avg_5years_eps_growth",
     "avg_5years_revenue_growth",
     "expected_growth_market_cap_10Y",
+    "final_earnings_for_10y_growth_10perc",
+    "final_earnings_for_10y_growth_15perc",
   ];
 
   const higherIsBetterMetrics = [
@@ -98,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "price_to_earnings",
     "peg",
     "price_to_tangible_book",
+    "final_earnings_for_10y_growth_10perc",
+    "final_earnings_for_10y_growth_15perc",
   ];
 
   if (stockSymbol) {
