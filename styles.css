@@ -1,36 +1,352 @@
-/* === Images ========================================= */
+/* === CSS Variables for consistent theming === */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --border-color: #e1e8ed;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* === Base Styles === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+}
+
+/* === Header & Navigation === */
+.main-header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* === Hero Section === */
+.hero {
+  background: linear-gradient(135deg, var(--bg-white), var(--bg-light));
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === Content Sections === */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto 4rem auto;
+  padding: 0 2rem;
+}
+
+.content-section h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.content-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--secondary-color);
+  border-radius: 2px;
+}
+
+/* === Image Sections === */
+.image-section {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column; /* Stack images vertically */
+  align-items: center;
+  justify-content: flex-start; /* Align to top */
+  gap: 2rem; /* Add space between images */
+}
+
+/* Update the general img styles to work better with vertical layout */
 img {
-  /* ─── configurable variables ─────────────────────── */
-  --img-max-width: 1200px; /* desktop cap */
-  --img-border-color: #ccc;
-  --img-border-radius: 6px;
-  --img-shadow: 0 2px 8px rgba(0 0 0 / 0.05);
-  --img-margin: 1rem;
+  max-width: 100%;
+  width: 100%; /* Make images fill container width */
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  margin-bottom: 1rem; /* Add margin between stacked images */
+}
 
-  max-width: var(--img-max-width);
-  height: auto; /* keep aspect ratio */
+img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* === Table Improvements === */
+.table-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table th {
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+table tbody tr:hover {
+  background-color: var(--bg-light);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* === Resources Section === */
+.resources-section {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 3rem 2rem;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.resource-category h3 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.resource-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+  margin-bottom: 1rem;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--secondary-color);
+}
+
+.resource-card a {
+  text-decoration: none;
+  color: inherit;
   display: block;
-  margin: var(--img-margin) auto; /* centred & spaced */
-  border: 2px solid var(--img-border-color);
-  border-radius: var(--img-border-radius);
-  box-shadow: var(--img-shadow);
-  object-fit: cover; /* graceful crop when width/height set */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* gentle lift on hover / keyboard focus */
-img:hover,
-img:focus-visible {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(0 0 0 / 0.12);
+.resource-card h4 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
-/* responsive tweak */
-@media (max-width: 600px) {
-  img {
-    --img-max-width: 100%;
-  } /* let images fill narrow screens */
+.resource-card p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: left;
 }
+
+/* === Footer === */
+footer {
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .content-section {
+    padding: 0 1rem;
+  }
+
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Loading States === */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--text-light);
+}
+
+.loading::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--secondary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* === Scroll to Top Button === */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  background: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* === Images ========================================= */
+/*
+/* === Remove or comment out these conflicting styles ===*/
 
 h1 {
   text-align: center; /* Optional: Center the heading */

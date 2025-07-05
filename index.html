@@ -1,89 +1,118 @@
-// filepath: c:\CloudStation\Drive\Python\HTML test\index.html
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My Image Page</title>
-    <!-- Remove the internal style block -->
-    <!--
-    <style>
-        /* Optional: Basic styling for images */
-        img {
-            max-width: 200px; /* Adjust as needed */
-            height: auto;
-            margin: 10px;
-            border: 1px solid #ddd;
-        }
-    </style>
-    -->
-    <!-- Link the external CSS file -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1>Image Gallery</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analysis Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Add a proper header with navigation -->
+    <header class="main-header">
+        <nav class="navbar">
+            <h1>Financial Analysis Portfolio</h1>
+            <ul class="nav-links">
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#stats">Index Stats</a></li>
+                <li><a href="#strategy">Strategy Returns</a></li>
+                <li><a href="#rankings">Rankings</a></li>
+                <li><a href="#links">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <p>Financial analysis Picture</p>
+    <main>
+        <!-- Hero section -->
+        <section class="hero">
+            <h2>Financial Analysis Dashboard</h2>
+            <p class="hero-description">Comprehensive market analysis and investment insights</p>
+        </section>
 
-    <!-- ... existing image tags ... -->
-    <!-- Dynamic image gallery populated by JavaScript -->
-    <!-- <div id="gallery"></div> -->
+        <!-- Portfolio section -->
+        <section id="portfolio" class="content-section">
+            <h2>Portfolio Performance</h2>
+            <div id="gallery-portfolio" class="image-section"></div>
+        </section>
 
-    <h2>Portfolio</h2>
-    <div id="gallery-portfolio" class="image-section"></div>
+        <!-- Index Stats section -->
+        <section id="stats" class="content-section">
+            <h2>Index Statistics</h2>
+            <div id="gallery-indext-stat" class="image-section"></div>
+        </section>
 
-    <h2>Index Stats</h2>
-    <div id="gallery-indext-stat" class="image-section"></div>
+        <!-- Strategy Returns section -->
+        <section id="strategy" class="content-section">
+            <h2>Strategy Returns</h2>
+            <div id="gallery-strategy-return" class="image-section"></div>
+        </section>
 
-    <h2>Strategy Returns</h2>
-    <div id="gallery-strategy-return" class="image-section"></div>
+        <!-- Rankings section -->
+        <section id="rankings" class="content-section">
+            <h2>Company Rankings</h2>
+            <div class="table-container">
+                <table id="rank-table">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
 
-    <h2>Ranked companies</h2>
+            <h3>Historical Strategy Analysis</h3>
+            <div class="table-container">
+                <table id="historical-analysis-table">
+                    <thead><tr></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
 
-      <table id="rank-table">
-        <thead><tr></tr></thead>
-        <tbody></tbody>
-      </table>
+        <!-- Resources section -->
+        <section id="links" class="content-section resources-section">
+            <h2>Investment Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>Superinvestor Positions</h3>
+                    <div class="resource-card">
+                        <a href="https://www.dataroma.com/m/home.php" target="_blank">
+                            <h4>Dataroma</h4>
+                            <p>Track superinvestor positions and portfolio changes</p>
+                        </a>
+                    </div>
+                </div>
 
-      <h2>Historical Strategy Analysis</h2>
-      <table id="historical-analysis-table">
-        <thead><tr></tr></thead>
-        <tbody></tbody>
-      </table>
-    
-    
-    
-      <h2>Useful links</h2>
-    <h3>Superinvestor positions</h3>
-    <ul>
-      <li>
-        <a href="https://www.dataroma.com/m/home.php" target="_blank"
-          >Dataroma</a> - A great site for tracking superinvestor positions.
-      </li>
-    
+                <div class="resource-category">
+                    <h3>Financial Data</h3>
+                    <div class="resource-card">
+                        <a href="https://www.macrotrends.net/" target="_blank">
+                            <h4>Macrotrends</h4>
+                            <p>Financial data, charts, balance sheets, and income statements</p>
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <a href="https://quickfs.net/" target="_blank">
+                            <h4>QuickFS</h4>
+                            <p>Financial statement data and fundamental analysis</p>
+                        </a>
+                    </div>
+                </div>
 
-    <h3>Companies' balance sheet</h3>
-    <ul>
-      <li>
-        <a href="https://www.macrotrends.net/" target="_blank">Macrotrends</a> -
-        A great site for financial data and charts. You can find balance sheets,
-        income statements
-      </li>
+                <div class="resource-category">
+                    <h3>SEC Filings</h3>
+                    <div class="resource-card">
+                        <a href="https://www.sec.gov/search-filings" target="_blank">
+                            <h4>SEC EDGAR</h4>
+                            <p>Official SEC filings and company documents</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-      <li>
-        <a href="https://quickfs.net/" target="_blank">QuickFS</a> - A very good
-        site for financial statement data and fundemental analysis
-      </li>
-    </ul>
+    <footer>
+        <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
+    </footer>
 
-    <h3>SEC filings</h3>
-    <ul>
-      <li>
-        <a href="https://www.sec.gov/search-filings"
-          >SEC EDGAR</a
-        >
-        - The official site for SEC filings. You can search for company filings
-        here.
-      </li>
-    </ul>
     <script src="js/script.js"></script>
-  </body>
+</body>
 </html>
