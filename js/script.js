@@ -101,7 +101,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const cols = Object.keys(rows[0]);
       cols.forEach((col) => {
         const th = document.createElement("th");
-        th.textContent = col.replace(/_/g, " ");
+
+        // Format column headers to be multi-line for better width management
+        let headerText = col.replace(/_/g, " ");
+
+        // Add line breaks for common patterns to make headers more compact
+        headerText = headerText
+          .replace(/mean/gi, "Mean<br>")
+          .replace(/std/gi, "Std<br>")
+          .replace(/return/gi, "Return")
+          .replace(/ratio/gi, "Ratio")
+          .replace(/analysis/gi, "Analysis");
+
+        th.innerHTML = headerText;
+        th.style.whiteSpace = "normal"; // Allow text wrapping
+        th.style.textAlign = "center"; // Center align headers
         theadTr.appendChild(th);
       });
 
@@ -110,7 +124,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const tr = document.createElement("tr");
         cols.forEach((col) => {
           const td = document.createElement("td");
-          td.textContent = row[col];
+
+          // Check if column contains 'mean' or 'std' and format as percentage
+          if (col.toLowerCase().includes("mean") || col.toLowerCase().includes("std")) {
+            const value = parseFloat(row[col]);
+            if (!isNaN(value)) {
+              // Convert to percentage and format with 2 decimal places
+              td.textContent = (value * 100).toFixed(2) + "%";
+            } else {
+              td.textContent = row[col];
+            }
+          } 
+          // Check if column contains 'Return/Risk' and format as decimal with 2 places
+          else if (col.toLowerCase().includes("return/risk")) {
+            const value = parseFloat(row[col]);
+            if (!isNaN(value)) {
+              // Format as number with 2 decimal places
+              td.textContent = value.toFixed(2);
+            } else {
+              td.textContent = row[col];
+            }
+          } 
+          else {
+            td.textContent = row[col];
+          }
+
           tr.appendChild(td);
         });
         tbody.appendChild(tr);

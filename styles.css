@@ -165,6 +165,8 @@ img:hover {
   box-shadow: var(--shadow);
   overflow: hidden;
   margin-bottom: 2rem;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
 }
 
 table {
@@ -174,18 +176,20 @@ table {
 }
 
 table th {
-  background: var(--primary-color);
-  color: white;
-  padding: 1rem;
-  text-align: left;
-  font-weight: 600;
+  background: var(--primary-color) !important;
+  color: white !important;
+  padding: 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
   position: sticky;
   top: 0;
+  border: 1px solid #fff !important;
 }
 
 table td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  background: white;
   transition: var(--transition);
 }
 
@@ -346,7 +350,7 @@ footer {
 
 /* === Images ========================================= */
 /*
-/* === Remove or comment out these conflicting styles ===*/
+=== Remove or comment out these conflicting styles ===*/
 
 h1 {
   text-align: center; /* Optional: Center the heading */
@@ -607,5 +611,20 @@ footer p {
   color: #f2f2f2; /* Ensure p text in footer is light */
 }
 
-/* Ensure existing h1, h2 styles don't conflict too much if they are global.
-   The styles above are more specific to elements within .financial-section or header. */
+/* === Enhanced Table Styles for Historical Analysis === */
+#historical-analysis-table th {
+  min-width: 80px; /* Minimum width for compact columns */
+  max-width: 120px; /* Maximum width to keep table manageable */
+  white-space: normal !important; /* Allow text wrapping */
+  text-align: center !important;
+  vertical-align: middle !important;
+  line-height: 1.2 !important;
+  font-size: 0.85rem !important; /* Slightly smaller font for headers */
+}
+
+/* Style percentage columns differently */
+#historical-analysis-table td:has-text("mean"),
+#historical-analysis-table td:has-text("std") {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
