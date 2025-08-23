@@ -628,3 +628,107 @@ footer p {
   font-weight: 600;
   background-color: #f8f9fa;
 }
+
+/* === Macro Page (scoped) === */
+.macro-page .macro-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 auto 1rem auto;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.macro-page .macro-info {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.macro-page .macro-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.macro-page .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.macro-page .chip:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.macro-page .chip.active {
+  background: var(--secondary-color);
+  color: #fff;
+  border-color: var(--secondary-color);
+}
+
+.macro-page .image-card {
+  width: 100%;
+}
+
+.macro-page .image-card figure {
+  width: 100%;
+}
+
+.macro-page .image-card figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Lightbox */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.lightbox-backdrop.open {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: 95vw;
+  max-height: 80vh;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  background: #fff;
+}
+
+.lightbox-caption {
+  margin-top: 0.75rem;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}

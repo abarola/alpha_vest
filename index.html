@@ -1,118 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Financial Analysis Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <!-- Add a proper header with navigation -->
     <header class="main-header">
-        <nav class="navbar">
-            <h1>Financial Analysis Portfolio</h1>
-            <ul class="nav-links">
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#stats">Index Stats</a></li>
-                <li><a href="#strategy">Strategy Returns</a></li>
-                <li><a href="#rankings">Rankings</a></li>
-                <li><a href="#links">Resources</a></li>
-            </ul>
-        </nav>
+      <nav class="navbar">
+        <h1>Financial Analysis Portfolio</h1>
+        <ul class="nav-links">
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#stats">Index Stats</a></li>
+          <li><a href="#strategy">Strategy Returns</a></li>
+          <li><a href="#rankings">Rankings</a></li>
+          <li><a href="#links">Resources</a></li>
+          <!-- Add Macro page -->
+          <li><a href="macro.html">Macro</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <!-- Hero section -->
-        <section class="hero">
-            <h2>Financial Analysis Dashboard</h2>
-            <p class="hero-description">Comprehensive market analysis and investment insights</p>
-        </section>
+      <!-- Hero section -->
+      <section class="hero">
+        <h2>Financial Analysis Dashboard</h2>
+        <p class="hero-description">
+          Comprehensive market analysis and investment insights
+        </p>
+      </section>
 
-        <!-- Portfolio section -->
-        <section id="portfolio" class="content-section">
-            <h2>Portfolio Performance</h2>
-            <div id="gallery-portfolio" class="image-section"></div>
-        </section>
+      <!-- Portfolio section -->
+      <section id="portfolio" class="content-section">
+        <h2>Portfolio Performance</h2>
+        <div id="gallery-portfolio" class="image-section"></div>
+      </section>
 
-        <!-- Index Stats section -->
-        <section id="stats" class="content-section">
-            <h2>Index Statistics</h2>
-            <div id="gallery-indext-stat" class="image-section"></div>
-        </section>
+      <!-- Index Stats section -->
+      <section id="stats" class="content-section">
+        <h2>Index Statistics</h2>
+        <div id="gallery-indext-stat" class="image-section"></div>
+      </section>
 
-        <!-- Strategy Returns section -->
-        <section id="strategy" class="content-section">
-            <h2>Strategy Returns</h2>
-            <div id="gallery-strategy-return" class="image-section"></div>
-        </section>
+      <!-- Strategy Returns section -->
+      <section id="strategy" class="content-section">
+        <h2>Strategy Returns</h2>
+        <div id="gallery-strategy-return" class="image-section"></div>
+      </section>
 
-        <!-- Rankings section -->
-        <section id="rankings" class="content-section">
-            <h2>Company Rankings</h2>
-            <div class="table-container">
-                <table id="rank-table">
-                    <thead><tr></tr></thead>
-                    <tbody></tbody>
-                </table>
+      <!-- Rankings section -->
+      <section id="rankings" class="content-section">
+        <h2>Company Rankings</h2>
+        <div class="table-container">
+          <table id="rank-table">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h3>Historical Strategy Analysis</h3>
+        <div class="table-container">
+          <table id="historical-analysis-table">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Resources section -->
+      <section id="links" class="content-section resources-section">
+        <h2>Investment Resources</h2>
+
+        <div class="resources-grid">
+          <div class="resource-category">
+            <h3>Superinvestor Positions</h3>
+            <div class="resource-card">
+              <a href="https://www.dataroma.com/m/home.php" target="_blank">
+                <h4>Dataroma</h4>
+                <p>Track superinvestor positions and portfolio changes</p>
+              </a>
             </div>
+          </div>
 
-            <h3>Historical Strategy Analysis</h3>
-            <div class="table-container">
-                <table id="historical-analysis-table">
-                    <thead><tr></tr></thead>
-                    <tbody></tbody>
-                </table>
+          <div class="resource-category">
+            <h3>Financial Data</h3>
+            <div class="resource-card">
+              <a href="https://www.macrotrends.net/" target="_blank">
+                <h4>Macrotrends</h4>
+                <p>
+                  Financial data, charts, balance sheets, and income statements
+                </p>
+              </a>
             </div>
-        </section>
-
-        <!-- Resources section -->
-        <section id="links" class="content-section resources-section">
-            <h2>Investment Resources</h2>
-            
-            <div class="resources-grid">
-                <div class="resource-category">
-                    <h3>Superinvestor Positions</h3>
-                    <div class="resource-card">
-                        <a href="https://www.dataroma.com/m/home.php" target="_blank">
-                            <h4>Dataroma</h4>
-                            <p>Track superinvestor positions and portfolio changes</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="resource-category">
-                    <h3>Financial Data</h3>
-                    <div class="resource-card">
-                        <a href="https://www.macrotrends.net/" target="_blank">
-                            <h4>Macrotrends</h4>
-                            <p>Financial data, charts, balance sheets, and income statements</p>
-                        </a>
-                    </div>
-                    <div class="resource-card">
-                        <a href="https://quickfs.net/" target="_blank">
-                            <h4>QuickFS</h4>
-                            <p>Financial statement data and fundamental analysis</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="resource-category">
-                    <h3>SEC Filings</h3>
-                    <div class="resource-card">
-                        <a href="https://www.sec.gov/search-filings" target="_blank">
-                            <h4>SEC EDGAR</h4>
-                            <p>Official SEC filings and company documents</p>
-                        </a>
-                    </div>
-                </div>
+            <div class="resource-card">
+              <a href="https://quickfs.net/" target="_blank">
+                <h4>QuickFS</h4>
+                <p>Financial statement data and fundamental analysis</p>
+              </a>
             </div>
-        </section>
+          </div>
+
+          <div class="resource-category">
+            <h3>SEC Filings</h3>
+            <div class="resource-card">
+              <a href="https://www.sec.gov/search-filings" target="_blank">
+                <h4>SEC EDGAR</h4>
+                <p>Official SEC filings and company documents</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
+      <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
     </footer>
 
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>

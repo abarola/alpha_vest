@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Macroeconomic Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="macro-page">
+    <header class="main-header">
+      <nav class="navbar">
+        <h1>Financial Analysis Portfolio</h1>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="macro.html">Macro</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="index.html#stats">Index Stats</a></li>
+          <li><a href="index.html#strategy">Strategy Returns</a></li>
+          <li><a href="index.html#rankings">Rankings</a></li>
+          <li><a href="index.html#links">Resources</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Macroeconomic Dashboard</h2>
+        <p class="hero-description">
+          Key charts and snapshots of the macro environment
+        </p>
+      </section>
+
+      <section class="content-section">
+        <div class="macro-controls">
+          <div class="macro-info"><strong>Folder:</strong> images/macro</div>
+          <div id="macro-filters" class="macro-filters"></div>
+        </div>
+
+        <div id="macro-gallery" class="image-section">
+          <div class="loading">Loading macro images...</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox-backdrop" aria-hidden="true">
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+      <img id="lightbox-img" class="lightbox-image" alt="" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <script src="js/macro.js"></script>
+  </body>
+</html>
