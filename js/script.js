@@ -8,9 +8,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 1) Fixed lists per gallery (edit these to match files in /images)
   const IMAGES_DIR = "images/";
+  // Use per-gallery directories (defaults to IMAGES_DIR)
+  const GALLERY_DIRS = {
+    "gallery-portfolio": "images/portfolio_performance/",
+    "gallery-indext-stat": "images/",
+    "gallery-strategy-return": "images/",
+  };
+
   const imageLists = {
     "gallery-portfolio": [
       "Alberto_portfolio_time_under_water_analysis.png",
+      "return_required_for_htm.png",
+      "potential_buying_signals.png",
+      "performance_oversold_strategy.png",
       // add more...
     ],
     "gallery-indext-stat": [
@@ -33,9 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function appendImages(galleryId, files) {
     const gallery = document.getElementById(galleryId);
     if (!gallery || !Array.isArray(files)) return;
+
+    const baseDir = GALLERY_DIRS[galleryId] || IMAGES_DIR;
+
     files.forEach((name) => {
       const img = document.createElement("img");
-      img.src = `${IMAGES_DIR}${name}`;
+      img.src = `${baseDir}${name}`;
       img.alt = name;
       gallery.appendChild(img);
     });
