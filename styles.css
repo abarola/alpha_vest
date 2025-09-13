@@ -732,3 +732,36 @@ footer p {
   cursor: pointer;
   line-height: 1;
 }
+
+/* Superinvestors: stack images vertically and preserve aspect ratio */
+.superinvestors-page #si-metrics {
+  display: block !important; /* override any grid/flex */
+  grid-template-columns: none !important;
+}
+
+.superinvestors-page #si-metrics .si-card {
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem 0; /* spacing between images */
+}
+
+.superinvestors-page #si-metrics .si-card img {
+  display: block;
+  width: auto; /* do not stretch */
+  height: auto; /* preserve aspect ratio */
+  max-width: 100%; /* scale down on small screens */
+  object-fit: contain; /* never crop */
+}
+
+/* If you also want the Charts gallery stacked similarly */
+.superinvestors-page #superinvestor-gallery {
+  display: block !important;
+}
+
+.superinvestors-page #superinvestor-gallery img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}

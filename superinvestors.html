@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Macroeconomic Dashboard</title>
+    <title>Superinvestor Portfolio</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="macro-page">
+  <!-- Reuse macro-page styles for controls/chips -->
+  <body class="macro-page superinvestors-page">
     <header class="main-header">
       <nav class="navbar">
         <h1>Financial Analysis Portfolio</h1>
@@ -25,20 +26,35 @@
 
     <main>
       <section class="hero">
-        <h2>Macroeconomic Dashboard</h2>
+        <h2>Superinvestor Portfolio</h2>
         <p class="hero-description">
-          Key charts and snapshots of the macro environment
+          Explore top holdings of notable investors
         </p>
       </section>
 
       <section class="content-section">
         <div class="macro-controls">
-          <div class="macro-info"><strong>Folder:</strong> images/macro</div>
-          <div id="macro-filters" class="macro-filters"></div>
+          <div class="macro-info">
+            <strong>Folder:</strong> images/superinvestors
+          </div>
         </div>
 
-        <div id="macro-gallery" class="image-section">
-          <div class="loading">Loading macro images...</div>
+        <!-- Optional snapshot metrics -->
+        <div class="financial-section">
+          <h2>Investor Snapshot</h2>
+          <div
+            class="metrics-container"
+            id="si-metrics"
+            data-folder="images/superinvestors"
+          >
+            <!-- Populated by JS -->
+            <div class="loading">Loading images...</div>
+          </div>
+        </div>
+
+        <h2>Charts</h2>
+        <div id="superinvestor-gallery" class="image-section">
+          <div class="loading">Loading images...</div>
         </div>
       </section>
     </main>
@@ -54,6 +70,6 @@
       <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
-    <script src="js/macro.js"></script>
+    <script src="js/superinvestor.js" defer></script>
   </body>
 </html>
