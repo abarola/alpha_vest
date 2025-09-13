@@ -158,6 +158,28 @@ img:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* General image card for all galleries */
+.image-card {
+  width: 100%;
+}
+.image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  cursor: zoom-in; /* hint: tap to zoom */
+  transition: var(--transition);
+}
+.image-card img:hover {
+  transform: scale(1.01);
+}
+.image-card figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 /* === Table Improvements === */
 .table-container {
   background: var(--bg-white);
@@ -764,4 +786,357 @@ footer p {
   height: auto;
   max-width: 100%;
   object-fit: contain;
+}
+
+/* === Stock Details Page Styles === */
+
+/* General page enhancements for stock-details */
+/* If you want these styles to ONLY apply to stock-details.html,
+   consider adding a class to its body tag, e.g., <body class="stock-details-page">
+   and then prefixing these rules, e.g., .stock-details-page header { ... } */
+
+body {
+  background-color: #f4f7f6; /* Light overall page background */
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #2c3e50; /* Dark header background */
+  color: white;
+  padding: 15px 0; /* Adjusted padding */
+  margin-bottom: 25px; /* Adjusted margin */
+  text-align: center;
+}
+
+header h1 {
+  color: white; /* Ensure h1 in header is white */
+  font-size: 1.8em; /* Adjusted font size */
+  margin: 0;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; /* Add some horizontal padding to main content */
+}
+
+/* Styling for financial sections */
+.financial-section {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.financial-section h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: left; /* Align section titles to the left for a more standard look */
+  font-size: 1.5em;
+}
+
+/* Container for metrics */
+.metrics-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Responsive columns */
+  gap: 15px;
+}
+
+/* Individual metric block */
+.metric {
+  background-color: #f9f9f9;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column; /* Stack label and value vertically */
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.metric-label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px; /* Space between label and value */
+  font-size: 0.9em;
+}
+
+.metric-value {
+  font-family: "Consolas", "Courier New", Courier, monospace; /* Monospaced font for data */
+  color: #333;
+  background-color: #eef1f5;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.1em;
+  align-self: flex-start; /* Align value to the start */
+}
+
+.metric-better {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Darker green text for contrast */
+}
+
+.metric-worse {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Darker red text for contrast */
+}
+
+/* Navigation links */
+.navigation-links {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.navigation-links a {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+  font-weight: bold;
+}
+
+.navigation-links a:hover {
+  background-color: #2980b9;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 25px 0;
+  margin-top: 40px;
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+footer p {
+  margin: 0;
+  color: #f2f2f2; /* Ensure p text in footer is light */
+}
+
+/* === Enhanced Table Styles for Historical Analysis === */
+#historical-analysis-table th {
+  min-width: 80px; /* Minimum width for compact columns */
+  max-width: 120px; /* Maximum width to keep table manageable */
+  white-space: normal !important; /* Allow text wrapping */
+  text-align: center !important;
+  vertical-align: middle !important;
+  line-height: 1.2 !important;
+  font-size: 0.85rem !important; /* Slightly smaller font for headers */
+}
+
+/* Style percentage columns differently */
+#historical-analysis-table td:has-text("mean"),
+#historical-analysis-table td:has-text("std") {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+/* === Macro Page (scoped) === */
+.macro-page .macro-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 auto 1rem auto;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.macro-page .macro-info {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.macro-page .macro-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.macro-page .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.macro-page .chip:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.macro-page .chip.active {
+  background: var(--secondary-color);
+  color: #fff;
+  border-color: var(--secondary-color);
+}
+
+.macro-page .image-card {
+  width: 100%;
+}
+
+.macro-page .image-card figure {
+  width: 100%;
+}
+
+.macro-page .image-card figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Lightbox */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.lightbox-backdrop.open {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: 95vw;
+  max-height: 80vh;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  background: #fff;
+}
+
+.lightbox-caption {
+  margin-top: 0.75rem;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Superinvestors: stack images vertically and preserve aspect ratio */
+.superinvestors-page #si-metrics {
+  display: block !important; /* override any grid/flex */
+  grid-template-columns: none !important;
+}
+
+.superinvestors-page #si-metrics .si-card {
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem 0; /* spacing between images */
+}
+
+.superinvestors-page #si-metrics .si-card img {
+  display: block;
+  width: auto; /* do not stretch */
+  height: auto; /* preserve aspect ratio */
+  max-width: 100%; /* scale down on small screens */
+  object-fit: contain; /* never crop */
+}
+
+/* If you also want the Charts gallery stacked similarly */
+.superinvestors-page #superinvestor-gallery {
+  display: block !important;
+}
+
+.superinvestors-page #superinvestor-gallery img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* General image card for all galleries */
+.image-card {
+  width: 100%;
+}
+.image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  cursor: zoom-in; /* hint: tap to zoom */
+  transition: var(--transition);
+}
+.image-card img:hover {
+  transform: scale(1.01);
+}
+.image-card figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Show more button */
+.show-more-btn {
+  display: inline-block;
+  margin: 0.25rem auto 0.5rem auto;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: var(--secondary-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+.show-more-btn:hover {
+  background: var(--primary-color);
+}
+
+/* Fine-tune image section spacing */
+.image-section {
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .image-card img {
+    max-height: 65vh; /* keep images visible without endless scroll */
+    object-fit: contain; /* avoid awkward crops */
+  }
+  .image-section {
+    padding: 1rem;
+  }
+  .hidden-mobile {
+    display: none !important; /* for "Show more" collapsed items */
+  }
 }

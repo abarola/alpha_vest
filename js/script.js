@@ -8,7 +8,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 1) Fixed lists per gallery (edit these to match files in /images)
   const IMAGES_DIR = "images/";
-  // Use per-gallery directories (defaults to IMAGES_DIR)
   const GALLERY_DIRS = {
     "gallery-portfolio": "images/portfolio_performance/",
     "gallery-indext-stat": "images/",
@@ -40,23 +39,123 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
   };
 
+  function filenameToCaption(name) {
+    return name
+      .replace(/\.\w+$/, "")
+      .replace(/[_-]+/g, " ")
+      .trim();
+  }
+
   function appendImages(galleryId, files) {
     const gallery = document.getElementById(galleryId);
     if (!gallery || !Array.isArray(files)) return;
 
     const baseDir = GALLERY_DIRS[galleryId] || IMAGES_DIR;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const collapseLimit = 4; // show first N on mobile, collapse the rest
 
-    files.forEach((name) => {
+    files.forEach((name, idx) => {
+      const fig = document.createElement("figure");
+      fig.className = "image-card";
+      fig.dataset.gallery = galleryId;
+
       const img = document.createElement("img");
       img.src = `${baseDir}${name}`;
-      img.alt = name;
-      gallery.appendChild(img);
+      img.alt = filenameToCaption(name);
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.fetchPriority = idx < 2 ? "high" : "low";
+      img.dataset.caption = img.alt;
+      img.tabIndex = 0;
+
+      const cap = document.createElement("figcaption");
+      cap.textContent = img.alt;
+
+      fig.appendChild(img);
+      fig.appendChild(cap);
+      gallery.appendChild(fig);
     });
+
+    // Collapse long galleries on mobile with a "Show more" button
+    if (isMobile && files.length > collapseLimit) {
+      const figures = Array.from(gallery.querySelectorAll("figure.image-card"));
+      figures
+        .slice(collapseLimit)
+        .forEach((f) => f.classList.add("hidden-mobile"));
+
+      const btn = document.createElement("button");
+      btn.className = "show-more-btn";
+      btn.textContent = `Show ${files.length - collapseLimit} more`;
+      btn.addEventListener("click", () => {
+        figures
+          .slice(collapseLimit)
+          .forEach((f) => f.classList.remove("hidden-mobile"));
+        btn.remove();
+      });
+      gallery.appendChild(btn);
+    }
   }
 
   Object.entries(imageLists).forEach(([galleryId, files]) =>
     appendImages(galleryId, files)
   );
+
+  // Lightbox setup (tap image to open)
+  const lightbox = setupLightbox();
+  [
+    "gallery-portfolio",
+    "gallery-indext-stat",
+    "gallery-strategy-return",
+  ].forEach((id) => {
+    const node = document.getElementById(id);
+    if (!node) return;
+
+    node.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target && target.tagName === "IMG") {
+        lightbox.open(target.src, target.dataset.caption || target.alt || "");
+      }
+    });
+    node.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && e.target?.tagName === "IMG") {
+        e.preventDefault();
+        const t = e.target;
+        lightbox.open(t.src, t.dataset.caption || t.alt || "");
+      }
+    });
+  });
+
+  function setupLightbox() {
+    const backdrop = document.querySelector(".lightbox-backdrop");
+    const image = backdrop?.querySelector(".lightbox-image");
+    const caption = backdrop?.querySelector(".lightbox-caption");
+    const closeBtn = backdrop?.querySelector(".lightbox-close");
+
+    function open(src, text) {
+      if (!backdrop || !image) return;
+      image.src = src;
+      image.alt = text || "";
+      if (caption) caption.textContent = text || "";
+      backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      if (!backdrop) return;
+      backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+      if (image) image.src = "";
+    }
+
+    backdrop?.addEventListener("click", (e) => {
+      if (e.target === backdrop) close();
+    });
+    closeBtn?.addEventListener("click", close);
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+
+    return { open, close };
+  }
 
   /* ==================== 2. build the ranking table ==================== */
   fetch("rank_companies/rank_companies.json")
@@ -150,4 +249,18 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((err) =>
       console.error("Unable to load historical analysis table:", err)
     );
+
+  // Scroll-to-top behavior
+  const toTopBtn = document.querySelector(".scroll-to-top");
+  if (toTopBtn) {
+    const toggleBtn = () => {
+      if (window.scrollY > 600) toTopBtn.classList.add("visible");
+      else toTopBtn.classList.remove("visible");
+    };
+    window.addEventListener("scroll", toggleBtn, { passive: true });
+    toggleBtn();
+    toTopBtn.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    );
+  }
 });

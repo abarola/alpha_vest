@@ -30,7 +30,7 @@ async function initInvestorSnapshot() {
     container.innerHTML = "";
     const frag = document.createDocumentFragment();
 
-    images.forEach((file) => {
+    images.forEach((file, idx) => {
       const card = document.createElement("div");
       card.className = "metric-card si-card";
 
@@ -38,6 +38,9 @@ async function initInvestorSnapshot() {
       img.src = `${folder}/${file}`;
       img.alt = toTitle(file);
       img.loading = "lazy";
+      img.decoding = "async";
+      img.fetchPriority = idx < 2 ? "high" : "low";
+      img.tabIndex = 0; // keyboard open support
 
       const caption = document.createElement("div");
       caption.className = "metric-title";
@@ -49,6 +52,12 @@ async function initInvestorSnapshot() {
     });
 
     container.appendChild(frag);
+
+    // Mobile: collapse long lists with "Show more"
+    applyMobileCollapse(container, 4);
+
+    // Wire lightbox (click or keyboard)
+    wireLightbox(container);
   } catch (err) {
     console.error(err);
     container.innerHTML =
@@ -76,4 +85,74 @@ function toTitle(filename) {
     .replace(/\.png$/i, "")
     .replace(/[_-]+/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/* ===== Helpers: mobile collapse + lightbox ===== */
+
+function applyMobileCollapse(container, limit = 4) {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const cards = Array.from(container.querySelectorAll(".si-card"));
+  if (!isMobile || cards.length <= limit) return;
+
+  cards.slice(limit).forEach((c) => c.classList.add("hidden-mobile"));
+
+  const btn = document.createElement("button");
+  btn.className = "show-more-btn";
+  btn.textContent = `Show ${cards.length - limit} more`;
+  btn.addEventListener("click", () => {
+    cards.slice(limit).forEach((c) => c.classList.remove("hidden-mobile"));
+    btn.remove();
+  });
+  container.appendChild(btn);
+}
+
+function wireLightbox(container) {
+  const backdrop = document.getElementById("lightbox");
+  const imgEl = document.getElementById("lightbox-img");
+  const captionEl = document.getElementById("lightbox-caption");
+  const closeBtn = backdrop?.querySelector(".lightbox-close");
+
+  const open = (src, caption = "") => {
+    if (!backdrop || !imgEl) return;
+    imgEl.src = src;
+    imgEl.alt = caption;
+    if (captionEl) captionEl.textContent = caption;
+    backdrop.classList.add("open");
+    backdrop.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const close = () => {
+    if (!backdrop) return;
+    backdrop.classList.remove("open");
+    backdrop.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (imgEl) imgEl.src = "";
+  };
+
+  // Click to open
+  container.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target && target.tagName === "IMG") {
+      open(target.src, target.alt || "");
+    }
+  });
+
+  // Keyboard open (Enter/Space on image)
+  container.addEventListener("keydown", (e) => {
+    const t = e.target;
+    if ((e.key === "Enter" || e.key === " ") && t?.tagName === "IMG") {
+      e.preventDefault();
+      open(t.src, t.alt || "");
+    }
+  });
+
+  // Close interactions
+  backdrop?.addEventListener("click", (e) => {
+    if (e.target === backdrop) close();
+  });
+  closeBtn?.addEventListener("click", close);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
 }
