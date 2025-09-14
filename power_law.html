@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Macroeconomic Dashboard</title>
+    <title>Power Law Analysis</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="macro-page">
+  <body class="power-law-page">
     <header class="main-header">
       <nav class="navbar">
         <h1 class="brand">
@@ -49,20 +49,23 @@
 
     <main>
       <section class="hero">
-        <h2>Macroeconomic Dashboard</h2>
+        <h2>Power Law Analysis</h2>
         <p class="hero-description">
-          Key charts and snapshots of the macro environment
+          Historical backtests and current-year strategy performance
         </p>
       </section>
 
-      <section class="content-section">
-        <div class="macro-controls">
-          <div class="macro-info"><strong>Folder:</strong> images/macro</div>
-          <div id="macro-filters" class="macro-filters"></div>
+      <section class="content-section" id="historical_bt">
+        <h2>Historical Backtest</h2>
+        <div id="pl-historical" class="image-section">
+          <div class="loading">Loading historical images...</div>
         </div>
+      </section>
 
-        <div id="macro-gallery" class="image-section">
-          <div class="loading">Loading macro images...</div>
+      <section class="content-section" id="current_ytd">
+        <h2>Current Year Strategy Return</h2>
+        <div id="pl-ytd" class="image-section">
+          <div class="loading">Loading current year chart...</div>
         </div>
       </section>
     </main>
@@ -79,6 +82,6 @@
     </div>
 
     <script src="js/nav.js"></script>
-    <script src="js/macro.js"></script>
+    <script src="js/power_law.js"></script>
   </body>
 </html>

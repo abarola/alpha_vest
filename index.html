@@ -10,17 +10,40 @@
     <!-- Add a proper header with navigation -->
     <header class="main-header">
       <nav class="navbar">
-        <h1>Financial Analysis Portfolio</h1>
-        <ul class="nav-links">
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#stats">Index Stats</a></li>
-          <li><a href="#strategy">Strategy Returns</a></li>
-          <li><a href="#rankings">Rankings</a></li>
-          <li><a href="#links">Resources</a></li>
-          <!-- Add Superinvestors page -->
-          <li><a href="superinvestors.html">Superinvestors</a></li>
-          <!-- Add Macro page -->
-          <li><a href="macro.html">Macro</a></li>
+        <h1 class="brand">
+          <a href="index.html">Financial Analysis Portfolio</a>
+        </h1>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-nav" class="nav-links">
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Analytics
+            </button>
+            <ul class="dropdown">
+              <li><a href="macro.html">Macro</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li><a href="superinvestors.html">Superinvestors</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Index Sections
+            </button>
+            <ul class="dropdown">
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#stats">Index Stats</a></li>
+              <li><a href="#strategy">Strategy Returns</a></li>
+              <li><a href="#rankings">Rankings</a></li>
+              <li><a href="#links">Resources</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
     </header>
@@ -140,6 +163,7 @@
       <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
     </footer>
 
+    <script src="js/nav.js" defer></script>
     <script src="js/script.js"></script>
   </body>
 </html>

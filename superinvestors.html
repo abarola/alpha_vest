@@ -10,16 +10,40 @@
   <body class="macro-page superinvestors-page">
     <header class="main-header">
       <nav class="navbar">
-        <h1>Financial Analysis Portfolio</h1>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="macro.html">Macro</a></li>
-          <li><a href="superinvestors.html">Superinvestors</a></li>
-          <li><a href="index.html#portfolio">Portfolio</a></li>
-          <li><a href="index.html#stats">Index Stats</a></li>
-          <li><a href="index.html#strategy">Strategy Returns</a></li>
-          <li><a href="index.html#rankings">Rankings</a></li>
-          <li><a href="index.html#links">Resources</a></li>
+        <h1 class="brand">
+          <a href="index.html">Financial Analysis Portfolio</a>
+        </h1>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-nav" class="nav-links">
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Analytics
+            </button>
+            <ul class="dropdown">
+              <li><a href="macro.html">Macro</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li><a href="superinvestors.html">Superinvestors</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Index Sections
+            </button>
+            <ul class="dropdown">
+              <li><a href="index.html#portfolio">Portfolio</a></li>
+              <li><a href="index.html#stats">Index Stats</a></li>
+              <li><a href="index.html#strategy">Strategy Returns</a></li>
+              <li><a href="index.html#rankings">Rankings</a></li>
+              <li><a href="index.html#links">Resources</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
     </header>
@@ -65,6 +89,7 @@
       <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
+    <script src="js/nav.js"></script>
     <script src="js/superinvestor.js" defer></script>
   </body>
 </html>
