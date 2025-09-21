@@ -18,8 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "gallery-portfolio": [
       "Alberto_portfolio_time_under_water_analysis.png",
       "return_required_for_htm.png",
+      "inverse_quantile_dd.png",
       "potential_buying_signals.png",
       "performance_oversold_strategy.png",
+      "bubble_chart_Average_CAGR_invquant_dd.png",
+      "bubble_chart_CAGR_for_Year_2020_invquant_dd.png",
+      "bubble_chart_CAGR_for_Year_2023_invquant_dd.png",
+      "distance_chart_Euclidean_Distances_from_VTI_Average_CAGR_vs_invquant_dd.png",
+      "distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2020_vs_invquant_dd.png",
+      "distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2023_vs_invquant_dd.png",
+      "composite_indicator_analysis.png",
       // add more...
     ],
     "gallery-indext-stat": [
