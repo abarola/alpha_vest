@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Helper function to format metric values
   function formatMetricValue(value, fieldId) {
     if (value === null || value === undefined || typeof value !== "number") {
-      return "N/A"; // Return "N/A" if not a valid number
+      return "N/A";
     }
 
     let formattedValue;
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formattedValue = value.toFixed(2);
         break;
       case "cagr_tangible_book_per_share":
+      case "cagr_cash_and_equiv":
       case "roe_tangible_equity":
       case "cash_conversion_ratio":
       case "earnings_yield":
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       case "avg_5years_revenue_growth":
       case "expected_growth_market_cap_10Y":
       case "avg_5years_roe_growth":
-      case "implied_perpetual_growth_curr_market_cap": // Added here
+      case "implied_perpetual_growth_curr_market_cap":
         formattedValue = (value * 100).toFixed(2) + "%";
         break;
       case "final_earnings_for_10y_growth_10perc":
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "tang_equity_over_tot_liab",
     "capital_intensity_reverse",
     "cagr_tangible_book_per_share",
+    "cagr_cash_and_equiv",
     "roe_tangible_equity",
     "roic_over_wacc",
     "rule_of_40",
@@ -93,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "tang_equity_over_tot_liab",
     "capital_intensity_reverse",
     "cagr_tangible_book_per_share",
+    "cagr_cash_and_equiv",
     "roe_tangible_equity",
     "roic_over_wacc",
     "rule_of_40",
