@@ -38,10 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Substring keys → short explainers auto-attached under matching images
   const CHART_GUIDE = {
     time_under_water: {
-      what: "number of days and monetary amount the portfolio value sits below its previous peak.",
+      what: "Number of days and monetary amount the portfolio value sits below its previous peak.",
       how: "When the curves touch the x axis = new highs; below = underwater.",
-      why: "higher time or amount underwater may signal system off-balance and higher possibility of return to the mean.",
-      caveats: "system can go further off balance before mean reversion.",
+      why: "Higher time or amount underwater may signal system off-balance and higher possibility of return to the mean.",
+      caveats: "System can go further off balance before mean reversion.",
     },
     inverse_quantile_dd: {
       what: "Represent the quantile of the current drawdown in the historical distribution of drawdowns for each company (100 = no drawdown, 0 = max historical drawdown).",

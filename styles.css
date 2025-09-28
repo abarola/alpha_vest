@@ -946,10 +946,18 @@ body {
 }
 .chart-explainer summary {
   cursor: pointer;
-  padding: 0.75rem 1rem;
+  user-select: none;
+  outline: none;
+}
+.chart-explainer[open] summary {
   font-weight: 600;
-  color: var(--primary-color);
-  list-style: none;
+}
+/* If a global rule removes list markers and breaks default marker, optionally add a custom one */
+.chart-explainer summary::marker {
+  content: "▶ ";
+}
+.chart-explainer[open] summary::marker {
+  content: "▼ ";
 }
 .chart-explainer[open] summary {
   border-bottom: 1px solid var(--border-color);
