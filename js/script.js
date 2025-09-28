@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const baseDir = GALLERY_DIRS[galleryId] || IMAGES_DIR;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const collapseLimit = 4; // show first N on mobile, collapse the rest
+    const collapseLimit = 4; // show first N (excluding explainer figures) on mobile
 
     files.forEach((name, idx) => {
       const fig = document.createElement("figure");
@@ -157,11 +157,13 @@ document.addEventListener("DOMContentLoaded", () => {
       fig.appendChild(img);
       fig.appendChild(cap);
 
-      // Add explainer if we have a matching guide
       const guide = findGuide(name);
       if (guide) {
         const details = document.createElement("details");
         details.className = "chart-explainer";
+        // Auto-open on mobile so users immediately see guidance
+        if (isMobile) details.open = true;
+
         const summary = document.createElement("summary");
         summary.textContent = "How to read this";
         details.appendChild(summary);
@@ -176,28 +178,33 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         details.appendChild(wrap);
         fig.appendChild(details);
+        fig.classList.add("has-explainer");
       }
 
       gallery.appendChild(fig);
     });
 
-    // Collapse long galleries on mobile with a "Show more" button
-    if (isMobile && files.length > collapseLimit) {
+    // Mobile collapse logic (exclude figures that have an explainer)
+    if (isMobile) {
       const figures = Array.from(gallery.querySelectorAll("figure.image-card"));
-      figures
-        .slice(collapseLimit)
-        .forEach((f) => f.classList.add("hidden-mobile"));
-
-      const btn = document.createElement("button");
-      btn.className = "show-more-btn";
-      btn.textContent = `Show ${files.length - collapseLimit} more`;
-      btn.addEventListener("click", () => {
-        figures
+      const plainFigures = figures.filter(
+        (f) => !f.classList.contains("has-explainer")
+      );
+      if (plainFigures.length > collapseLimit) {
+        plainFigures
           .slice(collapseLimit)
-          .forEach((f) => f.classList.remove("hidden-mobile"));
-        btn.remove();
-      });
-      gallery.appendChild(btn);
+          .forEach((f) => f.classList.add("hidden-mobile"));
+
+        const btn = document.createElement("button");
+        btn.className = "show-more-btn";
+        const hiddenCount = plainFigures.length - collapseLimit;
+        btn.textContent = `Show ${hiddenCount} more`;
+        btn.addEventListener("click", () => {
+          plainFigures.forEach((f) => f.classList.remove("hidden-mobile"));
+          btn.remove();
+        });
+        gallery.appendChild(btn);
+      }
     }
   }
 

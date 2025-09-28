@@ -1030,3 +1030,36 @@ th.sortable::after {
   content: " ⇅";
   font-weight: 400;
 }
+
+/* Ensure hidden-mobile utility only hides on small screens */
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+/* Make the auto-open details look intentional on mobile */
+@media (max-width: 768px) {
+  .chart-explainer[open] summary {
+    font-weight: 600;
+  }
+  .chart-explainer summary {
+    font-size: 0.95rem;
+  }
+}
+
+/* Optional: style the Show More button if not already */
+.show-more-btn {
+  background: var(--secondary-color);
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  align-self: stretch;
+  font-size: 0.9rem;
+}
+.show-more-btn:hover {
+  background: var(--primary-color);
+}
