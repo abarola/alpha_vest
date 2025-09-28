@@ -425,59 +425,53 @@ footer {
 }
 
 /* === Images ========================================= */
-/*
-=== Remove or comment out these conflicting styles ===*/
+/* Removed former duplicate global element rules (body, h1, h2, h3, p, ul, li, a)
+   that were overriding the themed styles above.
+   Use the utility classes below in your HTML where centering / spacing is needed. */
 
-h1 {
-  text-align: center; /* Optional: Center the heading */
-  color: #333;
+/* --- Utilities (non-destructive) --- */
+.text-center {
+  text-align: center !important;
+}
+.muted {
+  color: var(--text-light) !important;
+}
+.heading-spaced-lg {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.heading-spaced-md {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.section-spaced {
+  margin-bottom: 40px;
+}
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.link-clean {
+  text-decoration: none;
+}
+.link-clean:hover {
+  text-decoration: underline;
 }
 
-h2 {
-  text-align: center; /* Optional: Center the heading */
-  color: #333; /* Same as h1 or a bit lighter */
-  margin-top: 40px; /* Add space above h2 */
-  margin-bottom: 20px; /* Add space below h2 */
+/* (If you specifically need centered list text) */
+.list-center li {
+  text-align: center;
 }
 
-.image-section {
-  margin-bottom: 40px; /* Add space below each image section */
+/* Add a centered paragraph style if previously relied upon */
+.p-center {
+  text-align: center;
 }
 
-p {
-  text-align: center; /* Optional: Center the paragraph */
-  color: #555;
-}
-
-body {
-  font-family: sans-serif; /* Optional: Set a default font */
-}
-
-h3 {
-  text-align: center; /* Center the h3 headings */
-  color: #444; /* Slightly lighter than h1 */
-  margin-top: 30px; /* Add some space above h3 */
-}
-
-ul {
-  list-style-type: none; /* Remove default bullets */
-  padding-left: 0; /* Remove default padding */
-  text-align: center; /* Center the list items' text */
-}
-
-li {
-  margin-bottom: 10px; /* Add space below each list item */
-  color: #555;
-}
-
-/* Optional: Style links within lists for better visibility */
-li a {
-  color: #007bff; /* Example link color */
-  text-decoration: none; /* Remove underline from links */
-}
-
-li a:hover {
-  text-decoration: underline; /* Add underline on hover for links */
+/* Optional: image section extra spacing without redefining the component */
+.image-section.section-spaced {
+  margin-bottom: 40px;
 }
 
 /* === Table Styles ===================================== */
@@ -486,7 +480,6 @@ table {
   --table-max-width: 800px;
   --table-font-size: 0.95rem;
   --table-line-height: 1.4;
-
   --table-bg: #fff;
   --table-border: 1px solid #e0e0e0;
   --cell-padding-y: 0.65rem;
@@ -909,4 +902,123 @@ footer p {
 /* Show dropdown when open class is added (mobile/JS controlled) */
 .nav-links .has-dropdown.open .dropdown {
   display: block;
+}
+
+/* --- Typographic consistency --- */
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+.hero .btn {
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--secondary-color);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--primary-color);
+}
+.btn-secondary {
+  background: #fff;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+  background: var(--bg-light);
+}
+.hero-cta {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* --- Chart explainer (<details>) --- */
+.chart-explainer {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+.chart-explainer summary {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  list-style: none;
+}
+.chart-explainer[open] summary {
+  border-bottom: 1px solid var(--border-color);
+}
+.chart-explainer .explainer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.chart-explainer .explainer-item h5 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--secondary-color);
+}
+
+/* --- Table tools --- */
+.table-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem 0 1rem;
+}
+.table-tools input[type="search"] {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  min-width: 260px;
+  background: #fff;
+}
+
+/* --- Callouts & grid --- */
+.callout {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.bullet-tight {
+  margin: 0.5rem 0 0;
+  padding-left: 1rem;
+}
+.bullet-tight li {
+  margin: 0.25rem 0;
+}
+
+/* --- Accessibility helpers --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Optional: sortable header style --- */
+th.sortable {
+  cursor: pointer;
+}
+th.sortable::after {
+  content: " ⇅";
+  font-weight: 400;
 }
