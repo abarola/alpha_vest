@@ -1,4 +1,3 @@
-// filepath: /Users/albertobarola/CloudStation/Python/HTML_portfolio/script.js
 /**
  * BayesDemon front-end script
  * - Image galleries with captions + collapsible "How to read this" explainers
@@ -9,24 +8,6 @@
  * - Scroll-to-top button
  */
 document.addEventListener("DOMContentLoaded", () => {
-  /* ==================== 0. Optional mobile nav toggle ==================== */
-  (function initNav() {
-    const menuToggle = document.querySelector(".menu-toggle");
-    const nav = document.getElementById("primary-nav");
-    if (!menuToggle || !nav) return;
-    menuToggle.addEventListener("click", () => {
-      const open = nav.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(open));
-    });
-    nav.querySelectorAll(".dropdown-toggle")?.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const li = btn.closest(".has-dropdown");
-        const open = li.classList.toggle("open");
-        btn.setAttribute("aria-expanded", String(open));
-      });
-    });
-  })();
-
   /* ==================== 1. Image galleries ==================== */
   const IMAGES_DIR = "images/";
   const GALLERY_DIRS = {
