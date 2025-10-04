@@ -1063,3 +1063,73 @@ th.sortable::after {
 .show-more-btn:hover {
   background: var(--primary-color);
 }
+
+/* === Compounding Effect Insight Section === */
+.insight-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.insight-image {
+  position: relative;
+  width: 100%;
+  margin: 0; /* Remove default figure margin */
+}
+
+.insight-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transition: var(--transition);
+  cursor: zoom-in;
+  display: block;
+}
+
+.insight-image img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.18);
+}
+
+.insight-image figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.insight-text {
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.insight-text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+/* Responsive layout for insight section */
+@media (max-width: 768px) {
+  .insight-container {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .insight-text {
+    padding: 0 0.5rem;
+  }
+
+  .insight-text p {
+    font-size: 0.95rem;
+  }
+}

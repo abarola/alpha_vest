@@ -8,6 +8,7 @@ const MACRO_DIR = "images/macro";
 // Fallback images list (edit this if you don't use a manifest.json)
 const DEFAULT_IMAGES = [
   "macro_inflation_m1_treasuries.png",
+  "usd_purchasing_power_depreciation.png",
   "gold_vol_quantiles.png",
   "vix_quantiles.png",
   "unemployment_rate_US_quantiles.png",
@@ -25,6 +26,7 @@ const DEFAULT_TAGS = {
     "inflation",
     "money_supply",
   ],
+  "usd_purchasing_power_depreciation.png": ["overview", "inflation"],
   "gold_vol_quantiles.png": ["overview", "gold"],
   "vix_quantiles.png": ["overview", "vix"],
   "unemployment_rate_US_quantiles.png": ["overview", "unemployment"],
