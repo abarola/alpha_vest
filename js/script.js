@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const imageLists = {
     "gallery-portfolio": [
-      "Alberto_portfolio_time_under_water_analysis.png",
+      "Portfolio_time_under_water_analysis.png",
       "return_required_for_all_time_high.png",
       "inverse_quantile_dd.png",
       "potential_buying_signals.png",
