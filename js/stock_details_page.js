@@ -64,8 +64,124 @@ document.addEventListener("DOMContentLoaded", function () {
     return formattedValue;
   }
 
+  // Get comparison indicator
+  function getComparisonIndicator(
+    value,
+    medianValue,
+    fieldId,
+    higherIsBetter,
+    lowerIsBetter
+  ) {
+    if (
+      typeof value !== "number" ||
+      isNaN(value) ||
+      typeof medianValue !== "number" ||
+      isNaN(medianValue)
+    ) {
+      return { icon: "▬", class: "equal" };
+    }
+
+    const tolerance = 0.001; // Consider values within 0.1% as equal
+    const diff = Math.abs(value - medianValue) / Math.abs(medianValue);
+
+    if (diff < tolerance) {
+      return { icon: "▬", class: "equal" };
+    }
+
+    if (higherIsBetter.includes(fieldId)) {
+      return value > medianValue
+        ? { icon: "▲", class: "better" }
+        : { icon: "▼", class: "worse" };
+    } else if (lowerIsBetter.includes(fieldId)) {
+      return value < medianValue
+        ? { icon: "▲", class: "better" }
+        : { icon: "▼", class: "worse" };
+    }
+
+    return { icon: "▬", class: "equal" };
+  }
+
+  // Calculate section score
+  function calculateSectionScore(
+    sectionFields,
+    stockData,
+    allMedians,
+    higherIsBetter,
+    lowerIsBetter
+  ) {
+    let aboveMedian = 0;
+    let total = 0;
+
+    sectionFields.forEach((fieldId) => {
+      const value = stockData[fieldId];
+      const medianValue = allMedians[fieldId];
+
+      if (
+        typeof value === "number" &&
+        !isNaN(value) &&
+        typeof medianValue === "number" &&
+        !isNaN(medianValue)
+      ) {
+        total++;
+        const indicator = getComparisonIndicator(
+          value,
+          medianValue,
+          fieldId,
+          higherIsBetter,
+          lowerIsBetter
+        );
+        if (indicator.class === "better") {
+          aboveMedian++;
+        }
+      }
+    });
+
+    return { aboveMedian, total };
+  }
+
+  // Get score chip class
+  function getScoreChipClass(aboveMedian, total) {
+    if (total === 0) return "mixed";
+    const ratio = aboveMedian / total;
+    if (ratio >= 0.7) return "good";
+    if (ratio >= 0.4) return "mixed";
+    return "poor";
+  }
+
   // Get the stock symbol from the URL
   const stockSymbol = getQueryParam("symbol");
+
+  // Section field mappings
+  const sectionFields = {
+    "balance-sheet-strength": [
+      "tang_equity_over_tot_liab",
+      "capital_intensity_reverse",
+      "cagr_tangible_book_per_share",
+      "cagr_cash_and_equiv",
+    ],
+    profitability: [
+      "roe_tangible_equity",
+      "roic_over_wacc",
+      "rule_of_40",
+      "cash_conversion_ratio",
+      "avg_5years_roe_growth",
+    ],
+    valuation: [
+      "earnings_yield",
+      "price_to_earnings",
+      "fcf_yield",
+      "peg",
+      "price_to_tangible_book",
+    ],
+    growth: [
+      "avg_5years_eps_growth",
+      "avg_5years_revenue_growth",
+      "expected_growth_market_cap_10Y",
+      "final_earnings_for_10y_growth_10perc",
+      "final_earnings_for_10y_growth_15perc",
+      "implied_perpetual_growth_curr_market_cap",
+    ],
+  };
 
   // Column names mapping to HTML element IDs
   const dataFields = [
@@ -148,6 +264,32 @@ document.addEventListener("DOMContentLoaded", function () {
         const stockData = jsonData.find((row) => row.symbol === stockSymbol);
 
         if (stockData) {
+          // Add section scores
+          Object.keys(sectionFields).forEach((sectionId) => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+              const h2 = section.querySelector("h2");
+              if (h2) {
+                const score = calculateSectionScore(
+                  sectionFields[sectionId],
+                  stockData,
+                  allMedians,
+                  higherIsBetterMetrics,
+                  lowerIsBetterMetrics
+                );
+
+                const chipClass = getScoreChipClass(
+                  score.aboveMedian,
+                  score.total
+                );
+                const scoreChip = document.createElement("span");
+                scoreChip.className = `section-score ${chipClass}`;
+                scoreChip.textContent = `${score.aboveMedian}/${score.total} above median`;
+                h2.appendChild(scoreChip);
+              }
+            }
+          });
+
           dataFields.forEach((fieldId) => {
             const element = document.getElementById(fieldId);
             const medianElement = document.getElementById(fieldId + "_median");
@@ -159,33 +301,39 @@ document.addEventListener("DOMContentLoaded", function () {
               // Clear previous comparison classes
               element.classList.remove("metric-better", "metric-worse");
 
-              // Perform comparison and apply classes if values are numbers
-              if (
-                typeof value === "number" &&
-                !isNaN(value) &&
-                typeof medianValue === "number" &&
-                !isNaN(medianValue)
-              ) {
-                if (higherIsBetterMetrics.includes(fieldId)) {
-                  if (value > medianValue) {
-                    element.classList.add("metric-better");
-                  } else if (value < medianValue) {
-                    element.classList.add("metric-worse");
-                  }
-                } else if (lowerIsBetterMetrics.includes(fieldId)) {
-                  if (value < medianValue) {
-                    element.classList.add("metric-better");
-                  } else if (value > medianValue) {
-                    element.classList.add("metric-worse");
-                  }
-                }
+              // Get comparison indicator
+              const indicator = getComparisonIndicator(
+                value,
+                medianValue,
+                fieldId,
+                higherIsBetterMetrics,
+                lowerIsBetterMetrics
+              );
+
+              // Wrap value with indicator
+              const wrapper = document.createElement("div");
+              wrapper.className = "metric-value-wrapper";
+
+              const indicatorSpan = document.createElement("span");
+              indicatorSpan.className = `metric-indicator ${indicator.class}`;
+              indicatorSpan.textContent = indicator.icon;
+              indicatorSpan.setAttribute("aria-label", indicator.class);
+
+              const valueSpan = document.createElement("span");
+              valueSpan.className = "metric-value";
+              valueSpan.textContent = formatMetricValue(value, fieldId);
+
+              if (indicator.class === "better") {
+                valueSpan.classList.add("metric-better");
+              } else if (indicator.class === "worse") {
+                valueSpan.classList.add("metric-worse");
               }
 
-              if (value !== undefined && value !== null) {
-                element.textContent = formatMetricValue(value, fieldId);
-              } else {
-                element.textContent = "N/A";
-              }
+              wrapper.appendChild(indicatorSpan);
+              wrapper.appendChild(valueSpan);
+
+              // Replace element content
+              element.parentNode.replaceChild(wrapper, element);
             } else {
               console.warn(`Element with ID '${fieldId}' not found.`);
             }

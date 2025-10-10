@@ -13,6 +13,31 @@
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
   --transition: all 0.3s ease;
+
+  /* Typography scale */
+  --font-ui: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+
+  /* Line heights */
+  --leading-tight: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+
+  /* Vertical rhythm */
+  --spacing-unit: 24px;
+  --spacing-lg: 32px;
+
+  /* Content width */
+  --content-width: 72ch;
 }
 
 /* === Base Styles === */
@@ -23,10 +48,60 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
   color: var(--text-dark);
   background-color: var(--bg-light);
+}
+
+/* Typography hierarchy with new scale */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--spacing-unit);
+}
+
+h1 {
+  font-size: var(--text-4xl);
+  margin-top: var(--spacing-lg);
+}
+
+h2 {
+  font-size: var(--text-3xl);
+  margin-top: var(--spacing-lg);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+  margin-top: var(--spacing-unit);
+}
+
+h4 {
+  font-size: var(--text-xl);
+  margin-top: var(--spacing-unit);
+}
+
+h5 {
+  font-size: var(--text-lg);
+}
+
+h6 {
+  font-size: var(--text-base);
+}
+
+p,
+ul,
+ol {
+  max-width: var(--content-width);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--spacing-unit);
 }
 
 /* === Header & Navigation === */
@@ -55,9 +130,10 @@ body {
 }
 
 .navbar h1 {
-  font-size: 1.8rem;
+  font-size: var(--text-2xl);
   font-weight: 700;
   color: white;
+  font-family: var(--font-serif);
 }
 
 .navbar h1 a {
@@ -106,33 +182,38 @@ body {
   background: linear-gradient(135deg, var(--bg-white), var(--bg-light));
   text-align: center;
   padding: 4rem 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: var(--text-3xl);
+  margin-bottom: var(--spacing-unit);
   color: var(--primary-color);
+  font-family: var(--font-serif);
+  line-height: var(--leading-tight);
 }
 
 .hero-description {
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
   color: var(--text-light);
-  max-width: 600px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
 /* === Content Sections === */
 .content-section {
   max-width: 1200px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto var(--spacing-lg) auto;
   padding: 0 2rem;
 }
 
 .content-section h2 {
-  font-size: 2rem;
+  font-size: var(--text-3xl);
+  font-family: var(--font-serif);
+  line-height: var(--leading-tight);
   color: var(--primary-color);
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
   text-align: center;
   position: relative;
 }
@@ -253,17 +334,12 @@ table tbody tr:nth-child(even) {
   padding: 3rem 2rem;
 }
 
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
 .resource-category h3 {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
   color: var(--secondary-color);
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+  margin-bottom: var(--spacing-unit);
   text-align: left;
 }
 
@@ -289,14 +365,17 @@ table tbody tr:nth-child(even) {
 }
 
 .resource-card h4 {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
   color: var(--primary-color);
   margin-bottom: 0.5rem;
-  font-size: 1.1rem;
 }
 
 .resource-card p {
   color: var(--text-light);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
   text-align: left;
 }
 
@@ -572,34 +651,129 @@ table tbody tr:hover {
 /* === Stock Details Page Styles === */
 
 /* General page enhancements for stock-details */
-/* If you want these styles to ONLY apply to stock-details.html,
-   consider adding a class to its body tag, e.g., <body class="stock-details-page">
-   and then prefixing these rules, e.g., .stock-details-page header { ... } */
-
 body {
-  background-color: #f4f7f6; /* Light overall page background */
+  background-color: #f4f7f6;
   color: #333;
   line-height: 1.6;
 }
 
 header {
-  background-color: #2c3e50; /* Dark header background */
+  background-color: #2c3e50;
   color: white;
-  padding: 15px 0; /* Adjusted padding */
-  margin-bottom: 25px; /* Adjusted margin */
+  padding: 15px 0;
+  margin-bottom: 25px;
   text-align: center;
 }
 
 header h1 {
-  color: white; /* Ensure h1 in header is white */
-  font-size: 1.8em; /* Adjusted font size */
+  color: white;
+  font-size: 1.8em;
   margin: 0;
 }
 
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px; /* Add some horizontal padding to main content */
+  padding: 0 15px;
+}
+
+/* Section Navigation Pills */
+.section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0;
+  margin: 0 -15px 2rem -15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section-nav-scroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0 1rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.section-nav-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  min-height: 44px; /* Minimum tap target */
+}
+
+.section-pill:hover {
+  background: var(--bg-white);
+  border-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.section-pill.active {
+  background: var(--secondary-color);
+  color: white;
+  border-color: var(--secondary-color);
+}
+
+/* Legend for median comparison */
+.comparison-legend {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.comparison-legend strong {
+  color: var(--text-dark);
+  margin-right: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-icon {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.legend-icon.better {
+  color: var(--success-color);
+}
+
+.legend-icon.worse {
+  color: var(--accent-color);
+}
+
+.legend-icon.equal {
+  color: var(--text-light);
 }
 
 /* Styling for financial sections */
@@ -610,6 +784,7 @@ main {
   padding: 20px;
   margin-bottom: 25px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  scroll-margin-top: 100px; /* Increased from 80px to account for sticky nav */
 }
 
 .financial-section h2 {
@@ -618,8 +793,44 @@ main {
   border-bottom: 2px solid #3498db;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  text-align: left; /* Align section titles to the left for a more standard look */
+  text-align: left;
   font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Section score chip */
+.section-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+}
+
+.section-score.good {
+  background: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.section-score.mixed {
+  background: #fff3cd;
+  color: #856404;
+  border-color: #ffeaa7;
+}
+
+.section-score.poor {
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
 }
 
 /* Container for metrics */
@@ -642,6 +853,7 @@ main {
   flex-direction: column; /* Stack label and value vertically */
   justify-content: flex-start;
   align-items: flex-start;
+  position: relative;
 }
 
 .metric-label {
@@ -649,6 +861,32 @@ main {
   color: #555;
   margin-bottom: 8px; /* Space between label and value */
   font-size: 0.9em;
+}
+
+.metric-value-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.metric-indicator {
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.metric-indicator.better {
+  color: var(--success-color);
+}
+
+.metric-indicator.worse {
+  color: var(--accent-color);
+}
+
+.metric-indicator.equal {
+  color: var(--text-light);
 }
 
 .metric-value {
@@ -659,7 +897,20 @@ main {
   border-radius: 4px;
   font-weight: bold;
   font-size: 1.1em;
-  align-self: flex-start; /* Align value to the start */
+  flex: 1;
+}
+
+.metric-median-container {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.metric-value-median {
+  font-family: "Consolas", "Courier New", Courier, monospace;
+  font-weight: 500;
+  color: #666;
 }
 
 .metric-better {
@@ -688,24 +939,135 @@ main {
   border-radius: 5px;
   transition: background-color 0.2s ease-in-out;
   font-weight: bold;
+  min-height: 44px; /* Minimum tap target */
 }
 
 .navigation-links a:hover {
   background-color: #2980b9;
 }
 
-/* Footer styling */
-footer {
-  text-align: center;
-  padding: 25px 0;
-  margin-top: 40px;
-  background-color: #333;
-  color: #f2f2f2;
+/* === Mobile Optimizations === */
+@media (max-width: 768px) {
+  /* Sticky section nav on mobile */
+  .section-nav {
+    top: 0;
+    margin: 0 -15px 1.5rem -15px;
+  }
+
+  /* Single column layout for metrics */
+  .metrics-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Stacked metric layout: Label → Value → Median */
+  .metric {
+    padding: 12px;
+  }
+
+  .metric-label {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    display: block;
+    width: 100%;
+  }
+
+  .metric-value-wrapper {
+    margin-bottom: 6px;
+    width: 100%;
+  }
+
+  .metric-indicator {
+    font-size: 1.1rem;
+  }
+
+  .metric-value {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  .metric-median-container {
+    font-size: 0.7rem;
+    margin-top: 4px;
+    display: block;
+    width: 100%;
+  }
+
+  /* Section headers more compact */
+  .financial-section {
+    padding: 15px;
+    margin-bottom: 20px;
+    scroll-margin-top: 70px;
+  }
+
+  .financial-section h2 {
+    font-size: 1.25em;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    gap: 0.5rem;
+  }
+
+  .section-score {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  /* Legend more compact */
+  .comparison-legend {
+    padding: 0.5rem 0.75rem;
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .legend-icon {
+    font-size: 0.9rem;
+  }
+
+  /* Ensure minimum tap targets */
+  .section-pill {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.85rem;
+  }
+
+  /* Navigation button tap target */
+  .navigation-links a {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Header adjustments */
+  header h1 {
+    font-size: 1.4em;
+    padding: 0 10px;
+  }
+
+  main {
+    padding: 0 10px;
+  }
 }
 
-footer p {
-  margin: 0;
-  color: #f2f2f2; /* Ensure p text in footer is light */
+/* === Extra small screens === */
+@media (max-width: 480px) {
+  .section-pill {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .financial-section h2 {
+    font-size: 1.1em;
+  }
+
+  .metric-value {
+    font-size: 0.95rem;
+  }
+
+  header h1 {
+    font-size: 1.2em;
+  }
 }
 
 /* === Enhanced Table Styles for Historical Analysis === */
