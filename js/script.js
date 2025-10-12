@@ -291,6 +291,8 @@ document.addEventListener("DOMContentLoaded", () => {
             )}`;
             link.textContent = row[col];
             td.appendChild(link);
+            // Add data attribute for easier filtering
+            td.dataset.symbol = row[col];
           } else {
             td.textContent = row[col];
           }
@@ -299,8 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.appendChild(tr);
       });
 
-      // Optional: filter + sort
-      attachTableFilter("rank-filter", "rank-table");
+      // Enhanced filter with symbol-specific search
+      attachSymbolFilter("rank-filter", "rank-table");
       makeSortable("rank-table");
     })
     .catch((err) => console.error("Unable to load rank table:", err));
@@ -316,6 +318,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const tbody = table.querySelector("tbody");
 
       const cols = Object.keys(rows[0]);
+
+      // Find the index of the rank threshold column
+      const rankThresholdIndex = cols.findIndex(
+        (col) =>
+          col.toLowerCase().includes("rank") &&
+          col.toLowerCase().includes("threshold")
+      );
+
       cols.forEach((col) => {
         const th = document.createElement("th");
 
@@ -335,8 +345,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       rows.forEach((row) => {
         const tr = document.createElement("tr");
-        cols.forEach((col) => {
+        cols.forEach((col, colIndex) => {
           const td = document.createElement("td");
+
+          // Add data attribute for rank threshold column
+          if (colIndex === rankThresholdIndex) {
+            td.dataset.rankThreshold = row[col];
+          }
+
           if (
             col.toLowerCase().includes("mean") ||
             col.toLowerCase().includes("std")
@@ -357,8 +373,8 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.appendChild(tr);
       });
 
-      // Optional: filter + sort
-      attachTableFilter("analysis-filter", "historical-analysis-table");
+      // Rank threshold specific filter
+      attachRankThresholdFilter("analysis-filter", "historical-analysis-table");
       makeSortable("historical-analysis-table");
     })
     .catch((err) =>
@@ -366,6 +382,148 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
   /* ==================== 4. Optional: table filter & sorting helpers ==================== */
+  function attachSymbolFilter(inputId, tableId) {
+    const input = document.getElementById(inputId);
+    const table = document.getElementById(tableId);
+    if (!input || !table) return;
+
+    // Add placeholder and styling
+    input.placeholder = "Filter by symbol or any text...";
+    input.style.width = "100%";
+    input.style.maxWidth = "400px";
+
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      const rows = table.querySelectorAll("tbody tr");
+      let visibleCount = 0;
+
+      rows.forEach((tr) => {
+        const text = tr.innerText.toLowerCase();
+        const symbolCell = tr.querySelector("[data-symbol]");
+        const symbol = symbolCell
+          ? symbolCell.dataset.symbol.toLowerCase()
+          : "";
+
+        // Prioritize symbol match, but also search all text
+        const matches = symbol.includes(q) || text.includes(q);
+
+        if (matches) {
+          tr.style.display = "";
+          visibleCount++;
+
+          // Highlight matching symbol
+          if (symbolCell && q && symbol.includes(q)) {
+            symbolCell.classList.add("highlight-match");
+          } else if (symbolCell) {
+            symbolCell.classList.remove("highlight-match");
+          }
+        } else {
+          tr.style.display = "none";
+          if (symbolCell) {
+            symbolCell.classList.remove("highlight-match");
+          }
+        }
+      });
+
+      // Show count of visible rows
+      updateFilterCount(table, visibleCount, rows.length);
+    });
+
+    // Add clear button
+    addClearButton(input);
+  }
+
+  function attachRankThresholdFilter(inputId, tableId) {
+    const input = document.getElementById(inputId);
+    const table = document.getElementById(tableId);
+    if (!input || !table) return;
+
+    // Add placeholder and styling
+    input.placeholder = "Filter by rank threshold...";
+    input.style.width = "100%";
+    input.style.maxWidth = "400px";
+
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      const rows = table.querySelectorAll("tbody tr");
+      let visibleCount = 0;
+
+      rows.forEach((tr) => {
+        const rankThresholdCell = tr.querySelector("[data-rank-threshold]");
+        const rankThreshold = rankThresholdCell
+          ? rankThresholdCell.dataset.rankThreshold.toLowerCase()
+          : "";
+
+        // Match on rank threshold value
+        const matches = rankThreshold.includes(q);
+
+        if (matches || !q) {
+          tr.style.display = "";
+          visibleCount++;
+
+          // Highlight matching cell
+          if (rankThresholdCell && q && rankThreshold.includes(q)) {
+            rankThresholdCell.classList.add("highlight-match");
+          } else if (rankThresholdCell) {
+            rankThresholdCell.classList.remove("highlight-match");
+          }
+        } else {
+          tr.style.display = "none";
+          if (rankThresholdCell) {
+            rankThresholdCell.classList.remove("highlight-match");
+          }
+        }
+      });
+
+      // Show count of visible rows
+      updateFilterCount(table, visibleCount, rows.length);
+    });
+
+    // Add clear button
+    addClearButton(input);
+  }
+
+  function updateFilterCount(table, visible, total) {
+    let counter = table.parentElement.querySelector(".filter-count");
+    if (!counter) {
+      counter = document.createElement("div");
+      counter.className = "filter-count";
+      table.parentElement.insertBefore(counter, table);
+    }
+
+    if (visible < total) {
+      counter.textContent = `Showing ${visible} of ${total} rows`;
+      counter.style.display = "block";
+    } else {
+      counter.style.display = "none";
+    }
+  }
+
+  function addClearButton(input) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "filter-wrapper";
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+
+    const clearBtn = document.createElement("button");
+    clearBtn.className = "clear-filter";
+    clearBtn.innerHTML = "×";
+    clearBtn.setAttribute("aria-label", "Clear filter");
+    clearBtn.style.display = "none";
+
+    wrapper.appendChild(clearBtn);
+
+    input.addEventListener("input", () => {
+      clearBtn.style.display = input.value ? "block" : "none";
+    });
+
+    clearBtn.addEventListener("click", () => {
+      input.value = "";
+      input.dispatchEvent(new Event("input"));
+      input.focus();
+    });
+  }
+
   function attachTableFilter(inputId, tableId) {
     const input = document.getElementById(inputId);
     const table = document.getElementById(tableId);
