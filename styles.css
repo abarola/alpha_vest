@@ -17,6 +17,8 @@
   /* Typography scale */
   --font-ui: "Inter", system-ui, -apple-system, sans-serif;
   --font-serif: "Source Serif 4", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace; /* For data */
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -1584,4 +1586,12 @@ main {
   header h1 {
     font-size: 1.2em;
   }
+}
+
+/* Apply mono font to data elements */
+.cagr-value,
+.drawdown-stat,
+table td {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums; /* Aligns numbers vertically */
 }
