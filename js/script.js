@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2020_vs_invquant_dd.png",
       "distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2023_vs_invquant_dd.png",
       "composite_indicator_analysis.png",
+      "relative_pe_analysis.png",
       // add more...
     ],
     "gallery-indext-stat": [
