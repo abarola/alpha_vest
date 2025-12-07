@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
       case "price_to_earnings":
       case "peg":
       case "price_to_tangible_book":
+      case "leverage_ratio":
+      case "interest_coverage_ratio":
         formattedValue = value.toFixed(2);
         break;
       case "cagr_tangible_book_per_share":
@@ -159,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "cagr_tangible_book_per_share",
       "cagr_cash_and_equiv",
     ],
+    "debt-service": ["leverage_ratio", "interest_coverage_ratio"],
     profitability: [
       "roe_tangible_equity",
       "roic_over_wacc",
@@ -189,6 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "capital_intensity_reverse",
     "cagr_tangible_book_per_share",
     "cagr_cash_and_equiv",
+    "leverage_ratio",
+    "interest_coverage_ratio",
     "roe_tangible_equity",
     "roic_over_wacc",
     "rule_of_40",
@@ -222,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "avg_5years_revenue_growth",
     "expected_growth_market_cap_10Y",
     "avg_5years_roe_growth",
+    "interest_coverage_ratio",
   ];
 
   const lowerIsBetterMetrics = [
@@ -231,6 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "final_earnings_for_10y_growth_10perc",
     "final_earnings_for_10y_growth_15perc",
     "implied_perpetual_growth_curr_market_cap",
+    "leverage_ratio",
   ];
 
   if (stockSymbol) {

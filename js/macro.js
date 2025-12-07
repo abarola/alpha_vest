@@ -18,6 +18,7 @@ const DEFAULT_IMAGES = [
   "short_term_debt_cycle.png",
   "real_estate_cycle.png",
   "coal_price_history.png",
+  "oil_price_quantiles.png",
 ];
 
 const DEFAULT_TAGS = {
@@ -37,6 +38,7 @@ const DEFAULT_TAGS = {
   "short_term_debt_cycle.png": ["overview", "debt_cycle"],
   "real_estate_cycle.png": ["overview", "housing"],
   "coal_price_history.png": ["overview", "commodities"],
+  "oil_price_quantiles.png": ["overview", "commodities"],
 };
 
 // Preferred tag order for UI (chips). Any other tags appear after these.
