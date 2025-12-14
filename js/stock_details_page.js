@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       case "price_to_tangible_book":
       case "leverage_ratio":
       case "interest_coverage_ratio":
+      case "relative_PE_vs_history":
         formattedValue = value.toFixed(2);
         break;
       case "cagr_tangible_book_per_share":
@@ -47,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
       case "expected_growth_market_cap_10Y":
       case "avg_5years_roe_growth":
       case "implied_perpetual_growth_curr_market_cap":
+      case "goodwill_to_assets":
+      case "cagr_shares_diluted":
         formattedValue = (value * 100).toFixed(2) + "%";
         break;
       case "final_earnings_for_10y_growth_10perc":
@@ -160,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "capital_intensity_reverse",
       "cagr_tangible_book_per_share",
       "cagr_cash_and_equiv",
+      "goodwill_to_assets",
     ],
     "debt-service": ["leverage_ratio", "interest_coverage_ratio"],
     profitability: [
@@ -175,10 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
       "fcf_yield",
       "peg",
       "price_to_tangible_book",
+      "relative_PE_vs_history",
     ],
     growth: [
       "avg_5years_eps_growth",
       "avg_5years_revenue_growth",
+      "cagr_shares_diluted",
       "expected_growth_market_cap_10Y",
       "final_earnings_for_10y_growth_10perc",
       "final_earnings_for_10y_growth_15perc",
@@ -192,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "capital_intensity_reverse",
     "cagr_tangible_book_per_share",
     "cagr_cash_and_equiv",
+    "goodwill_to_assets",
     "leverage_ratio",
     "interest_coverage_ratio",
     "roe_tangible_equity",
@@ -203,8 +210,10 @@ document.addEventListener("DOMContentLoaded", function () {
     "fcf_yield",
     "peg",
     "price_to_tangible_book",
+    "relative_PE_vs_history",
     "avg_5years_eps_growth",
     "avg_5years_revenue_growth",
+    "cagr_shares_diluted",
     "expected_growth_market_cap_10Y",
     "final_earnings_for_10y_growth_10perc",
     "final_earnings_for_10y_growth_15perc",
@@ -238,6 +247,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "final_earnings_for_10y_growth_15perc",
     "implied_perpetual_growth_curr_market_cap",
     "leverage_ratio",
+    "goodwill_to_assets",
+    "relative_PE_vs_history",
+    "cagr_shares_diluted",
   ];
 
   if (stockSymbol) {
@@ -273,27 +285,63 @@ document.addEventListener("DOMContentLoaded", function () {
         if (stockData) {
           // Add section scores
           Object.keys(sectionFields).forEach((sectionId) => {
+            const score = calculateSectionScore(
+              sectionFields[sectionId],
+              stockData,
+              allMedians,
+              higherIsBetterMetrics,
+              lowerIsBetterMetrics
+            );
+
+            const chipClass = getScoreChipClass(score.aboveMedian, score.total);
+
+            // 1. Update Section Header (Existing logic)
             const section = document.getElementById(sectionId);
             if (section) {
               const h2 = section.querySelector("h2");
               if (h2) {
-                const score = calculateSectionScore(
-                  sectionFields[sectionId],
-                  stockData,
-                  allMedians,
-                  higherIsBetterMetrics,
-                  lowerIsBetterMetrics
-                );
-
-                const chipClass = getScoreChipClass(
-                  score.aboveMedian,
-                  score.total
-                );
                 const scoreChip = document.createElement("span");
                 scoreChip.className = `section-score ${chipClass}`;
                 scoreChip.textContent = `${score.aboveMedian}/${score.total} above median`;
                 h2.appendChild(scoreChip);
               }
+            }
+
+            // 2. Update Scorecard (New logic)
+            const scoreValEl = document.getElementById(
+              `score-val-${sectionId}`
+            );
+            const scoreBarEl = document.getElementById(
+              `score-bar-${sectionId}`
+            );
+            const scoreLabelEl = document.getElementById(
+              `score-label-${sectionId}`
+            );
+            const cardEl = document.getElementById(`card-${sectionId}`);
+
+            if (scoreValEl && scoreBarEl && scoreLabelEl && cardEl) {
+              // Set text score
+              scoreValEl.textContent = `${score.aboveMedian}/${score.total}`;
+
+              // Set bar width
+              const percentage =
+                score.total > 0 ? (score.aboveMedian / score.total) * 100 : 0;
+              scoreBarEl.style.width = `${percentage}%`;
+
+              // Apply status classes
+              cardEl.classList.remove(
+                "status-good",
+                "status-mixed",
+                "status-poor"
+              );
+              cardEl.classList.add(`status-${chipClass}`);
+
+              // Set label text
+              let labelText = "Neutral";
+              if (chipClass === "good") labelText = "Strong";
+              if (chipClass === "mixed") labelText = "Mixed";
+              if (chipClass === "poor") labelText = "Weak";
+              scoreLabelEl.textContent = labelText;
             }
           });
 

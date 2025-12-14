@@ -1,0 +1,6 @@
+# pushing website on github
+
+- go in Python git repo from terminal
+- git add -A HTML_portfolio
+- git commit -m "HTML_portfolio: 'your message'"
+- git subtree push --prefix=HTML_portfolio website main

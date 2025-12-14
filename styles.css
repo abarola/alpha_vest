@@ -1588,6 +1588,121 @@ main {
   }
 }
 
+/* === Scorecard Styles === */
+.scorecard-section {
+  margin-bottom: 2rem;
+}
+
+.scorecard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.score-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.score-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.score-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.score-icon {
+  font-size: 1.2rem;
+}
+
+.score-header h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin: 0;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.score-body {
+  margin-bottom: 0.75rem;
+}
+
+.score-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+}
+
+.score-bar-bg {
+  width: 100%;
+  height: 6px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background-color: var(--text-light);
+  border-radius: 3px;
+  transition: width 1s ease-out, background-color 0.3s ease;
+}
+
+.score-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* Status Colors for Scorecard */
+.score-card.status-good .score-bar-fill {
+  background-color: var(--success-color);
+}
+.score-card.status-good .score-label {
+  color: var(--success-color);
+}
+.score-card.status-good {
+  border-bottom: 3px solid var(--success-color);
+}
+
+.score-card.status-mixed .score-bar-fill {
+  background-color: var(--warning-color);
+}
+.score-card.status-mixed .score-label {
+  color: var(--warning-color);
+}
+.score-card.status-mixed {
+  border-bottom: 3px solid var(--warning-color);
+}
+
+.score-card.status-poor .score-bar-fill {
+  background-color: var(--accent-color);
+}
+.score-card.status-poor .score-label {
+  color: var(--accent-color);
+}
+.score-card.status-poor {
+  border-bottom: 3px solid var(--accent-color);
+}
+
 /* Apply mono font to data elements */
 .cagr-value,
 .drawdown-stat,

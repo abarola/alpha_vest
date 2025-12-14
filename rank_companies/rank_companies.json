@@ -45,19 +45,19 @@
     "symbol":"APPF:US",
     "Elo_Rank":8.0,
     "TOPSIS_Rank":21.0,
-    "Ensemble_Rank":11.0
-  },
-  {
-    "symbol":"CIVI:US",
-    "Elo_Rank":9.0,
-    "TOPSIS_Rank":74.0,
-    "Ensemble_Rank":42.0
+    "Ensemble_Rank":12.0
   },
   {
     "symbol":"UTHR:US",
-    "Elo_Rank":10.0,
+    "Elo_Rank":9.0,
     "TOPSIS_Rank":4.0,
     "Ensemble_Rank":5.0
+  },
+  {
+    "symbol":"CIVI:US",
+    "Elo_Rank":10.0,
+    "TOPSIS_Rank":74.0,
+    "Ensemble_Rank":42.0
   },
   {
     "symbol":"PHM:US",
@@ -84,16 +84,16 @@
     "Ensemble_Rank":53.0
   },
   {
-    "symbol":"NVR:US",
-    "Elo_Rank":15.0,
-    "TOPSIS_Rank":45.0,
-    "Ensemble_Rank":26.0
-  },
-  {
     "symbol":"GMWKF:US",
-    "Elo_Rank":16.0,
+    "Elo_Rank":15.0,
     "TOPSIS_Rank":40.0,
     "Ensemble_Rank":20.0
+  },
+  {
+    "symbol":"NVR:US",
+    "Elo_Rank":16.0,
+    "TOPSIS_Rank":45.0,
+    "Ensemble_Rank":26.0
   },
   {
     "symbol":"GME:US",
@@ -132,22 +132,22 @@
     "Ensemble_Rank":15.0
   },
   {
-    "symbol":"CORT:US",
+    "symbol":"YETI:US",
     "Elo_Rank":23.0,
-    "TOPSIS_Rank":10.0,
-    "Ensemble_Rank":9.0
+    "TOPSIS_Rank":86.0,
+    "Ensemble_Rank":59.0
   },
   {
-    "symbol":"YETI:US",
+    "symbol":"CORT:US",
     "Elo_Rank":24.0,
-    "TOPSIS_Rank":87.0,
-    "Ensemble_Rank":59.0
+    "TOPSIS_Rank":10.0,
+    "Ensemble_Rank":9.0
   },
   {
     "symbol":"CRUS:US",
     "Elo_Rank":25.0,
     "TOPSIS_Rank":24.0,
-    "Ensemble_Rank":16.0
+    "Ensemble_Rank":17.0
   },
   {
     "symbol":"UI:US",
@@ -162,16 +162,16 @@
     "Ensemble_Rank":24.0
   },
   {
-    "symbol":"HIG:US",
-    "Elo_Rank":28.0,
-    "TOPSIS_Rank":118.0,
-    "Ensemble_Rank":68.0
-  },
-  {
     "symbol":"TPL:US",
-    "Elo_Rank":29.0,
+    "Elo_Rank":28.0,
     "TOPSIS_Rank":5.0,
     "Ensemble_Rank":8.0
+  },
+  {
+    "symbol":"HIG:US",
+    "Elo_Rank":29.0,
+    "TOPSIS_Rank":118.0,
+    "Ensemble_Rank":68.0
   },
   {
     "symbol":"ALL:US",
@@ -213,7 +213,7 @@
     "symbol":"WRB:US",
     "Elo_Rank":36.0,
     "TOPSIS_Rank":135.0,
-    "Ensemble_Rank":82.0
+    "Ensemble_Rank":81.0
   },
   {
     "symbol":"REGN:US",
@@ -234,40 +234,40 @@
     "Ensemble_Rank":85.0
   },
   {
-    "symbol":"IBKR:US",
-    "Elo_Rank":40.0,
-    "TOPSIS_Rank":126.0,
-    "Ensemble_Rank":81.0
-  },
-  {
     "symbol":"THG:US",
-    "Elo_Rank":41.0,
+    "Elo_Rank":40.0,
     "TOPSIS_Rank":109.0,
     "Ensemble_Rank":74.0
   },
   {
-    "symbol":"PFG:US",
-    "Elo_Rank":42.0,
-    "TOPSIS_Rank":153.0,
-    "Ensemble_Rank":90.0
+    "symbol":"IBKR:US",
+    "Elo_Rank":41.0,
+    "TOPSIS_Rank":126.0,
+    "Ensemble_Rank":82.0
   },
   {
     "symbol":"GL:US",
+    "Elo_Rank":42.0,
+    "TOPSIS_Rank":155.0,
+    "Ensemble_Rank":90.0
+  },
+  {
+    "symbol":"PFG:US",
     "Elo_Rank":43.0,
-    "TOPSIS_Rank":156.0,
+    "TOPSIS_Rank":153.0,
     "Ensemble_Rank":91.0
   },
   {
     "symbol":"AIT:US",
     "Elo_Rank":44.0,
-    "TOPSIS_Rank":98.0,
-    "Ensemble_Rank":70.0
+    "TOPSIS_Rank":97.0,
+    "Ensemble_Rank":69.0
   },
   {
     "symbol":"CPRT:US",
     "Elo_Rank":45.0,
     "TOPSIS_Rank":8.0,
-    "Ensemble_Rank":12.0
+    "Ensemble_Rank":11.0
   },
   {
     "symbol":"EOG:US",
@@ -294,14 +294,14 @@
     "Ensemble_Rank":96.0
   },
   {
-    "symbol":"DXC:US",
+    "symbol":"TROW:US",
     "Elo_Rank":50.0,
-    "TOPSIS_Rank":169.0,
-    "Ensemble_Rank":98.0
+    "TOPSIS_Rank":25.0,
+    "Ensemble_Rank":21.0
   },
   {
     "symbol":"KNSL:US",
-    "Elo_Rank":69.0,
+    "Elo_Rank":68.0,
     "TOPSIS_Rank":164.0,
     "Ensemble_Rank":107.0
   },
@@ -313,13 +313,13 @@
   },
   {
     "symbol":"ADP:US",
-    "Elo_Rank":103.0,
+    "Elo_Rank":104.0,
     "TOPSIS_Rank":146.0,
-    "Ensemble_Rank":121.0
+    "Ensemble_Rank":120.0
   },
   {
     "symbol":"QCOM:US",
-    "Elo_Rank":128.0,
+    "Elo_Rank":129.0,
     "TOPSIS_Rank":184.0,
     "Ensemble_Rank":154.0
   },
@@ -331,15 +331,15 @@
   },
   {
     "symbol":"FIX:US",
-    "Elo_Rank":134.0,
+    "Elo_Rank":133.0,
     "TOPSIS_Rank":276.0,
-    "Ensemble_Rank":189.0
+    "Ensemble_Rank":188.0
   },
   {
     "symbol":"GOOGL:US",
     "Elo_Rank":167.0,
     "TOPSIS_Rank":49.0,
-    "Ensemble_Rank":69.0
+    "Ensemble_Rank":70.0
   },
   {
     "symbol":"AAPL:US",
@@ -356,32 +356,32 @@
   {
     "symbol":"VRSN:US",
     "Elo_Rank":225.0,
-    "TOPSIS_Rank":258.0,
-    "Ensemble_Rank":241.0
-  },
-  {
-    "symbol":"CROX:US",
-    "Elo_Rank":278.0,
-    "TOPSIS_Rank":431.0,
-    "Ensemble_Rank":347.0
+    "TOPSIS_Rank":257.0,
+    "Ensemble_Rank":240.0
   },
   {
     "symbol":"SWKS:US",
-    "Elo_Rank":280.0,
+    "Elo_Rank":278.0,
     "TOPSIS_Rank":185.0,
     "Ensemble_Rank":234.0
   },
   {
+    "symbol":"CROX:US",
+    "Elo_Rank":280.0,
+    "TOPSIS_Rank":432.0,
+    "Ensemble_Rank":349.0
+  },
+  {
     "symbol":"MSFT:US",
-    "Elo_Rank":330.0,
-    "TOPSIS_Rank":191.0,
-    "Ensemble_Rank":256.0
+    "Elo_Rank":332.0,
+    "TOPSIS_Rank":192.0,
+    "Ensemble_Rank":257.0
   },
   {
     "symbol":"CCSI:US",
-    "Elo_Rank":372.0,
+    "Elo_Rank":376.0,
     "TOPSIS_Rank":397.0,
-    "Ensemble_Rank":384.0
+    "Ensemble_Rank":387.0
   },
   {
     "symbol":"AMZN:US",
@@ -397,7 +397,7 @@
   },
   {
     "symbol":"PLTR:US",
-    "Elo_Rank":483.0,
+    "Elo_Rank":486.0,
     "TOPSIS_Rank":29.0,
     "Ensemble_Rank":88.0
   },
@@ -409,50 +409,50 @@
   },
   {
     "symbol":"APP:US",
-    "Elo_Rank":572.0,
+    "Elo_Rank":571.0,
     "TOPSIS_Rank":390.0,
     "Ensemble_Rank":488.0
   },
   {
     "symbol":"MCO:US",
-    "Elo_Rank":576.0,
-    "TOPSIS_Rank":656.0,
+    "Elo_Rank":575.0,
+    "TOPSIS_Rank":655.0,
     "Ensemble_Rank":613.0
   },
   {
     "symbol":"CVNA:US",
-    "Elo_Rank":587.0,
+    "Elo_Rank":586.0,
     "TOPSIS_Rank":502.0,
-    "Ensemble_Rank":565.0
+    "Ensemble_Rank":564.0
   },
   {
     "symbol":"V:US",
-    "Elo_Rank":614.0,
-    "TOPSIS_Rank":396.0,
+    "Elo_Rank":615.0,
+    "TOPSIS_Rank":394.0,
     "Ensemble_Rank":522.0
   },
   {
     "symbol":"JCI:US",
-    "Elo_Rank":642.0,
-    "TOPSIS_Rank":697.0,
-    "Ensemble_Rank":664.0
+    "Elo_Rank":641.0,
+    "TOPSIS_Rank":696.0,
+    "Ensemble_Rank":662.0
   },
   {
     "symbol":"VRT:US",
-    "Elo_Rank":728.0,
-    "TOPSIS_Rank":782.0,
-    "Ensemble_Rank":752.0
+    "Elo_Rank":727.0,
+    "TOPSIS_Rank":781.0,
+    "Ensemble_Rank":751.0
   },
   {
     "symbol":"DELL:US",
-    "Elo_Rank":744.0,
-    "TOPSIS_Rank":763.0,
-    "Ensemble_Rank":757.0
+    "Elo_Rank":743.0,
+    "TOPSIS_Rank":762.0,
+    "Ensemble_Rank":755.0
   },
   {
     "symbol":"ASTS:US",
-    "Elo_Rank":799.0,
+    "Elo_Rank":798.0,
     "TOPSIS_Rank":330.0,
-    "Ensemble_Rank":703.0
+    "Ensemble_Rank":704.0
   }
 ]

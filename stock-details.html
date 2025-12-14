@@ -20,6 +20,109 @@
     </header>
 
     <main>
+      <!-- Executive Summary Scorecard -->
+      <section class="scorecard-section">
+        <div class="scorecard-grid">
+          <div class="score-card" id="card-balance-sheet-strength">
+            <div class="score-header">
+              <span class="score-icon">🛡️</span>
+              <h3>Balance Sheet</h3>
+            </div>
+            <div class="score-body">
+              <div class="score-number" id="score-val-balance-sheet-strength">
+                -/-
+              </div>
+              <div class="score-bar-bg">
+                <div
+                  class="score-bar-fill"
+                  id="score-bar-balance-sheet-strength"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="score-label" id="score-label-balance-sheet-strength">
+              Loading...
+            </div>
+          </div>
+
+          <div class="score-card" id="card-debt-service">
+            <div class="score-header">
+              <span class="score-icon">💳</span>
+              <h3>Debt Service</h3>
+            </div>
+            <div class="score-body">
+              <div class="score-number" id="score-val-debt-service">-/-</div>
+              <div class="score-bar-bg">
+                <div
+                  class="score-bar-fill"
+                  id="score-bar-debt-service"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="score-label" id="score-label-debt-service">
+              Loading...
+            </div>
+          </div>
+
+          <div class="score-card" id="card-profitability">
+            <div class="score-header">
+              <span class="score-icon">📈</span>
+              <h3>Profitability</h3>
+            </div>
+            <div class="score-body">
+              <div class="score-number" id="score-val-profitability">-/-</div>
+              <div class="score-bar-bg">
+                <div
+                  class="score-bar-fill"
+                  id="score-bar-profitability"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="score-label" id="score-label-profitability">
+              Loading...
+            </div>
+          </div>
+
+          <div class="score-card" id="card-valuation">
+            <div class="score-header">
+              <span class="score-icon">🏷️</span>
+              <h3>Valuation</h3>
+            </div>
+            <div class="score-body">
+              <div class="score-number" id="score-val-valuation">-/-</div>
+              <div class="score-bar-bg">
+                <div
+                  class="score-bar-fill"
+                  id="score-bar-valuation"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="score-label" id="score-label-valuation">Loading...</div>
+          </div>
+
+          <div class="score-card" id="card-growth">
+            <div class="score-header">
+              <span class="score-icon">🚀</span>
+              <h3>Growth</h3>
+            </div>
+            <div class="score-body">
+              <div class="score-number" id="score-val-growth">-/-</div>
+              <div class="score-bar-bg">
+                <div
+                  class="score-bar-fill"
+                  id="score-bar-growth"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="score-label" id="score-label-growth">Loading...</div>
+          </div>
+        </div>
+      </section>
+
       <!-- Legend for median comparison -->
       <div class="comparison-legend">
         <strong>Legend:</strong>
@@ -107,6 +210,16 @@
             <span class="metric-median-container">
               (Median:
               <span id="cagr_cash_and_equiv_median" class="metric-value-median"
+                >Loading...</span
+              >)</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label">Goodwill to Assets:</span>
+            <span id="goodwill_to_assets" class="metric-value">Loading...</span>
+            <span class="metric-median-container">
+              (Median:
+              <span id="goodwill_to_assets_median" class="metric-value-median"
                 >Loading...</span
               >)</span
             >
@@ -267,6 +380,20 @@
               >)</span
             >
           </div>
+          <div class="metric">
+            <span class="metric-label">Relative P/E vs History:</span>
+            <span id="relative_PE_vs_history" class="metric-value"
+              >Loading...</span
+            >
+            <span class="metric-median-container">
+              (Median:
+              <span
+                id="relative_PE_vs_history_median"
+                class="metric-value-median"
+                >Loading...</span
+              >)</span
+            >
+          </div>
         </div>
       </section>
 
@@ -297,6 +424,18 @@
               <span
                 id="avg_5years_revenue_growth_median"
                 class="metric-value-median"
+                >Loading...</span
+              >)</span
+            >
+          </div>
+          <div class="metric">
+            <span class="metric-label">CAGR 5Y Shares Diluted:</span>
+            <span id="cagr_shares_diluted" class="metric-value"
+              >Loading...</span
+            >
+            <span class="metric-median-container">
+              (Median:
+              <span id="cagr_shares_diluted_median" class="metric-value-median"
                 >Loading...</span
               >)</span
             >
