@@ -35,8 +35,16 @@ document.addEventListener("DOMContentLoaded", function () {
       case "leverage_ratio":
       case "interest_coverage_ratio":
       case "relative_PE_vs_history":
+      case "current_ratio":
+      case "eps_growth_5y_total":
+      case "pe_times_pb": // NEW
         formattedValue = value.toFixed(2);
         break;
+
+      case "negative_eps_count_5y":
+        formattedValue = value.toFixed(0);
+        break;
+
       case "cagr_tangible_book_per_share":
       case "cagr_cash_and_equiv":
       case "roe_tangible_equity":
@@ -52,13 +60,16 @@ document.addEventListener("DOMContentLoaded", function () {
       case "cagr_shares_diluted":
         formattedValue = (value * 100).toFixed(2) + "%";
         break;
+
       case "final_earnings_for_10y_growth_10perc":
       case "final_earnings_for_10y_growth_15perc":
         formattedValue = (value / 1000000000).toFixed(2) + "B";
         break;
+
       case "rule_of_40":
         formattedValue = (value * 100).toFixed(2);
         break;
+
       default:
         formattedValue = value.toLocaleString(undefined, {
           minimumFractionDigits: 2,
@@ -69,6 +80,43 @@ document.addEventListener("DOMContentLoaded", function () {
     return formattedValue;
   }
 
+  // NEW: Threshold-based (absolute) rules for Graham indicators
+  const thresholdIndicatorRules = {
+    current_ratio: (value) => {
+      if (typeof value !== "number" || isNaN(value)) return null;
+      return value >= 1.5
+        ? { icon: "▲", class: "better" }
+        : { icon: "▼", class: "worse" };
+    },
+    negative_eps_count_5y: (value) => {
+      if (typeof value !== "number" || isNaN(value)) return null;
+      return value === 0
+        ? { icon: "▲", class: "better" }
+        : { icon: "▼", class: "worse" };
+    },
+    eps_growth_5y_total: (value) => {
+      if (typeof value !== "number" || isNaN(value)) return null;
+      return value > 1
+        ? { icon: "▲", class: "better" } // green
+        : { icon: "▼", class: "worse" };
+    },
+    pe_times_pb: (value) => {
+      if (typeof value !== "number" || isNaN(value)) return null;
+      return value < 30
+        ? { icon: "▲", class: "better" } // green if below 30
+        : { icon: "▼", class: "worse" }; // red otherwise
+    },
+  };
+
+  function hasThresholdRule(fieldId) {
+    return Object.prototype.hasOwnProperty.call(
+      thresholdIndicatorRules,
+      fieldId
+    );
+  }
+
+  const MEDIAN_MARGIN_OF_SAFETY = 0.15; // 15%
+
   // Get comparison indicator
   function getComparisonIndicator(
     value,
@@ -77,6 +125,12 @@ document.addEventListener("DOMContentLoaded", function () {
     higherIsBetter,
     lowerIsBetter
   ) {
+    // override median comparison if a threshold rule exists
+    if (hasThresholdRule(fieldId)) {
+      const res = thresholdIndicatorRules[fieldId](value);
+      return res ?? { icon: "▬", class: "equal" };
+    }
+
     if (
       typeof value !== "number" ||
       isNaN(value) ||
@@ -86,21 +140,37 @@ document.addEventListener("DOMContentLoaded", function () {
       return { icon: "▬", class: "equal" };
     }
 
-    const tolerance = 0.001; // Consider values within 0.1% as equal
-    const diff = Math.abs(value - medianValue) / Math.abs(medianValue);
-
-    if (diff < tolerance) {
+    // If median is 0 (or extremely close), fall back to simple comparison
+    // because percentage-based bands become meaningless.
+    const EPS = 1e-12;
+    const medianAbs = Math.abs(medianValue);
+    if (medianAbs < EPS) {
+      if (higherIsBetter.includes(fieldId)) {
+        if (value > medianValue) return { icon: "▲", class: "better" };
+        if (value < medianValue) return { icon: "▼", class: "worse" };
+        return { icon: "▬", class: "equal" };
+      }
+      if (lowerIsBetter.includes(fieldId)) {
+        if (value < medianValue) return { icon: "▲", class: "better" };
+        if (value > medianValue) return { icon: "▼", class: "worse" };
+        return { icon: "▬", class: "equal" };
+      }
       return { icon: "▬", class: "equal" };
     }
 
+    const upperBand = medianValue * (1 + MEDIAN_MARGIN_OF_SAFETY);
+    const lowerBand = medianValue * (1 - MEDIAN_MARGIN_OF_SAFETY);
+
     if (higherIsBetter.includes(fieldId)) {
-      return value > medianValue
-        ? { icon: "▲", class: "better" }
-        : { icon: "▼", class: "worse" };
-    } else if (lowerIsBetter.includes(fieldId)) {
-      return value < medianValue
-        ? { icon: "▲", class: "better" }
-        : { icon: "▼", class: "worse" };
+      if (value >= upperBand) return { icon: "▲", class: "better" };
+      if (value <= lowerBand) return { icon: "▼", class: "worse" };
+      return { icon: "▬", class: "equal" }; // within ±15%
+    }
+
+    if (lowerIsBetter.includes(fieldId)) {
+      if (value <= lowerBand) return { icon: "▲", class: "better" };
+      if (value >= upperBand) return { icon: "▼", class: "worse" };
+      return { icon: "▬", class: "equal" }; // within ±15%
     }
 
     return { icon: "▬", class: "equal" };
@@ -121,6 +191,23 @@ document.addEventListener("DOMContentLoaded", function () {
       const value = stockData[fieldId];
       const medianValue = allMedians[fieldId];
 
+      // NEW: For threshold metrics, don't require a median to score it
+      if (hasThresholdRule(fieldId)) {
+        if (typeof value === "number" && !isNaN(value)) {
+          total++;
+          const indicator = getComparisonIndicator(
+            value,
+            medianValue,
+            fieldId,
+            higherIsBetter,
+            lowerIsBetter
+          );
+          if (indicator.class === "better") aboveMedian++;
+        }
+        return;
+      }
+
+      // Existing median-based scoring
       if (
         typeof value === "number" &&
         !isNaN(value) &&
@@ -190,6 +277,14 @@ document.addEventListener("DOMContentLoaded", function () {
       "final_earnings_for_10y_growth_15perc",
       "implied_perpetual_growth_curr_market_cap",
     ],
+
+    // NEW
+    "graham-value-investor-indicator": [
+      "current_ratio",
+      "negative_eps_count_5y",
+      "eps_growth_5y_total",
+      "pe_times_pb", // NEW
+    ],
   };
 
   // Column names mapping to HTML element IDs
@@ -219,6 +314,12 @@ document.addEventListener("DOMContentLoaded", function () {
     "final_earnings_for_10y_growth_15perc",
     "avg_5years_roe_growth",
     "implied_perpetual_growth_curr_market_cap",
+
+    // NEW
+    "current_ratio",
+    "negative_eps_count_5y",
+    "eps_growth_5y_total",
+    "pe_times_pb", // NEW
   ];
 
   const higherIsBetterMetrics = [
@@ -237,6 +338,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "expected_growth_market_cap_10Y",
     "avg_5years_roe_growth",
     "interest_coverage_ratio",
+
+    // NEW
+    "current_ratio",
   ];
 
   const lowerIsBetterMetrics = [
@@ -250,6 +354,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "goodwill_to_assets",
     "relative_PE_vs_history",
     "cagr_shares_diluted",
+
+    // NEW
+    "negative_eps_count_5y",
   ];
 
   if (stockSymbol) {

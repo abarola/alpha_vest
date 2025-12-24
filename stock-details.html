@@ -120,6 +120,35 @@
             </div>
             <div class="score-label" id="score-label-growth">Loading...</div>
           </div>
+
+          <!-- NEW: Graham Value Investor Indicator -->
+          <div class="score-card" id="card-graham-value-investor-indicator">
+            <div class="score-header">
+              <span class="score-icon">📚</span>
+              <h3>Graham Indicator</h3>
+            </div>
+            <div class="score-body">
+              <div
+                class="score-number"
+                id="score-val-graham-value-investor-indicator"
+              >
+                -/-
+              </div>
+              <div class="score-bar-bg">
+                <div
+                  class="score-bar-fill"
+                  id="score-bar-graham-value-investor-indicator"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div
+              class="score-label"
+              id="score-label-graham-value-investor-indicator"
+            >
+              Loading...
+            </div>
+          </div>
         </div>
       </section>
 
@@ -150,6 +179,11 @@
           <a href="#profitability" class="section-pill"> Profitability </a>
           <a href="#valuation" class="section-pill"> Valuation </a>
           <a href="#growth" class="section-pill"> Growth </a>
+
+          <!-- NEW -->
+          <a href="#graham-value-investor-indicator" class="section-pill">
+            Graham Indicator
+          </a>
         </div>
       </nav>
 
@@ -307,7 +341,7 @@
             >
           </div>
           <div class="metric">
-            <span class="metric-label">Avg. 5 Years ROE Growth:</span>
+            <span class="metric-label">Avg. 5 Years ROE:</span>
             <span id="avg_5years_roe_growth" class="metric-value"
               >Loading...</span
             >
@@ -498,6 +532,66 @@
                 class="metric-value-median"
                 >Loading...</span
               >)
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW: Graham Value Investor Indicator section -->
+      <section id="graham-value-investor-indicator" class="financial-section">
+        <h2>Graham Value Investor Indicator</h2>
+        <div class="metrics-container">
+          <div class="metric">
+            <span class="metric-label">Current Ratio:</span>
+            <span id="current_ratio" class="metric-value">Loading...</span>
+            <span class="metric-median-container">
+              (Median:
+              <span id="current_ratio_median" class="metric-value-median"
+                >Loading...</span
+              >)
+            </span>
+          </div>
+
+          <div class="metric">
+            <span class="metric-label">Negative EPS Count (5Y):</span>
+            <span id="negative_eps_count_5y" class="metric-value"
+              >Loading...</span
+            >
+            <span class="metric-median-container">
+              (Median:
+              <span
+                id="negative_eps_count_5y_median"
+                class="metric-value-median"
+                >Loading...</span
+              >)
+            </span>
+          </div>
+
+          <!-- NEW -->
+          <div class="metric">
+            <span class="metric-label"
+              >current eps - 5 yeasr eps total growth:</span
+            >
+            <span id="eps_growth_5y_total" class="metric-value"
+              >Loading...</span
+            >
+            <span class="metric-median-container">
+              (Median:
+              <span id="eps_growth_5y_total_median" class="metric-value-median"
+                >Loading...</span
+              >)
+            </span>
+          </div>
+
+          <div class="metric">
+            <span class="metric-label">P/E × P/B:</span>
+            <span id="pe_times_pb" class="metric-value">Loading...</span>
+            <span class="metric-median-container">
+              (Median:
+              <span id="pe_times_pb_median" class="metric-value-median"
+                >Loading...</span
+              >
+              )
             </span>
           </div>
         </div>
