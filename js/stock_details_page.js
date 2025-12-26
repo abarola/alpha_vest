@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
       case "interest_coverage_ratio":
       case "relative_PE_vs_history":
       case "current_ratio":
-      case "eps_growth_5y_total":
       case "pe_times_pb": // NEW
         formattedValue = value.toFixed(2);
         break;
@@ -53,11 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
       case "fcf_yield":
       case "avg_5years_eps_growth":
       case "avg_5years_revenue_growth":
+      case "revenue_growth_acceleration":
       case "expected_growth_market_cap_10Y":
       case "avg_5years_roe_growth":
       case "implied_perpetual_growth_curr_market_cap":
       case "goodwill_to_assets":
       case "cagr_shares_diluted":
+      case "eps_growth_5y_total":
         formattedValue = (value * 100).toFixed(2) + "%";
         break;
 
@@ -271,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
     growth: [
       "avg_5years_eps_growth",
       "avg_5years_revenue_growth",
+      "revenue_growth_acceleration",
       "cagr_shares_diluted",
       "expected_growth_market_cap_10Y",
       "final_earnings_for_10y_growth_10perc",
@@ -308,6 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "relative_PE_vs_history",
     "avg_5years_eps_growth",
     "avg_5years_revenue_growth",
+    "revenue_growth_acceleration",
     "cagr_shares_diluted",
     "expected_growth_market_cap_10Y",
     "final_earnings_for_10y_growth_10perc",
@@ -335,6 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "fcf_yield",
     "avg_5years_eps_growth",
     "avg_5years_revenue_growth",
+    "revenue_growth_acceleration",
     "expected_growth_market_cap_10Y",
     "avg_5years_roe_growth",
     "interest_coverage_ratio",
