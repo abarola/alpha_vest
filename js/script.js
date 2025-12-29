@@ -270,6 +270,31 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((rows) => {
       if (!rows.length) return;
 
+      // If you pre-render only a few “SEO pages”, list them here.
+      // Everything else falls back to the dynamic JS-driven details page.
+      const PRERENDERED_SYMBOLS = new Set([
+        "AAPL:US", // -> /stocks/AAPL-US.html
+      ]);
+
+      function sanitizeSymbolForPath(symbol) {
+        return String(symbol || "")
+          .trim()
+          .toUpperCase()
+          .replace(/[:/\\\s]+/g, "-")
+          .replace(/[^A-Z0-9._-]/g, "");
+      }
+
+      function stockDetailsHref(symbol) {
+        const sym = String(symbol || "")
+          .trim()
+          .toUpperCase();
+        if (PRERENDERED_SYMBOLS.has(sym)) {
+          const safe = sanitizeSymbolForPath(sym);
+          return `stocks/${safe}.html`;
+        }
+        return `stock-details.html?symbol=${encodeURIComponent(sym)}`;
+      }
+
       const table = document.getElementById("rank-table");
       const theadTr = table.querySelector("thead tr");
       const tbody = table.querySelector("tbody");
@@ -287,9 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const td = document.createElement("td");
           if (col.toLowerCase() === "symbol") {
             const link = document.createElement("a");
-            link.href = `stock-details.html?symbol=${encodeURIComponent(
-              row[col]
-            )}`;
+            link.href = stockDetailsHref(row[col]);
             link.textContent = row[col];
             td.appendChild(link);
             // Add data attribute for easier filtering

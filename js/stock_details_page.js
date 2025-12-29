@@ -1,8 +1,124 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // If the HTML was pre-rendered (for SEO), do nothing.
+  // This prevents duplicate score chips and metric wrappers.
+  if (document.body?.dataset?.prerendered === "1") {
+    return;
+  }
+
+  // If a prerendered page exists for this symbol (e.g. /stocks/AAPL-US.html),
+  // prefer it before doing the XLSX fetch.
+  function sanitizeSymbolForPath(symbol) {
+    return String(symbol || "")
+      .trim()
+      .toUpperCase()
+      .replace(/[:/\\\s]+/g, "-")
+      .replace(/[^A-Z0-9._-]/g, "");
+  }
+
+  async function tryRedirectToPrerenderedPage(symbol) {
+    const sym = String(symbol || "").trim();
+    if (!sym) return false;
+
+    // Allow manual opt-out: stock-details.html?symbol=...&no_prerender=1
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("no_prerender") === "1") return false;
+
+    const safe = sanitizeSymbolForPath(sym);
+    if (!safe) return false;
+
+    // Avoid loops if we’re already on the prerendered page.
+    if (window.location.pathname.includes(`/stocks/${safe}.html`)) {
+      return false;
+    }
+
+    const candidates = [
+      `stocks/${safe}.html`,
+      `./stocks/${safe}.html`,
+      `/stocks/${safe}.html`,
+    ];
+
+    for (const href of candidates) {
+      try {
+        // Some hosts don’t support HEAD reliably; try HEAD then fall back to GET.
+        const headRes = await fetch(href, {
+          method: "HEAD",
+          cache: "no-store",
+        });
+        if (headRes.ok) {
+          window.location.replace(href);
+          return true;
+        }
+      } catch (_) {
+        // ignore
+      }
+
+      try {
+        const getRes = await fetch(href, { method: "GET", cache: "no-store" });
+        if (getRes.ok) {
+          window.location.replace(href);
+          return true;
+        }
+      } catch (_) {
+        // ignore
+      }
+    }
+
+    return false;
+  }
+
   // Function to get URL parameters
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
+  }
+
+  // MICRO-STEP (SEO): allow pages to ship with preloaded (static) data.
+  // This lets you create ONE crawlable stock page (e.g. /stocks/AAPL.html)
+  // without changing the whole site architecture.
+  //
+  // If present, set one of:
+  //   - window.__STOCK_PAGE_DATA__ = { symbol, stockData, medians }
+  //   - <script id="stock-page-data" type="application/json">{...}</script>
+  //   - <body data-stock-symbol="AAPL">
+  function getPreloadedPageData() {
+    // 1) window global (easy to inject from a generated HTML file)
+    if (
+      window.__STOCK_PAGE_DATA__ &&
+      typeof window.__STOCK_PAGE_DATA__ === "object"
+    ) {
+      return window.__STOCK_PAGE_DATA__;
+    }
+
+    // 2) JSON script tag (keeps the global namespace clean)
+    const el = document.getElementById("stock-page-data");
+    if (el && el.textContent) {
+      try {
+        const obj = JSON.parse(el.textContent);
+        if (obj && typeof obj === "object") return obj;
+      } catch (e) {
+        console.warn("Failed to parse #stock-page-data JSON", e);
+      }
+    }
+
+    return null;
+  }
+
+  function getStockSymbolFromPage() {
+    // Prefer the existing query param (keeps backward compatibility)
+    const fromQuery = getQueryParam("symbol");
+    if (fromQuery) return fromQuery;
+
+    // Optional: body attribute, useful for /stocks/SYMBOL.html
+    // If you set <body data-stock-symbol="AAPL">, it becomes dataset.stockSymbol.
+    const fromDataset = document.body?.dataset?.stockSymbol;
+    if (fromDataset) return fromDataset;
+
+    // Optional: preloaded JSON provides symbol
+    const pre = getPreloadedPageData();
+    if (pre && typeof pre.symbol === "string" && pre.symbol.trim())
+      return pre.symbol.trim();
+
+    return null;
   }
 
   // Helper function to calculate median
@@ -241,8 +357,8 @@ document.addEventListener("DOMContentLoaded", function () {
     return "poor";
   }
 
-  // Get the stock symbol from the URL
-  const stockSymbol = getQueryParam("symbol");
+  // Get the stock symbol (query param OR static page attribute OR preloaded data)
+  const stockSymbol = getStockSymbolFromPage();
 
   // Section field mappings
   const sectionFields = {
@@ -368,14 +484,131 @@ document.addEventListener("DOMContentLoaded", function () {
     document.title = `Stock Details - ${stockSymbol}`;
     document.getElementById("stock-symbol-header").textContent = stockSymbol;
 
-    // Fetch and process the Excel file
-    fetch("../data/financials_analysis_dashboard_offset_0.xlsx")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+    const preloaded = getPreloadedPageData();
+
+    function renderStockPage(stockData, allMedians) {
+      // Add section scores
+      Object.keys(sectionFields).forEach((sectionId) => {
+        const score = calculateSectionScore(
+          sectionFields[sectionId],
+          stockData,
+          allMedians,
+          higherIsBetterMetrics,
+          lowerIsBetterMetrics
+        );
+
+        const chipClass = getScoreChipClass(score.aboveMedian, score.total);
+
+        // 1. Update Section Header
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const h2 = section.querySelector("h2");
+          if (h2) {
+            const scoreChip = document.createElement("span");
+            scoreChip.className = `section-score ${chipClass}`;
+            scoreChip.textContent = `${score.aboveMedian}/${score.total} above median`;
+            h2.appendChild(scoreChip);
+          }
         }
-        return response.arrayBuffer();
-      })
+
+        // 2. Update Scorecard
+        const scoreValEl = document.getElementById(`score-val-${sectionId}`);
+        const scoreBarEl = document.getElementById(`score-bar-${sectionId}`);
+        const scoreLabelEl = document.getElementById(
+          `score-label-${sectionId}`
+        );
+        const cardEl = document.getElementById(`card-${sectionId}`);
+
+        if (scoreValEl && scoreBarEl && scoreLabelEl && cardEl) {
+          scoreValEl.textContent = `${score.aboveMedian}/${score.total}`;
+          const percentage =
+            score.total > 0 ? (score.aboveMedian / score.total) * 100 : 0;
+          scoreBarEl.style.width = `${percentage}%`;
+
+          cardEl.classList.remove("status-good", "status-mixed", "status-poor");
+          cardEl.classList.add(`status-${chipClass}`);
+
+          let labelText = "Neutral";
+          if (chipClass === "good") labelText = "Strong";
+          if (chipClass === "mixed") labelText = "Mixed";
+          if (chipClass === "poor") labelText = "Weak";
+          scoreLabelEl.textContent = labelText;
+        }
+      });
+
+      dataFields.forEach((fieldId) => {
+        const element = document.getElementById(fieldId);
+        const medianElement = document.getElementById(fieldId + "_median");
+
+        if (element) {
+          const value = stockData[fieldId];
+          const medianValue = allMedians[fieldId];
+
+          const indicator = getComparisonIndicator(
+            value,
+            medianValue,
+            fieldId,
+            higherIsBetterMetrics,
+            lowerIsBetterMetrics
+          );
+
+          const wrapper = document.createElement("div");
+          wrapper.className = "metric-value-wrapper";
+
+          const indicatorSpan = document.createElement("span");
+          indicatorSpan.className = `metric-indicator ${indicator.class}`;
+          indicatorSpan.textContent = indicator.icon;
+          indicatorSpan.setAttribute("aria-label", indicator.class);
+
+          const valueSpan = document.createElement("span");
+          valueSpan.className = "metric-value";
+          valueSpan.textContent = formatMetricValue(value, fieldId);
+
+          if (indicator.class === "better")
+            valueSpan.classList.add("metric-better");
+          else if (indicator.class === "worse")
+            valueSpan.classList.add("metric-worse");
+
+          wrapper.appendChild(indicatorSpan);
+          wrapper.appendChild(valueSpan);
+
+          element.parentNode.replaceChild(wrapper, element);
+        }
+
+        if (medianElement) {
+          const medianValue = allMedians[fieldId];
+          medianElement.textContent = formatMetricValue(medianValue, fieldId);
+        }
+      });
+    }
+
+    // Otherwise: original behavior (JS fetches and computes everything)
+    // Path note:
+    // - If the site is hosted at the domain root, the file is typically /data/...
+    // - If the site is hosted under a subfolder (e.g. /HTML_portfolio/), the file is typically ./data/...
+    // - If you're on a nested page, ../data may be needed.
+    function fetchArrayBufferWithFallback(urls) {
+      const tryOne = (i) => {
+        if (i >= urls.length) {
+          throw new Error("Unable to fetch XLSX from any known path");
+        }
+        return fetch(urls[i])
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.arrayBuffer();
+          })
+          .catch(() => tryOne(i + 1));
+      };
+      return tryOne(0);
+    }
+
+    fetchArrayBufferWithFallback([
+      "data/financials_analysis_dashboard_offset_0.xlsx",
+      "../data/financials_analysis_dashboard_offset_0.xlsx",
+      "/data/financials_analysis_dashboard_offset_0.xlsx",
+    ])
       .then((arrayBuffer) => {
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: "array" });
@@ -394,145 +627,39 @@ document.addEventListener("DOMContentLoaded", function () {
         const stockData = jsonData.find((row) => row.symbol === stockSymbol);
 
         if (stockData) {
-          // Add section scores
-          Object.keys(sectionFields).forEach((sectionId) => {
-            const score = calculateSectionScore(
-              sectionFields[sectionId],
-              stockData,
-              allMedians,
-              higherIsBetterMetrics,
-              lowerIsBetterMetrics
-            );
-
-            const chipClass = getScoreChipClass(score.aboveMedian, score.total);
-
-            // 1. Update Section Header (Existing logic)
-            const section = document.getElementById(sectionId);
-            if (section) {
-              const h2 = section.querySelector("h2");
-              if (h2) {
-                const scoreChip = document.createElement("span");
-                scoreChip.className = `section-score ${chipClass}`;
-                scoreChip.textContent = `${score.aboveMedian}/${score.total} above median`;
-                h2.appendChild(scoreChip);
-              }
-            }
-
-            // 2. Update Scorecard (New logic)
-            const scoreValEl = document.getElementById(
-              `score-val-${sectionId}`
-            );
-            const scoreBarEl = document.getElementById(
-              `score-bar-${sectionId}`
-            );
-            const scoreLabelEl = document.getElementById(
-              `score-label-${sectionId}`
-            );
-            const cardEl = document.getElementById(`card-${sectionId}`);
-
-            if (scoreValEl && scoreBarEl && scoreLabelEl && cardEl) {
-              // Set text score
-              scoreValEl.textContent = `${score.aboveMedian}/${score.total}`;
-
-              // Set bar width
-              const percentage =
-                score.total > 0 ? (score.aboveMedian / score.total) * 100 : 0;
-              scoreBarEl.style.width = `${percentage}%`;
-
-              // Apply status classes
-              cardEl.classList.remove(
-                "status-good",
-                "status-mixed",
-                "status-poor"
-              );
-              cardEl.classList.add(`status-${chipClass}`);
-
-              // Set label text
-              let labelText = "Neutral";
-              if (chipClass === "good") labelText = "Strong";
-              if (chipClass === "mixed") labelText = "Mixed";
-              if (chipClass === "poor") labelText = "Weak";
-              scoreLabelEl.textContent = labelText;
-            }
-          });
-
-          dataFields.forEach((fieldId) => {
-            const element = document.getElementById(fieldId);
-            const medianElement = document.getElementById(fieldId + "_median");
-
-            if (element) {
-              const value = stockData[fieldId];
-              const medianValue = allMedians[fieldId];
-
-              // Clear previous comparison classes
-              element.classList.remove("metric-better", "metric-worse");
-
-              // Get comparison indicator
-              const indicator = getComparisonIndicator(
-                value,
-                medianValue,
-                fieldId,
-                higherIsBetterMetrics,
-                lowerIsBetterMetrics
-              );
-
-              // Wrap value with indicator
-              const wrapper = document.createElement("div");
-              wrapper.className = "metric-value-wrapper";
-
-              const indicatorSpan = document.createElement("span");
-              indicatorSpan.className = `metric-indicator ${indicator.class}`;
-              indicatorSpan.textContent = indicator.icon;
-              indicatorSpan.setAttribute("aria-label", indicator.class);
-
-              const valueSpan = document.createElement("span");
-              valueSpan.className = "metric-value";
-              valueSpan.textContent = formatMetricValue(value, fieldId);
-
-              if (indicator.class === "better") {
-                valueSpan.classList.add("metric-better");
-              } else if (indicator.class === "worse") {
-                valueSpan.classList.add("metric-worse");
-              }
-
-              wrapper.appendChild(indicatorSpan);
-              wrapper.appendChild(valueSpan);
-
-              // Replace element content
-              element.parentNode.replaceChild(wrapper, element);
-            } else {
-              console.warn(`Element with ID '${fieldId}' not found.`);
-            }
-
-            if (medianElement) {
-              const medianValue = allMedians[fieldId];
-              medianElement.textContent = formatMetricValue(
-                medianValue,
-                fieldId
-              );
-            } else {
-              console.warn(
-                `Median element for ID '${fieldId}_median' not found.`
-              );
-            }
-          });
+          renderStockPage(stockData, allMedians);
         } else {
-          console.error(`Stock data not found for symbol: ${stockSymbol}`);
-          dataFields.forEach((fieldId) => {
-            const element = document.getElementById(fieldId);
-            if (element) element.textContent = "Data not found";
-            const medianElement = document.getElementById(fieldId + "_median");
-            if (medianElement) medianElement.textContent = "N/A";
+          tryRedirectToPrerenderedPage(stockSymbol).then((redirected) => {
+            if (redirected) return;
+            console.error(`Stock data not found for symbol: ${stockSymbol}`);
+            dataFields.forEach((fieldId) => {
+              const element = document.getElementById(fieldId);
+              if (element) element.textContent = "Data not found";
+              const medianElement = document.getElementById(
+                fieldId + "_median"
+              );
+              if (medianElement) medianElement.textContent = "N/A";
+            });
           });
         }
       })
       .catch((error) => {
-        console.error("Error loading or processing stock data:", error);
-        dataFields.forEach((fieldId) => {
-          const element = document.getElementById(fieldId);
-          if (element) element.textContent = "Error loading data";
-          const medianElement = document.getElementById(fieldId + "_median");
-          if (medianElement) medianElement.textContent = "Error";
+        tryRedirectToPrerenderedPage(stockSymbol).then((redirected) => {
+          if (redirected) return;
+
+          // Last-resort: if the page shipped preloaded JSON (rare for stock-details.html), render it.
+          if (preloaded && preloaded.stockData && preloaded.medians) {
+            renderStockPage(preloaded.stockData, preloaded.medians);
+            return;
+          }
+
+          console.error("Error loading or processing stock data:", error);
+          dataFields.forEach((fieldId) => {
+            const element = document.getElementById(fieldId);
+            if (element) element.textContent = "Error loading data";
+            const medianElement = document.getElementById(fieldId + "_median");
+            if (medianElement) medianElement.textContent = "Error";
+          });
         });
       });
   } else {
