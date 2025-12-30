@@ -1,210 +1,118 @@
 /**
  * BayesDemon front-end script
- * - Image galleries with captions + collapsible "How to read this" explainers
+ * - Enhances pre-rendered image galleries (captions + explainers)
  * - Lightbox
  * - Rank & historical analysis tables (JSON-driven)
- * - Optional table filters and sorting (if inputs exist)
- * - Optional mobile nav toggle (if .menu-toggle + #primary-nav exist)
+ * - Optional table filters and sorting
  * - Scroll-to-top button
+ * - Optional image refresh via manifest (cache busting only when files change)
  */
 document.addEventListener("DOMContentLoaded", () => {
-  /* ==================== 1. Image galleries ==================== */
-  const IMAGES_DIR = "images/";
-  const GALLERY_DIRS = {
-    "gallery-portfolio": "images/portfolio_performance/",
-    "gallery-indext-stat": "images/",
-    "gallery-strategy-return": "images/",
-  };
-
-  // Substring keys → short explainers auto-attached under matching images
-  const CHART_GUIDE = {
-    time_under_water: {
-      what: "Number of days and monetary amount the portfolio value sits below its previous peak.",
-      how: "When the curves touch the x axis = new highs; below = underwater.",
-      why: "Higher time or amount underwater may signal system off-balance and higher possibility of return to the mean.",
-      caveats: "System can go further off balance before mean reversion.",
-    },
-    inverse_quantile_dd: {
-      what: "Represent the quantile of the current drawdown in the historical distribution of drawdowns for each company (100 = no drawdown, 0 = max historical drawdown).",
-      how: "Read lower bar as potential oversold condition.",
-      why: "Sound companies in deep drawdowns may offer better risk/reward.",
-      caveats: "Companies can go bankrupt without recovering.",
-    },
-    cumulative_return_BT_strategy_offset: {
-      what: "Cumulative return across staggered start dates (offsets 1–8) by investing in companies with different rank threshold.",
-      how: "Look for curves that remain above baseline across offsets.",
-      why: "If ranking is effective higher rated companies shall beat the average and the index",
-      caveats: "Trading costs/slippage depend on your backtest setup.",
-    },
-    composite_indicator_analysis: {
-      what: "Composite score blending multiple metrics (return, time scale, DD). The higher the past return or the worst drawdown compare to the index the better the score.",
-      how: "Higher composite → stronger multi-metric profile.",
-      why: "Prevents single-metric tunnel vision.",
-      caveats: "Choice of weights matters; test sensitivity.",
-    },
-    CSSPX_Mi_CAGR: {
-      what: "CAGR snapshot for an S&P 500 UCITS tracker (baseline) in EUR.",
-      how: "Compare CAGR levels and stability year-over-year.",
-      why: "Baseline to judge strategy value-add.",
-      caveats: "Past CAGR does not imply forward returns.",
-    },
-    return_required_for_all_time_high: {
-      what: "Required gain to recover from drawdowns to the last all-time high assuming stress in recovery time",
-      how: "Provides a conservative floor of expected return in a mean reverting market",
-      why: "Good companies selling at a discount can provide a margin of safety",
-      caveats: "Companies can go bankrupt without recovering",
-    },
-    potential_buying_signals: {
-      what: "An adaptive CUSUM-based oversold detector that tracks cumulative downside pressure in daily prices and flags a buy when it breaches a data-driven threshold calibrated from historical 90-day forward returns.",
-      how: "Validate signals vs. company fundamentals.",
-      why: "Codifies discipline, reduces discretionary whipsaw and improves risk management.",
-      caveats: "Past signals do not imply future performance.",
-    },
-  };
-
-  const imageLists = {
-    "gallery-portfolio": [
-      "Portfolio_time_under_water_analysis.png",
-      "return_required_for_all_time_high.png",
-      "inverse_quantile_dd.png",
-      "potential_buying_signals.png",
-      "performance_oversold_strategy.png",
-      "bubble_chart_Average_CAGR_invquant_dd.png",
-      "bubble_chart_CAGR_for_Year_2020_invquant_dd.png",
-      "bubble_chart_CAGR_for_Year_2023_invquant_dd.png",
-      "distance_chart_Euclidean_Distances_from_VTI_Average_CAGR_vs_invquant_dd.png",
-      "distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2020_vs_invquant_dd.png",
-      "distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2023_vs_invquant_dd.png",
-      "composite_indicator_analysis.png",
-      "relative_pe_analysis.png",
-      // add more...
-    ],
-    "gallery-indext-stat": [
-      "CSSPX_Mi_CAGR.png",
-      // add more...
-    ],
-    "gallery-strategy-return": [
-      "cumulative_return_BT_strategy_offset_1.png",
-      "cumulative_return_BT_strategy_offset_2.png",
-      "cumulative_return_BT_strategy_offset_3.png",
-      "cumulative_return_BT_strategy_offset_4.png",
-      "cumulative_return_BT_strategy_offset_5.png",
-      "cumulative_return_BT_strategy_offset_6.png",
-      "cumulative_return_BT_strategy_offset_7.png",
-      "cumulative_return_BT_strategy_offset_8.png",
-      // add more...
-    ],
-  };
+  /* ==================== 1. Images (static HTML, JS enhances behavior) ==================== */
 
   function filenameToCaption(name) {
-    return name
+    return String(name || "")
       .replace(/\.\w+$/, "")
       .replace(/[_-]+/g, " ")
       .trim();
   }
 
-  function findGuide(filename) {
-    const base = filename.replace(/\.\w+$/, "");
-    for (const key of Object.keys(CHART_GUIDE)) {
-      if (base.includes(key)) return CHART_GUIDE[key];
+  function ensureCaption(fig, img) {
+    let cap = fig.querySelector("figcaption");
+    if (!cap) {
+      cap = document.createElement("figcaption");
+      fig.appendChild(cap);
     }
-    return null;
+    if (!cap.textContent?.trim()) {
+      cap.textContent =
+        img.alt?.trim() || filenameToCaption(img.getAttribute("src"));
+    }
   }
 
-  function appendImages(galleryId, files) {
-    const gallery = document.getElementById(galleryId);
-    if (!gallery || !Array.isArray(files)) return;
+  function markStaticExplainer(fig) {
+    const existing = fig.querySelector("details.chart-explainer");
+    if (existing) fig.classList.add("has-explainer");
+  }
 
-    const baseDir = GALLERY_DIRS[galleryId] || IMAGES_DIR;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const collapseLimit = 4; // show first N (excluding explainer figures) on mobile
+  function enhancePreRenderedGalleries() {
+    const figures = Array.from(document.querySelectorAll("figure.image-card"));
+    figures.forEach((fig, idx) => {
+      const img = fig.querySelector("img");
+      if (!img) return;
 
-    files.forEach((name, idx) => {
-      const fig = document.createElement("figure");
-      fig.className = "image-card";
-      fig.dataset.gallery = galleryId;
+      // Ensure accessibility + consistent behavior
+      if (!img.alt?.trim())
+        img.alt = filenameToCaption(img.getAttribute("src"));
+      img.tabIndex = img.tabIndex >= 0 ? img.tabIndex : 0;
 
-      const img = document.createElement("img");
-      img.src = `${baseDir}${name}`;
-      img.alt = filenameToCaption(name);
-      img.loading = "lazy";
-      img.decoding = "async";
+      // Performance defaults (keep your explicit HTML attributes if already present)
+      if (!img.loading) img.loading = "lazy";
+      img.decoding = img.decoding || "async";
       img.fetchPriority = idx < 2 ? "high" : "low";
-      img.dataset.caption = img.alt;
-      img.tabIndex = 0;
 
-      const cap = document.createElement("figcaption");
-      cap.textContent = img.alt;
+      // Used by lightbox open
+      img.dataset.caption = img.dataset.caption || img.alt;
 
-      fig.appendChild(img);
-      fig.appendChild(cap);
-
-      const guide = findGuide(name);
-      if (guide) {
-        const details = document.createElement("details");
-        details.className = "chart-explainer";
-        // Auto-open on mobile so users immediately see guidance
-        if (isMobile) details.open = true;
-
-        const summary = document.createElement("summary");
-        summary.textContent = "How to read this";
-        details.appendChild(summary);
-
-        const wrap = document.createElement("div");
-        wrap.className = "explainer-grid";
-        wrap.innerHTML = `
-          <div class="explainer-item"><h5>What this shows</h5><p>${guide.what}</p></div>
-          <div class="explainer-item"><h5>How to read</h5><p>${guide.how}</p></div>
-          <div class="explainer-item"><h5>Why it matters</h5><p>${guide.why}</p></div>
-          <div class="explainer-item"><h5>Caveats</h5><p>${guide.caveats}</p></div>
-        `;
-        details.appendChild(wrap);
-        fig.appendChild(details);
-        fig.classList.add("has-explainer");
-      }
-
-      gallery.appendChild(fig);
+      ensureCaption(fig, img);
+      markStaticExplainer(fig);
     });
 
-    // Mobile collapse logic (exclude figures that have an explainer)
-    if (isMobile) {
-      const figures = Array.from(gallery.querySelectorAll("figure.image-card"));
-      const plainFigures = figures.filter(
+    // Mobile collapse logic per gallery (exclude figures that have an explainer)
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) return;
+
+    const collapseLimit = 4;
+    const galleries = Array.from(document.querySelectorAll(".image-section"));
+
+    galleries.forEach((gallery) => {
+      const figs = Array.from(gallery.querySelectorAll("figure.image-card"));
+      const plainFigures = figs.filter(
         (f) => !f.classList.contains("has-explainer")
       );
-      if (plainFigures.length > collapseLimit) {
-        plainFigures
-          .slice(collapseLimit)
-          .forEach((f) => f.classList.add("hidden-mobile"));
 
-        const btn = document.createElement("button");
-        btn.className = "show-more-btn";
-        const hiddenCount = plainFigures.length - collapseLimit;
-        btn.textContent = `Show ${hiddenCount} more`;
-        btn.addEventListener("click", () => {
-          plainFigures.forEach((f) => f.classList.remove("hidden-mobile"));
-          btn.remove();
-        });
-        gallery.appendChild(btn);
-      }
-    }
+      // Remove any prior state
+      plainFigures.forEach((f) => f.classList.remove("hidden-mobile"));
+      const existingBtn = gallery.querySelector(".show-more-btn");
+      if (existingBtn) existingBtn.remove();
+
+      if (plainFigures.length <= collapseLimit) return;
+
+      plainFigures
+        .slice(collapseLimit)
+        .forEach((f) => f.classList.add("hidden-mobile"));
+
+      const btn = document.createElement("button");
+      btn.className = "show-more-btn";
+      btn.textContent = `Show ${plainFigures.length - collapseLimit} more`;
+      btn.addEventListener("click", () => {
+        plainFigures.forEach((f) => f.classList.remove("hidden-mobile"));
+        btn.remove();
+      });
+      gallery.appendChild(btn);
+    });
   }
 
-  Object.entries(imageLists).forEach(([galleryId, files]) =>
-    appendImages(galleryId, files)
-  );
+  enhancePreRenderedGalleries();
+
+  // Optional: auto-open explainers on mobile (content is in HTML)
+  (function openExplainersOnMobile() {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) return;
+    document.querySelectorAll("details.chart-explainer").forEach((d) => {
+      d.open = true;
+    });
+  })();
 
   /* ==================== 1b. Lightbox ==================== */
   const lightbox = initLightbox();
 
-  // Delegate clicks for any dynamically added gallery image
   document.addEventListener("click", (e) => {
     const img = e.target;
     if (img && img.tagName === "IMG" && img.closest(".image-card")) {
       lightbox.open(img.src, img.dataset.caption || img.alt || "");
     }
   });
-  // Keyboard open (Enter/Space) when focusing the image
+
   document.addEventListener("keydown", (e) => {
     if (
       (e.key === "Enter" || e.key === " ") &&
@@ -264,17 +172,51 @@ document.addEventListener("DOMContentLoaded", () => {
     return { open, close };
   }
 
+  /* ==================== 1c. Optional: refresh images only when files change ==================== */
+  // If you create this file, JS will append ?v=... ONLY for images listed there.
+  // If the file doesn't exist, nothing happens.
+  applyImageManifest("images/image-manifest.json");
+
+  async function applyImageManifest(manifestUrl) {
+    try {
+      const resp = await fetch(manifestUrl, { cache: "no-store" });
+      if (!resp.ok) return;
+
+      /** manifest format: { "images/foo.png": "2025-12-30T10:03:22Z", "images/bar.png": "a1b2c3" } */
+      const manifest = await resp.json();
+      if (!manifest || typeof manifest !== "object") return;
+
+      const imgs = Array.from(
+        document.querySelectorAll(
+          "figure.image-card img, #compounding-insight img"
+        )
+      );
+      imgs.forEach((img) => {
+        const rawSrc = img.getAttribute("src");
+        if (!rawSrc) return;
+
+        const abs = new URL(rawSrc, window.location.href);
+        const key = abs.pathname.replace(/^\//, ""); // "images/....png"
+
+        const version = manifest[key];
+        if (!version) return;
+
+        // keep existing query params; only set/overwrite v
+        abs.searchParams.set("v", String(version));
+        img.src = abs.toString();
+      });
+    } catch {
+      // silent: manifest is optional
+    }
+  }
+
   /* ==================== 2. build the ranking table ==================== */
   fetch("rank_companies/rank_companies.json")
     .then((resp) => resp.json())
     .then((rows) => {
       if (!rows.length) return;
 
-      // If you pre-render only a few “SEO pages”, list them here.
-      // Everything else falls back to the dynamic JS-driven details page.
-      const PRERENDERED_SYMBOLS = new Set([
-        "AAPL:US", // -> /stocks/AAPL-US.html
-      ]);
+      const PRERENDERED_SYMBOLS = new Set(["AAPL:US"]);
 
       function sanitizeSymbolForPath(symbol) {
         return String(symbol || "")
@@ -315,7 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
             link.href = stockDetailsHref(row[col]);
             link.textContent = row[col];
             td.appendChild(link);
-            // Add data attribute for easier filtering
             td.dataset.symbol = row[col];
           } else {
             td.textContent = row[col];
@@ -325,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.appendChild(tr);
       });
 
-      // Enhanced filter with symbol-specific search
       attachSymbolFilter("rank-filter", "rank-table");
       makeSortable("rank-table");
     })
@@ -343,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const cols = Object.keys(rows[0]);
 
-      // Find the index of the rank threshold column
       const rankThresholdIndex = cols.findIndex(
         (col) =>
           col.toLowerCase().includes("rank") &&
@@ -397,7 +336,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.appendChild(tr);
       });
 
-      // Rank threshold specific filter
       attachRankThresholdFilter("analysis-filter", "historical-analysis-table");
       makeSortable("historical-analysis-table");
     })
@@ -411,7 +349,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(tableId);
     if (!input || !table) return;
 
-    // Add placeholder and styling
     input.placeholder = "Filter by symbol or any text...";
     input.style.width = "100%";
     input.style.maxWidth = "400px";
@@ -428,32 +365,24 @@ document.addEventListener("DOMContentLoaded", () => {
           ? symbolCell.dataset.symbol.toLowerCase()
           : "";
 
-        // Prioritize symbol match, but also search all text
         const matches = symbol.includes(q) || text.includes(q);
 
         if (matches) {
           tr.style.display = "";
           visibleCount++;
 
-          // Highlight matching symbol
-          if (symbolCell && q && symbol.includes(q)) {
+          if (symbolCell && q && symbol.includes(q))
             symbolCell.classList.add("highlight-match");
-          } else if (symbolCell) {
-            symbolCell.classList.remove("highlight-match");
-          }
+          else if (symbolCell) symbolCell.classList.remove("highlight-match");
         } else {
           tr.style.display = "none";
-          if (symbolCell) {
-            symbolCell.classList.remove("highlight-match");
-          }
+          if (symbolCell) symbolCell.classList.remove("highlight-match");
         }
       });
 
-      // Show count of visible rows
       updateFilterCount(table, visibleCount, rows.length);
     });
 
-    // Add clear button
     addClearButton(input);
   }
 
@@ -462,7 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(tableId);
     if (!input || !table) return;
 
-    // Add placeholder and styling
     input.placeholder = "Filter by rank threshold...";
     input.style.width = "100%";
     input.style.maxWidth = "400px";
@@ -477,33 +405,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const rankThreshold = rankThresholdCell
           ? rankThresholdCell.dataset.rankThreshold.toLowerCase()
           : "";
-
-        // Match on rank threshold value
         const matches = rankThreshold.includes(q);
 
         if (matches || !q) {
           tr.style.display = "";
           visibleCount++;
 
-          // Highlight matching cell
-          if (rankThresholdCell && q && rankThreshold.includes(q)) {
+          if (rankThresholdCell && q && rankThreshold.includes(q))
             rankThresholdCell.classList.add("highlight-match");
-          } else if (rankThresholdCell) {
+          else if (rankThresholdCell)
             rankThresholdCell.classList.remove("highlight-match");
-          }
         } else {
           tr.style.display = "none";
-          if (rankThresholdCell) {
+          if (rankThresholdCell)
             rankThresholdCell.classList.remove("highlight-match");
-          }
         }
       });
 
-      // Show count of visible rows
       updateFilterCount(table, visibleCount, rows.length);
     });
 
-    // Add clear button
     addClearButton(input);
   }
 
@@ -548,19 +469,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function attachTableFilter(inputId, tableId) {
-    const input = document.getElementById(inputId);
-    const table = document.getElementById(tableId);
-    if (!input || !table) return;
-    input.addEventListener("input", () => {
-      const q = input.value.trim().toLowerCase();
-      table.querySelectorAll("tbody tr").forEach((tr) => {
-        const text = tr.innerText.toLowerCase();
-        tr.style.display = text.includes(q) ? "" : "none";
-      });
-    });
-  }
-
   function makeSortable(tableId) {
     const table = document.getElementById(tableId);
     if (!table) return;
@@ -570,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
       th.addEventListener("click", () => {
         const tbody = table.querySelector("tbody");
         const rows = Array.from(tbody.querySelectorAll("tr"));
-        const asc = th.dataset.sort !== "asc"; // toggle
+        const asc = th.dataset.sort !== "asc";
         rows.sort((a, b) => {
           const A = a.children[idx].innerText;
           const B = b.children[idx].innerText;

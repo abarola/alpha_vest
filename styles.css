@@ -365,7 +365,7 @@ ol {
 .image-section {
   background: var(--bg-white);
   border-radius: var(--border-radius);
-  padding: 1rem; /* Reduced from 2rem */
+  padding: 1.25rem;
   box-shadow: var(--shadow);
   margin-bottom: 1.5rem; /* Reduced from 2rem */
   min-height: 150px; /* Reduced from 200px */
@@ -373,7 +373,7 @@ ol {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem; /* Reduced from 2rem */
+  gap: 1.25rem;
 }
 
 img {
@@ -382,17 +382,24 @@ img {
   height: auto;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  transition: var(--transition);
+  transition: transform 180ms ease, box-shadow 180ms ease;
   margin-bottom: 0.5rem; /* Reduced from 1rem */
 }
 
 img:hover {
-  transform: scale(1.02);
+  transform: scale(1.006);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .image-card {
   width: 100%;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .image-card img {
@@ -401,18 +408,31 @@ img:hover {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   cursor: zoom-in;
-  transition: var(--transition);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .image-card img:hover {
-  transform: scale(1.01);
+  transform: scale(1.004);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img,
+  .image-card img {
+    transition: none;
+  }
+
+  img:hover,
+  .image-card img:hover {
+    transform: none;
+  }
 }
 
 .image-card figcaption {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   color: var(--text-light);
-  font-size: 0.9rem;
-  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: left;
 }
 
 /* === TABLE STYLES - INDEPENDENT SECTION === */
@@ -770,22 +790,32 @@ footer {
 /* === Chart Explainer === */
 .chart-explainer {
   width: 100%;
-  background: #fff;
+  background: var(--bg-white);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  overflow: hidden;
+  margin-top: 0.5rem;
 }
 
 .chart-explainer summary {
   cursor: pointer;
   user-select: none;
   outline: none;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
+  color: var(--primary-color);
+  padding: 0.65rem 0.75rem;
+}
+
+.chart-explainer summary:focus-visible {
+  outline: 3px solid rgba(52, 152, 219, 0.35);
+  outline-offset: 2px;
 }
 
 .chart-explainer[open] summary {
   font-weight: 600;
   border-bottom: 1px solid var(--border-color);
+  background: var(--bg-light);
 }
 
 .chart-explainer summary::marker {
@@ -798,20 +828,20 @@ footer {
 
 .chart-explainer .explainer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.75rem;
-  padding: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+  padding: 0.9rem;
 }
 
 .chart-explainer .explainer-item h5 {
   margin: 0 0 0.25rem 0;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--secondary-color);
 }
 
 .chart-explainer .explainer-item p {
-  font-size: 0.75rem;
-  line-height: 1.4;
+  font-size: 0.85rem;
+  line-height: 1.5;
   margin: 0;
 }
 

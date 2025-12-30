@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BayesDemon — Quant Research & Portfolio Analytics.</title>
+    <title>
+      Financial Education, Wealth Creation & Stock Rankings | BayesDemon
+    </title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +20,8 @@
       <nav class="navbar">
         <h1 class="brand">
           <a href="index.html"
-            >BayesDemon — Quant Research & Portfolio Analytics</a
+            >BayesDemon — Financial Education, Wealth Creation & Stock
+            Rankings</a
           >
         </h1>
         <button
@@ -35,7 +38,7 @@
               Analytics
             </button>
             <ul class="dropdown">
-              <li><a href="macro.html">Macro</a></li>
+              <li><a href="macro.html">MacroEconomic View</a></li>
               <li><a href="power_law.html">Power Law</a></li>
               <li><a href="superinvestors.html">Superinvestors</a></li>
             </ul>
@@ -59,7 +62,7 @@
     <main>
       <!-- Hero section -->
       <section class="hero">
-        <h2>Actionable Quant Research</h2>
+        <h2>Actionable data analysis to increase personal wealth</h2>
         <p class="hero-description">
           ELO-ranked equities, strategy backtests, and portfolio diagnostics —
           explained in plain English.
@@ -71,7 +74,7 @@
 
       <!-- Compounding Effect Insight section -->
       <section id="compounding-insight" class="content-section">
-        <h2>Compounding Effect Insight</h2>
+        <h2>The Magic Compounding Effect</h2>
         <div class="insight-container">
           <div class="insight-image image-card">
             <figure>
@@ -101,24 +104,511 @@
       <!-- Portfolio section -->
       <section id="portfolio" class="content-section">
         <h2>Portfolio Performance</h2>
-        <div id="gallery-portfolio" class="image-section"></div>
+
+        <div id="gallery-portfolio" class="image-section">
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/Portfolio_time_under_water_analysis.png"
+              alt="Portfolio time under water analysis"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Portfolio time under water analysis</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    How long (days) and how deep (money) the portfolio stayed
+                    below its previous all-time high.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Touching the x-axis means a new peak; below it means the
+                    portfolio is still recovering.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    Longer/deeper drawdowns usually feel worse and can force bad
+                    decisions (panic selling). It’s a practical way to compare
+                    “pain” across periods/strategies.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    A long drawdown doesn’t guarantee a rebound soon; markets
+                    can stay weak longer than expected.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/return_required_for_all_time_high.png"
+              alt="Return required if stocks were to return to all time high"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>
+              Return required if stocks were to return to all time high
+            </figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    The % return needed to get back to the previous all-time
+                    high from today’s level.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Bigger drawdowns need disproportionately bigger gains to
+                    recover (e.g., -50% needs +100%).
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    Good companies selling at a discount can provide a margin of
+                    safety.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    This is arithmetic, not a forecast. Prices can keep falling,
+                    and some companies never recover.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/inverse_quantile_dd.png"
+              alt="Inverse quantile dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Inverse quantile dd</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    A 0–100 “how bad is the drawdown?” score vs. that same
+                    company’s own history. 100 = near its peak (no drawdown), 0
+                    = near its worst historical drawdown.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Lower = more stretched vs. history. Use it to compare
+                    “stress level” across stocks on the same scale.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    If fundamentals are intact, deep drawdowns can sometimes
+                    offer better entry points than buying near peaks.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    “Cheap” can get cheaper. A low score is not a buy signal by
+                    itself—bad businesses can stay down or go to zero.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/potential_buying_signals.png"
+              alt="Potential buying signals"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Potential buying signals</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    A rule-based “oversold” indicator. It measures sustained
+                    downside pressure and highlights moments where past data
+                    suggests the odds of a rebound improved.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Treat highlighted points as “check this stock now”, not an
+                    automatic buy. Combine with fundamentals and position
+                    sizing.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    Removes emotion: it gives consistent criteria for when to
+                    look for entries during sell-offs.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    Signals can be early and keep triggering in a downtrend.
+                    Always assume the next signal can fail.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/performance_oversold_strategy.png"
+              alt="Performance oversold strategy"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Performance oversold strategy</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/bubble_chart_Average_CAGR_invquant_dd.png"
+              alt="Bubble chart average CAGR invquant dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Bubble chart average CAGR invquant dd</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/bubble_chart_CAGR_for_Year_2020_invquant_dd.png"
+              alt="Bubble chart CAGR for year 2020 invquant dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Bubble chart CAGR for year 2020 invquant dd</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/bubble_chart_CAGR_for_Year_2023_invquant_dd.png"
+              alt="Bubble chart CAGR for year 2023 invquant dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Bubble chart CAGR for year 2023 invquant dd</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/distance_chart_Euclidean_Distances_from_VTI_Average_CAGR_vs_invquant_dd.png"
+              alt="Distance chart Euclidean distances from VTI average CAGR vs invquant dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>
+              Distance chart Euclidean distances from VTI average CAGR vs
+              invquant dd
+            </figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2020_vs_invquant_dd.png"
+              alt="Distance chart Euclidean distances from VTI CAGR for year 2020 vs invquant dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>
+              Distance chart Euclidean distances from VTI CAGR for year 2020 vs
+              invquant dd
+            </figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/distance_chart_Euclidean_Distances_from_VTI_CAGR_for_Year_2023_vs_invquant_dd.png"
+              alt="Distance chart Euclidean distances from VTI CAGR for year 2023 vs invquant dd"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>
+              Distance chart Euclidean distances from VTI CAGR for year 2023 vs
+              invquant dd
+            </figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/composite_indicator_analysis.png"
+              alt="Composite indicator analysis"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Composite indicator analysis</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    One score that combines multiple signals (returns,
+                    drawdowns, and time effects). Higher = “better overall”
+                    across the metrics used.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>Higher composite → stronger multi-metric profile.</p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    A single metric can be misleading. This helps balance “high
+                    return” against “high risk” in one view.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    The score depends on how each metric is weighted. Treat it
+                    as a ranking tool, not a guarantee.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/relative_pe_analysis.png"
+              alt="Relative pe analysis"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Relative pe analysis</figcaption>
+          </figure>
+        </div>
       </section>
 
       <!-- Index Stats section -->
       <section id="stats" class="content-section">
-        <h2>Index Statistics</h2>
-        <div id="gallery-indext-stat" class="image-section"></div>
+        <h2>US Stock Market Index CAGR Statistics</h2>
+
+        <div id="gallery-indext-stat" class="image-section">
+          <figure class="image-card">
+            <img
+              src="images/CSSPX_Mi_CAGR.png"
+              alt="CSSPX Mi CAGR"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>CSSPX Mi CAGR</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    A benchmark CAGR snapshot for an S&amp;P 500 UCITS tracker
+                    (in EUR). Think of it as “what a simple index investment
+                    delivered”.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Higher CAGR is better, but also look for consistency across
+                    years (big swings usually mean higher uncertainty).
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    Use it to sanity-check your strategy: if a strategy can’t
+                    beat the index after costs, it’s often not worth the extra
+                    complexity.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    Past performance ≠ future returns. Also, results depend on
+                    currency (EUR vs USD) and the chosen time window.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+        </div>
       </section>
 
       <!-- Strategy Returns section -->
       <section id="strategy" class="content-section">
-        <h2>ELO Rating Strategy Returns</h2>
-        <div id="gallery-strategy-return" class="image-section"></div>
+        <h2>ELO Rating Strategy Returns Backtest</h2>
+
+        <div id="gallery-strategy-return" class="image-section">
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_1.png"
+              alt="Cumulative return BT strategy offset 1"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 1</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    Cumulative return across staggered start dates (offsets 1–8)
+                    by investing in companies with different rank threshold.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Look for curves that remain above baseline across offsets.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    If ranking is effective, higher rated companies should beat
+                    the average and the index.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>Trading costs/slippage depend on your backtest setup.</p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_2.png"
+              alt="Cumulative return BT strategy offset 2"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 2</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_3.png"
+              alt="Cumulative return BT strategy offset 3"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 3</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_4.png"
+              alt="Cumulative return BT strategy offset 4"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 4</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_5.png"
+              alt="Cumulative return BT strategy offset 5"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 5</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_6.png"
+              alt="Cumulative return BT strategy offset 6"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 6</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_7.png"
+              alt="Cumulative return BT strategy offset 7"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 7</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_8.png"
+              alt="Cumulative return BT strategy offset 8"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 8</figcaption>
+          </figure>
+        </div>
       </section>
 
       <!-- Rankings section -->
       <section id="rankings" class="content-section">
-        <h2>Company Rankings</h2>
+        <h2>Company Rankings by Fundamental Analysis</h2>
         <div class="table-tools">
           <input
             type="search"
@@ -136,7 +626,7 @@
           </table>
         </div>
 
-        <h3>Historical Strategy Analysis</h3>
+        <h3>Historical Strategy Analysis (Sharpe Ratio)</h3>
         <div class="table-tools">
           <input
             type="search"
