@@ -42,43 +42,51 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/[_-]+/g, " ")
       .replace(/\b\w/g, (c) => c.toUpperCase());
 
-  // Utility: create a figure card for an image with description (matching insight-container style)
+  // Utility: create a figure card for an image with description (collapsible)
   function createImageCard(src, alt, caption, description) {
-    const container = document.createElement("div");
-    container.className = "insight-container";
-
+    // Single card container
     const imageCard = document.createElement("div");
-    imageCard.className = "insight-image image-card";
+    imageCard.className = "image-card";
 
+    // Figure + Image + Caption
     const figure = document.createElement("figure");
-
     const img = document.createElement("img");
     img.src = src;
     img.alt = alt || caption || "";
     img.loading = "lazy";
+    
+    // Wire up lightbox data attributes
+    img.dataset.caption = caption || alt || "";
 
     const figcaption = document.createElement("figcaption");
-    figcaption.textContent = "Click to enlarge";
+    figcaption.textContent = caption || "Click to enlarge";
 
     figure.appendChild(img);
     figure.appendChild(figcaption);
     imageCard.appendChild(figure);
 
-    container.appendChild(imageCard);
-
-    // Add description text if provided
+    // Collapsible Description (like main page)
     if (description) {
-      const textDiv = document.createElement("div");
-      textDiv.className = "insight-text";
+      const details = document.createElement("details");
+      details.className = "chart-explainer";
 
-      const descParagraph = document.createElement("p");
-      descParagraph.textContent = description;
+      const summary = document.createElement("summary");
+      summary.textContent = "Analysis Details";
 
-      textDiv.appendChild(descParagraph);
-      container.appendChild(textDiv);
+      const content = document.createElement("div");
+      content.className = "explainer-content";
+      content.style.padding = "1rem";
+      
+      // Preserve newlines
+      content.innerHTML = description.replace(/\n/g, "<br>");
+
+      details.appendChild(summary);
+      details.appendChild(content);
+      
+      imageCard.appendChild(details);
     }
 
-    return container;
+    return imageCard;
   }
 
   // Lightbox wiring

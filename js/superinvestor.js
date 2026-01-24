@@ -32,7 +32,9 @@ async function initInvestorSnapshot() {
 
     images.forEach((file, idx) => {
       const card = document.createElement("div");
-      card.className = "metric-card si-card";
+      card.className = "image-card"; // Use styled class
+
+      const figure = document.createElement("figure");
 
       const img = document.createElement("img");
       img.src = `${folder}/${file}`;
@@ -41,13 +43,15 @@ async function initInvestorSnapshot() {
       img.decoding = "async";
       img.fetchPriority = idx < 2 ? "high" : "low";
       img.tabIndex = 0; // keyboard open support
+      img.dataset.caption = toTitle(file); // for lightbox
 
-      const caption = document.createElement("div");
-      caption.className = "metric-title";
+      const caption = document.createElement("figcaption");
       caption.textContent = toTitle(file);
 
-      card.appendChild(img);
-      card.appendChild(caption);
+      figure.appendChild(img);
+      figure.appendChild(caption);
+      card.appendChild(figure);
+      
       frag.appendChild(card);
     });
 
@@ -91,7 +95,7 @@ function toTitle(filename) {
 
 function applyMobileCollapse(container, limit = 4) {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
-  const cards = Array.from(container.querySelectorAll(".si-card"));
+  const cards = Array.from(container.querySelectorAll(".image-card"));
   if (!isMobile || cards.length <= limit) return;
 
   cards.slice(limit).forEach((c) => c.classList.add("hidden-mobile"));
