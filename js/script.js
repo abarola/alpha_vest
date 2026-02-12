@@ -94,15 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   enhancePreRenderedGalleries();
 
-  // Optional: auto-open explainers on mobile (content is in HTML)
-  (function openExplainersOnMobile() {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (!isMobile) return;
-    document.querySelectorAll("details.chart-explainer").forEach((d) => {
-      d.open = true;
-    });
-  })();
-
   /* ==================== 1b. Lightbox ==================== */
   const lightbox = initLightbox();
 
