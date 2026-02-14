@@ -466,6 +466,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ths = table.querySelectorAll("thead th");
     ths.forEach((th, idx) => {
       th.classList.add("sortable");
+      th.setAttribute("role", "columnheader");
+      th.setAttribute("aria-sort", "none");
       th.addEventListener("click", () => {
         const tbody = table.querySelector("tbody");
         const rows = Array.from(tbody.querySelectorAll("tr"));
@@ -478,8 +480,12 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!isNaN(nA) && !isNaN(nB)) return asc ? nA - nB : nB - nA;
           return asc ? A.localeCompare(B) : B.localeCompare(A);
         });
-        ths.forEach((h) => delete h.dataset.sort);
+        ths.forEach((h) => {
+          delete h.dataset.sort;
+          h.setAttribute("aria-sort", "none");
+        });
         th.dataset.sort = asc ? "asc" : "desc";
+        th.setAttribute("aria-sort", asc ? "ascending" : "descending");
         rows.forEach((r) => tbody.appendChild(r));
       });
     });

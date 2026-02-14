@@ -65,6 +65,21 @@ p { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem; }
 a { color: var(--text-accent); text-decoration: none; transition: 0.3s ease; }
 a:hover { color: #60a5fa; text-decoration: none; text-shadow: 0 0 8px rgba(56,189,248,0.4); }
 
+/* === Focus States (Accessibility) === */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+}
+
+.dropdown-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.scroll-to-top:focus-visible,
+.lightbox-close:focus-visible {
+  outline-offset: 4px;
+}
+
 /* === Navbar (Glassmorphism) === */
 .main-header {
   position: sticky;
@@ -290,6 +305,33 @@ th {
   letter-spacing: 0.05em;
   padding: 1rem;
   border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* === Sort Indicators === */
+th.sortable {
+  cursor: pointer;
+  position: relative;
+  padding-right: 2rem;
+}
+
+th.sortable::after {
+  content: "↕";
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+th.sortable[data-sort="asc"]::after {
+  content: "↑";
+  color: var(--text-accent);
+}
+
+th.sortable[data-sort="desc"]::after {
+  content: "↓";
+  color: var(--text-accent);
 }
 
 td {
