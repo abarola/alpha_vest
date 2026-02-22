@@ -8,6 +8,8 @@
  * - Optional image refresh via manifest (cache busting only when files change)
  */
 document.addEventListener("DOMContentLoaded", () => {
+  let rankingPresetController = null;
+
   /* ==================== 1. Images (static HTML, JS enhances behavior) ==================== */
 
   function filenameToCaption(name) {
@@ -203,8 +205,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ==================== 2. build the ranking table ==================== */
   fetch("rank_companies/rank_companies.json")
-    .then((resp) => resp.json())
-    .then((rows) => {
+    .then(async (resp) => {
+      if (!resp.ok) {
+        throw new Error(`HTTP ${resp.status}`);
+      }
+      const rows = await resp.json();
+      return {
+        rows,
+        lastModified: resp.headers.get("Last-Modified"),
+      };
+    })
+    .then(({ rows, lastModified }) => {
+      updateRankingsTrustStrip(rows.length, lastModified);
       if (!rows.length) return;
 
       const PRERENDERED_SYMBOLS = new Set(["AAPL:US"]);
@@ -258,6 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       attachSymbolFilter("rank-filter", "rank-table");
+      rankingPresetController = initRankingQuickActions(
+        "rank-table",
+        "rank-filter",
+        "historical-analysis-table",
+        "analysis-filter"
+      );
       makeSortable("rank-table");
     })
     .catch((err) => console.error("Unable to load rank table:", err));
@@ -329,6 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       attachRankThresholdFilter("analysis-filter", "historical-analysis-table");
       makeSortable("historical-analysis-table");
+      rankingPresetController?.applyActivePreset?.();
     })
     .catch((err) =>
       console.error("Unable to load historical analysis table:", err)
@@ -417,6 +436,159 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     addClearButton(input);
+  }
+
+  function updateRankingsTrustStrip(totalRows, lastModifiedHeader) {
+    const updatedAtEl = document.getElementById("rankings-updated-at");
+    const universeEl = document.getElementById("rankings-universe-size");
+
+    if (universeEl) {
+      universeEl.textContent = `${totalRows} companies`;
+    }
+    if (updatedAtEl) {
+      updatedAtEl.textContent = formatLastModifiedHeader(lastModifiedHeader);
+    }
+  }
+
+  function formatLastModifiedHeader(lastModifiedHeader) {
+    if (!lastModifiedHeader) return "Not available";
+    const parsed = new Date(lastModifiedHeader);
+    if (Number.isNaN(parsed.getTime())) return "Not available";
+    return parsed.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
+
+  function initRankingQuickActions(
+    rankTableId,
+    rankInputId,
+    historicalTableId,
+    historicalInputId
+  ) {
+    const rankTable = document.getElementById(rankTableId);
+    const rankInput = document.getElementById(rankInputId);
+    const historicalTable = document.getElementById(historicalTableId);
+    const historicalInput = document.getElementById(historicalInputId);
+    const container = document.querySelector(".ranking-quick-actions");
+    if (!rankTable || !container) return null;
+
+    const buttons = Array.from(container.querySelectorAll(".preset-btn"));
+    if (!buttons.length) return null;
+
+    const getRows = (table) =>
+      table ? Array.from(table.querySelectorAll("tbody tr")) : [];
+
+    const clearActivePreset = () => {
+      buttons.forEach((btn) => btn.classList.remove("active"));
+    };
+
+    const setActivePreset = (preset) => {
+      buttons.forEach((btn) =>
+        btn.classList.toggle("active", btn.dataset.preset === preset)
+      );
+    };
+
+    const showAllRows = (table) => {
+      if (!table) return;
+      const rows = getRows(table);
+      rows.forEach((tr) => {
+        tr.style.display = "";
+        tr
+          .querySelectorAll(".highlight-match")
+          .forEach((el) => el.classList.remove("highlight-match"));
+      });
+      updateFilterCount(table, rows.length, rows.length);
+    };
+
+    const applyTopRows = (limit) => {
+      const rows = getRows(rankTable);
+      rows.forEach((tr, idx) => {
+        tr.style.display = idx < limit ? "" : "none";
+        const symbolCell = tr.querySelector("[data-symbol]");
+        if (symbolCell) symbolCell.classList.remove("highlight-match");
+      });
+      updateFilterCount(rankTable, Math.min(limit, rows.length), rows.length);
+    };
+
+    const applyRankThresholdRows = (limit) => {
+      if (!historicalTable) return;
+      const rows = getRows(historicalTable);
+      let visibleCount = 0;
+
+      rows.forEach((tr) => {
+        const thresholdCell = tr.querySelector("[data-rank-threshold]");
+        const threshold = thresholdCell
+          ? Number.parseFloat(thresholdCell.dataset.rankThreshold)
+          : Number.NaN;
+        const show = Number.isFinite(threshold) && threshold <= limit;
+
+        tr.style.display = show ? "" : "none";
+        if (thresholdCell) thresholdCell.classList.remove("highlight-match");
+        if (show) visibleCount++;
+      });
+
+      updateFilterCount(historicalTable, visibleCount, rows.length);
+    };
+
+    const clearInputsAndHighlights = () => {
+      if (rankInput?.value) {
+        rankInput.value = "";
+        rankInput.dispatchEvent(new Event("input"));
+      }
+      if (historicalInput?.value) {
+        historicalInput.value = "";
+        historicalInput.dispatchEvent(new Event("input"));
+      }
+    };
+
+    const applyPreset = (preset, setActive = true) => {
+      if (!preset) return;
+
+      clearInputsAndHighlights();
+
+      if (preset === "reset") {
+        showAllRows(rankTable);
+        showAllRows(historicalTable);
+        if (setActive) setActivePreset("reset");
+        return;
+      }
+
+      if (preset === "top10") {
+        applyTopRows(10);
+        applyRankThresholdRows(10);
+      }
+      if (preset === "top25") {
+        applyTopRows(25);
+        applyRankThresholdRows(25);
+      }
+      if (preset === "top50") {
+        applyTopRows(50);
+        applyRankThresholdRows(50);
+      }
+
+      if (setActive) setActivePreset(preset);
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyPreset(btn.dataset.preset, true);
+      });
+    });
+
+    rankInput?.addEventListener("input", clearActivePreset);
+    historicalInput?.addEventListener("input", clearActivePreset);
+
+    return {
+      applyActivePreset: () => {
+        const activeBtn = buttons.find((btn) =>
+          btn.classList.contains("active")
+        );
+        if (!activeBtn) return;
+        applyPreset(activeBtn.dataset.preset, false);
+      },
+    };
   }
 
   function updateFilterCount(table, visible, total) {

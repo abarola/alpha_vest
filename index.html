@@ -76,6 +76,39 @@
       <!-- Rankings section -->
       <section id="rankings" class="content-section">
         <h2>Company Rankings by Fundamental Analysis</h2>
+        <div class="rankings-context">
+          <div class="trust-strip" aria-live="polite">
+            <span class="trust-item"
+              ><strong>Data updated:</strong>
+              <span id="rankings-updated-at">Checking...</span></span
+            >
+            <span class="trust-item"
+              ><strong>Universe:</strong>
+              <span id="rankings-universe-size">--</span></span
+            >
+            <span class="trust-item"
+              ><strong>Method:</strong> ELO</span
+            >
+          </div>
+          <div
+            class="ranking-quick-actions"
+            role="group"
+            aria-label="Quick ranking presets"
+          >
+            <button type="button" class="preset-btn" data-preset="top10">
+              Top 10
+            </button>
+            <button type="button" class="preset-btn" data-preset="top25">
+              Top 25
+            </button>
+            <button type="button" class="preset-btn" data-preset="top50">
+              Top 50
+            </button>
+            <button type="button" class="preset-btn" data-preset="reset">
+              Reset
+            </button>
+          </div>
+        </div>
         <div class="table-tools">
           <input
             type="search"
