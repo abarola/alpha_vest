@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Verdict Overview | 2026-02-22</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .verdict-summary-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 300px 1fr;
+      }
+
+      .verdict-donut-card {
+        position: relative;
+        min-height: 300px;
+        display: grid;
+        place-items: center;
+      }
+
+      .verdict-donut {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: conic-gradient(
+          #2e7d32 0% 43.75%,
+          #f9a825 43.75% 78.12%,
+          #c62828 78.12% 100.00%,
+          #9e9e9e 100.00% 100%
+        );
+        display: grid;
+        place-items: center;
+      }
+
+      .verdict-donut-center {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: var(--bg-dark);
+        border: var(--glass-border);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 0.5rem;
+      }
+
+      .verdict-donut-center strong {
+        font-size: 1.25rem;
+      }
+
+      .verdict-donut-center span {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+      }
+
+      .verdict-summary-meta {
+        margin-bottom: 1rem;
+      }
+
+      .verdict-summary-meta p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .verdict-kpi-grid {
+        display: grid;
+        gap: 0.8rem;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        margin-bottom: 1rem;
+      }
+
+      .verdict-kpi {
+        border-radius: var(--radius-md);
+        border: var(--glass-border);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 0.8rem 0.9rem;
+      }
+
+      .verdict-kpi h3 {
+        margin: 0 0 0.35rem;
+        font-size: 0.95rem;
+        color: var(--text-primary);
+      }
+
+      .verdict-kpi .val {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-right: 0.4rem;
+      }
+
+      .verdict-kpi .pct {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+
+      .verdict-stack {
+        display: flex;
+        overflow: hidden;
+        border-radius: 999px;
+        border: var(--glass-border);
+        height: 16px;
+      }
+
+      .verdict-seg {
+        height: 100%;
+      }
+
+      .verdict-tools {
+        text-align: left;
+      }
+
+      .verdict-tool-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        align-items: center;
+        margin-bottom: 0.8rem;
+      }
+
+      .verdict-filter-count {
+        margin-bottom: 0.9rem;
+        color: var(--text-secondary);
+        font-size: 0.88rem;
+      }
+
+      .verdict-chip {
+        display: inline-block;
+        min-width: 86px;
+        text-align: center;
+        border-radius: 999px;
+        padding: 0.28rem 0.65rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      .verdict-positive {
+        background: #2e7d32;
+      }
+
+      .verdict-neutral {
+        background: #f9a825;
+        color: #101010;
+      }
+
+      .verdict-negative {
+        background: #c62828;
+      }
+
+      .verdict-unknown {
+        background: #9e9e9e;
+      }
+
+      @media (max-width: 900px) {
+        .verdict-summary-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .verdict-donut-card {
+          min-height: auto;
+          padding-top: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="company-verdict-page">
+    <header class="main-header">
+      <nav class="navbar">
+        <h1 class="brand">
+          <a href="index.html"
+            >BayesDemon — Financial Education, Wealth Creation & Stock
+            Rankings</a
+          >
+        </h1>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-nav" class="nav-links">
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Analytics
+            </button>
+            <ul class="dropdown">
+              <li><a href="macro.html">MacroEconomic View</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li>
+                <a href="superinvestors.html">Superinvestors</a>
+              </li>
+              <li>
+                <a href="company_verdict_overview.html"
+                  >Company Verdict Overview</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Index Sections
+            </button>
+            <ul class="dropdown">
+              <li><a href="index.html#portfolio">Portfolio</a></li>
+              <li><a href="index.html#stats">Index Stats</a></li>
+              <li><a href="index.html#strategy">Strategy Returns</a></li>
+              <li><a href="index.html#rankings">Rankings</a></li>
+              <li><a href="index.html#links">Resources</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Company Verdict Overview</h2>
+        <p class="hero-description">
+          Date-based sentiment dashboard from your stored fundamental analyses.
+          Use it to spot conviction concentration before drilling into details.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#verdict-table">Explore Verdicts</a>
+          <a class="btn btn-secondary" href="index.html#rankings"
+            >Open Ranking Table</a
+          >
+        </div>
+      </section>
+
+      <section id="verdict-summary" class="content-section">
+        <h2>Distribution Snapshot</h2>
+        <div class="financial-section">
+          <div class="verdict-summary-grid">
+            <div class="image-card verdict-donut-card">
+              <div class="verdict-donut">
+                <div class="verdict-donut-center">
+                  <strong>32</strong>
+                  <span>Companies with analysis</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="verdict-summary-meta">
+                <p>
+                  Target date: <strong>2026-02-22</strong>
+                  (Q1 2026)
+                </p>
+                <p>Mode: <strong>Latest analysis available on or before target date</strong></p>
+                <p>Files scanned: <strong>32</strong></p>
+              </div>
+              <div class="verdict-kpi-grid">
+                <div class="verdict-kpi">
+                  <h3>Positive</h3>
+                  <span class="val">14</span>
+                  <span class="pct">43.8%</span>
+                </div>
+                <div class="verdict-kpi">
+                  <h3>Neutral</h3>
+                  <span class="val">11</span>
+                  <span class="pct">34.4%</span>
+                </div>
+                <div class="verdict-kpi">
+                  <h3>Negative</h3>
+                  <span class="val">7</span>
+                  <span class="pct">21.9%</span>
+                </div>
+                <div class="verdict-kpi">
+                  <h3>Unknown</h3>
+                  <span class="val">0</span>
+                  <span class="pct">0.0%</span>
+                </div>
+              </div>
+              <div class="verdict-stack" aria-hidden="true">
+                <div class="verdict-seg verdict-positive" style="width:43.75%"></div>
+                <div class="verdict-seg verdict-neutral" style="width:34.38%"></div>
+                <div class="verdict-seg verdict-negative" style="width:21.88%"></div>
+                <div class="verdict-seg verdict-unknown" style="width:0.00%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="verdict-table" class="content-section">
+        <h2>Per Company Verdicts</h2>
+        <div class="verdict-tool-row">
+          <button class="preset-btn verdict-toggle active" type="button" data-verdict="all">All</button>
+          <button class="preset-btn verdict-toggle" type="button" data-verdict="positive">Positive</button>
+          <button class="preset-btn verdict-toggle" type="button" data-verdict="neutral">Neutral</button>
+          <button class="preset-btn verdict-toggle" type="button" data-verdict="negative">Negative</button>
+          <button class="preset-btn verdict-toggle" type="button" data-verdict="unknown">Unknown</button>
+        </div>
+        <div class="table-tools verdict-tools">
+          <input
+            id="verdict-filter"
+            type="search"
+            placeholder="Filter by ticker, quarter, timestamp, verdict..."
+            aria-label="Filter company verdict table"
+          />
+        </div>
+        <div id="verdict-filter-count" class="verdict-filter-count" hidden>
+          Showing 32 of 32 companies
+        </div>
+        <div class="table-container">
+          <table id="verdict-table-data">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Quarter</th>
+                <th>Timestamp</th>
+                <th>Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-verdict='negative' data-search='amkr q1 2026 2026-02-20t20:48:10.483957 negative'><td>AMKR</td><td>Q1 2026</td><td>2026-02-20T20:48:10.483957</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='negative' data-search='app q1 2026 2026-02-22t08:26:31.115065 negative'><td>APP</td><td>Q1 2026</td><td>2026-02-22T08:26:31.115065</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='negative' data-search='ccsi q1 2026 2026-02-20t21:29:42.605273 negative'><td>CCSI</td><td>Q1 2026</td><td>2026-02-20T21:29:42.605273</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='negative' data-search='lin q1 2026 2026-02-15t11:26:10.920623 negative'><td>LIN</td><td>Q1 2026</td><td>2026-02-15T11:26:10.920623</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='negative' data-search='lpx q1 2026 2026-02-18t20:15:06.804953 negative'><td>LPX</td><td>Q1 2026</td><td>2026-02-18T20:15:06.804953</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='negative' data-search='nvo q1 2026 2026-02-13t20:29:40.875852 negative'><td>NVO</td><td>Q1 2026</td><td>2026-02-13T20:29:40.875852</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='negative' data-search='tsla q1 2026 2026-02-01t12:44:07.851651 negative'><td>TSLA</td><td>Q1 2026</td><td>2026-02-01T12:44:07.851651</td><td><span class='verdict-chip verdict-negative'>Negative</span></td></tr><tr data-verdict='neutral' data-search='abnb q1 2026 2026-02-22t08:44:35.216895 neutral'><td>ABNB</td><td>Q1 2026</td><td>2026-02-22T08:44:35.216895</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='adp q1 2026 2026-01-31t17:30:15.196493 neutral'><td>ADP</td><td>Q1 2026</td><td>2026-01-31T17:30:15.196493</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='aos q1 2026 2026-02-19t19:07:52.872498 neutral'><td>AOS</td><td>Q1 2026</td><td>2026-02-19T19:07:52.872498</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='appl q1 2026 2026-01-31t17:04:50.107554 neutral'><td>APPL</td><td>Q1 2026</td><td>2026-01-31T17:04:50.107554</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='fcx q1 2026 2026-01-31t17:48:11.128989 neutral'><td>FCX</td><td>Q1 2026</td><td>2026-01-31T17:48:11.128989</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='meta q1 2026 2026-02-01t17:53:21.571916 neutral'><td>META</td><td>Q1 2026</td><td>2026-02-01T17:53:21.571916</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='mpwr q1 2026 2026-02-17t20:21:51.475383 neutral'><td>MPWR</td><td>Q1 2026</td><td>2026-02-17T20:21:51.475383</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='msft q1 2026 2026-01-31t15:11:22.730861 neutral'><td>MSFT</td><td>Q1 2026</td><td>2026-01-31T15:11:22.730861</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='pltr q1 2026 2026-02-10t06:08:56.386803 neutral'><td>PLTR</td><td>Q1 2026</td><td>2026-02-10T06:08:56.386803</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='qcom q1 2026 2026-02-14t12:27:31.736694 neutral'><td>QCOM</td><td>Q1 2026</td><td>2026-02-14T12:27:31.736694</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='neutral' data-search='ulta q1 2026 2026-02-18t06:21:29.375874 neutral'><td>ULTA</td><td>Q1 2026</td><td>2026-02-18T06:21:29.375874</td><td><span class='verdict-chip verdict-neutral'>Neutral</span></td></tr><tr data-verdict='positive' data-search='acgl q1 2026 2026-02-20t20:14:38.078697 positive'><td>ACGL</td><td>Q1 2026</td><td>2026-02-20T20:14:38.078697</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='appf q1 2026 2026-01-31t09:03:48.598760 positive'><td>APPF</td><td>Q1 2026</td><td>2026-01-31T09:03:48.598760</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='coin q1 2026 2026-02-22t14:20:44.104878 positive'><td>COIN</td><td>Q1 2026</td><td>2026-02-22T14:20:44.104878</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='ftnt q1 2026 2026-02-15t11:04:17.009301 positive'><td>FTNT</td><td>Q1 2026</td><td>2026-02-15T11:04:17.009301</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='googl q1 2026 2026-02-11t05:49:30.567321 positive'><td>GOOGL</td><td>Q1 2026</td><td>2026-02-11T05:49:30.567321</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='klac q1 2026 2026-01-31t15:32:13.528071 positive'><td>KLAC</td><td>Q1 2026</td><td>2026-01-31T15:32:13.528071</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='mkl q1 2026 2026-02-12t06:30:14.370490 positive'><td>MKL</td><td>Q1 2026</td><td>2026-02-12T06:30:14.370490</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='mtg q1 2026 2026-02-09t20:49:19.032756 positive'><td>MTG</td><td>Q1 2026</td><td>2026-02-09T20:49:19.032756</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='thg q1 2026 2026-02-18t06:41:40.780775 positive'><td>THG</td><td>Q1 2026</td><td>2026-02-18T06:41:40.780775</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='tsmc q1 2026 2026-01-18t09:09:35.371272 positive'><td>TSMC</td><td>Q1 2026</td><td>2026-01-18T09:09:35.371272</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='v q1 2026 2026-02-01t09:02:19.243217 positive'><td>V</td><td>Q1 2026</td><td>2026-02-01T09:02:19.243217</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='vrsn q1 2026 2026-02-19t06:35:33.611790 positive'><td>VRSN</td><td>Q1 2026</td><td>2026-02-19T06:35:33.611790</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='vst q1 2026 2026-01-18t10:27:30.169456 positive'><td>VST</td><td>Q1 2026</td><td>2026-01-18T10:27:30.169456</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr><tr data-verdict='positive' data-search='yeti q1 2026 2026-02-20t18:31:50.087446 positive'><td>YETI</td><td>Q1 2026</td><td>2026-02-20T18:31:50.087446</td><td><span class='verdict-chip verdict-positive'>Positive</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="next-action">
+          <p class="next-action-text">
+            Next best action: cross-check high-conviction names with your main
+            ranking and macro setup before execution.
+          </p>
+          <div class="next-action-links">
+            <a class="next-action-link" href="index.html#rankings"
+              >Open Rankings</a
+            >
+            <a class="next-action-link" href="macro.html"
+              >Open Macro Dashboard</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="js/nav.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const input = document.getElementById("verdict-filter");
+        const table = document.getElementById("verdict-table-data");
+        const rows = Array.from(table.querySelectorAll("tbody tr[data-search]"));
+        const counter = document.getElementById("verdict-filter-count");
+        const toggles = Array.from(
+          document.querySelectorAll(".verdict-toggle[data-verdict]")
+        );
+        let activeVerdict = "all";
+
+        const applyFilters = () => {
+          const query = (input?.value || "").trim().toLowerCase();
+          let visible = 0;
+
+          rows.forEach((row) => {
+            const searchBlob = row.dataset.search || "";
+            const verdict = row.dataset.verdict || "unknown";
+            const matchesText = !query || searchBlob.includes(query);
+            const matchesVerdict =
+              activeVerdict === "all" || verdict === activeVerdict;
+            const show = matchesText && matchesVerdict;
+
+            row.style.display = show ? "" : "none";
+            if (show) visible += 1;
+          });
+
+          if (counter) {
+            counter.textContent =
+              "Showing " + visible + " of " + rows.length + " companies";
+            counter.hidden = visible >= rows.length;
+          }
+        };
+
+        toggles.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            activeVerdict = btn.dataset.verdict || "all";
+            toggles.forEach((node) =>
+              node.classList.toggle("active", node === btn)
+            );
+            applyFilters();
+          });
+        });
+
+        input?.addEventListener("input", applyFilters);
+        applyFilters();
+      });
+    </script>
+  </body>
+</html>

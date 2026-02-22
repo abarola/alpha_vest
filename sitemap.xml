@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://bayesdemon.com/company_verdict_overview.html</loc>
+    <lastmod>2026-02-22</lastmod>
+  </url>
+  <url>
     <loc>https://bayesdemon.com/index.html</loc>
-    <lastmod>2025-12-14</lastmod>
+    <lastmod>2026-02-22</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/macro.html</loc>
-    <lastmod>2025-10-10</lastmod>
+    <lastmod>2026-02-22</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/power_law.html</loc>
-    <lastmod>2025-11-08</lastmod>
+    <lastmod>2026-02-22</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stock-details.html</loc>
@@ -18,314 +22,326 @@
   </url>
   <url>
     <loc>https://bayesdemon.com/superinvestors.html</loc>
-    <lastmod>2025-10-10</lastmod>
+    <lastmod>2026-02-22</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/AAPL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/ACGL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/ADP-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/AMG-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/AMR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/AMZN-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/ANET-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/APP-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/APPF-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/ASTS-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/AU-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/BG-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/CCSI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/CINF-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
-    <loc>https://bayesdemon.com/stocks/CIVI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <loc>https://bayesdemon.com/stocks/COKE-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/CORT-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/COST-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/CPRT-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/CROX-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/CRUS-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/CTRA-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/CVNA-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/DECK-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/DELL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/DV-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/EOG-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/EW-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/EXEL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/FIX-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
-    <loc>https://bayesdemon.com/stocks/FSLR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <loc>https://bayesdemon.com/stocks/FRHC-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/FTNT-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/GL-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/GME-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/GMWKF-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/GNTX-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/GOOGL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/HCC-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
-    <loc>https://bayesdemon.com/stocks/HHH-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/HLNE-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/IBKR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <loc>https://bayesdemon.com/stocks/HOG-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/JCI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/KLAC-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/KNSL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/LBTYA-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/LBTYK-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/LPX-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/MCO-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/MEDP-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/META-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/MKL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/MLI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/MPWR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/MSFT-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/MTDR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/MTG-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/NEM-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/NOV-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/NVDA-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/NVO-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/NVR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/ONTO-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/OXY-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/PAYC-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/PDD-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
-    <loc>https://bayesdemon.com/stocks/PGR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <loc>https://bayesdemon.com/stocks/PFG-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/PHM-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/PINS-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/PLTR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/PPC-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/QCOM-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
-    <loc>https://bayesdemon.com/stocks/REXR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <loc>https://bayesdemon.com/stocks/REGN-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/RGLD-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/RYN-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/SAIA-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/SEIC-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/SMCI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/THG-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/TOL-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/TPL-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/TROW-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/TSLA-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
-    <loc>https://bayesdemon.com/stocks/UI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <loc>https://bayesdemon.com/stocks/UNM-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/UTHR-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/V-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/VICI-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
-  </url>
-  <url>
-    <loc>https://bayesdemon.com/stocks/VIRT-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/VRSN-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/VRT-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/VST-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/XP-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
+  </url>
+  <url>
+    <loc>https://bayesdemon.com/stocks/YETI-US.html</loc>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://bayesdemon.com/stocks/ZM-US.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-02-14</lastmod>
   </url>
 </urlset>
