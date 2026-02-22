@@ -62,13 +62,53 @@
     <main>
       <!-- Hero section -->
       <section class="hero">
-        <h2>Actionable data analysis to increase personal wealth</h2>
+        <h2>Find your next stock opportunity in under 2 minutes</h2>
         <p class="hero-description">
-          ELO-ranked equities, strategy backtests, and portfolio diagnostics —
-          explained in plain English.
+          Start with top-ranked equities, frame decisions with macroeconomic
+          context, then drill into company fundamentals.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-secondary" href="#rankings">Browse rankings</a>
+          <a class="btn btn-primary" href="#rankings">View Top-Ranked Stocks</a>
+          <a class="btn btn-secondary" href="macro.html">Macroeconomic Overview</a>
+        </div>
+      </section>
+
+      <!-- Rankings section -->
+      <section id="rankings" class="content-section">
+        <h2>Company Rankings by Fundamental Analysis</h2>
+        <div class="table-tools">
+          <input
+            type="search"
+            id="rank-filter"
+            placeholder="Filter companies..."
+            aria-label="Filter company rankings"
+          />
+        </div>
+        <div class="table-container">
+          <table id="rank-table">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h3>Historical Strategy Analysis (Sharpe Ratio)</h3>
+        <div class="table-tools">
+          <input
+            type="search"
+            id="analysis-filter"
+            placeholder="Filter analysis..."
+            aria-label="Filter historical analysis"
+          />
+        </div>
+        <div class="table-container">
+          <table id="historical-analysis-table">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </section>
 
@@ -603,45 +643,6 @@
             />
             <figcaption>Cumulative return BT strategy offset 8</figcaption>
           </figure>
-        </div>
-      </section>
-
-      <!-- Rankings section -->
-      <section id="rankings" class="content-section">
-        <h2>Company Rankings by Fundamental Analysis</h2>
-        <div class="table-tools">
-          <input
-            type="search"
-            id="rank-filter"
-            placeholder="Filter companies..."
-            aria-label="Filter company rankings"
-          />
-        </div>
-        <div class="table-container">
-          <table id="rank-table">
-            <thead>
-              <tr></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-
-        <h3>Historical Strategy Analysis (Sharpe Ratio)</h3>
-        <div class="table-tools">
-          <input
-            type="search"
-            id="analysis-filter"
-            placeholder="Filter analysis..."
-            aria-label="Filter historical analysis"
-          />
-        </div>
-        <div class="table-container">
-          <table id="historical-analysis-table">
-            <thead>
-              <tr></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
         </div>
       </section>
 
