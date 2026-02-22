@@ -224,6 +224,45 @@ a:hover { color: #60a5fa; text-decoration: none; text-shadow: 0 0 8px rgba(56,18
   border-color: var(--text-accent);
 }
 
+.next-action {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: var(--glass-border);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.next-action-text {
+  margin: 0 0 0.8rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.next-action-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.next-action-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: var(--glass-border);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.next-action-link:hover {
+  color: var(--text-primary);
+  border-color: rgba(56, 189, 248, 0.35);
+  text-shadow: none;
+}
+
 /* === Cards & Glass Containers === */
 .content-section {
   max-width: 1400px;
@@ -581,6 +620,19 @@ footer {
   .chip {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
+  }
+
+  .next-action {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .next-action-text {
+    font-size: 0.88rem;
+  }
+
+  .next-action-link {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.72rem;
   }
   
   .hidden-mobile { display: none !important; }
