@@ -4,16 +4,16 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Stock Details - EXP:US</title>
+<title>Stock Details - SSB:US</title>
 <link href="../styles.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;display=swap" rel="stylesheet"/>
 </head>
-<body data-prerendered="1" data-stock-symbol="EXP:US">
+<body data-prerendered="1" data-stock-symbol="SSB:US">
 <header>
 <h1>
-        Stock Financial Analysis: <span id="stock-symbol-header">EXP:US</span>
+        Stock Financial Analysis: <span id="stock-symbol-header">SSB:US</span>
 </h1>
 </header>
 <main>
@@ -26,9 +26,9 @@
 <h3>Balance Sheet</h3>
 </div>
 <div class="score-body">
-<div class="score-number" id="score-val-balance-sheet-strength">2/5</div>
+<div class="score-number" id="score-val-balance-sheet-strength">3/5</div>
 <div class="score-bar-bg">
-<div class="score-bar-fill" id="score-bar-balance-sheet-strength" style="width: 40%;"></div>
+<div class="score-bar-fill" id="score-bar-balance-sheet-strength" style="width: 60%;"></div>
 </div>
 </div>
 <div class="score-label" id="score-label-balance-sheet-strength">Mixed</div>
@@ -39,38 +39,38 @@
 <h3>Debt Service</h3>
 </div>
 <div class="score-body">
-<div class="score-number" id="score-val-debt-service">2/2</div>
+<div class="score-number" id="score-val-debt-service">1/1</div>
 <div class="score-bar-bg">
 <div class="score-bar-fill" id="score-bar-debt-service" style="width: 100%;"></div>
 </div>
 </div>
 <div class="score-label" id="score-label-debt-service">Strong</div>
 </div>
-<div class="score-card status-good" id="card-profitability">
+<div class="score-card status-mixed" id="card-profitability">
 <div class="score-header">
 <span class="score-icon">📈</span>
 <h3>Profitability</h3>
 </div>
 <div class="score-body">
-<div class="score-number" id="score-val-profitability">4/5</div>
+<div class="score-number" id="score-val-profitability">3/5</div>
 <div class="score-bar-bg">
-<div class="score-bar-fill" id="score-bar-profitability" style="width: 80%;"></div>
+<div class="score-bar-fill" id="score-bar-profitability" style="width: 60%;"></div>
 </div>
 </div>
-<div class="score-label" id="score-label-profitability">Strong</div>
+<div class="score-label" id="score-label-profitability">Mixed</div>
 </div>
-<div class="score-card status-mixed" id="card-valuation">
+<div class="score-card status-good" id="card-valuation">
 <div class="score-header">
 <span class="score-icon">🏷️</span>
 <h3>Valuation</h3>
 </div>
 <div class="score-body">
-<div class="score-number" id="score-val-valuation">4/6</div>
+<div class="score-number" id="score-val-valuation">6/6</div>
 <div class="score-bar-bg">
-<div class="score-bar-fill" id="score-bar-valuation" style="width: 67%;"></div>
+<div class="score-bar-fill" id="score-bar-valuation" style="width: 100%;"></div>
 </div>
 </div>
-<div class="score-label" id="score-label-valuation">Mixed</div>
+<div class="score-label" id="score-label-valuation">Strong</div>
 </div>
 <div class="score-card status-good" id="card-growth">
 <div class="score-header">
@@ -92,9 +92,9 @@
 <h3>Graham Indicator</h3>
 </div>
 <div class="score-body">
-<div class="score-number" id="score-val-graham-value-investor-indicator">3/4</div>
+<div class="score-number" id="score-val-graham-value-investor-indicator">3/3</div>
 <div class="score-bar-bg">
-<div class="score-bar-fill" id="score-bar-graham-value-investor-indicator" style="width: 75%;"></div>
+<div class="score-bar-fill" id="score-bar-graham-value-investor-indicator" style="width: 100%;"></div>
 </div>
 </div>
 <div class="score-label" id="score-label-graham-value-investor-indicator">Strong</div>
@@ -134,39 +134,39 @@
 </div>
 </nav>
 <section class="financial-section" id="balance-sheet-strength">
-<h2>Balance Sheet Strength<span class="section-score mixed">2/5 above median</span></h2>
+<h2>Balance Sheet Strength<span class="section-score mixed">3/5 above median</span></h2>
 <div class="metrics-container">
 <div class="metric">
 <span class="metric-label">Tangible Equity / Total Liabilities:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.48</span></div>
+<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">0.09</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="tang_equity_over_tot_liab_median">0.22</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Capital Intensity (Reversed):</span>
-<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">11.58</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">47.05</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="capital_intensity_reverse_median">29.16</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">CAGR 5Y Tangible Book Value Per Share:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">13.62%</span></div>
+<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">6.02%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="cagr_tangible_book_per_share_median">7.30%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">CAGR 5Y Cash and Equivalent:</span>
-<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">-29.68%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">20.75%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="cagr_cash_and_equiv_median">5.61%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Goodwill to Assets:</span>
-<div class="metric-value-wrapper"><span aria-label="equal" class="metric-indicator equal">▬</span><span class="metric-value">14.39%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">4.15%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="goodwill_to_assets_median">13.15%</span>)</span>
@@ -174,18 +174,18 @@
 </div>
 </section>
 <section class="financial-section" id="debt-service">
-<h2>Debt Service<span class="section-score good">2/2 above median</span></h2>
+<h2>Debt Service<span class="section-score good">1/1 above median</span></h2>
 <div class="metrics-container">
 <div class="metric">
 <span class="metric-label">Leverage Ratio:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">1.63</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.50</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="leverage_ratio_median">2.38</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Interest Coverage Ratio:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">17.95</span></div>
+<div class="metric-value-wrapper"><span aria-label="equal" class="metric-indicator equal">▬</span><span class="metric-value">N/A</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="interest_coverage_ratio_median">7.59</span>)</span>
@@ -193,39 +193,39 @@
 </div>
 </section>
 <section class="financial-section" id="profitability">
-<h2>Profitability<span class="section-score good">4/5 above median</span></h2>
+<h2>Profitability<span class="section-score mixed">3/5 above median</span></h2>
 <div class="metrics-container">
 <div class="metric">
 <span class="metric-label">ROE (Tangible Equity):</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">53.83%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">14.03%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="roe_tangible_equity_median">11.46%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">ROIC / WACC:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">4.19</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">2.07</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="roic_over_wacc_median">1.66</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Rule of 40:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">26.55</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">39.97</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="rule_of_40_median">21.44</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Cash Conversion Ratio:</span>
-<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">76.23%</span></div>
+<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">89.11%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="cash_conversion_ratio_median">114.03%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Avg. 5 Years ROE:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">34.16%</span></div>
+<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">8.44%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="avg_5years_roe_growth_median">13.35%</span>
@@ -235,46 +235,46 @@
 </div>
 </section>
 <section class="financial-section" id="valuation">
-<h2>Valuation<span class="section-score mixed">4/6 above median</span></h2>
+<h2>Valuation<span class="section-score good">6/6 above median</span></h2>
 <div class="metrics-container">
 <div class="metric">
 <span class="metric-label">Earnings Yield:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">6.33%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">7.04%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="earnings_yield_median">3.88%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Price to Earnings (P/E):</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">15.79</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">14.20</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="price_to_earnings_median">21.47</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">FCF Yield:</span>
-<div class="metric-value-wrapper"><span aria-label="equal" class="metric-indicator equal">▬</span><span class="metric-value">4.83%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">6.28%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="fcf_yield_median">4.50%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">PEG Ratio:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.18</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.47</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="peg_median">0.62</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Price to Tangible Book Value:</span>
-<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">8.50</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">1.99</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="price_to_tangible_book_median">2.35</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Relative P/E vs History:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.80</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.82</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="relative_PE_vs_history_median">1.19</span>)</span>
@@ -286,56 +286,56 @@
 <div class="metrics-container">
 <div class="metric">
 <span class="metric-label">Avg. 5 Years EPS Growth:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">88.52%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">30.28%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="avg_5years_eps_growth_median">19.80%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Avg. 5 Years Revenue Growth:</span>
-<div class="metric-value-wrapper"><span aria-label="equal" class="metric-indicator equal">▬</span><span class="metric-value">10.18%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">23.68%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="avg_5years_revenue_growth_median">8.98%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Revenue Growth Acceleration (mean(0,1) - mean(2,3)):</span>
-<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">-12.45%</span></div>
+<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">-17.96%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="revenue_growth_acceleration_median">-6.10%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">CAGR 5Y Shares Diluted:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">-4.47%</span></div>
+<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">17.14%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="cagr_shares_diluted_median">-0.35%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Expected Growth Market Cap (10Y):</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">14.02%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">5.51%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="expected_growth_market_cap_10Y_median">0.89%</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Final Earnings (10Y Growth @ 10%):</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">0.96B</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">1.13B</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="final_earnings_for_10y_growth_10perc_median">3.34B</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Final Earnings (10Y Growth @ 15%):</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">1.50B</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">1.76B</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="final_earnings_for_10y_growth_15perc_median">5.22B</span>)</span>
 </div>
 <div class="metric">
 <span class="metric-label">Implied Perpetual Growth (Current Market Cap):</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">-2.04%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">-2.84%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="implied_perpetual_growth_curr_market_cap_median">0.45%</span>)
@@ -345,11 +345,11 @@
 </section>
 <!-- NEW: Graham Value Investor Indicator section -->
 <section class="financial-section" id="graham-value-investor-indicator">
-<h2>Graham Value Investor Indicator<span class="section-score good">3/4 above median</span></h2>
+<h2>Graham Value Investor Indicator<span class="section-score good">3/3 above median</span></h2>
 <div class="metrics-container">
 <div class="metric">
 <span class="metric-label">Current Ratio:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">2.73</span></div>
+<div class="metric-value-wrapper"><span aria-label="equal" class="metric-indicator equal">▬</span><span class="metric-value">N/A</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="current_ratio_median">1.40</span>)
@@ -366,7 +366,7 @@
 <!-- NEW -->
 <div class="metric">
 <span class="metric-label">current eps - 5 yeasr eps total growth:</span>
-<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">169.58%</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">318.26%</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="eps_growth_5y_total_median">147.89%</span>)
@@ -374,7 +374,7 @@
 </div>
 <div class="metric">
 <span class="metric-label">P/E × P/B:</span>
-<div class="metric-value-wrapper"><span aria-label="worse" class="metric-indicator worse">▼</span><span class="metric-value metric-worse">79.32</span></div>
+<div class="metric-value-wrapper"><span aria-label="better" class="metric-indicator better">▲</span><span class="metric-value metric-better">18.30</span></div>
 <span class="metric-median-container">
               (Median:
               <span class="metric-value-median" id="pe_times_pb_median">64.14</span>
