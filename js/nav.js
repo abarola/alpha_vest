@@ -10,10 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeAllDropdowns = () => {
     document.querySelectorAll(".has-dropdown.open").forEach((li) => {
       li.classList.remove("open");
-      li.querySelector(".dropdown-toggle")?.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+      const toggle = li.querySelector(".dropdown-toggle");
+      if (toggle) toggle.setAttribute("aria-expanded", "false");
     });
   };
 
@@ -59,9 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".has-dropdown").forEach((otherLi) => {
         if (otherLi !== li) {
           otherLi.classList.remove("open");
-          otherLi
-            .querySelector(".dropdown-toggle")
-            ?.setAttribute("aria-expanded", "false");
+          const toggle = otherLi.querySelector(".dropdown-toggle");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
         }
       });
 
@@ -91,16 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     const navRoot = e.target.closest(".navbar");
-    if (!navRoot && nav?.classList.contains("open")) {
+    if (!navRoot && nav && nav.classList.contains("open")) {
       closeMobileMenu();
     }
   });
 
   // Close menu on escape key
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && nav?.classList.contains("open")) {
+    if (e.key === "Escape" && nav && nav.classList.contains("open")) {
       closeMobileMenu();
-      menuBtn?.focus();
+      if (menuBtn) menuBtn.focus();
     }
   });
 
@@ -109,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      if (!isMobile() && nav?.classList.contains("open")) {
+      if (!isMobile() && nav && nav.classList.contains("open")) {
         closeMobileMenu();
       }
     }, 150);

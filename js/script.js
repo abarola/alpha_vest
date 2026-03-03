@@ -29,9 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
       cap = document.createElement("figcaption");
       fig.appendChild(cap);
     }
-    if (!cap.textContent?.trim()) {
-      cap.textContent =
-        img.alt?.trim() || filenameToCaption(img.getAttribute("src"));
+    const capText = cap.textContent ? cap.textContent.trim() : "";
+    if (!capText) {
+      const altText = img.alt ? img.alt.trim() : "";
+      cap.textContent = altText || filenameToCaption(img.getAttribute("src"));
     }
   }
 
@@ -47,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!img) return;
 
       // Ensure accessibility + consistent behavior
-      if (!img.alt?.trim())
+      const altText = img.alt ? img.alt.trim() : "";
+      if (!altText)
         img.alt = filenameToCaption(img.getAttribute("src"));
       img.tabIndex = img.tabIndex >= 0 ? img.tabIndex : 0;
 
@@ -111,13 +113,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("keydown", (e) => {
+    const activeEl = document.activeElement;
     if (
       (e.key === "Enter" || e.key === " ") &&
-      document.activeElement?.tagName === "IMG" &&
-      document.activeElement.closest(".image-card")
+      activeEl &&
+      activeEl.tagName === "IMG" &&
+      activeEl.closest(".image-card")
     ) {
       e.preventDefault();
-      const img = document.activeElement;
+      const img = activeEl;
       lightbox.open(img.src, img.dataset.caption || img.alt || "");
     }
   });
@@ -202,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
         abs.searchParams.set("v", String(version));
         img.src = abs.toString();
       });
-    } catch {
+    } catch (_err) {
       // silent: manifest is optional
     }
   }
@@ -242,9 +246,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const xml = await resp.text();
       const matches = xml.matchAll(/stocks\/([A-Za-z0-9._-]+)\.html/g);
       for (const match of matches) {
-        if (match?.[1]) safeSymbols.add(match[1].toUpperCase());
+        if (match && match[1]) safeSymbols.add(match[1].toUpperCase());
       }
-    } catch {
+    } catch (_err) {
       // Keep graceful fallback to stock-details route.
     }
     return safeSymbols;
@@ -253,8 +257,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateRankingSnapshot(rows, stockDetailsHref) {
     const topSymbolEl = document.getElementById("snapshot-top-symbol");
     const topLinkEl = document.getElementById("snapshot-top-link");
-    const topRow = rows?.[0];
-    const topSymbol = normalizeSymbol(topRow?.symbol);
+    const topRow = Array.isArray(rows) ? rows[0] : null;
+    const topSymbol = normalizeSymbol(topRow && topRow.symbol);
 
     if (topSymbolEl) {
       topSymbolEl.textContent = topSymbol || "--";
@@ -278,7 +282,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let best = null;
     rows.forEach((row) => {
-      const thresholdRaw = row["Rank Threshold"] ?? row["Rank_Threshold"];
+      const thresholdRaw =
+        row["Rank Threshold"] != null
+          ? row["Rank Threshold"]
+          : row["Rank_Threshold"];
       const threshold = Number.parseFloat(thresholdRaw);
 
       Object.entries(row).forEach(([key, raw]) => {
@@ -404,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .map((symbol) => normalizeSymbol(symbol))
           .filter(Boolean)
           .slice(0, 50);
-      } catch {
+      } catch (_err) {
         return [];
       }
     }
@@ -412,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveToStorage() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(symbols));
-      } catch {
+      } catch (_err) {
         // Storage can fail in private mode; keep in-memory behavior.
       }
     }
@@ -474,7 +481,10 @@ document.addEventListener("DOMContentLoaded", () => {
     async function copySymbolsToClipboard() {
       if (!symbols.length) return;
       const payload = symbols.join(", ");
-      if (navigator.clipboard?.writeText) {
+      if (
+        navigator.clipboard &&
+        typeof navigator.clipboard.writeText === "function"
+      ) {
         await navigator.clipboard.writeText(payload);
       } else {
         const helper = document.createElement("textarea");
@@ -489,29 +499,33 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    clearBtn?.addEventListener("click", () => {
-      symbols = [];
-      saveToStorage();
-      render();
-      notify();
-    });
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        symbols = [];
+        saveToStorage();
+        render();
+        notify();
+      });
+    }
 
-    copyBtn?.addEventListener("click", async () => {
-      try {
-        await copySymbolsToClipboard();
-        const original = copyBtn.textContent;
-        copyBtn.textContent = "Copied";
-        window.setTimeout(() => {
-          copyBtn.textContent = original;
-        }, 1200);
-      } catch {
-        const original = copyBtn.textContent;
-        copyBtn.textContent = "Copy failed";
-        window.setTimeout(() => {
-          copyBtn.textContent = original;
-        }, 1200);
-      }
-    });
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await copySymbolsToClipboard();
+          const original = copyBtn.textContent;
+          copyBtn.textContent = "Copied";
+          window.setTimeout(() => {
+            copyBtn.textContent = original;
+          }, 1200);
+        } catch (_err) {
+          const original = copyBtn.textContent;
+          copyBtn.textContent = "Copy failed";
+          window.setTimeout(() => {
+            copyBtn.textContent = original;
+          }, 1200);
+        }
+      });
+    }
 
     render();
 
@@ -730,7 +744,12 @@ document.addEventListener("DOMContentLoaded", () => {
       attachRankThresholdFilter("analysis-filter", "historical-analysis-table");
       makeSortable("historical-analysis-table");
       updateBestReturnRiskSnapshot(rows);
-      rankingPresetController?.applyActivePreset?.();
+      if (
+        rankingPresetController &&
+        typeof rankingPresetController.applyActivePreset === "function"
+      ) {
+        rankingPresetController.applyActivePreset();
+      }
     })
     .catch((err) => {
       console.error("Unable to load historical analysis table:", err);
@@ -920,11 +939,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const clearInputsAndHighlights = () => {
-      if (rankInput?.value) {
+      if (rankInput && rankInput.value) {
         rankInput.value = "";
         rankInput.dispatchEvent(new Event("input"));
       }
-      if (historicalInput?.value) {
+      if (historicalInput && historicalInput.value) {
         historicalInput.value = "";
         historicalInput.dispatchEvent(new Event("input"));
       }
@@ -964,8 +983,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    rankInput?.addEventListener("input", clearActivePreset);
-    historicalInput?.addEventListener("input", clearActivePreset);
+    if (rankInput) rankInput.addEventListener("input", clearActivePreset);
+    if (historicalInput)
+      historicalInput.addEventListener("input", clearActivePreset);
 
     return {
       applyActivePreset: () => {
@@ -1033,8 +1053,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const rows = Array.from(tbody.querySelectorAll("tr"));
         const asc = th.dataset.sort !== "asc";
         rows.sort((a, b) => {
-          const A = a.children[idx]?.innerText || "";
-          const B = b.children[idx]?.innerText || "";
+          const A = a.children[idx] ? a.children[idx].innerText : "";
+          const B = b.children[idx] ? b.children[idx].innerText : "";
           const nA = parseFloat(A.replace(/[%,$]/g, ""));
           const nB = parseFloat(B.replace(/[%,$]/g, ""));
           if (!isNaN(nA) && !isNaN(nB)) return asc ? nA - nB : nB - nA;
