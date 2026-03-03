@@ -335,6 +335,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setActive(sections[0].id);
 
+    if (typeof window.IntersectionObserver !== "function") {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -362,6 +366,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!revealTargets.length) return;
 
     revealTargets.forEach((el) => el.classList.add("reveal-on-scroll"));
+
+    if (typeof window.IntersectionObserver !== "function") {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries, obs) => {
@@ -554,6 +563,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==================== 2. build the ranking table ==================== */
+  if (typeof window.fetch !== "function") {
+    showTableLoadError(
+      "rank-table",
+      "Your browser is too old to load ranking data. Please update it."
+    );
+    showTableLoadError(
+      "historical-analysis-table",
+      "Your browser is too old to load historical analysis data. Please update it."
+    );
+  } else {
   fetch("rank_companies/rank_companies.json", { cache: "no-store" })
     .then(async (resp) => {
       if (!resp.ok) {
@@ -758,6 +777,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Unable to load historical analysis data on this device/network."
       );
     });
+  }
 
   /* ==================== 4. Optional: table filter & sorting helpers ==================== */
   function attachSymbolFilter(inputId, tableId) {
