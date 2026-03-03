@@ -219,6 +219,21 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/[^A-Z0-9._-]/g, "");
   }
 
+  function showTableLoadError(tableId, message) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+    const container = table.closest(".table-container");
+    if (!container) return;
+
+    let notice = container.querySelector(".table-error");
+    if (!notice) {
+      notice = document.createElement("div");
+      notice.className = "table-error";
+      container.insertBefore(notice, table);
+    }
+    notice.textContent = message;
+  }
+
   async function loadPrerenderedStockPages() {
     const safeSymbols = new Set();
     try {
@@ -525,7 +540,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==================== 2. build the ranking table ==================== */
-  fetch("rank_companies/rank_companies.json")
+  fetch("rank_companies/rank_companies.json", { cache: "no-store" })
     .then(async (resp) => {
       if (!resp.ok) {
         throw new Error(`HTTP ${resp.status}`);
@@ -630,11 +645,22 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       makeSortable("rank-table");
     })
-    .catch((err) => console.error("Unable to load rank table:", err));
+    .catch((err) => {
+      console.error("Unable to load rank table:", err);
+      showTableLoadError(
+        "rank-table",
+        "Unable to load ranking data on this device/network."
+      );
+    });
 
   /* ==================== 3. build the historical analysis table ==================== */
-  fetch("rank_companies/mean_analysis.json")
-    .then((resp) => resp.json())
+  fetch("rank_companies/mean_analysis.json", { cache: "no-store" })
+    .then(async (resp) => {
+      if (!resp.ok) {
+        throw new Error(`HTTP ${resp.status}`);
+      }
+      return resp.json();
+    })
     .then((rows) => {
       if (!rows.length) return;
 
@@ -706,9 +732,13 @@ document.addEventListener("DOMContentLoaded", () => {
       updateBestReturnRiskSnapshot(rows);
       rankingPresetController?.applyActivePreset?.();
     })
-    .catch((err) =>
-      console.error("Unable to load historical analysis table:", err)
-    );
+    .catch((err) => {
+      console.error("Unable to load historical analysis table:", err);
+      showTableLoadError(
+        "historical-analysis-table",
+        "Unable to load historical analysis data on this device/network."
+      );
+    });
 
   /* ==================== 4. Optional: table filter & sorting helpers ==================== */
   function attachSymbolFilter(inputId, tableId) {
