@@ -556,9 +556,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const tbody = table.querySelector("tbody");
 
       const cols = Object.keys(rows[0]);
-      cols.forEach((col) => {
+      const colLabels = cols.map((col) => col.replace(/_/g, " "));
+      cols.forEach((col, idx) => {
         const th = document.createElement("th");
-        th.textContent = col.replace(/_/g, " ");
+        th.textContent = colLabels[idx];
         theadTr.appendChild(th);
       });
 
@@ -583,8 +584,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const tr = document.createElement("tr");
         const symbolValue = normalizeSymbol(row.symbol);
 
-        cols.forEach((col) => {
+        cols.forEach((col, colIndex) => {
           const td = document.createElement("td");
+          td.dataset.label = colLabels[colIndex];
           if (col.toLowerCase() === "symbol") {
             const link = document.createElement("a");
             link.href = stockDetailsHref(row[col]);
@@ -599,6 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const actionTd = document.createElement("td");
         actionTd.className = "action-cell";
+        actionTd.dataset.label = "Action";
         const addBtn = document.createElement("button");
         addBtn.type = "button";
         addBtn.className = "table-action-btn";
@@ -640,6 +643,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const tbody = table.querySelector("tbody");
 
       const cols = Object.keys(rows[0]);
+      const colLabels = cols.map((col) => col.replace(/_/g, " ").trim());
 
       const rankThresholdIndex = cols.findIndex(
         (col) =>
@@ -647,7 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
           col.toLowerCase().includes("threshold")
       );
 
-      cols.forEach((col) => {
+      cols.forEach((col, idx) => {
         const th = document.createElement("th");
 
         let headerText = col.replace(/_/g, " ");
@@ -662,12 +666,15 @@ document.addEventListener("DOMContentLoaded", () => {
         th.style.whiteSpace = "normal";
         th.style.textAlign = "center";
         theadTr.appendChild(th);
+        colLabels[idx] = headerText.replace(/<br>/gi, " ").replace(/\s+/g, " ").trim();
       });
 
       rows.forEach((row) => {
         const tr = document.createElement("tr");
         cols.forEach((col, colIndex) => {
           const td = document.createElement("td");
+
+          td.dataset.label = colLabels[colIndex];
 
           // Add data attribute for rank threshold column
           if (colIndex === rankThresholdIndex) {
