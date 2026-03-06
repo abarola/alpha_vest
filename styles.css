@@ -1026,10 +1026,6 @@ footer {
     padding: 0.62rem 0.72rem;
   }
 
-  .table-container td::before {
-    content: none;
-  }
-
   .macro-info {
     font-size: 0.85rem;
     padding: 0.5rem 0.8rem;
