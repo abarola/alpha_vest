@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLM Nowcasting Dashboard (20260308)</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .nowcast-summary-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 300px 1fr;
+      }
+
+      .nowcast-donut-card {
+        min-height: 300px;
+        display: grid;
+        place-items: center;
+      }
+
+      .nowcast-donut {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: conic-gradient(
+          #2f7d54 0% 84.21%,
+          #d69b2d 84.21% 100.00%,
+          #c4543d 100.00% 100.00%,
+          #8b8b8b 100.00% 100%
+        );
+        display: grid;
+        place-items: center;
+      }
+
+      .nowcast-donut-center {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: var(--bg-dark);
+        border: var(--glass-border);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 0.5rem;
+      }
+
+      .nowcast-donut-center strong {
+        font-size: 1.35rem;
+      }
+
+      .nowcast-donut-center span {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .nowcast-meta {
+        margin-bottom: 1rem;
+      }
+
+      .nowcast-meta p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .nowcast-kpi-grid {
+        display: grid;
+        gap: 0.8rem;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        margin-bottom: 1rem;
+      }
+
+      .nowcast-kpi {
+        border-radius: var(--radius-md);
+        border: var(--glass-border);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 0.85rem 0.95rem;
+      }
+
+      .nowcast-kpi h3 {
+        margin: 0 0 0.35rem;
+        font-size: 0.95rem;
+      }
+
+      .nowcast-kpi .val {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-right: 0.35rem;
+      }
+
+      .nowcast-kpi .pct {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+
+      .nowcast-submeta {
+        margin: 0.5rem 0 0;
+        color: var(--text-secondary);
+        font-size: 0.92rem;
+      }
+
+      .nowcast-tools {
+        text-align: left;
+      }
+
+      .nowcast-filter-count {
+        margin-bottom: 0.9rem;
+        color: var(--text-secondary);
+        font-size: 0.88rem;
+      }
+
+      .nowcast-top-bottom {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nowcast-chip {
+        display: inline-block;
+        min-width: 86px;
+        text-align: center;
+        border-radius: 999px;
+        padding: 0.28rem 0.65rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .nowcast-chip-buy {
+        background: #2f7d54;
+      }
+
+      .nowcast-chip-wait {
+        background: #d69b2d;
+        color: #101010;
+      }
+
+      .nowcast-chip-sell {
+        background: #c4543d;
+      }
+
+      .stock-block .stock-main td {
+        border-bottom: none;
+        padding-bottom: 0.55rem;
+      }
+
+      .stock-block + .stock-block .stock-main td {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .thesis-row td {
+        padding: 0 0.65rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .thesis-panel {
+        width: 100%;
+        border-radius: var(--radius-md);
+        border: var(--glass-border);
+        background: rgba(0, 0, 0, 0.18);
+        padding: 0.95rem 1rem;
+      }
+
+      .thesis-label {
+        color: var(--text-secondary);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.45rem;
+      }
+
+      .thesis-copy {
+        line-height: 1.6;
+      }
+
+      .thesis-extra {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        margin-top: 0.7rem;
+        color: var(--text-secondary);
+      }
+
+      .thesis-tag {
+        display: inline-block;
+        min-width: 44px;
+        text-align: center;
+        border-radius: 999px;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #fff;
+        flex: 0 0 auto;
+      }
+
+      .thesis-bull {
+        background: #2f7d54;
+      }
+
+      .thesis-bear {
+        background: #c4543d;
+      }
+
+      @media (max-width: 960px) {
+        .nowcast-summary-grid,
+        .nowcast-top-bottom {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="company-verdict-page nowcasting-dashboard-page">
+    <header class="main-header">
+      <nav class="navbar">
+        <h1 class="brand">
+          <a href="index.html"
+            >BayesDemon — Financial Education, Wealth Creation & Stock
+            Rankings</a
+          >
+        </h1>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-nav" class="nav-links">
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Analytics
+            </button>
+            <ul class="dropdown">
+              <li><a href="macro.html">MacroEconomic View</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li>
+                <a href="superinvestors.html">Superinvestors</a>
+              </li>
+              <li>
+                <a href="company_verdict_overview.html"
+                  >Company Verdict Overview</a
+                >
+              </li>
+              <li>
+                <a href="llm_nowcasting_dashboard.html"
+                  >LLM Nowcasting Dashboard</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Index Sections
+            </button>
+            <ul class="dropdown">
+              <li><a href="index.html#portfolio">Portfolio</a></li>
+              <li><a href="index.html#stats">Index Stats</a></li>
+              <li><a href="index.html#strategy">Strategy Returns</a></li>
+              <li><a href="index.html#rankings">Rankings</a></li>
+              <li><a href="index.html#links">Resources</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>LLM Nowcasting Dashboard</h2>
+        <p class="hero-description">
+          Cross-sectional market view built from the latest stock-level LLM
+          nowcasts. Compare conviction, expected return, and signal quality
+          across the covered universe.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#nowcast-table">Explore Rankings</a>
+          <a class="btn btn-secondary" href="index.html#rankings"
+            >Open Main Ranking Table</a
+          >
+        </div>
+      </section>
+
+      <section id="nowcast-summary" class="content-section">
+        <h2>Market Pulse</h2>
+        <div class="financial-section">
+          <div class="nowcast-summary-grid">
+            <div class="image-card nowcast-donut-card">
+              <div class="nowcast-donut">
+                <div class="nowcast-donut-center">
+                  <strong>19</strong>
+                  <span>Stocks covered</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="nowcast-meta">
+                <p>Dates represented: <strong>2026-03-08</strong></p>
+                <p>Regime: <strong>Constructive</strong></p>
+                <p>Breadth: <strong>Broad strength</strong></p>
+              </div>
+              <div class="nowcast-kpi-grid">
+                <div class="nowcast-kpi">
+                  <h3>Buy / Wait / Sell</h3>
+                  <span class="val">16</span>
+                  <span class="pct">Buy</span>
+                  <div class="nowcast-submeta">
+                    3 Wait | 0 Sell
+                  </div>
+                </div>
+                <div class="nowcast-kpi">
+                  <h3>Average 6M Score</h3>
+                  <span class="val">1.65</span>
+                  <span class="pct">vs benchmark 0.19</span>
+                </div>
+                <div class="nowcast-kpi">
+                  <h3>Relative 6M Edge</h3>
+                  <span class="val">1.47</span>
+                  <span class="pct">stock minus Russell 1000 control</span>
+                </div>
+                <div class="nowcast-kpi">
+                  <h3>Average 1Y Forecast Return</h3>
+                  <span class="val">20.9%</span>
+                  <span class="pct">from price forecasts</span>
+                </div>
+                <div class="nowcast-kpi">
+                  <h3>Average Confidence</h3>
+                  <span class="val">69</span>
+                  <span class="pct">overall confidence score</span>
+                </div>
+                <div class="nowcast-kpi">
+                  <h3>Average Sentiment</h3>
+                  <span class="val">1.20</span>
+                  <span class="pct">market sentiment score</span>
+                </div>
+              </div>
+              <p class="nowcast-submeta">Coverage shows a constructive stance with 16 Buy, 3 Wait, and 0 Sell decisions across 19 stocks. Average 6m attractiveness is 1.65, versus 0.19 for the embedded Russell 1000 benchmark reference, implying a 1.47-point stock-selection edge in this covered set.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Relative Leaders and Laggards</h2>
+        <div class="nowcast-top-bottom">
+          <div class="financial-section">
+            <h3>Top Ranked</h3>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr><th>Rank</th><th>Ticker</th><th>6M</th><th>Rel 6M</th><th>1Y Ret</th></tr>
+                </thead>
+                <tbody><tr><td>1</td><td>META</td><td>2.70</td><td>2.10</td><td>31.0%</td></tr><tr><td>2</td><td>TSM</td><td>2.40</td><td>1.90</td><td>25.5%</td></tr><tr><td>3</td><td>APPF</td><td>2.20</td><td>1.90</td><td>28.4%</td></tr><tr><td>4</td><td>V</td><td>2.00</td><td>2.00</td><td>19.7%</td></tr><tr><td>5</td><td>GOOGL</td><td>2.00</td><td>2.00</td><td>17.5%</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="financial-section">
+            <h3>Lowest Ranked</h3>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr><th>Rank</th><th>Ticker</th><th>6M</th><th>Rel 6M</th><th>1Y Ret</th></tr>
+                </thead>
+                <tbody><tr><td>15</td><td>MCO</td><td>1.30</td><td>1.40</td><td>16.1%</td></tr><tr><td>16</td><td>MTG</td><td>1.20</td><td>1.20</td><td>12.7%</td></tr><tr><td>17</td><td>MKL</td><td>0.80</td><td>0.30</td><td>13.1%</td></tr><tr><td>18</td><td>MPWR</td><td>0.50</td><td>0.50</td><td>19.0%</td></tr><tr><td>19</td><td>AMR</td><td>0.50</td><td>0.50</td><td>10.6%</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="nowcast-table" class="content-section">
+        <h2>Cross-Section Ranking</h2>
+        <p class="section-lead">
+          Sort the table by score, expected return, sentiment, or confidence,
+          then read the thesis block directly under each stock.
+        </p>
+        <div class="table-tools nowcast-tools">
+          <input
+            id="nowcast-filter"
+            type="search"
+            placeholder="Filter by ticker, company, decision, thesis..."
+            aria-label="Filter nowcasting dashboard table"
+          />
+          <select id="nowcast-decision-filter" aria-label="Filter by decision">
+            <option value="">All decisions</option>
+            <option value="Buy">Buy</option>
+            <option value="Wait">Wait</option>
+            <option value="Sell">Sell</option>
+          </select>
+        </div>
+        <div id="nowcast-filter-count" class="nowcast-filter-count">
+          Showing 19 of 19 stocks
+        </div>
+        <div class="table-container">
+          <table id="nowcast-table-data">
+            <thead>
+              <tr>
+                <th data-type="number">Rank</th>
+                <th data-type="text">Ticker</th>
+                <th data-type="text">Company</th>
+                <th data-type="text">Decision</th>
+                <th data-type="number">Primary 6M</th>
+                <th data-type="number">Relative 6M</th>
+                <th data-type="number">1Y Score</th>
+                <th data-type="number">1Y Forecast Return</th>
+                <th data-type="number">Sentiment</th>
+                <th data-type="number">Next Earnings</th>
+                <th data-type="number">Confidence</th>
+              </tr>
+            </thead>
+            <tbody class='stock-block' data-search='meta meta platforms inc buy meta remains investable because the core ad engine is still compounding at a scale most mega-caps cannot match, engagement and ad pricing stayed healthy in q4, and reported fy2025 eps understated underlying earnings due to a discrete tax hit. the stock has already absorbed a meaningful derating from its highs as investors fixate on extreme fy2026 capex and regulatory noise, yet consensus targets and forward multiples still imply room for rerating if meta proves it can sustain ad growth while keeping operating income rising. this is not a pristine setup because the capex cycle is unusually large and policy risk is real, but the current price looks more like a good-quality growth platform in a controversial spending phase than a crowded euphoria peak.' data-decision='Buy'><tr class='stock-main'><td data-sort='1'>1</td><td data-sort='META'>META</td><td data-sort='Meta Platforms Inc'>Meta Platforms Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.7'>2.70</td><td data-sort='2.1'>2.10</td><td data-sort='3.0'>3.00</td><td data-sort='31.0361939025525'>31.0%</td><td data-sort='1.8'>1.80</td><td data-sort='1.5'>1.50</td><td data-sort='73.0'>73</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>Meta remains investable because the core ad engine is still compounding at a scale most mega-caps cannot match, engagement and ad pricing stayed healthy in Q4, and reported FY2025 EPS understated underlying earnings due to a discrete tax hit. The stock has already absorbed a meaningful derating from its highs as investors fixate on extreme FY2026 capex and regulatory noise, yet consensus targets and forward multiples still imply room for rerating if Meta proves it can sustain ad growth while keeping operating income rising. This is not a pristine setup because the capex cycle is unusually large and policy risk is real, but the current price looks more like a good-quality growth platform in a controversial spending phase than a crowded euphoria peak.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Core fundamentals remain strong: Q4 revenue grew 24%, Family DAP grew 7%, ad impressions grew 18%, and pricing still rose 6%, showing monetization breadth rather than a one-off beat.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>FY2026 capex guidance of $115B-$135B is enormous, and if AI monetization lags infrastructure spend, investors may keep compressing the multiple even if revenue stays healthy.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='tsm tsmc buy tsmc remains one of the clearest listed ways to own ai semiconductor demand because it sits at the manufacturing bottleneck for leading-edge compute. the january earnings release and february monthly revenue data both confirmed that demand stayed very strong into 2026, while the stock&#x27;s sharp late-february to early-march pullback partially de-risked an otherwise stretched setup. the long case is therefore still favorable, but not extreme, because valuation, elevated expectations, capex intensity, and taiwan/geopolitical risk all cap upside versus the very best historical long opportunities.' data-decision='Buy'><tr class='stock-main'><td data-sort='2'>2</td><td data-sort='TSM'>TSM</td><td data-sort='TSMC'>TSMC</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.4'>2.40</td><td data-sort='1.9'>1.90</td><td data-sort='2.1'>2.10</td><td data-sort='25.508425334108086'>25.5%</td><td data-sort='2.7'>2.70</td><td data-sort='1.7'>1.70</td><td data-sort='74.0'>74</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>TSMC remains one of the clearest listed ways to own AI semiconductor demand because it sits at the manufacturing bottleneck for leading-edge compute. The January earnings release and February monthly revenue data both confirmed that demand stayed very strong into 2026, while the stock&#x27;s sharp late-February to early-March pullback partially de-risked an otherwise stretched setup. The long case is therefore still favorable, but not extreme, because valuation, elevated expectations, capex intensity, and Taiwan/geopolitical risk all cap upside versus the very best historical long opportunities.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Q4 2025 results and Q1 2026 guidance showed that AI/HPC demand is still translating into real revenue, profit, and capex acceleration rather than just narrative momentum.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Expectations are already very high after the January beat, strong guide, January revenue print, and multiple target hikes, so upside from here requires continued flawless execution.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='appf appfolio inc buy appfolio screens as a moderately attractive post-reset vertical software name: the business is still compounding revenue near 20%, remains solidly profitable and cash generative, and continues to lean into ai-led workflow monetization, while the stock has already absorbed a meaningful de-rating after a guidance disappointment. the setup is investable because expectations are no longer extreme, but the edge is capped by still-elevated valuation, a nontrivial short base, and macro sensitivity in software multiples and real-estate-related customer demand.' data-decision='Buy'><tr class='stock-main'><td data-sort='3'>3</td><td data-sort='APPF'>APPF</td><td data-sort='AppFolio Inc'>AppFolio Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.2'>2.20</td><td data-sort='1.9000000000000001'>1.90</td><td data-sort='2.0'>2.00</td><td data-sort='28.364389233954455'>28.4%</td><td data-sort='1.2'>1.20</td><td data-sort='1.5'>1.50</td><td data-sort='68.0'>68</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>AppFolio screens as a moderately attractive post-reset vertical software name: the business is still compounding revenue near 20%, remains solidly profitable and cash generative, and continues to lean into AI-led workflow monetization, while the stock has already absorbed a meaningful de-rating after a guidance disappointment. The setup is investable because expectations are no longer extreme, but the edge is capped by still-elevated valuation, a nontrivial short base, and macro sensitivity in software multiples and real-estate-related customer demand.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Core fundamentals remain strong: FY2025 revenue grew 20%, Q4 revenue grew 22%, units under management rose 8%, and operating cash generation stayed robust.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>FY2026 revenue guidance was slightly light versus expectations, which raises the risk that growth is decelerating from a premium multiple that is still not cheap on trailing earnings or sales.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='v visa inc buy the as-of timestamp falls on a sunday, so the &#x27;today&#x27; close forecast refers to the next regular session. visa remains a high-quality, high-visibility compounder with double-digit revenue growth, aggressive buybacks, low short interest, and a still-bullish analyst setup, but the stock is no longer cheap on an absolute basis and near-term momentum is mixed after a sharp de-rating from the january highs. that combination supports a positive but not extreme cross-sectional signal.' data-decision='Buy'><tr class='stock-main'><td data-sort='4'>4</td><td data-sort='V'>V</td><td data-sort='Visa Inc'>Visa Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.0'>2.00</td><td data-sort='2.0'>2.00</td><td data-sort='2.5'>2.50</td><td data-sort='19.736015084852298'>19.7%</td><td data-sort='2.0'>2.00</td><td data-sort='1.0'>1.00</td><td data-sort='72.0'>72</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>The as-of timestamp falls on a Sunday, so the &#x27;today&#x27; close forecast refers to the next regular session. Visa remains a high-quality, high-visibility compounder with double-digit revenue growth, aggressive buybacks, low short interest, and a still-bullish analyst setup, but the stock is no longer cheap on an absolute basis and near-term momentum is mixed after a sharp de-rating from the January highs. That combination supports a positive but not extreme cross-sectional signal.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Fundamentals remain strong: Q1 FY2026 revenue rose 14.63% YoY and diluted EPS rose 17.44% YoY, showing the core network is still compounding at scale.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Valuation is not cheap in a full-history context: about 29.8x trailing earnings, 24.0x forward earnings, and 1.86x PEG leave less room for disappointment than a typical large-cap financial.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='googl alphabet inc buy alphabet enters the next session with strong fundamental momentum in search, youtube, cloud, and gemini adoption, plus supportive analyst revisions, while the stock has already corrected materially from its highs. that combination creates a positive medium-term setup, but not an elite one, because the market is still digesting an extraordinary 2026 capex ramp, margin risk, and persistent antitrust/regulatory overhangs.' data-decision='Buy'><tr class='stock-main'><td data-sort='5'>5</td><td data-sort='GOOGL'>GOOGL</td><td data-sort='Alphabet Inc'>Alphabet Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.0'>2.00</td><td data-sort='2.0'>2.00</td><td data-sort='2.0'>2.00</td><td data-sort='17.45189117451893'>17.5%</td><td data-sort='1.5'>1.50</td><td data-sort='1.0'>1.00</td><td data-sort='72.0'>72</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>Alphabet enters the next session with strong fundamental momentum in Search, YouTube, Cloud, and Gemini adoption, plus supportive analyst revisions, while the stock has already corrected materially from its highs. That combination creates a positive medium-term setup, but not an elite one, because the market is still digesting an extraordinary 2026 capex ramp, margin risk, and persistent antitrust/regulatory overhangs.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Core business momentum is unusually strong for a mega-cap: Q4 revenue grew 18%, Cloud grew 48%, full-year revenue exceeded $400B, and Gemini usage/adoption metrics suggest AI is supporting both product engagement and monetization.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>The 2026 capex guide of $175B-$185B is enormous and raises the risk that revenue growth stays strong while free cash flow conversion and margins disappoint, especially if cloud capacity build-out or monetization timing slips.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='klac kla corp buy klac has a strong quality-plus-revision profile: process-control leadership, ai and advanced-packaging exposure, recent earnings/guidance above midpoint, and clearly positive sell-side estimate momentum. the stock also entered march well below its late-january high, which leaves room for a rebound into investor day and the next earnings cycle. the limiting factor is valuation: even after the pullback, the multiple remains rich versus history, so this is an above-average long rather than an elite, table-pounding signal.' data-decision='Buy'><tr class='stock-main'><td data-sort='6'>6</td><td data-sort='KLAC'>KLAC</td><td data-sort='KLA Corp'>KLA Corp</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.0'>2.00</td><td data-sort='1.8'>1.80</td><td data-sort='2.2'>2.20</td><td data-sort='22.827687776141392'>22.8%</td><td data-sort='2.0'>2.00</td><td data-sort='1.0'>1.00</td><td data-sort='72.0'>72</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>KLAC has a strong quality-plus-revision profile: process-control leadership, AI and advanced-packaging exposure, recent earnings/guidance above midpoint, and clearly positive sell-side estimate momentum. The stock also entered March well below its late-January high, which leaves room for a rebound into Investor Day and the next earnings cycle. The limiting factor is valuation: even after the pullback, the multiple remains rich versus history, so this is an above-average long rather than an elite, table-pounding signal.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Fundamentals remain very strong, with record Q2 FY2026 revenue, high margins, strong free cash flow, and positive Q3 guidance.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Valuation is still demanding after a near-doubling over the last year; premium multiples leave less room for execution slippage.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='ccsi consensus cloud solutions inc buy ccsi is a cash-generative, still-cheap software-like asset with improving corporate-channel mix, strong margins, active buybacks, and lower refinancing risk after retiring the 2026 notes. the stock is no longer undiscovered after a powerful post-earnings move, but at roughly mid-single-digit forward earnings and free-cash-flow multiples it still screens attractively versus its low-growth profile. the main constraint is that revenue is only stabilizing, not inflecting into clear durable growth, so the expected edge is positive but not elite.' data-decision='Buy'><tr class='stock-main'><td data-sort='7'>7</td><td data-sort='CCSI'>CCSI</td><td data-sort='Consensus Cloud Solutions Inc'>Consensus Cloud Solutions Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.0'>2.00</td><td data-sort='1.75'>1.75</td><td data-sort='1.5'>1.50</td><td data-sort='23.731587561374788'>23.7%</td><td data-sort='1.5'>1.50</td><td data-sort='1.0'>1.00</td><td data-sort='63.0'>63</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>CCSI is a cash-generative, still-cheap software-like asset with improving corporate-channel mix, strong margins, active buybacks, and lower refinancing risk after retiring the 2026 notes. The stock is no longer undiscovered after a powerful post-earnings move, but at roughly mid-single-digit forward earnings and free-cash-flow multiples it still screens attractively versus its low-growth profile. The main constraint is that revenue is only stabilizing, not inflecting into clear durable growth, so the expected edge is positive but not elite.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Valuation remains inexpensive even after the rally: trailing PE about 7.0, forward PE about 5.4, and P/FCF about 5.5 on a business still producing 50%+ adjusted EBITDA margins.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>The business is still fundamentally low growth: FY2025 revenue was down 0.2%, SoHo revenue is still shrinking, and the core debate remains whether corporate growth can fully offset legacy erosion.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='eog eog resources buy eog screens as a moderately attractive long because it combines top-tier u.s. shale asset quality, disciplined capital returns, visible production growth from encino integration, and strong earnings torque to higher oil prices. the key setup is that post-earnings analyst targets moved up but still do not fully reflect a crude backdrop that improved further after the february report, while the stock remains supported by buybacks, dividends and a still-reasonable mid-teens earnings multiple for a high-quality e&amp;p.' data-decision='Buy'><tr class='stock-main'><td data-sort='8'>8</td><td data-sort='EOG'>EOG</td><td data-sort='EOG Resources'>EOG Resources</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='2.0'>2.00</td><td data-sort='1.7'>1.70</td><td data-sort='1.5'>1.50</td><td data-sort='10.089686098654704'>10.1%</td><td data-sort='2.4'>2.40</td><td data-sort='2.1'>2.10</td><td data-sort='69.0'>69</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>EOG screens as a moderately attractive long because it combines top-tier U.S. shale asset quality, disciplined capital returns, visible production growth from Encino integration, and strong earnings torque to higher oil prices. The key setup is that post-earnings analyst targets moved up but still do not fully reflect a crude backdrop that improved further after the February report, while the stock remains supported by buybacks, dividends and a still-reasonable mid-teens earnings multiple for a high-quality E&amp;P.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>If crude stays anywhere near recent levels, EOG&#x27;s 2026 free cash flow should run meaningfully above the company&#x27;s February strip-based framework, creating room for more buybacks and estimate revisions higher.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>The stock is no longer cheap on short-term sentiment or price action; it is near a 52-week high after a fast run, so any oil pullback could trigger de-rating and momentum reversal.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='crox crocs inc buy crox screens as a moderate contrarian long. the market is heavily discounting tariff headwinds, margin pressure, and the still-weak heydude reset, yet the core crocs brand remains highly profitable, dtc and international trends are more resilient than the headline suggests, management is driving $100 million of cost savings, eps estimates have moved sharply higher, and the stock is back near pre-earnings levels at roughly 6-7x forward earnings.' data-decision='Buy'><tr class='stock-main'><td data-sort='9'>9</td><td data-sort='CROX'>CROX</td><td data-sort='Crocs Inc'>Crocs Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.8'>1.80</td><td data-sort='1.7'>1.70</td><td data-sort='2.1'>2.10</td><td data-sort='30.68844807467912'>30.7%</td><td data-sort='-0.5'>-0.50</td><td data-sort='1.0'>1.00</td><td data-sort='63.0'>63</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>CROX screens as a moderate contrarian long. The market is heavily discounting tariff headwinds, margin pressure, and the still-weak HEYDUDE reset, yet the core Crocs brand remains highly profitable, DTC and international trends are more resilient than the headline suggests, management is driving $100 million of cost savings, EPS estimates have moved sharply higher, and the stock is back near pre-earnings levels at roughly 6-7x forward earnings.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Valuation is compressed versus fundamentals: forward P/E is around the high-6x area while consensus price targets remain well above the stock.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Revenue is still weak, with Q1 guided down mid-single digits and FY2026 revenue guided roughly flat to down, limiting near-term operating leverage.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='nvda nvidia buy nvidia still has the strongest combination of growth, margin structure, ecosystem control, and estimate momentum in large-cap u.s. equities, and the post-earnings selloff improved the setup by reducing some of the near-term euphoria. the stock is not cheap in an absolute historical sense, but relative to a forward pe near the low-20s against consensus fy+1 eps growth near 70%, the risk/reward remains favorable if hyperscaler and enterprise ai capex persists.' data-decision='Buy'><tr class='stock-main'><td data-sort='10'>10</td><td data-sort='NVDA'>NVDA</td><td data-sort='NVIDIA'>NVIDIA</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.8'>1.80</td><td data-sort='1.4'>1.40</td><td data-sort='1.6'>1.60</td><td data-sort='28.176795580110504'>28.2%</td><td data-sort='3.0'>3.00</td><td data-sort='2.5'>2.50</td><td data-sort='72.0'>72</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>NVIDIA still has the strongest combination of growth, margin structure, ecosystem control, and estimate momentum in large-cap U.S. equities, and the post-earnings selloff improved the setup by reducing some of the near-term euphoria. The stock is not cheap in an absolute historical sense, but relative to a forward PE near the low-20s against consensus FY+1 EPS growth near 70%, the risk/reward remains favorable if hyperscaler and enterprise AI capex persists.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Fundamentals remain exceptional: FY4Q26 revenue grew 73% year over year, Data Center revenue reached $62.3B, and gross margin stayed around 75%, confirming strong pricing power and mix.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Expectations are still extremely high for a $4T-plus company; the stock sold off after a beat-and-raise, which is classic evidence that incremental upside now requires extraordinary follow-through.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='msft microsoft corp buy msft remains fundamentally one of the strongest large-cap franchises in the market, and the january quarter confirmed that azure, cloud backlog, and ai monetization are still compounding at scale. the stock, however, already carries premium expectations and is working through a valuation/capex reset after a sharp multi-month drawdown, so the edge is positive but not extreme. relative to the russell 1000, the combination of superior business quality, better medium-term earnings visibility, and washed-out price momentum makes the 6-12 month setup attractive.' data-decision='Buy'><tr class='stock-main'><td data-sort='11'>11</td><td data-sort='MSFT'>MSFT</td><td data-sort='Microsoft Corp'>Microsoft Corp</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.7'>1.70</td><td data-sort='1.2999999999999998'>1.30</td><td data-sort='2.1'>2.10</td><td data-sort='35.69321533923304'>35.7%</td><td data-sort='0.8'>0.80</td><td data-sort='1.5'>1.50</td><td data-sort='65.0'>65</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>MSFT remains fundamentally one of the strongest large-cap franchises in the market, and the January quarter confirmed that Azure, cloud backlog, and AI monetization are still compounding at scale. The stock, however, already carries premium expectations and is working through a valuation/capex reset after a sharp multi-month drawdown, so the edge is positive but not extreme. Relative to the Russell 1000, the combination of superior business quality, better medium-term earnings visibility, and washed-out price momentum makes the 6-12 month setup attractive.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Azure growth at 39% and commercial RPO at $625B indicate unusually strong enterprise demand visibility, supporting above-market revenue and EPS growth.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Heavy AI infrastructure spending keeps free-cash-flow optics under pressure and raises the bar for monetization, which is why some analysts shifted to Hold despite strong operating results.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='acgl arch capital group ltd buy acgl screens as a solid but not extreme long because the franchise is still underwriting at very strong normalized margins, buybacks are material, valuation remains reasonable for the quality, and bearish positioning is low. the restraint is that 2025 was unusually strong, net written premium growth was soft, and 2026 consensus has already shifted toward normalization, so the edge is positive but not huge on a full-historical ranking scale.' data-decision='Buy'><tr class='stock-main'><td data-sort='12'>12</td><td data-sort='ACGL'>ACGL</td><td data-sort='Arch Capital Group Ltd'>Arch Capital Group Ltd</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.6'>1.60</td><td data-sort='1.6'>1.60</td><td data-sort='1.8'>1.80</td><td data-sort='13.05421252957515'>13.1%</td><td data-sort='1.0'>1.00</td><td data-sort='0.9'>0.90</td><td data-sort='74.0'>74</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>ACGL screens as a solid but not extreme long because the franchise is still underwriting at very strong normalized margins, buybacks are material, valuation remains reasonable for the quality, and bearish positioning is low. The restraint is that 2025 was unusually strong, net written premium growth was soft, and 2026 consensus has already shifted toward normalization, so the edge is positive but not huge on a full-historical ranking scale.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Q4 2025 quality was genuinely strong, not just reserve noise: companywide combined ratio excluding catastrophe activity and prior-year development was 79.5%, reinsurance was 74.9%, and mortgage remained highly profitable.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>2026 is set up as a normalization year after a very strong 2025; consensus revenue and EPS expectations both point lower, so valuation re-rating may be limited.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='pdd pdd holdings inc buy pdd is a moderately attractive long because the stock already embeds a heavy geopolitical, tariff, and china-adr discount while the business still throws off exceptional cash, carries very large net cash, and remains profitable even after a deliberate merchant-support spending cycle. the market is correctly skeptical about temu&#x27;s u.s. economics after de minimis changes and about slowing core growth, but at roughly 8-10x forward earnings and near 5-7x ev/ebitda/ebit, the valuation appears too compressed if earnings merely stabilize and growth stays in the low-to-mid teens rather than collapsing.' data-decision='Buy'><tr class='stock-main'><td data-sort='13'>13</td><td data-sort='PDD'>PDD</td><td data-sort='PDD Holdings Inc'>PDD Holdings Inc</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.5'>1.50</td><td data-sort='1.5'>1.50</td><td data-sort='2.0'>2.00</td><td data-sort='29.44983818770226'>29.4%</td><td data-sort='-1.0'>-1.00</td><td data-sort='0.5'>0.50</td><td data-sort='61.0'>61</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>PDD is a moderately attractive long because the stock already embeds a heavy geopolitical, tariff, and China-ADR discount while the business still throws off exceptional cash, carries very large net cash, and remains profitable even after a deliberate merchant-support spending cycle. The market is correctly skeptical about Temu&#x27;s U.S. economics after de minimis changes and about slowing core growth, but at roughly 8-10x forward earnings and near 5-7x EV/EBITDA/EBIT, the valuation appears too compressed if earnings merely stabilize and growth stays in the low-to-mid teens rather than collapsing.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Valuation is cheap versus quality: forward P/E around 8-8.5x, EV/EBIT around 6-7x, and net cash of roughly $40.9 per share provide downside support.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Temu&#x27;s U.S. value proposition is structurally weaker after tariff and de minimis changes, so the market may be right that prior growth economics are not coming back.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='lin linde plc buy linde remains a high-quality defensive compounder with rare pricing power, resilient cash generation, and visible project-backed growth. the february results and dividend increase reinforced that core story, while the early-march pullback modestly improved entry after the stock had run hard. the edge is real but not huge because valuation is still premium and near-term debate centers on energy-cost pass-through and europe/china industrial softness.' data-decision='Buy'><tr class='stock-main'><td data-sort='14'>14</td><td data-sort='LIN'>LIN</td><td data-sort='Linde PLC'>Linde PLC</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.4'>1.40</td><td data-sort='1.2999999999999998'>1.30</td><td data-sort='1.6'>1.60</td><td data-sort='9.948717948717945'>9.9%</td><td data-sort='1.6'>1.60</td><td data-sort='1.5'>1.50</td><td data-sort='76.0'>76</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>Linde remains a high-quality defensive compounder with rare pricing power, resilient cash generation, and visible project-backed growth. The February results and dividend increase reinforced that core story, while the early-March pullback modestly improved entry after the stock had run hard. The edge is real but not huge because valuation is still premium and near-term debate centers on energy-cost pass-through and Europe/China industrial softness.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>FY2025 adjusted EPS grew 6% to $16.46, 2026 guidance implies another 6%-9% year of growth, and management still has pricing, buybacks, and backlog support.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>At roughly 28x forward earnings, LIN is still expensive for a mid- to high-single-digit EPS grower, leaving less room for multiple expansion.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='mco moody&#x27;s corp buy moody&#x27;s is a high-quality, high-margin compounder with a still-supportive setup after a strong q4/full-year 2025 report: record debt rated, resilient analytics growth, expanding margins, and 2026 eps guidance that still supports double-digit earnings growth. the stock is not cheap, and post-earnings target cuts show that multiple compression remains a real risk, but the february reset already absorbed some of that valuation pressure and leaves mco modestly attractive versus a shakier broad-market backdrop.' data-decision='Buy'><tr class='stock-main'><td data-sort='15'>15</td><td data-sort='MCO'>MCO</td><td data-sort='Moody&#x27;s Corp'>Moody&#x27;s Corp</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.3'>1.30</td><td data-sort='1.4000000000000001'>1.40</td><td data-sort='1.5'>1.50</td><td data-sort='16.10907472932601'>16.1%</td><td data-sort='0.7'>0.70</td><td data-sort='1.0'>1.00</td><td data-sort='72.0'>72</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>Moody&#x27;s is a high-quality, high-margin compounder with a still-supportive setup after a strong Q4/full-year 2025 report: record debt rated, resilient analytics growth, expanding margins, and 2026 EPS guidance that still supports double-digit earnings growth. The stock is not cheap, and post-earnings target cuts show that multiple compression remains a real risk, but the February reset already absorbed some of that valuation pressure and leaves MCO modestly attractive versus a shakier broad-market backdrop.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Record issuance activity, a strong private-credit franchise, and recurring analytics revenue support continued revenue growth even if public markets issuance normalizes.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>At roughly 34.5x trailing EPS and about 28x forward EPS, MCO still trades at a premium that leaves limited room for disappointment.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='mtg mgic investment corp buy mtg screens as a modest long because it combines strong balance-sheet flexibility, disciplined reinsurance, aggressive buybacks, and still-solid earnings power with a low valuation near 8.7x fy2026 eps and about 1.1x tangible book. the key offset is that this is not a clean acceleration story: premium yields are compressing, q4 losses and delinquencies rose sequentially, and sell-side expectations remain subdued. net-net, the setup looks better than the average large-cap financial but not remotely like an extreme historical bargain.' data-decision='Buy'><tr class='stock-main'><td data-sort='16'>16</td><td data-sort='MTG'>MTG</td><td data-sort='MGIC Investment Corp'>MGIC Investment Corp</td><td data-sort='Buy'><span class='chip chip-buy'>Buy</span></td><td data-sort='1.2'>1.20</td><td data-sort='1.2'>1.20</td><td data-sort='1.4'>1.40</td><td data-sort='12.665406427221182'>12.7%</td><td data-sort='-0.4'>-0.40</td><td data-sort='0.8'>0.80</td><td data-sort='72.0'>72</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>MTG screens as a modest long because it combines strong balance-sheet flexibility, disciplined reinsurance, aggressive buybacks, and still-solid earnings power with a low valuation near 8.7x FY2026 EPS and about 1.1x tangible book. The key offset is that this is not a clean acceleration story: premium yields are compressing, Q4 losses and delinquencies rose sequentially, and sell-side expectations remain subdued. Net-net, the setup looks better than the average large-cap financial but not remotely like an extreme historical bargain.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Capital return is powerful: the company repurchased 12% of starting shares in 2025, bought back more stock in January 2026, and still ended with excess PMIERs capital and over $1B of holding-company liquidity.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Q4 underwriting quality was not spotless: losses incurred jumped, the loss ratio rose to 13.2%, and delinquency inventory/delinquency rate moved up versus Q3, which can keep investors cautious.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='mkl markel group inc wait markel enters this date as a high-quality specialty-insurance and investing compounder that just printed a strong q4/fy2025 beat and reaffirmed long-run intrinsic value growth, but the stock setup is only mildly attractive rather than compelling. near-term price momentum has softened, analyst sponsorship is sparse, and the visible street upside is modest, so the better read is positive medium-term carry with limited immediate edge.' data-decision='Wait'><tr class='stock-main'><td data-sort='17'>17</td><td data-sort='MKL'>MKL</td><td data-sort='Markel Group Inc'>Markel Group Inc</td><td data-sort='Wait'><span class='chip chip-wait'>Wait</span></td><td data-sort='0.8'>0.80</td><td data-sort='0.30000000000000004'>0.30</td><td data-sort='1.2'>1.20</td><td data-sort='13.107287449392713'>13.1%</td><td data-sort='1.0'>1.00</td><td data-sort='0.7'>0.70</td><td data-sort='67.0'>67</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>Markel enters this date as a high-quality specialty-insurance and investing compounder that just printed a strong Q4/FY2025 beat and reaffirmed long-run intrinsic value growth, but the stock setup is only mildly attractive rather than compelling. Near-term price momentum has softened, analyst sponsorship is sparse, and the visible street upside is modest, so the better read is positive medium-term carry with limited immediate edge.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Recent fundamentals were strong: Q4/FY2025 materially beat EPS expectations and management pointed to 12% intrinsic value per share growth plus strong operating income.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Price action is uninspiring: MKL was down about 5.7% over 1 month and about 3.2% over 3 months into 2026-03-06, with clear relative underperformance versus the Russell 1000 over 1 month, 3 months, and 1 year.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='mpwr monolithic power systems inc wait mpwr remains a high-quality power-management compounder with real ai/data-center, automotive, and diversified analog growth, and its february earnings/guidance were fundamentally strong. however, as of 2026-03-08 the stock is no longer a clean long setup because investors must absorb a fresh restatement, a disclosed material weakness, a cfo transition, elevated inventory, and a still-demanding valuation even after the pullback. that mix leaves medium-term upside intact but compresses near-term edge and makes the stock more of a wait-than-chase name.' data-decision='Wait'><tr class='stock-main'><td data-sort='18'>18</td><td data-sort='MPWR'>MPWR</td><td data-sort='Monolithic Power Systems Inc'>Monolithic Power Systems Inc</td><td data-sort='Wait'><span class='chip chip-wait'>Wait</span></td><td data-sort='0.5'>0.50</td><td data-sort='0.5'>0.50</td><td data-sort='1.0'>1.00</td><td data-sort='18.95551257253385'>19.0%</td><td data-sort='1.0'>1.00</td><td data-sort='1.5'>1.50</td><td data-sort='67.0'>67</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>MPWR remains a high-quality power-management compounder with real AI/data-center, automotive, and diversified analog growth, and its February earnings/guidance were fundamentally strong. However, as of 2026-03-08 the stock is no longer a clean long setup because investors must absorb a fresh restatement, a disclosed material weakness, a CFO transition, elevated inventory, and a still-demanding valuation even after the pullback. That mix leaves medium-term upside intact but compresses near-term edge and makes the stock more of a wait-than-chase name.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Core operations are strong: 2025 revenue grew 26.4%, Q4 revenue grew 20.8%, and Q1 2026 guidance was above prior sell-side expectations.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>The 2026-02-27 non-reliance/restatement filing is a serious governance and credibility overhang even if non-cash, because it came with a material weakness in internal controls.</span></div></div></td></tr></tbody><tbody class='stock-block' data-search='amr alpha metallurgical resources inc wait amr has a better near-intermediate fundamental setup than its broken chart suggests: q4 was weak, but management explicitly said late-q4 met-price improvement mostly shifts into q1 2026, 2026 tons are partly priced above q4 realizations, and the company still has a fortress balance sheet plus large share repurchases. the problem is that this is still a highly cyclical met-coal equity with poor recent momentum, mixed analyst positioning, and inherently unstable earnings power, so the stock screens as only modestly attractive rather than a high-conviction long.' data-decision='Wait'><tr class='stock-main'><td data-sort='19'>19</td><td data-sort='AMR'>AMR</td><td data-sort='Alpha Metallurgical Resources Inc'>Alpha Metallurgical Resources Inc</td><td data-sort='Wait'><span class='chip chip-wait'>Wait</span></td><td data-sort='0.5'>0.50</td><td data-sort='0.5'>0.50</td><td data-sort='0.5'>0.50</td><td data-sort='10.611510791366907'>10.6%</td><td data-sort='0.5'>0.50</td><td data-sort='1.5'>1.50</td><td data-sort='61.0'>61</td></tr><tr class='thesis-row'><td colspan='11'><div class='thesis-panel'><div class='thesis-label'>Core Thesis</div><div class='thesis-copy'>AMR has a better near-intermediate fundamental setup than its broken chart suggests: Q4 was weak, but management explicitly said late-Q4 met-price improvement mostly shifts into Q1 2026, 2026 tons are partly priced above Q4 realizations, and the company still has a fortress balance sheet plus large share repurchases. The problem is that this is still a highly cyclical met-coal equity with poor recent momentum, mixed analyst positioning, and inherently unstable earnings power, so the stock screens as only modestly attractive rather than a high-conviction long.</div><div class='thesis-extra'><span class='thesis-tag thesis-bull'>Bull</span><span>Q1 2026 should lap a weak Q4 2025 pricing base, with management stating recent low-vol met index improvement should help near-term results.</span></div><div class='thesis-extra'><span class='thesis-tag thesis-bear'>Bear</span><span>Q4 2025 still showed a net loss, revenue miss, and weak EBITDA, confirming that AMR remains highly exposed to volatile met-coal pricing and steel-demand softness.</span></div></div></td></tr></tbody>
+          </table>
+        </div>
+        <div class="next-action">
+          <p class="next-action-text">
+            Next best action: use this dashboard to rank the shortlist, then
+            validate individual names in the main stock pages and against your
+            macro regime view.
+          </p>
+          <div class="next-action-links">
+            <a class="next-action-link" href="index.html#rankings"
+              >Open Rankings</a
+            >
+            <a class="next-action-link" href="company_verdict_overview.html"
+              >Open Verdict Dashboard</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="js/nav.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const table = document.getElementById("nowcast-table-data");
+        const head = table.querySelector("thead");
+        const input = document.getElementById("nowcast-filter");
+        const decisionSelect = document.getElementById("nowcast-decision-filter");
+        const counter = document.getElementById("nowcast-filter-count");
+        let currentSort = { index: -1, asc: true, type: "number" };
+
+        const parseValue = (text, type) => {
+          if (type === "number") {
+            const n = Number(text);
+            return Number.isNaN(n) ? Number.NEGATIVE_INFINITY : n;
+          }
+          return String(text).toLowerCase();
+        };
+
+        const applyFilters = () => {
+          const needle = (input?.value || "").trim().toLowerCase();
+          const decision = decisionSelect?.value || "";
+          const blocks = Array.from(table.querySelectorAll("tbody.stock-block"));
+          let visible = 0;
+
+          blocks.forEach((block) => {
+            const matchesText = !needle || (block.dataset.search || "").includes(needle);
+            const matchesDecision = !decision || block.dataset.decision === decision;
+            const show = matchesText && matchesDecision;
+            block.hidden = !show;
+            if (show) visible += 1;
+          });
+
+          if (counter) {
+            counter.textContent =
+              "Showing " + visible + " of " + blocks.length + " stocks";
+          }
+        };
+
+        const sortTable = (index, type) => {
+          const blocks = Array.from(table.querySelectorAll("tbody.stock-block"));
+          currentSort.asc = currentSort.index === index ? !currentSort.asc : index === 0;
+          currentSort.index = index;
+          currentSort.type = type;
+
+          blocks.sort((a, b) => {
+            const aRow = a.querySelector("tr.stock-main");
+            const bRow = b.querySelector("tr.stock-main");
+            const aText = aRow.children[index].dataset.sort || aRow.children[index].textContent.trim();
+            const bText = bRow.children[index].dataset.sort || bRow.children[index].textContent.trim();
+            const av = parseValue(aText, type);
+            const bv = parseValue(bText, type);
+            if (av < bv) return currentSort.asc ? -1 : 1;
+            if (av > bv) return currentSort.asc ? 1 : -1;
+            return 0;
+          });
+
+          blocks.forEach((block) => table.appendChild(block));
+          applyFilters();
+        };
+
+        Array.from(head.querySelectorAll("th")).forEach((th, index) => {
+          th.addEventListener("click", () => sortTable(index, th.dataset.type || "text"));
+        });
+
+        input?.addEventListener("input", applyFilters);
+        decisionSelect?.addEventListener("change", applyFilters);
+        sortTable(0, "number");
+      });
+    </script>
+  </body>
+</html>
