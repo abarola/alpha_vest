@@ -607,6 +607,91 @@ figcaption {
 }
 .table-tools input:focus { border-color: var(--text-accent); }
 
+.portfolio-status {
+  width: fit-content;
+  margin: 0 auto 1rem;
+  padding: 0.42rem 0.82rem;
+  border: var(--glass-border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.portfolio-status.is-loaded {
+  color: #b7f5ec;
+  border-color: rgba(31, 182, 170, 0.35);
+  background: rgba(31, 182, 170, 0.12);
+}
+
+.portfolio-status.is-error {
+  color: #ffd0c4;
+  border-color: rgba(255, 133, 102, 0.55);
+  background: rgba(255, 89, 57, 0.15);
+}
+
+.current-portfolio-snapshot {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.current-policy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.current-policy-meta span span {
+  color: var(--text-primary);
+}
+
+.current-holdings-container {
+  margin-bottom: 0;
+}
+
+#current-holdings-table {
+  min-width: 760px;
+}
+
+#current-holdings-table td:nth-child(2) a {
+  color: var(--text-primary);
+  font-weight: 700;
+  border-bottom: 1px dashed var(--text-secondary);
+}
+
+#current-holdings-table td:nth-child(2) a:hover {
+  color: var(--text-accent);
+  border-color: var(--text-accent);
+}
+
+.target-weight-cell {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(96px, 1fr);
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 180px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.target-weight-bar {
+  display: block;
+  height: 0.46rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.target-weight-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1fb6aa, #8fd14f);
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -972,6 +1057,14 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .current-portfolio-snapshot {
+    grid-template-columns: 1fr;
+  }
+
+  .current-policy-meta {
+    font-size: 0.82rem;
+  }
+
   .trust-strip {
     padding: 0.75rem;
   }
@@ -1017,6 +1110,10 @@ footer {
 
   #historical-analysis-table {
     min-width: 980px;
+  }
+
+  #current-holdings-table {
+    min-width: 720px;
   }
 
   .table-container th,

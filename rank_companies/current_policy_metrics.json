@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-05-12T22:14:22.157171",
+  "policy_name": "exploit_PP1_qualDeep_roicCcr_qual60_cost12_standard_policy_v1",
+  "policy_signature": "fe1fe549441d",
+  "weights_signature": "1fee4c1e19ed",
+  "run_mode": "llm_ga_policy_full_verification_v1",
+  "data_window": {
+    "start_date": "2011-12-31",
+    "end_date": "2026-03-31",
+    "rebalance_periods": 57,
+    "panel_rows": 22989,
+    "exclusion_rows": 32186,
+    "dropped_sparse_periods": 1,
+    "min_eval_eligible_rows": 5
+  },
+  "metrics": {
+    "cagr": 0.2542156265527229,
+    "annualized_volatility": 0.212738805177792,
+    "max_drawdown": 0.2222055042744544
+  }
+}

@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260303d" />
+    <link rel="stylesheet" href="styles.css?v=20260514a" />
   </head>
   <body>
     <!-- Add a proper header with navigation -->
@@ -58,6 +58,7 @@
               Index Sections
             </button>
             <ul class="dropdown">
+              <li><a href="#current-portfolio">Current Portfolio</a></li>
               <li><a href="#portfolio">Portfolio</a></li>
               <li><a href="#stats">Index Stats</a></li>
               <li><a href="#strategy">Strategy Returns</a></li>
@@ -90,13 +91,75 @@
 
       <section class="decision-path" aria-label="Decision workflow shortcuts">
         <a class="decision-step" href="#rankings"><span>1</span>Build shortlist</a>
-        <a class="decision-step" href="#portfolio"
-          ><span>2</span>Validate drawdown risk</a
+        <a class="decision-step" href="#current-portfolio"
+          ><span>2</span>Review current targets</a
         >
         <a class="decision-step" href="#stats"><span>3</span>Benchmark index</a>
         <a class="decision-step" href="#strategy"
           ><span>4</span>Check strategy robustness</a
         >
+      </section>
+
+      <section id="current-portfolio" class="content-section current-portfolio-section">
+        <h2>Current Target Portfolio</h2>
+        <p class="section-lead">
+          The latest policy-generated holdings for the open quarter, with target
+          weights normalized to 100%.
+        </p>
+        <div id="current-portfolio-status" class="portfolio-status" aria-live="polite">
+          Loading current holdings...
+        </div>
+        <div class="ranking-snapshot current-portfolio-snapshot" aria-live="polite">
+          <article class="snapshot-card">
+            <span class="snapshot-label">Rebalance Date</span>
+            <strong id="current-rebalance-date">--</strong>
+            <span class="snapshot-meta" id="current-data-date">Waiting for data</span>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Policy CAGR</span>
+            <strong id="current-policy-cagr">--</strong>
+            <span class="snapshot-meta">Real quarterly backtest</span>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Annualized Volatility</span>
+            <strong id="current-policy-volatility">--</strong>
+            <span class="snapshot-meta">Quarterly returns, annualized</span>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Max Drawdown</span>
+            <strong id="current-policy-max-drawdown">--</strong>
+            <span class="snapshot-meta">Worst peak-to-trough decline</span>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Stock Exposure</span>
+            <strong id="current-stock-exposure">--</strong>
+            <span class="snapshot-meta" id="current-cash-weight">Cash --</span>
+          </article>
+          <article class="snapshot-card">
+            <span class="snapshot-label">Holdings</span>
+            <strong id="current-holding-count">--</strong>
+            <span class="snapshot-meta" id="current-target-weight-sum">Target sum --</span>
+          </article>
+        </div>
+        <div class="current-policy-meta">
+          <span><strong>Policy:</strong> <span id="current-policy-name">--</span></span>
+          <span><strong>Policy signature:</strong> <span id="current-policy-signature">--</span></span>
+        </div>
+        <div class="table-container current-holdings-container">
+          <table id="current-holdings-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Symbol</th>
+                <th>Target Weight</th>
+                <th>ELO Rank</th>
+                <th>Price Date</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </section>
 
       <!-- Rankings section -->
@@ -878,6 +941,6 @@
     </footer>
 
     <script src="js/nav.js?v=20260303d" defer></script>
-    <script src="js/script.js?v=20260303d" defer></script>
+    <script src="js/script.js?v=20260514a" defer></script>
   </body>
 </html>

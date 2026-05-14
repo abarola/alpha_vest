@@ -254,6 +254,185 @@ document.addEventListener("DOMContentLoaded", () => {
     return safeSymbols;
   }
 
+  function formatPercent(value) {
+    const number = Number(value);
+    return Number.isFinite(number) ? `${(number * 100).toFixed(2)}%` : "--";
+  }
+
+  function extractPolicyMetrics(payload) {
+    if (!payload || typeof payload !== "object") return {};
+    const source =
+      payload.metrics && typeof payload.metrics === "object"
+        ? payload.metrics
+        : payload;
+    return {
+      cagr: source.cagr,
+      annualized_volatility: source.annualized_volatility,
+      max_drawdown: source.max_drawdown,
+    };
+  }
+
+  function hasPolicyMetrics(metrics) {
+    return (
+      metrics &&
+      ["cagr", "annualized_volatility", "max_drawdown"].some((key) =>
+        Number.isFinite(Number(metrics[key]))
+      )
+    );
+  }
+
+  async function loadPolicyMetricsFallback() {
+    try {
+      const resp = await fetch("rank_companies/current_policy_metrics.json", {
+        cache: "no-store",
+      });
+      if (!resp.ok) return {};
+      return extractPolicyMetrics(await resp.json());
+    } catch (_err) {
+      return {};
+    }
+  }
+
+  function updatePolicyMetricCards(metrics) {
+    const fields = [
+      ["current-policy-cagr", "cagr"],
+      ["current-policy-volatility", "annualized_volatility"],
+      ["current-policy-max-drawdown", "max_drawdown"],
+    ];
+    fields.forEach(([elementId, metricKey]) => {
+      const element = document.getElementById(elementId);
+      if (element) element.textContent = formatPercent(metrics?.[metricKey]);
+    });
+  }
+
+  function formatCurrency(value) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return "--";
+    return number.toLocaleString(undefined, {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 2,
+    });
+  }
+
+  function formatDate(value) {
+    if (!value) return "--";
+    const date = new Date(`${value}T00:00:00`);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
+
+  async function initCurrentHoldings() {
+    const status = document.getElementById("current-portfolio-status");
+    const table = document.getElementById("current-holdings-table");
+    if (!table) return;
+
+    const tbody = table.querySelector("tbody");
+    try {
+      const resp = await fetch("rank_companies/current_holdings.json", {
+        cache: "no-store",
+      });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+      const holdings = Array.isArray(data.holdings) ? data.holdings : [];
+      const prerenderedSafeSymbols = await loadPrerenderedStockPages();
+
+      document.getElementById("current-rebalance-date").textContent = formatDate(
+        data.current_rebalance_date
+      );
+      document.getElementById("current-data-date").textContent = `Data as of ${formatDate(
+        data.data_as_of_date
+      )}`;
+      document.getElementById("current-stock-exposure").textContent = formatPercent(
+        data.stock_exposure
+      );
+      document.getElementById("current-cash-weight").textContent = `Cash ${formatPercent(
+        data.cash_weight
+      )}`;
+      document.getElementById("current-holding-count").textContent =
+        data.holding_count ?? holdings.length;
+      document.getElementById("current-target-weight-sum").textContent =
+        `Target sum ${formatPercent(data.target_weight_sum)}`;
+      document.getElementById("current-policy-name").textContent =
+        data.policy_name || "--";
+      document.getElementById("current-policy-signature").textContent =
+        data.policy_signature || "--";
+      let policyMetrics = extractPolicyMetrics(data.policy_metrics);
+      if (!hasPolicyMetrics(policyMetrics)) {
+        policyMetrics = await loadPolicyMetricsFallback();
+      }
+      updatePolicyMetricCards(policyMetrics);
+
+      tbody.innerHTML = "";
+      holdings.forEach((row) => {
+        const tr = document.createElement("tr");
+        const symbol = normalizeSymbol(row.symbol || `${row.symbol_yf}:US`);
+        const safe = sanitizeSymbolForPath(symbol);
+        const href = prerenderedSafeSymbols.has(safe)
+          ? `stocks/${safe}.html`
+          : `stock-details.html?symbol=${encodeURIComponent(symbol)}`;
+
+        const weightPercent = Math.max(
+          0,
+          Math.min(100, Number(row.target_weight || 0) * 100)
+        );
+        const cells = [
+          row.rank ?? "--",
+          "symbol",
+          "target_weight",
+          row.rank_value ?? "--",
+          formatDate(row.current_price_date),
+          formatCurrency(row.current_price),
+        ];
+        cells.forEach((value) => {
+          const td = document.createElement("td");
+          if (value === "symbol") {
+            const link = document.createElement("a");
+            link.href = href;
+            link.textContent = row.symbol_yf || symbol;
+            td.appendChild(link);
+          } else if (value === "target_weight") {
+            const wrapper = document.createElement("div");
+            wrapper.className = "target-weight-cell";
+            const label = document.createElement("span");
+            label.textContent = formatPercent(row.target_weight);
+            const bar = document.createElement("span");
+            bar.className = "target-weight-bar";
+            const fill = document.createElement("span");
+            fill.style.width = `${weightPercent}%`;
+            bar.appendChild(fill);
+            wrapper.append(label, bar);
+            td.appendChild(wrapper);
+          } else {
+            td.textContent = value;
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+
+      if (status) {
+        status.textContent = `Updated ${formatDate(data.generated_at?.slice(0, 10))}`;
+        status.classList.add("is-loaded");
+      }
+      makeSortable("current-holdings-table");
+    } catch (err) {
+      console.error("Unable to load current holdings:", err);
+      if (status) {
+        status.textContent = "Current holdings are not available yet.";
+        status.classList.add("is-error");
+      }
+      showTableLoadError(
+        "current-holdings-table",
+        "Unable to load current portfolio holdings."
+      );
+    }
+  }
+
   function updateRankingSnapshot(rows, stockDetailsHref) {
     const topSymbolEl = document.getElementById("snapshot-top-symbol");
     const topLinkEl = document.getElementById("snapshot-top-link");
@@ -565,6 +744,10 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ==================== 2. build the ranking table ==================== */
   if (typeof window.fetch !== "function") {
     showTableLoadError(
+      "current-holdings-table",
+      "Your browser is too old to load current holdings data. Please update it."
+    );
+    showTableLoadError(
       "rank-table",
       "Your browser is too old to load ranking data. Please update it."
     );
@@ -573,6 +756,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "Your browser is too old to load historical analysis data. Please update it."
     );
   } else {
+    initCurrentHoldings();
+
   fetch("rank_companies/rank_companies.json", { cache: "no-store" })
     .then(async (resp) => {
       if (!resp.ok) {
