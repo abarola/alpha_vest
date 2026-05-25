@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-05-12T22:14:22.157171",
-  "policy_name": "exploit_PP1_qualDeep_roicCcr_qual60_cost12_standard_policy_v1",
-  "policy_signature": "fe1fe549441d",
-  "weights_signature": "1fee4c1e19ed",
-  "run_mode": "llm_ga_policy_full_verification_v1",
+  "generated_at": "2026-05-25T16:56:02.358357",
+  "policy_name": "exploit_PP4_finalNegEpsLift_qual62_cost15_standard_policy_v1",
+  "policy_signature": "21babe48b82b",
+  "weights_signature": "306f2c7dfe8f",
+  "run_mode": "script_deploy_standard_policy_v1",
   "data_window": {
     "start_date": "2011-12-31",
     "end_date": "2026-03-31",
     "rebalance_periods": 57,
-    "panel_rows": 22989,
-    "exclusion_rows": 32186,
-    "dropped_sparse_periods": 1,
+    "panel_rows": 20100,
+    "exclusion_rows": 34677,
+    "dropped_sparse_periods": 0,
     "min_eval_eligible_rows": 5
   },
   "metrics": {
-    "cagr": 0.2542156265527229,
-    "annualized_volatility": 0.212738805177792,
-    "max_drawdown": 0.2222055042744544
+    "cagr": 0.24537244600204455,
+    "annualized_volatility": 0.2626106701637332,
+    "max_drawdown": 0.2823017975269101
   }
 }
