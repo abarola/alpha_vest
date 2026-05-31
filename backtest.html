@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELO Strategy Backtest | BayesDemon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260531e" />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="navbar">
+        <h1 class="brand"><a href="index.html">BayesDemon</a></h1>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-nav" class="nav-links">
+          <li><a href="index.html#current-portfolio">Current Portfolio</a></li>
+          <li><a href="index.html#rankings">Rankings</a></li>
+          <li><a href="macro.html">Macro</a></li>
+          <li><a href="backtest.html" aria-current="page">Backtest</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-compact">
+        <h2>ELO Rating Strategy Returns Backtest</h2>
+        <p class="hero-description">
+          Strategy evidence is kept separate from the daily portfolio workflow,
+          so the homepage stays focused on current target allocations.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="index.html#current-portfolio"
+            >Back to Current Targets</a
+          >
+          <a class="btn btn-secondary" href="index.html#rankings"
+            >Review Rankings</a
+          >
+        </div>
+      </section>
+
+      <section id="strategy" class="content-section">
+        <h2>Backtest Result by Rebalance Offset</h2>
+
+        <div id="gallery-strategy-return" class="image-section">
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_1.png"
+              alt="Cumulative return BT strategy offset 1"
+              loading="eager"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 1</figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    Cumulative return across staggered start dates by investing
+                    in companies with different rank thresholds.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    Look for curves that remain above baseline across offsets,
+                    not one isolated strong run.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Why it matters</h5>
+                  <p>
+                    Robust rankings should work across multiple rebalance
+                    calendars, not only one lucky start date.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>Trading costs/slippage depend on the backtest setup.</p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_2.png"
+              alt="Cumulative return BT strategy offset 2"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 2</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_3.png"
+              alt="Cumulative return BT strategy offset 3"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 3</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_4.png"
+              alt="Cumulative return BT strategy offset 4"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 4</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_5.png"
+              alt="Cumulative return BT strategy offset 5"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 5</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_6.png"
+              alt="Cumulative return BT strategy offset 6"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 6</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_7.png"
+              alt="Cumulative return BT strategy offset 7"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 7</figcaption>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/cumulative_return_BT_strategy_offset_8.png"
+              alt="Cumulative return BT strategy offset 8"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>Cumulative return BT strategy offset 8</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="lightbox-backdrop"
+      aria-modal="true"
+      role="dialog"
+      aria-label="Image preview"
+    >
+      <button class="lightbox-close" aria-label="Close">×</button>
+      <img class="lightbox-image" alt="" />
+      <div class="lightbox-caption"></div>
+    </div>
+
+    <button class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+    <footer>
+      <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="js/nav.js?v=20260303d" defer></script>
+    <script src="js/script.js?v=20260531e" defer></script>
+  </body>
+</html>

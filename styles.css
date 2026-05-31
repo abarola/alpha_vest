@@ -37,6 +37,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -50,6 +51,7 @@ body {
     linear-gradient(180deg, rgba(4, 12, 21, 0.5) 0%, rgba(7, 16, 25, 0) 25%);
   background-attachment: fixed;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -110,6 +112,7 @@ a:hover { color: #6ee7df; text-decoration: none; text-shadow: 0 0 8px rgba(31, 1
   color: var(--text-primary) !important;
   text-transform: none;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -178,6 +181,10 @@ a:hover { color: #6ee7df; text-decoration: none; text-shadow: 0 0 8px rgba(31, 1
   padding: 5.8rem 2rem 3.5rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.hero-compact {
+  padding-bottom: 2.4rem;
 }
 
 .hero-description {
@@ -754,145 +761,6 @@ tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02) !important; }
 }
 #rank-table td:first-child a:hover { color: var(--text-accent); border-color: var(--text-accent); }
 
-.action-cell {
-  width: 112px;
-  text-align: center;
-}
-
-.action-th {
-  min-width: 120px;
-}
-
-.table-action-btn {
-  border: var(--glass-border);
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.3);
-  color: var(--text-secondary);
-  padding: 0.35rem 0.8rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.table-action-btn:hover {
-  color: #ffffff;
-  border-color: rgba(31, 182, 170, 0.5);
-}
-
-.table-action-btn.is-added {
-  color: #062225;
-  background: rgba(31, 182, 170, 0.88);
-  border-color: rgba(31, 182, 170, 1);
-}
-
-.shortlist-panel {
-  border: var(--glass-border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-card);
-  padding: 1rem 1.1rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-md);
-}
-
-.shortlist-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.4rem;
-}
-
-.shortlist-head h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.shortlist-note {
-  margin: 0 0 0.8rem;
-  font-size: 0.88rem;
-}
-
-.shortlist-list {
-  list-style: none;
-  display: grid;
-  gap: 0.5rem;
-  margin: 0 0 0.8rem;
-  padding: 0;
-}
-
-.shortlist-item {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 0.55rem 0.65rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.shortlist-symbol {
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-}
-
-.shortlist-item-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.shortlist-open,
-.shortlist-remove {
-  border-radius: 999px;
-  border: var(--glass-border);
-  padding: 0.25rem 0.65rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.shortlist-open {
-  background: rgba(31, 182, 170, 0.18);
-  color: #9af5ee;
-}
-
-.shortlist-remove {
-  background: rgba(0, 0, 0, 0.35);
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.shortlist-remove:hover {
-  border-color: rgba(245, 158, 11, 0.55);
-  color: #ffd290;
-}
-
-.shortlist-empty {
-  margin: 0 0 0.9rem;
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-}
-
-.shortlist-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.shortlist-actions .btn {
-  padding: 0.5rem 1.1rem;
-  font-size: 0.85rem;
-}
-
-.shortlist-actions .btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
 .filter-wrapper {
   width: min(100%, 420px);
   margin-left: auto;
@@ -1006,6 +874,22 @@ footer {
 
 @media (max-width: 768px) {
   .menu-toggle { display: block; }
+  .navbar {
+    align-items: flex-start;
+    padding: 0.9rem 1rem;
+  }
+
+  .brand {
+    max-width: calc(100% - 3rem);
+    margin-bottom: 0;
+  }
+
+  .brand a {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .nav-links {
     display: none;
     position: absolute;
@@ -1028,16 +912,39 @@ footer {
   .explainer-grid { grid-template-columns: 1fr; }
   
   .hero { padding: 3.5rem 1rem 2.4rem; }
+  .hero h2,
+  .content-section h2 {
+    display: block;
+    max-width: 17rem;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
   h1 { font-size: 2.5rem; }
-  .hero-description { font-size: 1.05rem; }
-  .hero-badges { gap: 0.4rem; margin-bottom: 1.4rem; }
-  .hero-badge { font-size: 0.74rem; padding: 0.32rem 0.64rem; }
+  .hero-description {
+    max-width: 18rem;
+    font-size: 1.05rem;
+  }
+  .hero-badges {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.4rem;
+  }
+  .hero-badge {
+    max-width: 16rem;
+    font-size: 0.74rem;
+    padding: 0.32rem 0.64rem;
+    overflow-wrap: break-word;
+  }
 
   .decision-path {
     position: static;
+    max-width: 16rem;
     padding: 0 1rem;
-    margin: 0 0 1.6rem;
-    grid-template-columns: 1fr 1fr;
+    margin: 0 auto 1.6rem;
+    grid-template-columns: 1fr;
     background: transparent;
     border: 0;
     backdrop-filter: none;
@@ -1048,9 +955,27 @@ footer {
     font-size: 0.8rem;
   }
 
+  .hero-cta .btn {
+    width: min(100%, 16rem);
+    justify-content: center;
+  }
+
   .section-lead {
     font-size: 0.95rem;
     margin-bottom: 1.2rem;
+  }
+
+  .content-section {
+    padding: 0 1rem;
+  }
+
+  .image-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .image-card,
+  .resource-card {
+    padding: 1rem;
   }
 
   .ranking-snapshot {
@@ -1105,15 +1030,11 @@ footer {
   }
 
   #rank-table {
-    min-width: 540px;
-  }
-
-  #historical-analysis-table {
-    min-width: 980px;
+    min-width: 460px;
   }
 
   #current-holdings-table {
-    min-width: 720px;
+    min-width: 640px;
   }
 
   .table-container th,
@@ -1144,25 +1065,6 @@ footer {
   .next-action-link {
     font-size: 0.78rem;
     padding: 0.35rem 0.72rem;
-  }
-
-  .shortlist-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .shortlist-item-actions {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .shortlist-actions {
-    width: 100%;
-  }
-
-  .shortlist-actions .btn {
-    width: 100%;
-    justify-content: center;
   }
 
   .filter-wrapper {

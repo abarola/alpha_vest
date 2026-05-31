@@ -2,15 +2,12 @@
  * BayesDemon front-end script
  * - Enhances pre-rendered image galleries (captions + explainers)
  * - Lightbox
- * - Rank & historical analysis tables (JSON-driven)
+ * - Rank and portfolio tables (JSON-driven)
  * - Optional table filters and sorting
  * - Scroll-to-top button
  * - Optional image refresh via manifest (cache busting only when files change)
  */
 document.addEventListener("DOMContentLoaded", () => {
-  let rankingPresetController = null;
-  const shortlistController = initShortlist();
-
   initDecisionPath();
   initScrollReveal();
 
@@ -454,42 +451,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function updateBestReturnRiskSnapshot(rows) {
-    const valueEl = document.getElementById("snapshot-best-ror");
-    const metaEl = document.getElementById("snapshot-best-ror-meta");
-    if (!valueEl || !metaEl || !Array.isArray(rows) || !rows.length) return;
-
-    let best = null;
-    rows.forEach((row) => {
-      const thresholdRaw =
-        row["Rank Threshold"] != null
-          ? row["Rank Threshold"]
-          : row["Rank_Threshold"];
-      const threshold = Number.parseFloat(thresholdRaw);
-
-      Object.entries(row).forEach(([key, raw]) => {
-        if (!key.toLowerCase().includes("return/risk")) return;
-        const numeric = Number.parseFloat(raw);
-        if (!Number.isFinite(numeric)) return;
-
-        if (!best || numeric > best.value) {
-          best = {
-            value: numeric,
-            threshold: Number.isFinite(threshold) ? threshold : null,
-            method: key.replace(/return\/risk/gi, "").trim(),
-          };
-        }
-      });
-    });
-
-    if (!best) return;
-
-    valueEl.textContent = `${best.value.toFixed(2)}x`;
-    const thresholdText =
-      best.threshold === null ? "n/a" : `Top ${best.threshold}`;
-    metaEl.textContent = `${best.method || "Method"} at ${thresholdText}`;
-  }
-
   function initDecisionPath() {
     const links = Array.from(document.querySelectorAll(".decision-step"));
     if (!links.length) return;
@@ -569,178 +530,6 @@ document.addEventListener("DOMContentLoaded", () => {
     revealTargets.forEach((target) => observer.observe(target));
   }
 
-  function initShortlist() {
-    const STORAGE_KEY = "bayesdemon-shortlist-v1";
-    const listEl = document.getElementById("shortlist-list");
-    const emptyEl = document.getElementById("shortlist-empty");
-    const clearBtn = document.getElementById("shortlist-clear");
-    const copyBtn = document.getElementById("shortlist-copy");
-    const sizeEl = document.getElementById("shortlist-size");
-
-    if (!listEl) {
-      return {
-        addSymbol: () => false,
-        setHrefResolver: () => {},
-        subscribe: () => () => {},
-      };
-    }
-
-    let symbols = loadFromStorage();
-    let hrefResolver = (symbol) =>
-      `stock-details.html?symbol=${encodeURIComponent(normalizeSymbol(symbol))}`;
-    const listeners = new Set();
-
-    function loadFromStorage() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : [];
-        if (!Array.isArray(parsed)) return [];
-        return parsed
-          .map((symbol) => normalizeSymbol(symbol))
-          .filter(Boolean)
-          .slice(0, 50);
-      } catch (_err) {
-        return [];
-      }
-    }
-
-    function saveToStorage() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(symbols));
-      } catch (_err) {
-        // Storage can fail in private mode; keep in-memory behavior.
-      }
-    }
-
-    function notify() {
-      const snapshot = [...symbols];
-      listeners.forEach((listener) => listener(snapshot));
-    }
-
-    function setButtonState(hasItems) {
-      if (copyBtn) copyBtn.disabled = !hasItems;
-    }
-
-    function render() {
-      listEl.innerHTML = "";
-      const hasItems = symbols.length > 0;
-      if (sizeEl) sizeEl.textContent = String(symbols.length);
-      if (emptyEl) emptyEl.style.display = hasItems ? "none" : "block";
-      setButtonState(hasItems);
-
-      symbols.forEach((symbol) => {
-        const item = document.createElement("li");
-        item.className = "shortlist-item";
-
-        const symbolText = document.createElement("span");
-        symbolText.className = "shortlist-symbol";
-        symbolText.textContent = symbol;
-
-        const actions = document.createElement("div");
-        actions.className = "shortlist-item-actions";
-
-        const openLink = document.createElement("a");
-        openLink.className = "shortlist-open";
-        openLink.href = hrefResolver(symbol);
-        openLink.target = "_blank";
-        openLink.rel = "noopener";
-        openLink.textContent = "Open";
-
-        const removeBtn = document.createElement("button");
-        removeBtn.type = "button";
-        removeBtn.className = "shortlist-remove";
-        removeBtn.setAttribute("aria-label", `Remove ${symbol}`);
-        removeBtn.textContent = "Remove";
-        removeBtn.addEventListener("click", () => {
-          symbols = symbols.filter((itemSymbol) => itemSymbol !== symbol);
-          saveToStorage();
-          render();
-          notify();
-        });
-
-        actions.appendChild(openLink);
-        actions.appendChild(removeBtn);
-        item.appendChild(symbolText);
-        item.appendChild(actions);
-        listEl.appendChild(item);
-      });
-    }
-
-    async function copySymbolsToClipboard() {
-      if (!symbols.length) return;
-      const payload = symbols.join(", ");
-      if (
-        navigator.clipboard &&
-        typeof navigator.clipboard.writeText === "function"
-      ) {
-        await navigator.clipboard.writeText(payload);
-      } else {
-        const helper = document.createElement("textarea");
-        helper.value = payload;
-        helper.setAttribute("readonly", "");
-        helper.style.position = "fixed";
-        helper.style.opacity = "0";
-        document.body.appendChild(helper);
-        helper.select();
-        document.execCommand("copy");
-        helper.remove();
-      }
-    }
-
-    if (clearBtn) {
-      clearBtn.addEventListener("click", () => {
-        symbols = [];
-        saveToStorage();
-        render();
-        notify();
-      });
-    }
-
-    if (copyBtn) {
-      copyBtn.addEventListener("click", async () => {
-        try {
-          await copySymbolsToClipboard();
-          const original = copyBtn.textContent;
-          copyBtn.textContent = "Copied";
-          window.setTimeout(() => {
-            copyBtn.textContent = original;
-          }, 1200);
-        } catch (_err) {
-          const original = copyBtn.textContent;
-          copyBtn.textContent = "Copy failed";
-          window.setTimeout(() => {
-            copyBtn.textContent = original;
-          }, 1200);
-        }
-      });
-    }
-
-    render();
-
-    return {
-      addSymbol: (symbol) => {
-        const normalized = normalizeSymbol(symbol);
-        if (!normalized || symbols.includes(normalized)) return false;
-        symbols.push(normalized);
-        saveToStorage();
-        render();
-        notify();
-        return true;
-      },
-      setHrefResolver: (resolver) => {
-        if (typeof resolver !== "function") return;
-        hrefResolver = resolver;
-        render();
-      },
-      subscribe: (listener) => {
-        if (typeof listener !== "function") return () => {};
-        listeners.add(listener);
-        listener([...symbols]);
-        return () => listeners.delete(listener);
-      },
-    };
-  }
-
   /* ==================== 2. build the ranking table ==================== */
   if (typeof window.fetch !== "function") {
     showTableLoadError(
@@ -751,14 +540,11 @@ document.addEventListener("DOMContentLoaded", () => {
       "rank-table",
       "Your browser is too old to load ranking data. Please update it."
     );
-    showTableLoadError(
-      "historical-analysis-table",
-      "Your browser is too old to load historical analysis data. Please update it."
-    );
   } else {
     initCurrentHoldings();
 
-  fetch("rank_companies/rank_companies.json", { cache: "no-store" })
+  if (document.getElementById("rank-table")) {
+    fetch("rank_companies/rank_companies.json", { cache: "no-store" })
     .then(async (resp) => {
       if (!resp.ok) {
         throw new Error(`HTTP ${resp.status}`);
@@ -781,10 +567,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return `stock-details.html?symbol=${encodeURIComponent(normalized)}`;
       };
 
-      shortlistController.setHrefResolver(stockDetailsHref);
       updateRankingSnapshot(rows, stockDetailsHref);
 
       const table = document.getElementById("rank-table");
+      if (!table) return;
       const theadTr = table.querySelector("thead tr");
       const tbody = table.querySelector("tbody");
 
@@ -795,26 +581,8 @@ document.addEventListener("DOMContentLoaded", () => {
         theadTr.appendChild(th);
       });
 
-      const actionTh = document.createElement("th");
-      actionTh.textContent = "Action";
-      actionTh.dataset.sortDisabled = "true";
-      actionTh.className = "action-th";
-      theadTr.appendChild(actionTh);
-
-      const syncActionButtons = (symbols) => {
-        const selected = new Set(symbols.map((symbol) => normalizeSymbol(symbol)));
-        tbody.querySelectorAll(".table-action-btn").forEach((btn) => {
-          const symbol = normalizeSymbol(btn.dataset.symbol);
-          const isAdded = selected.has(symbol);
-          btn.classList.toggle("is-added", isAdded);
-          btn.textContent = isAdded ? "Added" : "Add";
-          btn.setAttribute("aria-pressed", isAdded ? "true" : "false");
-        });
-      };
-
       rows.forEach((row) => {
         const tr = document.createElement("tr");
-        const symbolValue = normalizeSymbol(row.symbol);
 
         cols.forEach((col) => {
           const td = document.createElement("td");
@@ -830,34 +598,11 @@ document.addEventListener("DOMContentLoaded", () => {
           tr.appendChild(td);
         });
 
-        const actionTd = document.createElement("td");
-        actionTd.className = "action-cell";
-        const addBtn = document.createElement("button");
-        addBtn.type = "button";
-        addBtn.className = "table-action-btn";
-        addBtn.dataset.symbol = symbolValue;
-        addBtn.textContent = "Add";
-        addBtn.setAttribute("aria-pressed", "false");
-        addBtn.addEventListener("click", () => {
-          shortlistController.addSymbol(symbolValue);
-        });
-        actionTd.appendChild(addBtn);
-        tr.appendChild(actionTd);
-
         tbody.appendChild(tr);
       });
 
-      shortlistController.subscribe((symbols) => {
-        syncActionButtons(symbols);
-      });
-
       attachSymbolFilter("rank-filter", "rank-table");
-      rankingPresetController = initRankingQuickActions(
-        "rank-table",
-        "rank-filter",
-        "historical-analysis-table",
-        "analysis-filter"
-      );
+      initRankingQuickActions("rank-table", "rank-filter");
       makeSortable("rank-table");
     })
     .catch((err) => {
@@ -867,94 +612,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Unable to load ranking data on this device/network."
       );
     });
-
-  /* ==================== 3. build the historical analysis table ==================== */
-  fetch("rank_companies/mean_analysis.json", { cache: "no-store" })
-    .then(async (resp) => {
-      if (!resp.ok) {
-        throw new Error(`HTTP ${resp.status}`);
-      }
-      return resp.json();
-    })
-    .then((rows) => {
-      if (!rows.length) return;
-
-      const table = document.getElementById("historical-analysis-table");
-      const theadTr = table.querySelector("thead tr");
-      const tbody = table.querySelector("tbody");
-
-      const cols = Object.keys(rows[0]);
-
-      const rankThresholdIndex = cols.findIndex(
-        (col) =>
-          col.toLowerCase().includes("rank") &&
-          col.toLowerCase().includes("threshold")
-      );
-
-      cols.forEach((col) => {
-        const th = document.createElement("th");
-
-        let headerText = col.replace(/_/g, " ");
-        headerText = headerText
-          .replace(/mean/gi, "Mean<br>")
-          .replace(/std/gi, "Std<br>")
-          .replace(/return/gi, "Return")
-          .replace(/ratio/gi, "Ratio")
-          .replace(/analysis/gi, "Analysis");
-
-        th.innerHTML = headerText;
-        th.style.whiteSpace = "normal";
-        th.style.textAlign = "center";
-        theadTr.appendChild(th);
-      });
-
-      rows.forEach((row) => {
-        const tr = document.createElement("tr");
-        cols.forEach((col, colIndex) => {
-          const td = document.createElement("td");
-
-          // Add data attribute for rank threshold column
-          if (colIndex === rankThresholdIndex) {
-            td.dataset.rankThreshold = row[col];
-          }
-
-          if (
-            col.toLowerCase().includes("mean") ||
-            col.toLowerCase().includes("std")
-          ) {
-            const value = parseFloat(row[col]);
-            td.textContent = !isNaN(value)
-              ? (value * 100).toFixed(2) + "%"
-              : row[col];
-            td.classList.add("is-stat");
-          } else if (col.toLowerCase().includes("return/risk")) {
-            const value = parseFloat(row[col]);
-            td.textContent = !isNaN(value) ? value.toFixed(2) : row[col];
-          } else {
-            td.textContent = row[col];
-          }
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
-
-      attachRankThresholdFilter("analysis-filter", "historical-analysis-table");
-      makeSortable("historical-analysis-table");
-      updateBestReturnRiskSnapshot(rows);
-      if (
-        rankingPresetController &&
-        typeof rankingPresetController.applyActivePreset === "function"
-      ) {
-        rankingPresetController.applyActivePreset();
-      }
-    })
-    .catch((err) => {
-      console.error("Unable to load historical analysis table:", err);
-      showTableLoadError(
-        "historical-analysis-table",
-        "Unable to load historical analysis data on this device/network."
-      );
-    });
+  }
   }
 
   /* ==================== 4. Optional: table filter & sorting helpers ==================== */
@@ -1000,48 +658,6 @@ document.addEventListener("DOMContentLoaded", () => {
     addClearButton(input);
   }
 
-  function attachRankThresholdFilter(inputId, tableId) {
-    const input = document.getElementById(inputId);
-    const table = document.getElementById(tableId);
-    if (!input || !table) return;
-
-    input.placeholder = "Filter by rank threshold...";
-    input.style.width = "100%";
-    input.style.maxWidth = "400px";
-
-    input.addEventListener("input", () => {
-      const q = input.value.trim().toLowerCase();
-      const rows = table.querySelectorAll("tbody tr");
-      let visibleCount = 0;
-
-      rows.forEach((tr) => {
-        const rankThresholdCell = tr.querySelector("[data-rank-threshold]");
-        const rankThreshold = rankThresholdCell
-          ? rankThresholdCell.dataset.rankThreshold.toLowerCase()
-          : "";
-        const matches = rankThreshold.includes(q);
-
-        if (matches || !q) {
-          tr.style.display = "";
-          visibleCount++;
-
-          if (rankThresholdCell && q && rankThreshold.includes(q))
-            rankThresholdCell.classList.add("highlight-match");
-          else if (rankThresholdCell)
-            rankThresholdCell.classList.remove("highlight-match");
-        } else {
-          tr.style.display = "none";
-          if (rankThresholdCell)
-            rankThresholdCell.classList.remove("highlight-match");
-        }
-      });
-
-      updateFilterCount(table, visibleCount, rows.length);
-    });
-
-    addClearButton(input);
-  }
-
   function updateRankingsTrustStrip(totalRows, lastModifiedHeader) {
     const updatedAtEl = document.getElementById("rankings-updated-at");
     const universeEl = document.getElementById("rankings-universe-size");
@@ -1065,16 +681,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function initRankingQuickActions(
-    rankTableId,
-    rankInputId,
-    historicalTableId,
-    historicalInputId
-  ) {
+  function initRankingQuickActions(rankTableId, rankInputId) {
     const rankTable = document.getElementById(rankTableId);
     const rankInput = document.getElementById(rankInputId);
-    const historicalTable = document.getElementById(historicalTableId);
-    const historicalInput = document.getElementById(historicalInputId);
     const container = document.querySelector(".ranking-quick-actions");
     if (!rankTable || !container) return null;
 
@@ -1116,34 +725,10 @@ document.addEventListener("DOMContentLoaded", () => {
       updateFilterCount(rankTable, Math.min(limit, rows.length), rows.length);
     };
 
-    const applyRankThresholdRows = (limit) => {
-      if (!historicalTable) return;
-      const rows = getRows(historicalTable);
-      let visibleCount = 0;
-
-      rows.forEach((tr) => {
-        const thresholdCell = tr.querySelector("[data-rank-threshold]");
-        const threshold = thresholdCell
-          ? Number.parseFloat(thresholdCell.dataset.rankThreshold)
-          : Number.NaN;
-        const show = Number.isFinite(threshold) && threshold <= limit;
-
-        tr.style.display = show ? "" : "none";
-        if (thresholdCell) thresholdCell.classList.remove("highlight-match");
-        if (show) visibleCount++;
-      });
-
-      updateFilterCount(historicalTable, visibleCount, rows.length);
-    };
-
     const clearInputsAndHighlights = () => {
       if (rankInput && rankInput.value) {
         rankInput.value = "";
         rankInput.dispatchEvent(new Event("input"));
-      }
-      if (historicalInput && historicalInput.value) {
-        historicalInput.value = "";
-        historicalInput.dispatchEvent(new Event("input"));
       }
     };
 
@@ -1154,22 +739,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (preset === "reset") {
         showAllRows(rankTable);
-        showAllRows(historicalTable);
         if (setActive) setActivePreset("reset");
         return;
       }
 
       if (preset === "top10") {
         applyTopRows(10);
-        applyRankThresholdRows(10);
       }
       if (preset === "top25") {
         applyTopRows(25);
-        applyRankThresholdRows(25);
       }
       if (preset === "top50") {
         applyTopRows(50);
-        applyRankThresholdRows(50);
       }
 
       if (setActive) setActivePreset(preset);
@@ -1182,8 +763,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (rankInput) rankInput.addEventListener("input", clearActivePreset);
-    if (historicalInput)
-      historicalInput.addEventListener("input", clearActivePreset);
 
     return {
       applyActivePreset: () => {

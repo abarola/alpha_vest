@@ -3,27 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Financial Education, Wealth Creation & Stock Rankings | BayesDemon
-    </title>
+    <title>Current Portfolio Targets & Stock Rankings | BayesDemon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260514a" />
+    <link rel="stylesheet" href="styles.css?v=20260531e" />
   </head>
   <body>
     <!-- Add a proper header with navigation -->
     <header class="main-header">
       <nav class="navbar">
-        <h1 class="brand">
-          <a href="index.html"
-            >BayesDemon — Financial Education, Wealth Creation & Stock
-            Rankings</a
-          >
-        </h1>
+        <h1 class="brand"><a href="index.html">BayesDemon</a></h1>
         <button
           class="menu-toggle"
           aria-expanded="false"
@@ -51,6 +44,7 @@
                   >LLM Nowcasting Dashboard</a
                 >
               </li>
+              <li><a href="backtest.html">Backtest</a></li>
             </ul>
           </li>
           <li class="has-dropdown">
@@ -59,10 +53,9 @@
             </button>
             <ul class="dropdown">
               <li><a href="#current-portfolio">Current Portfolio</a></li>
+              <li><a href="#rankings">Rankings</a></li>
               <li><a href="#portfolio">Portfolio</a></li>
               <li><a href="#stats">Index Stats</a></li>
-              <li><a href="#strategy">Strategy Returns</a></li>
-              <li><a href="#rankings">Rankings</a></li>
               <li><a href="#links">Resources</a></li>
             </ul>
           </li>
@@ -73,30 +66,33 @@
     <main>
       <!-- Hero section -->
       <section class="hero">
-        <h2>Find your next stock opportunity in under 2 minutes</h2>
+        <h2>Review today&rsquo;s target portfolio first</h2>
         <p class="hero-description">
-          Start with top-ranked equities, frame decisions with macroeconomic
-          context, then drill into company fundamentals.
+          Start with the current policy-generated allocation, then inspect the
+          ranked universe and supporting risk signals before investigating a
+          company.
         </p>
         <div class="hero-badges">
-          <span class="hero-badge">Action-focused workflow</span>
-          <span class="hero-badge">Fundamental ranking engine</span>
-          <span class="hero-badge">Risk-aware chart analysis</span>
+          <a class="hero-badge" href="#current-portfolio">Current targets first</a>
+          <a class="hero-badge" href="#rankings">Fundamental ranking engine</a>
+          <a class="hero-badge" href="#portfolio">Risk-aware chart analysis</a>
         </div>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#rankings">View Top-Ranked Stocks</a>
+          <a class="btn btn-primary" href="#current-portfolio"
+            >Review Current Targets</a
+          >
           <a class="btn btn-secondary" href="macro.html">Macroeconomic Overview</a>
         </div>
       </section>
 
       <section class="decision-path" aria-label="Decision workflow shortcuts">
-        <a class="decision-step" href="#rankings"><span>1</span>Build shortlist</a>
         <a class="decision-step" href="#current-portfolio"
-          ><span>2</span>Review current targets</a
+          ><span>1</span>Review current targets</a
         >
-        <a class="decision-step" href="#stats"><span>3</span>Benchmark index</a>
-        <a class="decision-step" href="#strategy"
-          ><span>4</span>Check strategy robustness</a
+        <a class="decision-step" href="#rankings"><span>2</span>Inspect rankings</a>
+        <a class="decision-step" href="#portfolio"><span>3</span>Check risk signals</a>
+        <a class="decision-step" href="backtest.html"
+          ><span>4</span>Open backtest</a
         >
       </section>
 
@@ -152,7 +148,7 @@
                 <th>Rank</th>
                 <th>Symbol</th>
                 <th>Target Weight</th>
-                <th>ELO Rank</th>
+                <th>Policy Rank</th>
                 <th>Price Date</th>
                 <th>Price</th>
               </tr>
@@ -166,8 +162,8 @@
       <section id="rankings" class="content-section">
         <h2>Company Rankings by Fundamental Analysis</h2>
         <p class="section-lead">
-          Filter the universe, save candidates to your shortlist, and open
-          company-level fundamentals in one flow.
+          Filter the ranked universe and open company-level fundamentals when a
+          current target needs deeper validation.
         </p>
         <div class="rankings-context">
           <div class="trust-strip" aria-live="polite">
@@ -215,16 +211,14 @@
             >
           </article>
           <article class="snapshot-card">
-            <span class="snapshot-label">Best Return/Risk</span>
-            <strong id="snapshot-best-ror">--</strong>
-            <span class="snapshot-meta" id="snapshot-best-ror-meta"
-              >Waiting for analysis data</span
-            >
+            <span class="snapshot-label">Primary Use</span>
+            <strong>Validation</strong>
+            <span class="snapshot-meta">Compare targets with ranked alternatives</span>
           </article>
           <article class="snapshot-card">
-            <span class="snapshot-label">Shortlist Size</span>
-            <strong id="shortlist-size">0</strong>
-            <span class="snapshot-meta">Stored in this browser</span>
+            <span class="snapshot-label">Next Step</span>
+            <strong>Open Details</strong>
+            <span class="snapshot-meta">Click any symbol for fundamentals</span>
           </article>
         </div>
         <div class="table-tools">
@@ -243,55 +237,10 @@
             <tbody></tbody>
           </table>
         </div>
-        <aside class="shortlist-panel" aria-live="polite">
-          <div class="shortlist-head">
-            <h3>Your Shortlist</h3>
-            <button type="button" id="shortlist-clear" class="preset-btn">
-              Clear All
-            </button>
-          </div>
-          <p class="shortlist-note">
-            Use <strong>Add</strong> in the ranking table to save symbols, then
-            use the item-level <strong>Open</strong> link or copy tickers for
-            your execution checklist.
-          </p>
-          <ul id="shortlist-list" class="shortlist-list"></ul>
-          <p id="shortlist-empty" class="shortlist-empty">
-            No companies added yet.
-          </p>
-          <div class="shortlist-actions">
-            <button
-              type="button"
-              id="shortlist-copy"
-              class="btn btn-secondary"
-              disabled
-            >
-              Copy Symbols
-            </button>
-          </div>
-        </aside>
-
-        <h3>Historical Strategy Analysis (Sharpe Ratio)</h3>
-        <div class="table-tools">
-          <input
-            type="search"
-            id="analysis-filter"
-            placeholder="Filter analysis..."
-            aria-label="Filter historical analysis"
-          />
-        </div>
-        <div class="table-container">
-          <table id="historical-analysis-table">
-            <thead>
-              <tr></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
         <div class="next-action">
           <p class="next-action-text">
-            Next best action: validate your shortlist with macro context before
-            selecting entries.
+            Next best action: compare ranking signals with portfolio risk
+            charts and macro context before investigating a company.
           </p>
           <div class="next-action-links">
             <a class="next-action-link" href="macro.html"
@@ -299,6 +248,9 @@
             >
             <a class="next-action-link" href="#portfolio"
               >Review Portfolio Signals</a
+            >
+            <a class="next-action-link" href="backtest.html"
+              >Open Backtest</a
             >
           </div>
         </div>
@@ -670,12 +622,12 @@
         </div>
         <div class="next-action">
           <p class="next-action-text">
-            Next best action: benchmark these signals against index behavior and
-            strategy results.
+            Next best action: benchmark these signals against index behavior or
+            open the backtest page for strategy evidence.
           </p>
           <div class="next-action-links">
             <a class="next-action-link" href="#stats">Compare with Index</a>
-            <a class="next-action-link" href="#strategy">View Strategy Return</a>
+            <a class="next-action-link" href="backtest.html">View Backtest</a>
           </div>
         </div>
       </section>
@@ -737,140 +689,9 @@
             this baseline.
           </p>
           <div class="next-action-links">
-            <a class="next-action-link" href="#strategy">Open Backtest Results</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Strategy Returns section -->
-      <section id="strategy" class="content-section">
-        <h2>ELO Rating Strategy Returns Backtest</h2>
-
-        <div id="gallery-strategy-return" class="image-section">
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_1.png"
-              alt="Cumulative return BT strategy offset 1"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 1</figcaption>
-            <details class="chart-explainer">
-              <summary>How to read this</summary>
-              <div class="explainer-grid">
-                <div class="explainer-item">
-                  <h5>What this shows</h5>
-                  <p>
-                    Cumulative return across staggered start dates (offsets 1–8)
-                    by investing in companies with different rank threshold.
-                  </p>
-                </div>
-                <div class="explainer-item">
-                  <h5>How to read</h5>
-                  <p>
-                    Look for curves that remain above baseline across offsets.
-                  </p>
-                </div>
-                <div class="explainer-item">
-                  <h5>Why it matters</h5>
-                  <p>
-                    If ranking is effective, higher rated companies should beat
-                    the average and the index.
-                  </p>
-                </div>
-                <div class="explainer-item">
-                  <h5>Caveats</h5>
-                  <p>Trading costs/slippage depend on your backtest setup.</p>
-                </div>
-              </div>
-            </details>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_2.png"
-              alt="Cumulative return BT strategy offset 2"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 2</figcaption>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_3.png"
-              alt="Cumulative return BT strategy offset 3"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 3</figcaption>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_4.png"
-              alt="Cumulative return BT strategy offset 4"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 4</figcaption>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_5.png"
-              alt="Cumulative return BT strategy offset 5"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 5</figcaption>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_6.png"
-              alt="Cumulative return BT strategy offset 6"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 6</figcaption>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_7.png"
-              alt="Cumulative return BT strategy offset 7"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 7</figcaption>
-          </figure>
-
-          <figure class="image-card">
-            <img
-              src="images/cumulative_return_BT_strategy_offset_8.png"
-              alt="Cumulative return BT strategy offset 8"
-              loading="lazy"
-              decoding="async"
-              tabindex="0"
-            />
-            <figcaption>Cumulative return BT strategy offset 8</figcaption>
-          </figure>
-        </div>
-        <div class="next-action">
-          <p class="next-action-text">
-            Next best action: return to the ranking table and open company-level
-            fundamentals.
-          </p>
-          <div class="next-action-links">
-            <a class="next-action-link" href="#rankings">Back to Rankings</a>
+            <a class="next-action-link" href="backtest.html"
+              >Open Backtest Results</a
+            >
           </div>
         </div>
       </section>
@@ -941,6 +762,6 @@
     </footer>
 
     <script src="js/nav.js?v=20260303d" defer></script>
-    <script src="js/script.js?v=20260514a" defer></script>
+    <script src="js/script.js?v=20260531e" defer></script>
   </body>
 </html>
