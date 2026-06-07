@@ -4,14 +4,18 @@
 // Option B (manual): edit DEFAULT_IMAGES below.
 
 const MACRO_DIR = "images/macro";
+const MACRO_SUMMARY_PATH = "data/macro_summary.json";
 
 // Fallback images list (edit this if you don't use a manifest.json)
 const DEFAULT_IMAGES = [
   "macro_inflation_m1_treasuries.png",
+  "ism_manufacturing_actual.png",
   "usd_purchasing_power_depreciation.png",
   "gold_vol_quantiles.png",
   "vix_quantiles.png",
   "unemployment_rate_US_quantiles.png",
+  "10Y_3M_treasury_spread_quantiles.png",
+  "copper_gold_ratio_quantiles.png",
   "equity_risk_premium_quantiles.png",
   "high_yield_quantiles.png",
   "M1_change_quantiles.png",
@@ -29,10 +33,13 @@ const DEFAULT_TAGS = {
     "inflation",
     "money_supply",
   ],
+  "ism_manufacturing_actual.png": ["overview", "growth", "manufacturing"],
   "usd_purchasing_power_depreciation.png": ["overview", "inflation"],
   "gold_vol_quantiles.png": ["overview", "gold"],
   "vix_quantiles.png": ["overview", "vix"],
   "unemployment_rate_US_quantiles.png": ["overview", "unemployment"],
+  "10Y_3M_treasury_spread_quantiles.png": ["overview", "rates"],
+  "copper_gold_ratio_quantiles.png": ["overview", "commodities"],
   "equity_risk_premium_quantiles.png": ["overview", "equity"],
   "high_yield_quantiles.png": ["overview", "high_yield"],
   "M1_change_quantiles.png": ["overview", "money_supply"],
@@ -69,6 +76,16 @@ async function loadManifest() {
     return { images, tags };
   } catch {
     return { images: DEFAULT_IMAGES, tags: DEFAULT_TAGS };
+  }
+}
+
+async function loadMacroSummary() {
+  try {
+    const res = await fetch(MACRO_SUMMARY_PATH, { cache: "no-store" });
+    if (!res.ok) throw new Error("no macro summary");
+    return await res.json();
+  } catch {
+    return null;
   }
 }
 
@@ -122,6 +139,83 @@ function buildChips(allTags, currentTag) {
 
 function toTitle(tag) {
   return tag.replace(/[_\-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function formatMetricValue(metric) {
+  if (metric.value === null || metric.value === undefined) return "n/a";
+  const decimals = Number.isInteger(metric.decimals) ? metric.decimals : 2;
+  const value = Number(metric.value).toLocaleString(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+  if (metric.unit === "$") return `$${value}`;
+  return `${value}${metric.unit || ""}`;
+}
+
+function formatQuantile(metric) {
+  if (metric.quantile === null || metric.quantile === undefined) return "";
+  const quantile = Number(metric.quantile).toFixed(0);
+  return `${quantile}th percentile`;
+}
+
+function renderMacroSummary(summary) {
+  const root = document.getElementById("macro-summary");
+  if (!root) return;
+
+  if (!summary || !Array.isArray(summary.metrics)) {
+    root.innerHTML =
+      '<div class="macro-summary-empty">Macro summary data is not available.</div>';
+    return;
+  }
+
+  root.innerHTML = "";
+
+  const header = document.createElement("div");
+  header.className = "macro-summary-header";
+
+  const title = document.createElement("h3");
+  title.textContent = "Macro Snapshot";
+
+  const meta = document.createElement("div");
+  meta.className = "macro-summary-meta";
+  meta.textContent = summary.generated_at
+    ? `Generated ${summary.generated_at}`
+    : "Generated date unavailable";
+
+  header.appendChild(title);
+  header.appendChild(meta);
+  root.appendChild(header);
+
+  const grid = document.createElement("div");
+  grid.className = "macro-summary-grid";
+
+  for (const metric of summary.metrics) {
+    const card = document.createElement("article");
+    card.className = "macro-summary-card";
+
+    const label = document.createElement("div");
+    label.className = "macro-summary-label";
+    label.textContent = metric.label;
+
+    const value = document.createElement("div");
+    value.className = "macro-summary-value";
+    value.textContent = formatMetricValue(metric);
+
+    const detail = document.createElement("div");
+    detail.className = "macro-summary-detail";
+    const parts = [];
+    const quantile = formatQuantile(metric);
+    if (quantile) parts.push(quantile);
+    if (metric.date) parts.push(`as of ${metric.date}`);
+    detail.textContent = parts.join(" · ");
+
+    card.appendChild(label);
+    card.appendChild(value);
+    card.appendChild(detail);
+    grid.appendChild(card);
+  }
+
+  root.appendChild(grid);
 }
 
 function getAllTags(tagsMap) {
@@ -216,6 +310,9 @@ function setupLightbox() {
     gallery.innerHTML = '<div class="loading">Loading macro images...</div>';
 
   setupLightbox();
+
+  const summary = await loadMacroSummary();
+  renderMacroSummary(summary);
 
   const data = await loadManifest();
   // Save for filter switching

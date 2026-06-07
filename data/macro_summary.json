@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-06-07",
+  "as_of": "2026-06-05",
+  "metrics": [
+    {
+      "id": "fed_rate",
+      "label": "Current Fed Rate",
+      "value": 3.62,
+      "unit": "%",
+      "date": "2026-06-04",
+      "quantile": null,
+      "decimals": 2
+    },
+    {
+      "id": "inflation",
+      "label": "Yearly Inflation Rate",
+      "value": 3.7792458367415627,
+      "unit": "%",
+      "date": "2026-04-01",
+      "quantile": null,
+      "decimals": 2
+    },
+    {
+      "id": "ism",
+      "label": "ISM Manufacturing PMI",
+      "value": 54.0,
+      "unit": "",
+      "date": "2026-06-01",
+      "reference_period": "2026-05",
+      "quantile": null,
+      "decimals": 1
+    },
+    {
+      "id": "vix",
+      "label": "VIX",
+      "value": 15.4,
+      "unit": "",
+      "date": "2026-06-04",
+      "quantile": 34.736399031884666,
+      "decimals": 2
+    },
+    {
+      "id": "oil",
+      "label": "Brent Oil Price",
+      "value": 98.29,
+      "unit": "$",
+      "date": "2026-06-01",
+      "quantile": 87.66692851531815,
+      "decimals": 2
+    },
+    {
+      "id": "treasury_spread",
+      "label": "10Y-3M Treasury Spread",
+      "value": 0.77,
+      "unit": "%",
+      "date": "2026-06-05",
+      "quantile": 29.698015530629853,
+      "decimals": 2
+    }
+  ]
+}

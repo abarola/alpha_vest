@@ -523,6 +523,74 @@ figcaption {
   border-color: rgba(31, 182, 170, 0.56);
 }
 
+.macro-summary {
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: var(--glass-border);
+  background: rgba(8, 24, 36, 0.72);
+  box-shadow: var(--shadow-sm);
+}
+
+.macro-summary-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.macro-summary-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.macro-summary-meta,
+.macro-summary-empty {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.macro-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.macro-summary-card {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.macro-summary-label {
+  min-height: 2.4em;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.macro-summary-value {
+  margin-top: 0.65rem;
+  color: var(--text-primary);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.macro-summary-detail {
+  min-height: 2.4em;
+  margin-top: 0.55rem;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
 
 /* === Tables (Dashboard Style) === */
 .rankings-context {
@@ -969,6 +1037,26 @@ footer {
     padding: 0 1rem;
   }
 
+  .macro-summary {
+    padding: 1rem;
+  }
+
+  .macro-summary-header {
+    display: block;
+  }
+
+  .macro-summary-meta {
+    margin-top: 0.35rem;
+  }
+
+  .macro-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .macro-summary-value {
+    font-size: 1.2rem;
+  }
+
   .image-section {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1226,4 +1314,10 @@ footer {
 .legend-item, .comparison-legend { color: var(--text-secondary); margin-bottom: 1rem; }
 .legend-icon { display: inline-block; width: 1.5em; text-align: center; }
 .comparison-legend { background: rgba(0,0,0,0.2); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 2rem; }
+
+@media (max-width: 480px) {
+  .macro-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 
