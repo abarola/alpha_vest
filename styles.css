@@ -1186,7 +1186,28 @@ footer {
   transition: all 0.3s;
 }
 .lightbox-backdrop.open { opacity: 1; visibility: visible; }
-.lightbox-image { max-width: 90vw; max-height: 85vh; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+.lightbox-stage {
+  position: absolute;
+  inset: 76px 24px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+}
+.lightbox-stage.is-zoomed { cursor: grab; }
+.lightbox-stage.is-dragging { cursor: grabbing; }
+.lightbox-image {
+  max-width: 92vw;
+  max-height: calc(100vh - 170px);
+  border-radius: 4px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  transform-origin: center center;
+  transition: transform 0.16s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.lightbox-stage.is-dragging .lightbox-image { transition: none; }
 .lightbox-close {
   position: absolute;
   top: 20px; right: 30px;
@@ -1194,10 +1215,58 @@ footer {
   font-size: 3rem; color: white;
   cursor: pointer;
 }
+.lightbox-controls {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  background: rgba(12,18,28,0.88);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.lightbox-controls button {
+  min-width: 38px;
+  height: 34px;
+  padding: 0 0.65rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.lightbox-controls button:hover:not(:disabled),
+.lightbox-controls button:focus-visible {
+  background: var(--text-accent);
+  border-color: var(--text-accent);
+}
+.lightbox-controls button:disabled { opacity: 0.35; cursor: default; }
+.lightbox-zoom-level {
+  min-width: 58px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
 .lightbox-caption {
   position: absolute; bottom: 20px;
   color: white; font-weight: 500;
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+@media (max-width: 600px) {
+  .lightbox-stage { inset: 72px 8px 70px; }
+  .lightbox-image { max-width: 96vw; max-height: calc(100vh - 160px); }
+  .lightbox-close { top: 12px; right: 12px; font-size: 2.5rem; }
+  .lightbox-controls { top: 14px; left: 12px; transform: none; }
+  .lightbox-controls button { min-width: 34px; padding: 0 0.5rem; }
+  .lightbox-caption { bottom: 14px; max-width: 90vw; text-align: center; }
 }
 
 /* === Scroll to Top === */

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-31T18:51:30.898209",
+  "generated_at": "2026-06-13T16:43:13.690866",
   "policy_name": "explore_val28_qual30_cost18_def5_nov16_standard_policy_v1",
   "policy_signature": "d936f8d4d95f",
   "weights_signature": "1b3f98733b62",
@@ -8,14 +8,14 @@
     "start_date": "2011-12-31",
     "end_date": "2026-03-31",
     "rebalance_periods": 57,
-    "panel_rows": 19877,
-    "exclusion_rows": 36325,
+    "panel_rows": 19868,
+    "exclusion_rows": 36334,
     "dropped_sparse_periods": 0,
     "min_eval_eligible_rows": 5
   },
   "metrics": {
-    "cagr": 0.26971497034289227,
-    "annualized_volatility": 0.2283801102729123,
-    "max_drawdown": 0.20730356640645498
+    "cagr": 0.26859553973937333,
+    "annualized_volatility": 0.22850683100193442,
+    "max_drawdown": 0.20823078492411817
   }
 }

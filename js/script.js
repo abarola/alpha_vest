@@ -132,18 +132,87 @@ document.addEventListener("DOMContentLoaded", () => {
       backdrop.setAttribute("aria-modal", "true");
       backdrop.innerHTML = `
         <button class="lightbox-close" aria-label="Close">×</button>
-        <img class="lightbox-image" alt="" />
+        <div class="lightbox-stage">
+          <img class="lightbox-image" alt="" />
+        </div>
+        <div class="lightbox-controls" aria-label="Image zoom controls">
+          <button type="button" class="lightbox-zoom-out" aria-label="Zoom out">−</button>
+          <span class="lightbox-zoom-level" aria-live="polite">100%</span>
+          <button type="button" class="lightbox-zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" class="lightbox-zoom-reset">Reset</button>
+        </div>
         <div class="lightbox-caption"></div>
       `;
       document.body.appendChild(backdrop);
     }
 
-    const imgEl = backdrop.querySelector(".lightbox-image");
+    let imgEl = backdrop.querySelector(".lightbox-image");
+    let stage = backdrop.querySelector(".lightbox-stage");
+    if (!stage) {
+      stage = document.createElement("div");
+      stage.className = "lightbox-stage";
+      imgEl.parentNode.insertBefore(stage, imgEl);
+      stage.appendChild(imgEl);
+    }
+
+    let controls = backdrop.querySelector(".lightbox-controls");
+    if (!controls) {
+      controls = document.createElement("div");
+      controls.className = "lightbox-controls";
+      controls.setAttribute("aria-label", "Image zoom controls");
+      controls.innerHTML = `
+        <button type="button" class="lightbox-zoom-out" aria-label="Zoom out">−</button>
+        <span class="lightbox-zoom-level" aria-live="polite">100%</span>
+        <button type="button" class="lightbox-zoom-in" aria-label="Zoom in">+</button>
+        <button type="button" class="lightbox-zoom-reset">Reset</button>
+      `;
+      backdrop.appendChild(controls);
+    }
+
     const capEl = backdrop.querySelector(".lightbox-caption");
     const closeBtn = backdrop.querySelector(".lightbox-close");
+    const zoomOutBtn = backdrop.querySelector(".lightbox-zoom-out");
+    const zoomInBtn = backdrop.querySelector(".lightbox-zoom-in");
+    const resetBtn = backdrop.querySelector(".lightbox-zoom-reset");
+    const zoomLevel = backdrop.querySelector(".lightbox-zoom-level");
+
+    const minScale = 1;
+    const maxScale = 5;
+    const scaleStep = 0.5;
+    let scale = minScale;
+    let translateX = 0;
+    let translateY = 0;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
+    const renderTransform = () => {
+      imgEl.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+      zoomOutBtn.disabled = scale <= minScale;
+      zoomInBtn.disabled = scale >= maxScale;
+      stage.classList.toggle("is-zoomed", scale > minScale);
+    };
+
+    const resetZoom = () => {
+      scale = minScale;
+      translateX = 0;
+      translateY = 0;
+      renderTransform();
+    };
+
+    const setScale = (nextScale) => {
+      scale = Math.min(maxScale, Math.max(minScale, nextScale));
+      if (scale === minScale) {
+        translateX = 0;
+        translateY = 0;
+      }
+      renderTransform();
+    };
 
     const open = (src, caption = "") => {
       if (!src) return;
+      resetZoom();
       imgEl.src = src;
       imgEl.alt = caption;
       capEl.textContent = caption;
@@ -157,14 +226,60 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "";
       imgEl.src = "";
       imgEl.alt = "";
+      resetZoom();
     };
 
     backdrop.addEventListener("click", (e) => {
       if (e.target === backdrop) close();
     });
     closeBtn.addEventListener("click", close);
+    zoomOutBtn.addEventListener("click", () => setScale(scale - scaleStep));
+    zoomInBtn.addEventListener("click", () => setScale(scale + scaleStep));
+    resetBtn.addEventListener("click", resetZoom);
+
+    stage.addEventListener(
+      "wheel",
+      (e) => {
+        if (!backdrop.classList.contains("open")) return;
+        e.preventDefault();
+        setScale(scale + (e.deltaY < 0 ? scaleStep : -scaleStep));
+      },
+      { passive: false }
+    );
+
+    stage.addEventListener("pointerdown", (e) => {
+      if (scale <= minScale) return;
+      dragging = true;
+      dragStartX = e.clientX - translateX;
+      dragStartY = e.clientY - translateY;
+      stage.classList.add("is-dragging");
+      stage.setPointerCapture(e.pointerId);
+    });
+
+    stage.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      translateX = e.clientX - dragStartX;
+      translateY = e.clientY - dragStartY;
+      renderTransform();
+    });
+
+    const stopDragging = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      stage.classList.remove("is-dragging");
+      if (stage.hasPointerCapture(e.pointerId)) {
+        stage.releasePointerCapture(e.pointerId);
+      }
+    };
+    stage.addEventListener("pointerup", stopDragging);
+    stage.addEventListener("pointercancel", stopDragging);
+
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") close();
+      if (!backdrop.classList.contains("open")) return;
+      if (e.key === "+" || e.key === "=") setScale(scale + scaleStep);
+      if (e.key === "-" || e.key === "_") setScale(scale - scaleStep);
+      if (e.key === "0") resetZoom();
     });
 
     return { open, close };
