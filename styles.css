@@ -540,6 +540,10 @@ figcaption {
   margin-bottom: 1rem;
 }
 
+.image-card-wide {
+  grid-column: 1 / -1;
+}
+
 .macro-summary-header h3 {
   margin: 0;
   font-size: 1.25rem;

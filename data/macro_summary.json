@@ -1,60 +1,60 @@
 {
-  "generated_at": "2026-08-10",
-  "as_of": "2026-08-07",
+  "generated_at": "2026-08-15",
+  "as_of": "2026-08-14",
   "metrics": [
     {
       "id": "fed_rate",
       "label": "Current Fed Rate",
       "value": 3.63,
       "unit": "%",
-      "date": "2026-08-06",
+      "date": "2026-08-13",
       "quantile": null,
       "decimals": 2
     },
     {
       "id": "inflation",
       "label": "Yearly Inflation Rate",
-      "value": 3.4635307293854063,
+      "value": 3.303856050706308,
       "unit": "%",
-      "date": "2026-06-01",
+      "date": "2026-07-01",
       "quantile": null,
       "decimals": 2
     },
     {
       "id": "ism",
       "label": "ISM Manufacturing PMI",
-      "value": 53.3,
+      "value": 55.6,
       "unit": "",
-      "date": "2026-07-01",
-      "reference_period": "2026-06",
+      "date": "2026-08-03",
+      "reference_period": "2026-07",
       "quantile": null,
       "decimals": 1
     },
     {
       "id": "vix",
       "label": "VIX",
-      "value": 14.9,
+      "value": 14.63,
       "unit": "",
-      "date": "2026-08-07",
-      "quantile": 31.469263797256257,
+      "date": "2026-08-13",
+      "quantile": 29.477650999685963,
       "decimals": 2
     },
     {
       "id": "oil",
       "label": "Brent Oil Price",
-      "value": 88.9,
+      "value": 93.26,
       "unit": "$",
-      "date": "2026-08-03",
-      "quantile": 84.60260044970182,
+      "date": "2026-08-11",
+      "quantile": 86.15534929164632,
       "decimals": 2
     },
     {
       "id": "treasury_spread",
       "label": "10Y-3M Treasury Spread",
-      "value": 0.78,
+      "value": 0.82,
       "unit": "%",
-      "date": "2026-08-07",
-      "quantile": 30.116029222174472,
+      "date": "2026-08-14",
+      "quantile": 30.859106529209622,
       "decimals": 2
     }
   ]
