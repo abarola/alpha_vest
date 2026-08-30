@@ -294,11 +294,109 @@
       <section id="portfolio" class="content-section">
         <h2>Portfolio Performance</h2>
         <p class="section-lead">
-          Compare current momentum across the tracked universe, then inspect
-          portfolio drawdowns and recovery signals.
+          Review portfolio valuation and capital efficiency, then compare
+          momentum, drawdowns and recovery signals across the tracked universe.
         </p>
 
         <div id="gallery-portfolio" class="image-section">
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/portfolio_company_valuation_map_yahoo_ttm.png"
+              alt="Portfolio valuation map comparing Yahoo Finance trailing twelve month free cash flow yield with price to tangible book value"
+              loading="eager"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>
+              Portfolio valuation map using Yahoo Finance TTM free cash flow
+            </figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    Each company is positioned by its current price-to-tangible-
+                    book ratio and trailing-twelve-month free-cash-flow yield.
+                    Bubble size represents its weight in the covered company sleeve.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>How to read</h5>
+                  <p>
+                    The upper-left area combines higher FCF yield with lower
+                    P/TBV. Green companies pass both portfolio-relative tests;
+                    red companies are in the bottom quartile for TTM FCF yield.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Growth comparison</h5>
+                  <p>
+                    Each label includes the change from the company&rsquo;s five-year
+                    median FCF yield, highlighting businesses whose current cash
+                    generation has improved or deteriorated.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    TTM cash flow can be cyclical, and tangible book is less
+                    meaningful for asset-light businesses. Use the map as a
+                    screening tool rather than a standalone valuation conclusion.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
+          <figure class="image-card">
+            <img
+              src="images/portfolio_performance/portfolio_company_roic_roe_wacc_dashboard.png"
+              alt="Portfolio dashboard comparing return on invested capital, return on equity, and weighted average cost of capital for every covered company"
+              loading="lazy"
+              decoding="async"
+              tabindex="0"
+            />
+            <figcaption>
+              Portfolio profitability and cost of capital: ROIC, ROE and WACC
+            </figcaption>
+            <details class="chart-explainer">
+              <summary>How to read this</summary>
+              <div class="explainer-grid">
+                <div class="explainer-item">
+                  <h5>What this shows</h5>
+                  <p>
+                    The left panel compares each company&rsquo;s return on invested
+                    capital with its WACC. The right panel reports return on equity.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Value creation</h5>
+                  <p>
+                    A green spread means ROIC exceeds WACC, indicating that the
+                    company currently earns more on invested capital than its
+                    estimated financing cost. A red spread indicates the opposite.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Ranking</h5>
+                  <p>
+                    Companies are sorted by ROIC minus WACC, making the strongest
+                    and weakest excess-return profiles immediately visible.
+                  </p>
+                </div>
+                <div class="explainer-item">
+                  <h5>Caveats</h5>
+                  <p>
+                    ROIC and ROE depend on accounting classifications. ROE can be
+                    inflated by small or negative equity, while WACC changes with
+                    market prices, beta and interest rates.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </figure>
+
           <figure class="image-card">
             <img
               src="images/portfolio_performance/stock_momentum_dashboard.png"
