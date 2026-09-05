@@ -1,0 +1,3648 @@
+{
+  "generated_at": "2026-09-05T13:53:42+00:00",
+  "source": "Venture_Capital_portfolio_analysis.xlsx",
+  "summary": {
+    "company_count": 498,
+    "fund_count": 10,
+    "co_invested_count": 49,
+    "max_overlap": 6,
+    "investment_records": 569
+  },
+  "funds": [
+    {
+      "id": "NEA_portfolio_invested",
+      "name": "NEA",
+      "company_count": 221
+    },
+    {
+      "id": "kleiner_perkins_portfolio_invested",
+      "name": "Kleiner Perkins",
+      "company_count": 86
+    },
+    {
+      "id": "founders_fund_portfolio_invested",
+      "name": "Founders Fund",
+      "company_count": 64
+    },
+    {
+      "id": "sequoia_portfolio_invested",
+      "name": "Sequoia Capital",
+      "company_count": 52
+    },
+    {
+      "id": "mayfield_fund_portfolio_invested",
+      "name": "Mayfield",
+      "company_count": 37
+    },
+    {
+      "id": "khosla_portfolio_invested",
+      "name": "Khosla Ventures",
+      "company_count": 28
+    },
+    {
+      "id": "index_ventures_portfolio_invested",
+      "name": "Index Ventures",
+      "company_count": 23
+    },
+    {
+      "id": "y_combinator_portfolio_invested",
+      "name": "Y Combinator",
+      "company_count": 23
+    },
+    {
+      "id": "greylock_portfolio_invested",
+      "name": "Greylock",
+      "company_count": 22
+    },
+    {
+      "id": "a16z_portfolio_invested",
+      "name": "Andreessen Horowitz",
+      "company_count": 13
+    }
+  ],
+  "distribution": [
+    {
+      "investor_count": 1,
+      "company_count": 449
+    },
+    {
+      "investor_count": 2,
+      "company_count": 37
+    },
+    {
+      "investor_count": 3,
+      "company_count": 6
+    },
+    {
+      "investor_count": 4,
+      "company_count": 3
+    },
+    {
+      "investor_count": 5,
+      "company_count": 2
+    },
+    {
+      "investor_count": 6,
+      "company_count": 1
+    }
+  ],
+  "companies": [
+    {
+      "name": "Airbnb",
+      "total_invested": 6,
+      "funds": [
+        "Founders Fund",
+        "Andreessen Horowitz",
+        "Y Combinator",
+        "Kleiner Perkins",
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Figma",
+      "total_invested": 5,
+      "funds": [
+        "Founders Fund",
+        "Andreessen Horowitz",
+        "Kleiner Perkins",
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Instacart",
+      "total_invested": 5,
+      "funds": [
+        "Khosla Ventures",
+        "Andreessen Horowitz",
+        "Y Combinator",
+        "Kleiner Perkins",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "DoorDash",
+      "total_invested": 4,
+      "funds": [
+        "Khosla Ventures",
+        "Y Combinator",
+        "Kleiner Perkins",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Facebook",
+      "total_invested": 4,
+      "funds": [
+        "Founders Fund",
+        "Andreessen Horowitz",
+        "Kleiner Perkins",
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Okta",
+      "total_invested": 4,
+      "funds": [
+        "Khosla Ventures",
+        "Andreessen Horowitz",
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Coinbase",
+      "total_invested": 3,
+      "funds": [
+        "Andreessen Horowitz",
+        "Y Combinator",
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Dropbox",
+      "total_invested": 3,
+      "funds": [
+        "Y Combinator",
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Lyft",
+      "total_invested": 3,
+      "funds": [
+        "Founders Fund",
+        "Andreessen Horowitz",
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Robinhood",
+      "total_invested": 3,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins",
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Roblox",
+      "total_invested": 3,
+      "funds": [
+        "Andreessen Horowitz",
+        "Greylock",
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Upstart",
+      "total_invested": 3,
+      "funds": [
+        "Khosla Ventures",
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Affirm",
+      "total_invested": 2,
+      "funds": [
+        "Founders Fund",
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Amplitude",
+      "total_invested": 2,
+      "funds": [
+        "Y Combinator",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Amyris",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Ascend Communications",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Aurora",
+      "total_invested": 2,
+      "funds": [
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Bird",
+      "total_invested": 2,
+      "funds": [
+        "Sequoia Capital",
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Block",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Bloom Energy",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Citrix",
+      "total_invested": 2,
+      "funds": [
+        "Kleiner Perkins",
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Confluent",
+      "total_invested": 2,
+      "funds": [
+        "Sequoia Capital",
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Coursera",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Duolingo",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Electronic Arts",
+      "total_invested": 2,
+      "funds": [
+        "Kleiner Perkins",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Epizyme",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "GitLab",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Google",
+      "total_invested": 2,
+      "funds": [
+        "Kleiner Perkins",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Guardant Health",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Juniper Networks",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "LSI Logic",
+      "total_invested": 2,
+      "funds": [
+        "Sequoia Capital",
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Metromile",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "MongoDB",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Nextdoor",
+      "total_invested": 2,
+      "funds": [
+        "Kleiner Perkins",
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Nubank",
+      "total_invested": 2,
+      "funds": [
+        "Founders Fund",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Opendoor",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "NEA"
+      ]
+    },
+    {
+      "name": "Oscar",
+      "total_invested": 2,
+      "funds": [
+        "Founders Fund",
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "PagerDuty",
+      "total_invested": 2,
+      "funds": [
+        "Andreessen Horowitz",
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Palo Alto Networks",
+      "total_invested": 2,
+      "funds": [
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Pardes Biosciences",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Pinterest",
+      "total_invested": 2,
+      "funds": [
+        "Andreessen Horowitz",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "QuantumScape",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Rubrik",
+      "total_invested": 2,
+      "funds": [
+        "Khosla Ventures",
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Snap",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "SpaceX",
+      "total_invested": 2,
+      "funds": [
+        "Founders Fund",
+        "Andreessen Horowitz"
+      ]
+    },
+    {
+      "name": "Spotify",
+      "total_invested": 2,
+      "funds": [
+        "Founders Fund",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Tesaro",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "WebMethods",
+      "total_invested": 2,
+      "funds": [
+        "Kleiner Perkins",
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Workday",
+      "total_invested": 2,
+      "funds": [
+        "NEA",
+        "Greylock"
+      ]
+    },
+    {
+      "name": "1stdibs",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "3Com",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "3Com Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "3Par",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "@Home Network",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "AMISYS Managed Care",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "AOL",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "ARQ",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "AVEO Oncology",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Acadia Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Acrivon Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Actions Semiconductor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Adaptimmune",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Addex Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Adyen",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Aerohive Networks",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Affimed",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Akari Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Akouos",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Alexza Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Align Technology",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Alimera Sciences",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Alpha & Omega Semiconductor",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Alteon WebSystems",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Amazon",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Ambiq Micro",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "American Superconductor Corporation",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Amerigroup Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Amgen",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Amicus Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Amprius",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Anduril",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Annexon",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Appian",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Apple",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Applied Biosystems",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Applix",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Aquantia",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "ArcSight",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Arcellx",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Ardelyx",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Arista",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Asana",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Aspect Medical",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Atara Bio",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Atari",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Atheros Communications",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Audience",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Aurinia Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Ausra",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Avanex",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Aven",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "BCD Semiconductor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Barracuda",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Bay Networks (Wellfleet)",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Berkshire Grey",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Better Mortgage",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Beyond Meat",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "BillionToOne",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Biogen",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Black Diamond Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Blend",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Blue River Technology",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Boingo Wireless",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Boring Company",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Boston Scientific",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Box",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "BridgeBio",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "BroadVision",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Broadview Network Holdings",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "BuildOps",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Buzzfeed",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "CRISPR",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "CSG Systems",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "CTI Biopharma",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "CVRx",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cadence Design Systems",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Cadence Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "CafePress",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Carbon Black",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "CardioThoracic Systems",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cardiovascular Imaging Systems",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Care.com",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "CareerBuilder",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cascadian Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Casper",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Catalyst Biosciences",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cedar",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Celcuity",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cerecor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Champions Oncology",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "ChannelAdvisor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Chegg",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Ciena",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Cirrus Logic",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cisco",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Citus Data",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Clarify",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Clementia",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Climate Corporation",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Cloudera",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Cloudflare",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Clovis Oncology",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cognition",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Com21",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Conceptus",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Concur",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Contrail",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Corvis",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Couchbase",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Credit Karma",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Crusoe",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Cvent",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "CyberMedia",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Cylance",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Cypress",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Dallas Semiconductor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Data Domain",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Datadog",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Datalogix",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "DeepMind",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Deliveroo",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Dermira",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Despegar",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "DocuSign",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Domo",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Dura Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Eargo",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Echelon",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Echo Global Logistics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Elastic",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Embark Trucks",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Endocardial Solutions",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "EnduroSat",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Enphase Energy",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Enter",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "EquipmentShare",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Erytech",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Ethos",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Eventbrite",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Excite@Home",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Extreme Networks",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Faire",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Financial Engines",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "FireEye",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "FiscalNote",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Flexport",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Flextronics",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Flock Safety",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Flow",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Fortell",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Found",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Fox Hollow Technologies",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Funding Circle",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Fusion-io",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Gatsby",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "GelTex Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Genentech",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "General Matter",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Genetic Therapy Inc.",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "GeoTel Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Geron",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Ginkgo Bioworks",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Glu Mobile",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "GlycoMimetics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Gossamer Bio",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Green Dot",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Groupon",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Groww",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Gynecare",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Hadrian",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Harmonic Lightwaves",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "HashiCorp",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Health Catalyst",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Healthsouth",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Heartport",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Hillcrest Laboratories",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "HubSpot",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Humu",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Hyperion Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "IDEC Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Imara",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Immunex Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Immunomedics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Impulse",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Infinity Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Inhibitex",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "InnerWorkings",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Inphi",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Intact Vascular",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "InterMune",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Intuit",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Intuitive Surgical",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Inventiva Pharma",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Iomai Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "IonQ",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Iridex Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Jumbo",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Kavak",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Klarna",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Korro",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "LAM Research",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "LegalZoom",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "LendingClub",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Lever",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Lexicon Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Life Technologies",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Lighter",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Linear Technologies",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Linekong",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "LinkedIn",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Liquidia Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Livongo",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Loxo Oncology",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Lucira Health",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "MBX Biosciences",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "MEI Pharma",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "MIPS",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Macromedia",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Magma Design Automation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Marimba",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Marker Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Marketo",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Matera",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Matrimony.com",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Matterport",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Medallia",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Meesho",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Mersana",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Metacrine",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Microchip Technology",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Millennial Media",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Millennium Pharma",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Millennium Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Minerva Surgical",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Mirna Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Mirum Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Mission Critical Software",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Mnzil",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Momentus",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Monaco",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Monte Rosa Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Motricity",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "MuleSoft",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Myogen",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "NVIDIA",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Nanogen",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Nanotronics",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Natera",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Nektar Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Nellcor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "NetApp",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "NetSolve",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Netic",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Neuralink",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "NeuroPace",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Neutral Tandem",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Nevro",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "NextNav",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Nightstar",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Nimble Storage",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Nkarta Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Nominal",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Notable Labs",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Nuance",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Nutanix",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "OZON.ru",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "ObsEva",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Oculus",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Oklo",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Omada Health",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Omnicell",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Omthera Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "OpenAI",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Oportun",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Opower",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Oracle",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Orexigen Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Oric",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Outbrain",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Oyster Point",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Pacific Biosciences of California",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Packeteer",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Palantir",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Palm",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Paratek (formerly Transcept Pharmaceuticals)",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Passif Semiconductor",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Paxos",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "PayPal",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Peloton",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Persona",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Pharmacyclics",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Pharming Group",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Pharmion",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Phase Forward",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "PhaseBio Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Phathom Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Pivotal",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Pixelworks",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Polymarket",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Poshmark",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Postmates",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Presto",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "Progress Software",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Progyny",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Prosensa",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Proteostasis Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "PsiQuantum",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Pulmonx",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Pure Software",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Pure Storage",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Pyxis",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Qapa",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Qualtrics",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Quantum",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "QuickLogic",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Quill",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Quince Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Qunar.Com",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "RAPT Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "RF Monolithics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Ra Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Rackspace",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Rambus",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Ramp",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Rapid Micro Biosystems",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Raxium",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Redback Networks",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Redfin",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Reneo Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Rent the Runway",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Repros Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Rhythm Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Rigel Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Rigetti Computing",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "RingCentral",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Rippling",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "River",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Rocket Lab",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Rpx Corporation",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Rubicon Project",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "SGI",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Sagimet Biosciences",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Salesforce.com",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Samsara",
+      "total_invested": 1,
+      "funds": [
+        "Andreessen Horowitz"
+      ]
+    },
+    {
+      "name": "SanDisk",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Sasken Communications",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Savara",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Scale",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "SeaMicro",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Seattle Genetics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Semiconductor Manufacturing International Corporation (SMIC)",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Senseonics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Senti Biosciences",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Sepracor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "ServiceNow",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Signal Sciences",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Silicon Graphics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Silver Spring Networks",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Skybox Imaging",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Slack",
+      "total_invested": 1,
+      "funds": [
+        "Andreessen Horowitz"
+      ]
+    },
+    {
+      "name": "Solar City",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Solta Medical",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Solugen",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Some Spider Studios",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Sonder",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Sonic Innovations",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "SoundHound",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Sourcefire",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Spectrian",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Sportsline",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Spreadtrum Communications",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Sprout Social",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Square",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Stripe",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Strongbridge Biopharma",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "SuperGen",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Supernus Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Surface Oncology",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Sword Health",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Sybase",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Symantec",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Synlogic",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Synopsys",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "TIBCO",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "TRACON Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Tableau Software",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Tagomi",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Tejas Networks",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Teladoc",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Telebit Corp",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Tempest Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Tempus",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "The Athletic",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "TiVo",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Traba",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Trade Republic",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "TransMedics",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Trevena",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Trevi Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Trillium Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Trivascular",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Truecaller",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Trustpilot",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Tuya",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Twilio",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Twitter",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "UUNet",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Uber",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Ubiquity6",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Until",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Vantive",
+      "total_invested": 1,
+      "funds": [
+        "Mayfield"
+      ]
+    },
+    {
+      "name": "Varda",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Vera Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Veracyte",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Verifone",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Verisign",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Vertex Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "ViXS Systems",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Viant",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "View",
+      "total_invested": 1,
+      "funds": [
+        "Khosla Ventures"
+      ]
+    },
+    {
+      "name": "Virata",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Visio",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "VistaGen Therapeutics",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Vitae Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Vitesse Semiconductor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Vonage",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Wave",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Weave",
+      "total_invested": 1,
+      "funds": [
+        "Y Combinator"
+      ]
+    },
+    {
+      "name": "WebEx Communications",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "WebMD (Healtheon)",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Wheels Up",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Wise",
+      "total_invested": 1,
+      "funds": [
+        "Index Ventures"
+      ]
+    },
+    {
+      "name": "Wish",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Workrise",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "X4 Pharmaceuticals",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Xenon Pharma",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Xilinx",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "Xoom Corporation",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Zenas BioPharma",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "ZeroFOX",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Zhone Technologies",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "ZocDoc",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
+      "name": "Zosano",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Zuora",
+      "total_invested": 1,
+      "funds": [
+        "Greylock"
+      ]
+    },
+    {
+      "name": "Zynga",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
+      "name": "eBenX",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "iManage",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "reddit",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    }
+  ]
+}

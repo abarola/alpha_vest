@@ -1394,3 +1394,444 @@ footer {
   }
 }
 
+/* === Venture Capital Analytics === */
+.venture-capital-page {
+  --vc-warm: #f59e0b;
+  --vc-warm-soft: rgba(245, 158, 11, 0.16);
+}
+
+.vc-hero {
+  max-width: 920px;
+  padding-top: 5rem;
+}
+
+.vc-eyebrow,
+.vc-panel-kicker {
+  margin: 0 0 0.65rem;
+  color: #79ddd5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vc-hero h2 {
+  max-width: 780px;
+  margin: 0 auto 1.2rem;
+}
+
+.vc-overview {
+  margin-top: 1rem;
+}
+
+.vc-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.vc-kpi-card {
+  min-height: 132px;
+  justify-content: center;
+}
+
+.vc-kpi-card strong {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.vc-kpi-accent {
+  border-color: rgba(245, 158, 11, 0.38);
+  background: linear-gradient(145deg, rgba(245, 158, 11, 0.13), rgba(0, 0, 0, 0.2));
+}
+
+.vc-kpi-accent strong {
+  color: #ffd17c;
+}
+
+.vc-insight-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1rem;
+}
+
+.vc-panel,
+.vc-fund-bars,
+.vc-method-grid article {
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.vc-panel {
+  padding: 1.4rem;
+}
+
+.vc-leader-panel {
+  background:
+    radial-gradient(circle at 95% 5%, rgba(245, 158, 11, 0.17), transparent 45%),
+    var(--bg-card);
+}
+
+.vc-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.vc-panel-heading h3 {
+  margin: 0 0 0.75rem;
+  color: var(--text-primary);
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+}
+
+.vc-score-pill {
+  flex: 0 0 auto;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgba(245, 158, 11, 0.42);
+  border-radius: 999px;
+  color: #ffd17c;
+  background: var(--vc-warm-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.vc-top-funds {
+  min-height: 4.8rem;
+  margin-bottom: 1.3rem;
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.vc-distribution {
+  display: grid;
+  gap: 0.62rem;
+}
+
+.vc-distribution-row {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(80px, 1fr) 3rem;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.vc-distribution-label,
+.vc-distribution-value {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.vc-distribution-value {
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.vc-distribution-track,
+.vc-fund-track {
+  display: block;
+  overflow: hidden;
+  height: 0.48rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.vc-distribution-bar,
+.vc-fund-bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary-gradient);
+}
+
+.vc-fund-bars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2rem;
+  padding: 1rem 1.25rem;
+}
+
+.vc-fund-card {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.vc-fund-card:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.vc-fund-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.55rem;
+}
+
+.vc-fund-name {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.vc-fund-count {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.vc-fund-bar {
+  width: var(--fund-width);
+  animation: vc-grow 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--fund-delay) both;
+}
+
+@keyframes vc-grow {
+  from { width: 0; }
+}
+
+.vc-explorer-controls {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.4fr) repeat(3, minmax(150px, 0.7fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.vc-control {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.vc-control span {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vc-control input,
+.vc-control select {
+  width: 100%;
+  min-height: 45px;
+  padding: 0.62rem 0.78rem;
+  border: var(--glass-border);
+  border-radius: 10px;
+  outline: none;
+  color: var(--text-primary);
+  background: #0b1c2a;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.vc-control input:focus,
+.vc-control select:focus {
+  border-color: var(--text-accent);
+}
+
+.vc-table-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.vc-reset-button {
+  padding: 0.35rem 0.7rem;
+  border: 0;
+  border-radius: 8px;
+  color: var(--text-accent);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.vc-reset-button:hover {
+  color: #6ee7df;
+  background: rgba(31, 182, 170, 0.1);
+}
+
+#vc-company-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+#vc-company-table th,
+#vc-company-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
+  vertical-align: middle;
+}
+
+#vc-company-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: var(--text-secondary);
+  background: #102639;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+#vc-company-table tbody tr:hover {
+  background: rgba(31, 182, 170, 0.06);
+}
+
+.vc-table-container {
+  max-height: 680px;
+  overflow: auto;
+}
+
+.vc-rank-cell {
+  width: 68px;
+  color: #7890a3;
+  font-variant-numeric: tabular-nums;
+}
+
+.vc-company-name {
+  min-width: 190px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.vc-overlap-badge {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid rgba(31, 182, 170, 0.35);
+  border-radius: 50%;
+  color: #b7f5ec;
+  background: rgba(31, 182, 170, 0.13);
+  font-weight: 700;
+}
+
+.vc-overlap-badge.is-strong {
+  border-color: rgba(245, 158, 11, 0.48);
+  color: #ffd17c;
+  background: var(--vc-warm-soft);
+}
+
+.vc-fund-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.vc-fund-tag {
+  padding: 0.24rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.18);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.vc-empty {
+  margin: 0;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.vc-method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.vc-method-grid article {
+  padding: 1.35rem;
+}
+
+.vc-method-grid article > span {
+  color: #79ddd5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.vc-method-grid h3 {
+  margin: 0.55rem 0;
+  color: var(--text-primary);
+}
+
+.vc-method-grid p,
+.vc-source-note {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.vc-source-note {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid rgba(245, 158, 11, 0.65);
+  background: rgba(245, 158, 11, 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vc-fund-bar {
+    animation: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .vc-kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vc-explorer-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .vc-hero {
+    padding-top: 3.2rem;
+  }
+
+  .vc-kpi-grid,
+  .vc-insight-grid,
+  .vc-fund-bars,
+  .vc-method-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vc-kpi-card {
+    min-height: auto;
+  }
+
+  .vc-fund-card:nth-last-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .vc-explorer-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vc-search-control {
+    grid-column: auto;
+  }
+
+  .vc-panel-heading {
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .vc-distribution-row {
+    grid-template-columns: 3.9rem minmax(70px, 1fr) 2.5rem;
+    gap: 0.45rem;
+  }
+
+  .vc-panel,
+  .vc-method-grid article {
+    padding: 1rem;
+  }
+}
+

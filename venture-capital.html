@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Compare public and exited companies across leading venture capital portfolios and explore the strongest co-investment signals."
+    />
+    <title>Venture Capital Portfolio Signals | BayesDemon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260905a" />
+  </head>
+  <body class="venture-capital-page">
+    <header class="main-header">
+      <nav class="navbar">
+        <h1 class="brand"><a href="index.html">BayesDemon</a></h1>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+        <ul id="primary-nav" class="nav-links">
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Analytics
+            </button>
+            <ul class="dropdown">
+              <li><a href="macro.html">MacroEconomic View</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li><a href="superinvestors.html">Superinvestors</a></li>
+              <li>
+                <a href="venture-capital.html" aria-current="page"
+                  >Venture Capital</a
+                >
+              </li>
+              <li>
+                <a href="company_verdict_overview.html"
+                  >Company Verdict Overview</a
+                >
+              </li>
+              <li><a href="backtest.html">Backtest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button class="dropdown-toggle" aria-expanded="false">
+              Page Sections
+            </button>
+            <ul class="dropdown">
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#fund-coverage">Fund Coverage</a></li>
+              <li><a href="#company-explorer">Company Explorer</a></li>
+              <li><a href="#methodology">Methodology</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-compact vc-hero">
+        <p class="vc-eyebrow">Cross-fund portfolio intelligence</p>
+        <h2>Where leading venture investors converge</h2>
+        <p class="hero-description">
+          Compare public and exited companies across ten venture portfolios.
+          Repeated backing highlights the names with the strongest shared signal.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#company-explorer"
+            >Explore Companies</a
+          >
+          <a class="btn btn-secondary" href="#methodology">How It Works</a>
+        </div>
+      </section>
+
+      <section id="overview" class="content-section vc-overview">
+        <div id="vc-status" class="portfolio-status" aria-live="polite">
+          Loading the latest venture capital dataset...
+        </div>
+        <div class="vc-kpi-grid" aria-live="polite">
+          <article class="snapshot-card vc-kpi-card">
+            <span class="snapshot-label">Companies tracked</span>
+            <strong id="vc-company-count">—</strong>
+            <span class="snapshot-meta">Unique public and exited companies</span>
+          </article>
+          <article class="snapshot-card vc-kpi-card">
+            <span class="snapshot-label">Funds compared</span>
+            <strong id="vc-fund-count">—</strong>
+            <span class="snapshot-meta">Independent portfolio sources</span>
+          </article>
+          <article class="snapshot-card vc-kpi-card vc-kpi-accent">
+            <span class="snapshot-label">Shared investments</span>
+            <strong id="vc-shared-count">—</strong>
+            <span class="snapshot-meta">Companies backed by two or more funds</span>
+          </article>
+          <article class="snapshot-card vc-kpi-card">
+            <span class="snapshot-label">Highest overlap</span>
+            <strong id="vc-max-overlap">—</strong>
+            <span class="snapshot-meta">Fund portfolios behind one company</span>
+          </article>
+          <article class="snapshot-card vc-kpi-card">
+            <span class="snapshot-label">Portfolio records</span>
+            <strong id="vc-record-count">—</strong>
+            <span class="snapshot-meta">Fund-to-company observations</span>
+          </article>
+        </div>
+
+        <div class="vc-insight-grid">
+          <article class="vc-panel vc-leader-panel">
+            <div class="vc-panel-heading">
+              <div>
+                <p class="vc-panel-kicker">Strongest shared signal</p>
+                <h3 id="vc-top-company">—</h3>
+              </div>
+              <span id="vc-top-score" class="vc-score-pill">— funds</span>
+            </div>
+            <p id="vc-top-funds" class="vc-top-funds">
+              Waiting for portfolio data.
+            </p>
+            <a class="snapshot-link" href="#company-explorer"
+              >See the full ranking</a
+            >
+          </article>
+
+          <article class="vc-panel">
+            <div class="vc-panel-heading">
+              <div>
+                <p class="vc-panel-kicker">Breadth of agreement</p>
+                <h3>Company overlap</h3>
+              </div>
+            </div>
+            <div
+              id="vc-distribution"
+              class="vc-distribution"
+              aria-label="Distribution of companies by number of investors"
+            ></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="fund-coverage" class="content-section">
+        <h2>Fund Coverage</h2>
+        <p class="section-lead">
+          Portfolio breadth varies by source. Use these counts to understand how
+          much each fund contributes to the comparison universe.
+        </p>
+        <div id="vc-fund-bars" class="vc-fund-bars" aria-live="polite"></div>
+      </section>
+
+      <section id="company-explorer" class="content-section">
+        <h2>Company Explorer</h2>
+        <p class="section-lead">
+          Search the merged universe or isolate companies shared by multiple
+          venture portfolios.
+        </p>
+        <div class="vc-explorer-controls">
+          <label class="vc-control vc-search-control">
+            <span>Search company</span>
+            <input
+              id="vc-search"
+              type="search"
+              placeholder="Try Airbnb, Figma, Coinbase..."
+              autocomplete="off"
+            />
+          </label>
+          <label class="vc-control">
+            <span>Minimum fund count</span>
+            <select id="vc-min-funds">
+              <option value="1">All companies</option>
+              <option value="2" selected>2+ funds</option>
+              <option value="3">3+ funds</option>
+              <option value="4">4+ funds</option>
+              <option value="5">5+ funds</option>
+            </select>
+          </label>
+          <label class="vc-control">
+            <span>Portfolio</span>
+            <select id="vc-fund-filter">
+              <option value="">All portfolios</option>
+            </select>
+          </label>
+          <label class="vc-control">
+            <span>Sort by</span>
+            <select id="vc-sort">
+              <option value="overlap">Most shared</option>
+              <option value="name">Company name</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="vc-table-summary">
+          <span id="vc-results-count">— companies</span>
+          <button id="vc-reset" class="vc-reset-button" type="button">
+            Reset filters
+          </button>
+        </div>
+        <div class="table-container vc-table-container">
+          <table id="vc-company-table">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Company</th>
+                <th scope="col">Fund count</th>
+                <th scope="col">Backing portfolios</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p id="vc-empty" class="vc-empty" hidden>
+            No companies match these filters.
+          </p>
+        </div>
+      </section>
+
+      <section id="methodology" class="content-section vc-methodology">
+        <h2>Methodology</h2>
+        <div class="vc-method-grid">
+          <article>
+            <span>01</span>
+            <h3>Collect</h3>
+            <p>
+              The deployment scripts retrieve public, IPO, or exited companies
+              from each fund&rsquo;s published portfolio source.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Normalize</h3>
+            <p>
+              Company names are cleaned and matched with a normalized key so
+              spelling and punctuation differences do not split the same name.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Compare</h3>
+            <p>
+              Each company receives one count per portfolio. A higher count
+              means more of the tracked funds report the same company.
+            </p>
+          </article>
+        </div>
+        <p class="vc-source-note">
+          This is a portfolio-overlap screen, not a performance ranking or
+          investment recommendation. Source definitions differ by fund and may
+          include public companies, IPOs, acquisitions, or selected exits.
+          <span id="vc-updated-at"></span>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 BayesDemon. Financial analysis for educational purposes.</p>
+    </footer>
+
+    <script src="js/nav.js?v=20260303d" defer></script>
+    <script src="js/venture-capital.js?v=20260905a" defer></script>
+  </body>
+</html>
