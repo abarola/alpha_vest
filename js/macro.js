@@ -265,6 +265,7 @@ function renderGallery(images, tagsMap, activeTag = "all") {
     fig.appendChild(cap);
     root.appendChild(fig);
   }
+  window.ChartReader?.mount(root);
 }
 
 function openLightbox(src, caption) {

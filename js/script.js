@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const galleries = Array.from(document.querySelectorAll(".image-section"));
 
     galleries.forEach((gallery) => {
+      if (gallery.classList.contains("chart-reader")) return;
       const figs = Array.from(gallery.querySelectorAll("figure.image-card"));
       const plainFigures = figs.filter(
         (f) => !f.classList.contains("has-explainer")
@@ -617,7 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const revealTargets = Array.from(
       document.querySelectorAll(".decision-path, .content-section")
-    );
+    ).filter((element) => !element.querySelector(".chart-reader"));
     if (!revealTargets.length) return;
 
     revealTargets.forEach((el) => el.classList.add("reveal-on-scroll"));
@@ -656,7 +657,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Your browser is too old to load ranking data. Please update it."
     );
   } else {
-    initCurrentHoldings();
+    const currentHoldingsReady = initCurrentHoldings();
 
   if (document.getElementById("rank-table")) {
     fetch("rank_companies/rank_companies.json", { cache: "no-store" })
@@ -720,6 +721,8 @@ document.addEventListener("DOMContentLoaded", () => {
       initRankingQuickActions("rank-table", "rank-filter");
       makeSortable("rank-table");
       rememberRankingView();
+      await currentHoldingsReady;
+      window.dispatchEvent(new Event("chart-layout-ready"));
     })
     .catch((err) => {
       console.error("Unable to load rank table:", err);

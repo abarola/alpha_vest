@@ -58,7 +58,7 @@ async function initInvestorSnapshot() {
     container.appendChild(frag);
 
     // Mobile: collapse long lists with "Show more"
-    applyMobileCollapse(container, 4);
+    window.ChartReader?.mount(container);
 
     // Wire lightbox (click or keyboard)
     wireLightbox(container);
@@ -137,7 +137,7 @@ function wireLightbox(container) {
   // Click to open
   container.addEventListener("click", (e) => {
     const target = e.target;
-    if (target && target.tagName === "IMG") {
+    if (target && target.tagName === "IMG" && target.closest(".image-card")) {
       open(target.src, target.alt || "");
     }
   });

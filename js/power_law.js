@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function enableLightbox(container) {
     container.addEventListener("click", (e) => {
       const img = e.target.closest("img");
-      if (!img) return;
+      if (!img || !img.closest(".image-card")) return;
       const fig = img.closest("figure");
       const caption =
         fig?.querySelector("figcaption")?.textContent || img.alt || "";
@@ -164,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
       rendered++;
     });
 
+    window.ChartReader?.mount(historicalContainer);
     enableLightbox(historicalContainer);
   })();
 
@@ -195,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const description = imageDescriptions["offset1_ytd_bars"] || "";
         const card = createImageCard(src, caption, caption, description);
         ytdContainer.appendChild(card);
+        window.ChartReader?.mount(ytdContainer);
         enableLightbox(ytdContainer);
       },
       () => {
@@ -228,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     multiTimeframeContainer.appendChild(card);
+    window.ChartReader?.mount(multiTimeframeContainer);
     enableLightbox(multiTimeframeContainer);
   })();
 });
