@@ -36,6 +36,8 @@
     short_term_debt_cycle: ["The short-term debt cycle", "Use this cycle diagram as a framework for interpreting the accompanying economic indicators."],
     real_estate_cycle: ["The real estate cycle", "Use the illustrated phases to place housing-market observations in context."],
     coal_price_history: ["Coal prices over time", "Compare recent coal prices with the historical price path shown."],
+    lithium_price_history: ["Lithium carbonate prices over time", "Follow China battery-grade lithium carbonate prices in CNY per tonne and compare the latest level with the historical percentile bands."],
+    cobalt_price_history: ["Cobalt prices over time", "Follow cobalt prices in USD per tonne and compare the latest level with the historical percentile bands."],
     oil_price_quantiles: ["Oil prices in historical context", "Compare the latest oil-price observation with its historical distribution."],
     top_stocks_superinvestors_count: ["The stocks held by the most investors", "Compare the number of tracked investors holding each stock.", "Investor count"],
     top_stocks_superinvestors_weighted_top_position: ["Shared conviction in top positions", "Compare the ranking weighted by investors’ top positions.", "Top positions"],
@@ -91,7 +93,7 @@
       figure.prepend(caption);
       img.alt = title;
       img.dataset.caption = title;
-      const size = dimensions[key];
+      const size = dimensions[key] || (key.endsWith("_price_history") ? [1200, 600] : undefined);
       if (size) {
         img.width = size[0];
         img.height = size[1];
