@@ -719,6 +719,7 @@ document.addEventListener("DOMContentLoaded", () => {
       attachSymbolFilter("rank-filter", "rank-table");
       initRankingQuickActions("rank-table", "rank-filter");
       makeSortable("rank-table");
+      rememberRankingView();
     })
     .catch((err) => {
       console.error("Unable to load rank table:", err);
@@ -731,6 +732,67 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==================== 4. Optional: table filter & sorting helpers ==================== */
+  function rememberRankingView() {
+    const table = document.getElementById("rank-table");
+    const input = document.getElementById("rank-filter");
+    const presets = document.querySelector(".ranking-quick-actions");
+    const key = `bayesdemon:rankings:${new URL("index.html", location.href).pathname}`;
+    let restoring = false;
+
+    const save = () => {
+      if (restoring) return;
+      const headers = Array.from(table.querySelectorAll("thead th"));
+      const sorted = headers.findIndex((th) => th.dataset.sort);
+      const preset = presets.querySelector(".active")?.dataset.preset || "";
+      const state = {
+        query: input.value,
+        preset,
+        sortColumn: sorted,
+        sortDirection: sorted >= 0 ? headers[sorted].dataset.sort : "",
+        // Sorting moves hidden rows too. Keep the chosen top group on return.
+        visibleSymbols: Array.from(table.querySelectorAll("tbody tr"))
+          .filter((row) => row.style.display !== "none")
+          .map((row) => row.querySelector("[data-symbol]")?.dataset.symbol),
+      };
+      try { sessionStorage.setItem(key, JSON.stringify(state)); } catch (_) { /* Storage is optional. */ }
+    };
+
+    try {
+      const state = JSON.parse(sessionStorage.getItem(key) || "null");
+      if (state && typeof state.query === "string") {
+        restoring = true;
+        input.value = state.query;
+        input.dispatchEvent(new Event("input"));
+        const preset = Array.from(presets.querySelectorAll(".preset-btn"))
+          .find((button) => button.dataset.preset === state.preset);
+        if (preset && !state.query) {
+          preset.click();
+          if (state.preset !== "reset" && Array.isArray(state.visibleSymbols)) {
+            const selected = new Set(state.visibleSymbols);
+            const rows = Array.from(table.querySelectorAll("tbody tr"));
+            rows.forEach((row) => {
+              row.style.display = selected.has(row.querySelector("[data-symbol]")?.dataset.symbol) ? "" : "none";
+            });
+            updateFilterCount(table, rows.filter((row) => row.style.display !== "none").length, rows.length);
+          }
+        }
+        const header = table.querySelectorAll("thead th")[state.sortColumn];
+        if (header && ["asc", "desc"].includes(state.sortDirection)) {
+          header.click();
+          if (state.sortDirection === "desc") header.click();
+        }
+      }
+    } catch (_) { /* Ignore unavailable storage or an obsolete saved view. */ }
+    restoring = false;
+    input.addEventListener("input", save);
+    presets.addEventListener("click", save);
+    table.addEventListener("click", save);
+    window.addEventListener("pagehide", save);
+    if (location.hash === "#rankings") {
+      requestAnimationFrame(() => document.getElementById("rankings").scrollIntoView({ behavior: "instant" }));
+    }
+  }
+
   function attachSymbolFilter(inputId, tableId) {
     const input = document.getElementById(inputId);
     const table = document.getElementById(tableId);

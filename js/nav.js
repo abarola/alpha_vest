@@ -1,114 +1,101 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.querySelector(".menu-toggle");
+  const header = document.querySelector(".main-header");
+  const menuBtn = header?.querySelector(".menu-toggle");
   const nav = document.getElementById("primary-nav");
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  if (!header || !menuBtn || !nav) return;
 
-  // Helper to check if we're on mobile
-  const isMobile = () => window.innerWidth <= 768;
-
-  // Helper to close all dropdowns
-  const closeAllDropdowns = () => {
-    document.querySelectorAll(".has-dropdown.open").forEach((li) => {
-      li.classList.remove("open");
-      const toggle = li.querySelector(".dropdown-toggle");
-      if (toggle) toggle.setAttribute("aria-expanded", "false");
+  const mobile = window.matchMedia("(max-width: 768px)");
+  const toggles = Array.from(nav.querySelectorAll(".dropdown-toggle"));
+  const closeDropdowns = () => {
+    toggles.forEach((button) => {
+      button.setAttribute("aria-expanded", "false");
+      button.closest(".has-dropdown").classList.remove("open");
     });
   };
-
-  // Helper to close the mobile menu
-  const closeMobileMenu = () => {
-    if (!nav || !menuBtn) return;
+  const closeMenu = () => {
     nav.classList.remove("open");
     menuBtn.setAttribute("aria-expanded", "false");
-    menuBtn.innerHTML = "☰";
-    menuBtn.classList.remove("active");
-    closeAllDropdowns();
+    menuBtn.textContent = "☰";
+    closeDropdowns();
   };
 
-  // Helper to open the mobile menu
-  const openMobileMenu = () => {
-    if (!nav || !menuBtn) return;
-    nav.classList.add("open");
-    menuBtn.setAttribute("aria-expanded", "true");
-    menuBtn.innerHTML = "✕";
-    menuBtn.classList.add("active");
-  };
-
-  // Toggle mobile menu
-  if (menuBtn && nav) {
-    menuBtn.addEventListener("click", () => {
-      const isOpen = nav.classList.contains("open");
-      if (isOpen) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    });
-  }
-
-  // Handle dropdown toggles
-  dropdownToggles.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const li = e.currentTarget.closest(".has-dropdown");
-      const wasOpen = li.classList.contains("open");
-
-      // Close all other dropdowns first
-      document.querySelectorAll(".has-dropdown").forEach((otherLi) => {
-        if (otherLi !== li) {
-          otherLi.classList.remove("open");
-          const toggle = otherLi.querySelector(".dropdown-toggle");
-          if (toggle) toggle.setAttribute("aria-expanded", "false");
-        }
-      });
-
-      // Toggle current dropdown
-      if (wasOpen) {
-        li.classList.remove("open");
-        e.currentTarget.setAttribute("aria-expanded", "false");
-      } else {
-        li.classList.add("open");
-        e.currentTarget.setAttribute("aria-expanded", "true");
-      }
-    });
-  });
-
-  // Auto-close menu when clicking dropdown links on mobile
-  document.querySelectorAll(".dropdown a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (isMobile()) {
-        // Small delay to let the link action complete
-        setTimeout(() => {
-          closeMobileMenu();
-        }, 150);
-      }
-    });
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    const navRoot = e.target.closest(".navbar");
-    if (!navRoot && nav && nav.classList.contains("open")) {
-      closeMobileMenu();
+  menuBtn.addEventListener("click", () => {
+    const opening = menuBtn.getAttribute("aria-expanded") !== "true";
+    closeMenu();
+    if (opening) {
+      nav.classList.add("open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      menuBtn.textContent = "✕";
     }
   });
 
-  // Close menu on escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && nav && nav.classList.contains("open")) {
-      closeMobileMenu();
-      if (menuBtn) menuBtn.focus();
-    }
+  toggles.forEach((button) => {
+    button.addEventListener("click", () => {
+      const opening = button.getAttribute("aria-expanded") !== "true";
+      closeDropdowns();
+      if (opening) {
+        button.setAttribute("aria-expanded", "true");
+        button.closest(".has-dropdown").classList.add("open");
+      }
+    });
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowDown") return;
+      event.preventDefault();
+      closeDropdowns();
+      button.setAttribute("aria-expanded", "true");
+      button.closest(".has-dropdown").classList.add("open");
+      button.nextElementSibling.querySelector("a")?.focus();
+    });
   });
 
-  // Reset menu state when resizing to desktop
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (!isMobile() && nav && nav.classList.contains("open")) {
-        closeMobileMenu();
-      }
-    }, 150);
+  nav.addEventListener("click", (event) => {
+    if (!event.target.closest("a")) return;
+    closeMenu();
+    if (mobile.matches) menuBtn.focus();
   });
+  document.addEventListener("click", (event) => {
+    if (!header.contains(event.target)) closeMenu();
+  });
+  header.addEventListener("focusout", (event) => {
+    if (!header.contains(event.relatedTarget)) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const openDropdown = toggles.find((button) => button.getAttribute("aria-expanded") === "true");
+    if (openDropdown) {
+      closeDropdowns();
+      openDropdown.focus();
+    } else if (nav.classList.contains("open")) {
+      closeMenu();
+      menuBtn.focus();
+    }
+  });
+  mobile.addEventListener("change", closeMenu);
+
+  const siteIndex = new URL(header.querySelector(".brand a").href);
+  const currentPath = location.pathname.endsWith("/")
+    ? `${location.pathname}index.html`
+    : location.pathname;
+  const updateCurrent = () => {
+    nav.querySelectorAll("a").forEach((link) => {
+      const target = new URL(link.href);
+      const isIndex = currentPath === siteIndex.pathname;
+      const active = target.pathname === currentPath &&
+        (!isIndex || target.hash === (location.hash || "#current-portfolio"));
+      if (active) link.setAttribute("aria-current", isIndex ? "location" : "page");
+      else link.removeAttribute("aria-current");
+    });
+    toggles.forEach((button) => {
+      button.classList.toggle("is-current", Boolean(button.nextElementSibling.querySelector("[aria-current]")));
+    });
+  };
+  updateCurrent();
+  window.addEventListener("hashchange", updateCurrent);
+
+  // A viewport-relative inset keeps anchored sections clear of the compact header.
+  const updateHeaderHeight = () => {
+    document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
+  };
+  updateHeaderHeight();
+  if (typeof ResizeObserver === "function") new ResizeObserver(updateHeaderHeight).observe(header);
 });

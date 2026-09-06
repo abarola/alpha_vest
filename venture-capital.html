@@ -14,51 +14,28 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260905a" />
+    <link rel="stylesheet" href="styles.css?v=20260906a" />
   </head>
   <body class="venture-capital-page">
     <header class="main-header">
-      <nav class="navbar">
-        <h1 class="brand"><a href="index.html">BayesDemon</a></h1>
-        <button
-          class="menu-toggle"
-          aria-expanded="false"
-          aria-controls="primary-nav"
-          aria-label="Menu"
-        >
-          ☰
-        </button>
+      <nav class="navbar" aria-label="Main navigation">
+        <div class="brand"><a href="index.html">BayesDemon</a></div>
+        <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">☰</button>
         <ul id="primary-nav" class="nav-links">
+          <li><a href="index.html#current-portfolio">Portfolio</a></li>
+          <li><a href="index.html#rankings">Rankings</a></li>
+          <li><a href="macro.html">Macro</a></li>
+          <li><a href="backtest.html">Backtest</a></li>
           <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">
-              Analytics
-            </button>
-            <ul class="dropdown">
-              <li><a href="macro.html">MacroEconomic View</a></li>
-              <li><a href="power_law.html">Power Law</a></li>
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="research-nav">Research <span aria-hidden="true">⌄</span></button>
+            <ul id="research-nav" class="dropdown">
+              <li><a href="company_verdict_overview.html">Company Verdicts</a></li>
               <li><a href="superinvestors.html">Superinvestors</a></li>
-              <li>
-                <a href="venture-capital.html" aria-current="page"
-                  >Venture Capital</a
-                >
-              </li>
-              <li>
-                <a href="company_verdict_overview.html"
-                  >Company Verdict Overview</a
-                >
-              </li>
-              <li><a href="backtest.html">Backtest</a></li>
-            </ul>
-          </li>
-          <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">
-              Page Sections
-            </button>
-            <ul class="dropdown">
-              <li><a href="#overview">Overview</a></li>
-              <li><a href="#fund-coverage">Fund Coverage</a></li>
-              <li><a href="#company-explorer">Company Explorer</a></li>
-              <li><a href="#methodology">Methodology</a></li>
+              <li><a href="venture-capital.html">Venture Capital</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li><a href="index.html#portfolio">Portfolio Risk Signals</a></li>
+              <li><a href="index.html#stats">Index Statistics</a></li>
+              <li><a href="index.html#links">Resources</a></li>
             </ul>
           </li>
         </ul>
@@ -261,7 +238,7 @@
       <p>&copy; 2026 BayesDemon. Financial analysis for educational purposes.</p>
     </footer>
 
-    <script src="js/nav.js?v=20260303d" defer></script>
+    <script src="js/nav.js?v=20260906a" defer></script>
     <script src="js/venture-capital.js?v=20260905a" defer></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock Details</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260906a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,13 +13,35 @@
     />
   </head>
   <body>
-    <header>
-      <h1>
-        Stock Financial Analysis: <span id="stock-symbol-header">SYMBOL</span>
-      </h1>
+    <header class="main-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <div class="brand"><a href="index.html">BayesDemon</a></div>
+        <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">☰</button>
+        <ul id="primary-nav" class="nav-links">
+          <li><a href="index.html#current-portfolio">Portfolio</a></li>
+          <li><a href="index.html#rankings">Rankings</a></li>
+          <li><a href="macro.html">Macro</a></li>
+          <li><a href="backtest.html">Backtest</a></li>
+          <li class="has-dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="research-nav">Research <span aria-hidden="true">⌄</span></button>
+            <ul id="research-nav" class="dropdown">
+              <li><a href="company_verdict_overview.html">Company Verdicts</a></li>
+              <li><a href="superinvestors.html">Superinvestors</a></li>
+              <li><a href="venture-capital.html">Venture Capital</a></li>
+              <li><a href="power_law.html">Power Law</a></li>
+              <li><a href="index.html#portfolio">Portfolio Risk Signals</a></li>
+              <li><a href="index.html#stats">Index Statistics</a></li>
+              <li><a href="index.html#links">Resources</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <main>
+<div class="company-page-heading"><a class="back-to-rankings" href="index.html#rankings">← Back to rankings</a><h1>
+        Stock Financial Analysis: <span id="stock-symbol-header">SYMBOL</span>
+      </h1></div>
       <!-- Executive Summary Scorecard -->
       <section class="scorecard-section">
         <div class="scorecard-grid">
@@ -614,7 +636,7 @@
       </section>
 
       <div class="navigation-links">
-        <a href="index.html">Back to Main Page</a>
+        <a href="index.html#rankings">Back to rankings</a>
       </div>
     </main>
 
@@ -696,5 +718,6 @@
         updateActivePill();
       });
     </script>
-  </body>
+  <script src="js/nav.js?v=20260906a" defer></script>
+</body>
 </html>

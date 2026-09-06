@@ -489,8 +489,8 @@ def render_html(
     # Examples: asset_prefix="../" for /stocks/*.html
     for link in soup.find_all("link"):
         href = (link.get("href") or "").strip()
-        if href == "styles.css":
-            link["href"] = f"{asset_prefix}styles.css"
+        if href.split("?", 1)[0] == "styles.css":
+            link["href"] = f"{asset_prefix}{href}"
 
     for script in soup.find_all("script"):
         src = (script.get("src") or "").strip()
@@ -499,8 +499,8 @@ def render_html(
 
     for a in soup.find_all("a"):
         href = (a.get("href") or "").strip()
-        if href == "index.html":
-            a["href"] = f"{asset_prefix}index.html"
+        if href and not href.startswith(("#", "/", "../")) and ":" not in href.split("/", 1)[0]:
+            a["href"] = f"{asset_prefix}{href}"
 
     # Section chips + scorecards
     for section_id, field_ids in SECTION_FIELDS.items():

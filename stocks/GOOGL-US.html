@@ -5,18 +5,40 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stock Details - GOOGL:US</title>
-<link href="../styles.css" rel="stylesheet"/>
+<link href="../styles.css?v=20260906a" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;display=swap" rel="stylesheet"/>
 </head>
 <body data-prerendered="1" data-stock-symbol="GOOGL:US">
-<header>
-<h1>
-        Stock Financial Analysis: <span id="stock-symbol-header">GOOGL:US</span>
-</h1>
-</header>
+<header class="main-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <div class="brand"><a href="../index.html">BayesDemon</a></div>
+        <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">☰</button>
+        <ul id="primary-nav" class="nav-links">
+          <li><a href="../index.html#current-portfolio">Portfolio</a></li>
+          <li><a href="../index.html#rankings">Rankings</a></li>
+          <li><a href="../macro.html">Macro</a></li>
+          <li><a href="../backtest.html">Backtest</a></li>
+          <li class="has-dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="research-nav">Research <span aria-hidden="true">⌄</span></button>
+            <ul id="research-nav" class="dropdown">
+              <li><a href="../company_verdict_overview.html">Company Verdicts</a></li>
+              <li><a href="../superinvestors.html">Superinvestors</a></li>
+              <li><a href="../venture-capital.html">Venture Capital</a></li>
+              <li><a href="../power_law.html">Power Law</a></li>
+              <li><a href="../index.html#portfolio">Portfolio Risk Signals</a></li>
+              <li><a href="../index.html#stats">Index Statistics</a></li>
+              <li><a href="../index.html#links">Resources</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
 <main>
+<div class="company-page-heading"><a class="back-to-rankings" href="../index.html#rankings">← Back to rankings</a><h1>
+        Stock Financial Analysis: <span id="stock-symbol-header">GOOGL:US</span>
+</h1></div>
 <!-- Executive Summary Scorecard -->
 <section class="scorecard-section">
 <div class="scorecard-grid">
@@ -384,7 +406,7 @@
 </div>
 </section>
 <div class="navigation-links">
-<a href="../index.html">Back to Main Page</a>
+<a href="../index.html#rankings">Back to rankings</a>
 </div>
 </main>
 <footer>
@@ -464,5 +486,6 @@
         updateActivePill();
       });
     </script>
+<script src="../js/nav.js?v=20260906a" defer></script>
 </body>
 </html>
