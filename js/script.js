@@ -586,6 +586,8 @@ document.addEventListener("DOMContentLoaded", () => {
       links.forEach((link) => {
         const isActive = link.getAttribute("href") === `#${id}`;
         link.classList.toggle("active", isActive);
+        if (isActive) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
       });
     };
 
@@ -618,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const revealTargets = Array.from(
       document.querySelectorAll(".decision-path, .content-section")
-    ).filter((element) => !element.querySelector(".chart-reader"));
+    ).filter((element) => !element.hasAttribute("data-no-reveal") && !element.querySelector(".chart-reader"));
     if (!revealTargets.length) return;
 
     revealTargets.forEach((el) => el.classList.add("reveal-on-scroll"));

@@ -11,8 +11,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260906d" />
+    <link rel="stylesheet" href="homepage.css?v=20260907a" />
   </head>
-  <body>
+  <body class="homepage">
     <!-- Add a proper header with navigation -->
     <header class="main-header">
       <nav class="navbar" aria-label="Main navigation">
@@ -40,93 +41,92 @@
     </header>
 
     <main>
-      <!-- Hero section -->
-      <section class="hero">
-        <h2>Review today&rsquo;s target portfolio first</h2>
-        <p class="hero-description">
-          Start with the current policy-generated allocation, then inspect the
-          ranked universe and supporting risk signals before investigating a
-          company.
-        </p>
-        <div class="hero-badges">
-          <a class="hero-badge" href="#current-portfolio">Current targets first</a>
-          <a class="hero-badge" href="#rankings">Fundamental ranking engine</a>
-          <a class="hero-badge" href="#portfolio">Risk-aware chart analysis</a>
+      <section class="homepage-intro" aria-labelledby="homepage-title">
+        <div class="homepage-intro-copy">
+          <p class="homepage-eyebrow">Independent investment research</p>
+          <h1 id="homepage-title">Evidence before<br />conviction.</h1>
+          <p class="homepage-description">Portfolio targets, company rankings and risk signals.</p>
         </div>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#current-portfolio"
-            >Review Current Targets</a
-          >
-          <a class="btn btn-secondary" href="macro.html">Macroeconomic Overview</a>
+        <div class="signature" aria-hidden="true">
+          <svg class="signature-graphic" viewBox="0 0 520 220" focusable="false">
+            <g class="signature-fallback" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 8">
+              <path d="M25 183 C130 183 157 173 198 110 C222 70 231 42 260 42 C289 42 298 70 322 110 C363 173 390 183 495 183" />
+              <path opacity=".45" d="M25 193 C130 193 157 183 198 120 C222 80 231 52 260 52 C289 52 298 80 322 120 C363 183 390 193 495 193" />
+            </g>
+            <g class="signature-particles"></g>
+          </svg>
+          <span class="signature-caption">Signals <span>→</span> structure</span>
         </div>
       </section>
 
-      <section class="decision-path" aria-label="Decision workflow shortcuts">
-        <a class="decision-step" href="#current-portfolio"
-          ><span>1</span>Review current targets</a
-        >
-        <a class="decision-step" href="#rankings"><span>2</span>Inspect rankings</a>
-        <a class="decision-step" href="#portfolio"><span>3</span>Check risk signals</a>
-        <a class="decision-step" href="backtest.html"
-          ><span>4</span>Open backtest</a
-        >
-      </section>
+      <nav class="homepage-sections" aria-label="Portfolio sections">
+        <a class="decision-step" href="#current-portfolio">Current targets</a>
+        <a class="decision-step" href="#rankings">Rankings</a>
+        <a class="decision-step" href="#portfolio">Risk signals</a>
+        <a class="decision-step" href="backtest.html">Backtest <span aria-hidden="true">↗</span></a>
+      </nav>
 
-      <section id="current-portfolio" class="content-section current-portfolio-section">
-        <h2>Current Target Portfolio</h2>
-        <p class="section-lead">
-          The latest policy-generated holdings for the open quarter, with target
-          weights normalized to 100%.
-        </p>
-        <div id="current-portfolio-status" class="portfolio-status" aria-live="polite">
-          Loading current holdings...
+      <section id="current-portfolio" class="content-section current-portfolio-section" data-no-reveal>
+        <div class="portfolio-section-heading">
+          <div>
+            <h2>Current target portfolio</h2>
+            <p class="section-lead">Policy-generated holdings for the open quarter.</p>
+          </div>
+          <div id="current-portfolio-status" class="portfolio-status" aria-live="polite">Loading current holdings...</div>
         </div>
-        <div class="ranking-snapshot current-portfolio-snapshot" aria-live="polite">
-          <article class="snapshot-card">
-            <span class="snapshot-label">Rebalance Date</span>
-            <strong id="current-rebalance-date">--</strong>
-            <span class="snapshot-meta" id="current-data-date">Waiting for data</span>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Policy CAGR</span>
-            <strong id="current-policy-cagr">--</strong>
-            <span class="snapshot-meta">Real quarterly backtest</span>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Annualized Volatility</span>
-            <strong id="current-policy-volatility">--</strong>
-            <span class="snapshot-meta">Quarterly returns, annualized</span>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Max Drawdown</span>
-            <strong id="current-policy-max-drawdown">--</strong>
-            <span class="snapshot-meta">Worst peak-to-trough decline</span>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Stock Exposure</span>
-            <strong id="current-stock-exposure">--</strong>
-            <span class="snapshot-meta" id="current-cash-weight">Cash --</span>
-          </article>
-          <article class="snapshot-card">
-            <span class="snapshot-label">Holdings</span>
-            <strong id="current-holding-count">--</strong>
-            <span class="snapshot-meta" id="current-target-weight-sum">Target sum --</span>
-          </article>
+        <div class="portfolio-overview" aria-live="polite">
+          <div class="portfolio-summary-group" role="group" aria-label="Current allocation">
+            <article class="snapshot-card">
+              <span class="snapshot-label">Rebalance date</span>
+              <strong id="current-rebalance-date">--</strong>
+              <span class="snapshot-meta" id="current-data-date">Waiting for data</span>
+            </article>
+            <article class="snapshot-card">
+              <span class="snapshot-label">Stock exposure</span>
+              <strong id="current-stock-exposure">--</strong>
+              <span class="snapshot-meta" id="current-cash-weight">Cash --</span>
+            </article>
+            <article class="snapshot-card">
+              <span class="snapshot-label">Holdings</span>
+              <strong id="current-holding-count">--</strong>
+              <span class="snapshot-meta" id="current-target-weight-sum">Target sum --</span>
+            </article>
+          </div>
+          <div class="portfolio-summary-group portfolio-backtest" role="group" aria-label="Historical policy backtest">
+            <article class="snapshot-card">
+              <span class="snapshot-label">Policy CAGR</span>
+              <strong id="current-policy-cagr">--</strong>
+              <span class="snapshot-meta">Quarterly backtest</span>
+            </article>
+            <article class="snapshot-card">
+              <span class="snapshot-label">Annualized volatility</span>
+              <strong id="current-policy-volatility">--</strong>
+              <span class="snapshot-meta">Quarterly backtest</span>
+            </article>
+            <article class="snapshot-card">
+              <span class="snapshot-label">Max drawdown</span>
+              <strong id="current-policy-max-drawdown">--</strong>
+              <span class="snapshot-meta">Peak-to-trough decline</span>
+            </article>
+          </div>
         </div>
-        <div class="current-policy-meta">
-          <span><strong>Policy:</strong> <span id="current-policy-name">--</span></span>
-          <span><strong>Policy signature:</strong> <span id="current-policy-signature">--</span></span>
-        </div>
-        <div class="table-container current-holdings-container">
+        <details class="portfolio-methodology">
+          <summary>Policy details</summary>
+          <div class="current-policy-meta">
+            <span><strong>Policy:</strong> <span id="current-policy-name">--</span></span>
+            <span><strong>Policy signature:</strong> <span id="current-policy-signature">--</span></span>
+          </div>
+        </details>
+        <div class="table-container current-holdings-container" role="region" aria-label="Current holdings" tabindex="0">
           <table id="current-holdings-table">
             <thead>
               <tr>
-                <th>Rank</th>
-                <th>Symbol</th>
-                <th>Target Weight</th>
-                <th>Policy Rank</th>
-                <th>Price Date</th>
-                <th>Price</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Target weight</th>
+                <th scope="col">Policy rank</th>
+                <th scope="col">Price date</th>
+                <th scope="col">Price</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -135,7 +135,7 @@
       </section>
 
       <!-- Rankings section -->
-      <section id="rankings" class="content-section">
+      <section id="rankings" class="content-section" data-no-reveal>
         <h2>Company Rankings by Fundamental Analysis</h2>
         <p class="section-lead">
           Filter the ranked universe and open company-level fundamentals when a
@@ -1037,8 +1037,9 @@
       <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
     </footer>
 
+    <script src="js/homepage-motion.js?v=20260907a" defer></script>
     <script src="js/chart-reader.js?v=20260906c" defer></script>
     <script src="js/nav.js?v=20260906c" defer></script>
-    <script src="js/script.js?v=20260906c" defer></script>
+    <script src="js/script.js?v=20260907a" defer></script>
   </body>
 </html>

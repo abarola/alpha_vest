@@ -1,0 +1,173 @@
+/* Homepage composition; shared research pages retain styles.css. */
+.homepage .homepage-intro {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 4vw, 2rem);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.homepage-eyebrow {
+  margin: 0 0 .75rem;
+  color: var(--text-accent);
+  font-size: .875rem;
+  letter-spacing: .08em;
+}
+.homepage #homepage-title {
+  margin: 0 0 .9rem;
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+.homepage-intro-copy { min-width: 0; }
+.homepage .homepage-description { margin: 0; max-width: 32rem; }
+.signature { min-width: 0; color: var(--text-accent); }
+.signature-graphic { display: block; width: 100%; height: auto; overflow: visible; }
+.signature-graphic.is-ready .signature-fallback { display: none; }
+.signature-caption {
+  display: flex;
+  justify-content: center;
+  gap: .85rem;
+  color: var(--text-muted);
+  font-size: .875rem;
+  letter-spacing: .04em;
+}
+.signature-caption span { color: var(--text-accent); }
+.homepage-sections {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+  border-bottom: 1px solid rgba(164, 193, 201, .18);
+}
+.homepage-sections .decision-step {
+  padding: .8rem 0;
+  min-height: 44px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: .875rem;
+}
+.homepage-sections .decision-step:hover,
+.homepage-sections .decision-step.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-accent);
+  background: transparent;
+}
+.homepage-sections .decision-step span {
+  display: inline;
+  width: auto;
+  height: auto;
+  color: var(--text-muted);
+  background: transparent;
+  font-size: 1rem;
+}
+.homepage .current-portfolio-section { margin-top: 1.75rem; }
+.homepage .content-section h2 {
+  margin-inline: 0;
+  max-width: 100%;
+  text-align: left;
+}
+.homepage .content-section h2::after { display: none; }
+.homepage .section-lead { margin-left: 0; text-align: left; }
+.portfolio-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.homepage .portfolio-section-heading h2 { margin-bottom: .4rem; font-size: 1.65rem; }
+.homepage .portfolio-section-heading .section-lead { margin: 0; }
+.homepage .portfolio-status {
+  flex-shrink: 0;
+  max-width: 100%;
+  margin: 0;
+  font-size: .875rem;
+  text-align: left;
+}
+.portfolio-overview { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.portfolio-summary-group {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr .85fr;
+  padding: 1rem 0;
+  border-block: 1px solid rgba(164, 193, 201, .18);
+}
+.portfolio-backtest {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: rgba(164, 193, 201, .025);
+}
+.homepage .portfolio-overview .snapshot-card {
+  min-width: 0;
+  padding: 0 1rem;
+  border: 0;
+  border-right: 1px solid rgba(164, 193, 201, .12);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.homepage .portfolio-overview .snapshot-card:last-child { border-right: 0; }
+.homepage .portfolio-overview .snapshot-label {
+  color: var(--text-secondary);
+  font-size: .875rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.homepage .portfolio-overview strong { display: block; margin: .4rem 0; font-size: 1.4rem; }
+.homepage .portfolio-overview .snapshot-meta { font-size: .8125rem; line-height: 1.45; }
+.portfolio-methodology { margin: .35rem 0 .75rem; font-size: .875rem; }
+.portfolio-methodology summary {
+  padding: .7rem 0;
+  width: fit-content;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.portfolio-methodology summary:hover { color: var(--text-primary); }
+.portfolio-methodology summary:focus-visible { outline: 2px solid var(--text-accent); outline-offset: 3px; }
+.portfolio-methodology .current-policy-meta { margin: .25rem 0 1rem; overflow-wrap: anywhere; }
+.homepage #current-holdings-table th { font-size: .875rem; letter-spacing: .01em; text-transform: none; }
+.homepage #current-holdings-table td { font-variant-numeric: tabular-nums; }
+.homepage #current-holdings-table :is(th, td):nth-child(1),
+.homepage #current-holdings-table :is(th, td):nth-child(4),
+.homepage #current-holdings-table :is(th, td):nth-child(6) { text-align: right; }
+.homepage .target-weight-cell { grid-template-columns: 4.6rem minmax(64px, 1fr); min-width: 150px; }
+.homepage .target-weight-cell > span:first-child { text-align: right; }
+
+@media (max-width: 1000px) {
+  .portfolio-overview { grid-template-columns: 1fr; gap: .75rem; }
+  .portfolio-summary-group { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .homepage .homepage-intro { padding-block: 1.75rem; gap: .5rem; grid-template-columns: minmax(0, 1fr) 100px; }
+  .homepage-eyebrow { font-size: .8125rem; letter-spacing: .025em; }
+  .homepage #homepage-title { font-size: 2rem; }
+  .homepage .homepage-description { font-size: .9375rem; }
+  .signature-graphic { width: 100%; }
+  .signature-caption { display: none; }
+  .homepage-sections { column-gap: 1rem; }
+  .homepage-sections .decision-step { font-size: .875rem; padding-block: .6rem; }
+  .portfolio-section-heading { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .homepage .portfolio-section-heading h2 { font-size: 1.5rem; }
+  .homepage .portfolio-overview .snapshot-card { padding-inline: .6rem; }
+  .homepage .portfolio-overview strong { font-size: 1.15rem; }
+  .homepage .portfolio-overview .snapshot-meta { font-size: .8125rem; }
+  .homepage .portfolio-summary-group:first-child { grid-template-columns: 1fr 1fr; row-gap: 1rem; }
+  .homepage .portfolio-summary-group:first-child .snapshot-card:first-child { grid-column: 1 / -1; border-right: 0; }
+  .homepage .portfolio-backtest { grid-template-columns: 1fr; gap: .8rem; }
+  .homepage .portfolio-backtest .snapshot-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: .5rem;
+    border-right: 0;
+  }
+  .homepage .portfolio-backtest strong { margin: 0; text-align: right; }
+  .homepage .portfolio-backtest .snapshot-meta { grid-column: 1 / -1; }
+}
