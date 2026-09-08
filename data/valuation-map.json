@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "source": "Yahoo Finance TTM cash flow and portfolio valuation analysis",
+  "reference": {
+    "priceToBook": 6.753427662181732,
+    "fcfYield": 0.04664191876828
+  },
+  "excludedCount": 3,
+  "companies": [
+    {
+      "ticker": "AAPL",
+      "priceToBook": 66.81218559205297,
+      "fcfYield": 0.028535337017223078,
+      "weight": 0.03808683982737506,
+      "changeVsMedian": 0.00904537650361275,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:02+00:00",
+      "detailsUrl": "stocks/AAPL-US.html"
+    },
+    {
+      "ticker": "ABNB",
+      "priceToBook": 15.512105101963952,
+      "fcfYield": 0.04448503274540306,
+      "weight": 0.018169279637938986,
+      "changeVsMedian": 0.020630350128817608,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:03+00:00",
+      "detailsUrl": "stocks/ABNB-US.html"
+    },
+    {
+      "ticker": "ACGL",
+      "priceToBook": 1.6444006903842339,
+      "fcfYield": 0.17737579977336917,
+      "weight": 0.017861877471773164,
+      "changeVsMedian": 0.06071834406189448,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:04+00:00",
+      "detailsUrl": "stocks/ACGL-US.html"
+    },
+    {
+      "ticker": "ADP",
+      "priceToBook": 104.59976406301827,
+      "fcfYield": 0.0424494102106312,
+      "weight": 0.022785479187716444,
+      "changeVsMedian": 0.009308810141843628,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:05+00:00",
+      "detailsUrl": "stocks/ADP-US.html"
+    },
+    {
+      "ticker": "AMR",
+      "priceToBook": 1.8635241736660377,
+      "fcfYield": -0.0005290669128800438,
+      "weight": 0.038438352601074595,
+      "changeVsMedian": -0.11730972319659044,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:06+00:00",
+      "detailsUrl": "stocks/AMR-US.html"
+    },
+    {
+      "ticker": "APP",
+      "priceToBook": 542.191684371175,
+      "fcfYield": 0.04273161816189614,
+      "weight": 0.002803224367097408,
+      "changeVsMedian": 0.035779425007018494,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:07+00:00",
+      "detailsUrl": "stocks/APP-US.html"
+    },
+    {
+      "ticker": "ASML.AS",
+      "priceToBook": 38.07604271290699,
+      "fcfYield": 0.018094374014104835,
+      "weight": 0.02956936541076311,
+      "changeVsMedian": 0.006351767771087261,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:08+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "BRK-B",
+      "priceToBook": 1.7251408193098163,
+      "fcfYield": 0.022293829884666883,
+      "weight": 0.07249977465938201,
+      "changeVsMedian": -0.052079275402405215,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:09+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "COIN",
+      "priceToBook": 5.8987337902883485,
+      "fcfYield": 0.033796433404377886,
+      "weight": 0.0017159118438905524,
+      "changeVsMedian": -0.040571092811978494,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:10+00:00",
+      "detailsUrl": "stocks/COIN-US.html"
+    },
+    {
+      "ticker": "EOG",
+      "priceToBook": 2.6897205290820883,
+      "fcfYield": 0.08604164574957385,
+      "weight": 0.023619682751452875,
+      "changeVsMedian": 0.02058050597449372,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:11+00:00",
+      "detailsUrl": "stocks/EOG-US.html"
+    },
+    {
+      "ticker": "FTNT",
+      "priceToBook": 135.11996483765031,
+      "fcfYield": 0.027251596277115302,
+      "weight": 0.07649318043610037,
+      "changeVsMedian": 0.014495978035062421,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:12+00:00",
+      "detailsUrl": "stocks/FTNT-US.html"
+    },
+    {
+      "ticker": "GCT",
+      "priceToBook": 4.241380835101959,
+      "fcfYield": 0.0852847096209862,
+      "weight": 0.016684063916965516,
+      "changeVsMedian": 0.0432589440901292,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:13+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "GOOGL",
+      "priceToBook": 10.976715741075948,
+      "fcfYield": 0.0127164345888484,
+      "weight": 0.061229370004354994,
+      "changeVsMedian": 0.0008877594934667762,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:14+00:00",
+      "detailsUrl": "stocks/GOOGL-US.html"
+    },
+    {
+      "ticker": "KLAC",
+      "priceToBook": 52.861508477172315,
+      "fcfYield": 0.01673889839285904,
+      "weight": 0.05850807541982363,
+      "changeVsMedian": -0.007395242780318542,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:16+00:00",
+      "detailsUrl": "stocks/KLAC-US.html"
+    },
+    {
+      "ticker": "KNSL",
+      "priceToBook": 4.5301381931105515,
+      "fcfYield": 0.11482682548608268,
+      "weight": 0.01703872908340449,
+      "changeVsMedian": 0.07509330364570835,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:16+00:00",
+      "detailsUrl": "stocks/KNSL-US.html"
+    },
+    {
+      "ticker": "LULU",
+      "priceToBook": 3.016508043800208,
+      "fcfYield": 0.09352989718435714,
+      "weight": 0.0021580162586813585,
+      "changeVsMedian": 0.015321844548007738,
+      "periodEnd": "2026-04-30",
+      "retrievedAt": "2026-09-03T19:54:17+00:00",
+      "detailsUrl": "stocks/LULU-US.html"
+    },
+    {
+      "ticker": "META",
+      "priceToBook": 8.331816708234294,
+      "fcfYield": 0.02631365712475254,
+      "weight": 0.03278332791465133,
+      "changeVsMedian": 0.008342345760748954,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:18+00:00",
+      "detailsUrl": "stocks/META-US.html"
+    },
+    {
+      "ticker": "MKL",
+      "priceToBook": 1.613935818176839,
+      "fcfYield": 0.0926480492729564,
+      "weight": 0.03294727413788259,
+      "changeVsMedian": -0.0009325959508958009,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:19+00:00",
+      "detailsUrl": "stocks/MKL-US.html"
+    },
+    {
+      "ticker": "MSFT",
+      "priceToBook": 12.510825211940967,
+      "fcfYield": 0.01765876303695306,
+      "weight": 0.031918675201957805,
+      "changeVsMedian": 0.0035166934663771587,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:20+00:00",
+      "detailsUrl": "stocks/MSFT-US.html"
+    },
+    {
+      "ticker": "MTG",
+      "priceToBook": 1.4409892509388804,
+      "fcfYield": 0.10921663288056091,
+      "weight": 0.01746442115592595,
+      "changeVsMedian": 0.05934574269633906,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:20+00:00",
+      "detailsUrl": "stocks/MTG-US.html"
+    },
+    {
+      "ticker": "NVDA",
+      "priceToBook": 42.12567072363936,
+      "fcfYield": 0.023006805641245895,
+      "weight": 0.06541218858506943,
+      "changeVsMedian": 0.013123875369052022,
+      "periodEnd": "2026-07-31",
+      "retrievedAt": "2026-09-03T19:54:21+00:00",
+      "detailsUrl": "stocks/NVDA-US.html"
+    },
+    {
+      "ticker": "NVO",
+      "priceToBook": 46.53191591783801,
+      "fcfYield": 0.035439575360345324,
+      "weight": 0.00550532115099269,
+      "changeVsMedian": -0.00865378775300047,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:22+00:00",
+      "detailsUrl": "stocks/NVO-US.html"
+    },
+    {
+      "ticker": "PDD",
+      "priceToBook": 8.198571912308193,
+      "fcfYield": 0.14189212844774932,
+      "weight": 0.014599002468627043,
+      "changeVsMedian": 0.12013639009356118,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:23+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "PLTR",
+      "priceToBook": 132.33531452112112,
+      "fcfYield": 0.007644544020716238,
+      "weight": 0.047380319261354345,
+      "changeVsMedian": 0.007471939836134595,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:24+00:00",
+      "detailsUrl": "stocks/PLTR-US.html"
+    },
+    {
+      "ticker": "PYPL",
+      "priceToBook": 5.970738365476245,
+      "fcfYield": 0.13563732036497209,
+      "weight": 0.002024875899664442,
+      "changeVsMedian": 0.05693451648741106,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:25+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "QCOM",
+      "priceToBook": 21.445997271897816,
+      "fcfYield": 0.05790610724100707,
+      "weight": 0.013557810448584066,
+      "changeVsMedian": 0.0167359611195625,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:26+00:00",
+      "detailsUrl": "stocks/QCOM-US.html"
+    },
+    {
+      "ticker": "RIG",
+      "priceToBook": 0.7184515798240152,
+      "fcfYield": 0.1335639527499557,
+      "weight": 0.011663172585468506,
+      "changeVsMedian": 0.2033942432733099,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:27+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "SCCO",
+      "priceToBook": 15.126701425371397,
+      "fcfYield": 0.030142302701873284,
+      "weight": 0.010724359164227272,
+      "changeVsMedian": 0.01094440898525454,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:27+00:00",
+      "detailsUrl": null
+    },
+    {
+      "ticker": "THG",
+      "priceToBook": 2.5009463892887562,
+      "fcfYield": 0.1555586218220733,
+      "weight": 0.02065862864236876,
+      "changeVsMedian": 0.10435234383390304,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:28+00:00",
+      "detailsUrl": "stocks/THG-US.html"
+    },
+    {
+      "ticker": "TSLA",
+      "priceToBook": 16.247819148910473,
+      "fcfYield": 0.0038543276424819447,
+      "weight": 0.003376549446000816,
+      "changeVsMedian": 0.002382783032820801,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:29+00:00",
+      "detailsUrl": "stocks/TSLA-US.html"
+    },
+    {
+      "ticker": "TSM",
+      "priceToBook": 16.46004425993143,
+      "fcfYield": 0.01641186923339465,
+      "weight": 0.11148961776848725,
+      "changeVsMedian": 0.009053072757484876,
+      "periodEnd": "2026-06-30",
+      "retrievedAt": "2026-09-03T19:54:30+00:00",
+      "detailsUrl": null
+    }
+  ]
+}
