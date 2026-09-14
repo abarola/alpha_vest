@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T21:53:41.156376",
+  "generated_at": "2026-09-12T09:41:19.769227",
   "policy_name": "exploit_roequality_defense_threshold07_standard_policy_v1",
   "policy_signature": "f3e987d1789d",
   "weights_signature": "a8d0ad239fae",
@@ -14,8 +14,8 @@
     "min_eval_eligible_rows": 5
   },
   "metrics": {
-    "cagr": 0.2697342619355003,
-    "annualized_volatility": 0.21661948943031786,
-    "max_drawdown": 0.1862321460059303
+    "cagr": 0.2697341204168813,
+    "annualized_volatility": 0.21661937707205484,
+    "max_drawdown": 0.18623221993197092
   }
 }

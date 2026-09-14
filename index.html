@@ -11,8 +11,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260906d" />
-    <link rel="stylesheet" href="homepage.css?v=20260907a" />
+    <link rel="stylesheet" href="homepage.css?v=20260907b" />
     <link rel="stylesheet" href="valuation-map.css?v=20260908a" />
+    <link rel="stylesheet" href="portfolio-underwater.css?v=20260914b" />
   </head>
   <body class="homepage">
     <!-- Add a proper header with navigation -->
@@ -77,6 +78,7 @@
         </div>
         <div class="portfolio-overview" aria-live="polite">
           <div class="portfolio-summary-group" role="group" aria-label="Current allocation">
+            <h3 class="portfolio-group-label">Current allocation</h3>
             <article class="snapshot-card">
               <span class="snapshot-label">Rebalance date</span>
               <strong id="current-rebalance-date">--</strong>
@@ -94,6 +96,7 @@
             </article>
           </div>
           <div class="portfolio-summary-group portfolio-backtest" role="group" aria-label="Historical policy backtest">
+            <h3 class="portfolio-group-label">Historical backtest</h3>
             <article class="snapshot-card">
               <span class="snapshot-label">Policy CAGR</span>
               <strong id="current-policy-cagr">--</strong>
@@ -433,37 +436,12 @@
             />
             <figcaption>Portfolio time under water analysis</figcaption>
             <details class="chart-explainer">
-              <summary>How to read this</summary>
+              <summary>What this tells you—and what it doesn’t</summary>
               <div class="explainer-grid">
-                <div class="explainer-item">
-                  <h5>What this shows</h5>
-                  <p>
-                    How long (days) and how deep (money) the portfolio stayed
-                    below its previous all-time high.
-                  </p>
-                </div>
-                <div class="explainer-item">
-                  <h5>How to read</h5>
-                  <p>
-                    Touching the x-axis means a new peak; below it means the
-                    portfolio is still recovering.
-                  </p>
-                </div>
-                <div class="explainer-item">
-                  <h5>Why it matters</h5>
-                  <p>
-                    Longer/deeper drawdowns usually feel worse and can force bad
-                    decisions (panic selling). It’s a practical way to compare
-                    “pain” across periods/strategies.
-                  </p>
-                </div>
-                <div class="explainer-item">
-                  <h5>Caveats</h5>
-                  <p>
-                    A long drawdown doesn’t guarantee a rebound soon; markets
-                    can stay weak longer than expected.
-                  </p>
-                </div>
+                <div class="explainer-item"><h5>Time below a high</h5><p>The upper panel shows time underwater in calendar days. Taller peaks identify longer recovery episodes within this portfolio’s displayed history.</p></div>
+                <div class="explainer-item"><h5>Drawdown depth</h5><p>The lower panel shows the monetary shortfall from a previous portfolio high. Zero means no shortfall. Amounts are not percentages and depend on portfolio size.</p></div>
+                <div class="explainer-item"><h5>Historical context</h5><p>The historical statistics compare the latest daily portfolio state with earlier observed dates. Smaller worse-than percentages mean fewer dates were worse. This does not establish a rare event across the market.</p></div>
+                <div class="explainer-item"><h5>Reading limits</h5><p>This is the existing reconstructed portfolio analysis, grouped by high-water mark. Lines connect episode summaries, not daily observations. A long recovery does not predict when a rebound will come. The original image includes its update date.</p></div>
               </div>
             </details>
           </figure>
@@ -1038,8 +1016,9 @@
       <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
     </footer>
 
-    <script src="js/homepage-motion.js?v=20260907a" defer></script>
-    <script src="js/chart-reader.js?v=20260906c" defer></script>
+    <script src="js/homepage-motion.js?v=20260907b" defer></script>
+    <script src="js/chart-reader.js?v=20260914a" defer></script>
+    <script src="js/portfolio-underwater.js?v=20260914b" defer></script>
     <script src="js/valuation-map.js?v=20260908a" defer></script>
     <script src="js/nav.js?v=20260906c" defer></script>
     <script src="js/script.js?v=20260907a" defer></script>

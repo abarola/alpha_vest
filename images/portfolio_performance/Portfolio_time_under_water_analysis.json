@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "start": "2017-11-13",
+  "as_of": "2026-09-09",
+  "reference_end": "2026-09-08",
+  "observations": 2142,
+  "current_days": 27,
+  "at_high": false,
+  "comparisons": {
+    "all": {
+      "count": 2141,
+      "counts": {
+        "longer": 1221,
+        "same_duration": 9,
+        "deeper": 1114,
+        "same_depth": 0
+      },
+      "percentages": {
+        "longer": 57.03,
+        "same_duration": 0.42,
+        "deeper": 52.03,
+        "same_depth": 0.0
+      },
+      "duration_quantiles": {
+        "50": 45.0,
+        "75": 198.0,
+        "90": 401.0,
+        "95": 562.0
+      }
+    },
+    "underwater": {
+      "count": 1845,
+      "counts": {
+        "longer": 1221,
+        "same_duration": 9,
+        "deeper": 1114,
+        "same_depth": 0
+      },
+      "percentages": {
+        "longer": 66.18,
+        "same_duration": 0.49,
+        "deeper": 60.38,
+        "same_depth": 0.0
+      },
+      "duration_quantiles": {
+        "50": 77.0,
+        "75": 231.0,
+        "90": 444.8,
+        "95": 582.8
+      }
+    }
+  },
+  "method": "Daily observed dates, latest excluded; strict worse-than comparisons; equal values counted as ties. Duration in calendar days. Monetary drawdown depth, not percentage loss. Reconstructed portfolio, not realized account performance.",
+  "image_sha256": "cef1f4159da38afbaa8b2ced55dbd9d81b0067a3237e54d34937183267bb6457"
+}

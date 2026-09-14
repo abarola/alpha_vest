@@ -19,9 +19,9 @@
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", x.toFixed(2));
     circle.setAttribute("cy", y.toFixed(2));
-    circle.setAttribute("r", i % 17 === 0 ? "2.7" : "1.65");
-    circle.setAttribute("fill", "currentColor");
-    const opacity = .3 + (i % 7) * .1;
+    circle.setAttribute("r", i % 17 === 0 ? "3.1" : "1.9");
+    circle.setAttribute("fill", i % 17 === 0 ? "#e2fff7" : "currentColor");
+    const opacity = .55 + (i % 5) * .1;
     circle.setAttribute("opacity", opacity.toFixed(1));
     layer.appendChild(circle);
     particles.push({ circle, x, y, opacity });
@@ -40,7 +40,7 @@
       const fromX = 25 + ((i * 73) % 181) / 181 * 470;
       const fromY = 20 + ((i * 47) % 179) / 179 * 175;
       return circle.animate([
-        { transform: `translate(${fromX - x}px, ${fromY - y}px)`, opacity: .08 },
+        { transform: `translate(${fromX - x}px, ${fromY - y}px)`, opacity: .25 },
         { transform: "translate(0px, 0px)", opacity },
       ], {
         duration: 2200,

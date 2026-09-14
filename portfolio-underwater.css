@@ -1,0 +1,64 @@
+/* Scoped viewing controls; the source PNG is never transformed on disk. */
+.underwater-reader .chart-reader-caption h3 { font-size:clamp(1.4rem,3vw,2rem); letter-spacing:-.035em; }
+.underwater-reader .chart-reader-toolbar[hidden] { display:none; }
+.underwater-controls { display:flex; flex-wrap:wrap; align-items:center; gap:1rem; margin:1.3rem 0; }
+.underwater-modes { display:flex; flex-wrap:wrap; gap:.25rem; padding:.3rem; background:#0b2028; border:1px solid #29434a; border-radius:12px; }
+.underwater-reader button { min-height:44px; padding:.55rem .85rem; border:1px solid transparent; border-radius:8px; background:transparent; color:#b8cdcf; font:500 .85rem var(--font-ui); cursor:pointer; }
+.underwater-reader button:hover { background:#193a40; color:#fff; }
+.underwater-reader button[aria-pressed="true"] { background:#9ce6d4; color:#102c2d; }
+.underwater-reader :is(button,input):focus-visible { outline:2px solid #baf6e5; outline-offset:3px; }
+.underwater-zoom { display:flex; align-items:center; gap:.55rem; color:#b8cdcf; font-size:.8rem; }
+.underwater-zoom input { width:95px; accent-color:#9ce6d4; min-height:44px; }
+.underwater-zoom output { min-width:3em; font-variant-numeric:tabular-nums; }
+.underwater-insight { padding:1rem 1.2rem; border-left:3px solid #9ce6d4; background:linear-gradient(100deg,#173b3c,#10272f); border-radius:0 10px 10px 0; margin-bottom:1rem; text-align:left; }
+.underwater-insight strong { color:#d8f7ef; font-size:1rem; }
+.underwater-insight p { color:#b8cdcf; font-size:.9rem; line-height:1.6; margin:.35rem 0 0; max-width:85ch; }
+.underwater-reader .underwater-frame { max-height:none; overflow:auto; border:0; border-radius:10px; background:white; }
+.underwater-canvas { position:relative; width:max(100%,720px); aspect-ratio:1280 / 460; overflow:hidden; }
+.underwater-reader .underwater-canvas img { position:absolute; top:0; left:0; display:block; width:100%; max-width:none; height:auto; margin:0; }
+.underwater-canvas[data-view="depth"] { aspect-ratio:1280 / 500; }
+.underwater-canvas[data-view="depth"] img { transform:translateY(-47.9166667%); }
+.underwater-canvas[data-view="both"] { aspect-ratio:1280 / 960; }
+.underwater-footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem 0; text-align:left; }
+.underwater-footer span { color:#9db8bb; font-size:.8rem; }
+.underwater-reader .underwater-footer button { color:#9ce6d4; }
+@media(max-width:600px) {
+  .underwater-controls { gap:.4rem; }
+  .underwater-modes { width:100%; }
+  .underwater-modes button { flex:1; padding:.5rem; font-size:.78rem; }
+  .underwater-insight { padding:.8rem; }
+  .underwater-reader .underwater-frame { border-radius:5px; }
+}
+
+.underwater-statistics { padding:1.2rem; margin:1.25rem 0; border:1px solid #315451; border-radius:12px; background:linear-gradient(125deg,#133735,#10262e 75%); text-align:left; }
+.underwater-stat-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.underwater-stat-head .underwater-kicker { margin:0 0 .35rem; color:#9ce6d4; font-size:.68rem; letter-spacing:.12em; }
+.underwater-stat-head h4 { margin:0; font:500 1.35rem var(--font-ui); color:#e5f4ef; }
+.underwater-stat-head .underwater-stat-date { margin:.4rem 0 0; font-size:.8rem; color:#acc5c3; }
+.underwater-stat-head label { display:flex; flex-direction:column; gap:.4rem; color:#b8cdcf; font-size:.75rem; }
+.underwater-stat-head select { padding:.65rem; min-height:44px; border:1px solid #486361; border-radius:7px; background:#0d252b; color:#e2f4ee; font:inherit; font-size:.85rem; max-width:100%; }
+.underwater-stat-head select:focus-visible { outline:2px solid #baf6e5; outline-offset:3px; }
+.underwater-stat-grid { display:grid; grid-template-columns:.8fr 1fr 1fr; gap:1rem; margin-top:1.4rem; }
+.underwater-stat-card { display:flex; flex-direction:column; align-items:flex-start; gap:.35rem; padding:0 .9rem 0 0; }
+.underwater-stat-card + .underwater-stat-card { border-left:1px solid #365450; padding-left:1rem; }
+.underwater-stat-card strong { font-size:clamp(1.6rem,3vw,2.6rem); color:#b1f0dd; font-weight:500; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
+.underwater-stat-card span { font-size:.85rem; color:#d3e6e2; }
+.underwater-stat-card small { font-size:.73rem; color:#a9c3c0; line-height:1.5; }
+.underwater-statistics .underwater-stat-hint { margin:1rem 0; font-size:.78rem; color:#a9c3c0; }
+.underwater-quantiles { padding:1rem 0; border-top:1px solid #365450; }
+.underwater-quantiles p { font-size:.8rem; color:#d3e6e2; margin:0 0 .8rem; }
+.underwater-quantiles > div { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:.75rem; }
+.underwater-quantiles span { display:flex; flex-direction:column; gap:.3rem; }
+.underwater-quantiles small { font-size:.73rem; color:#a9c3c0; }
+.underwater-quantiles strong { color:#e2f4ee; font-size:1rem; font-weight:500; }
+.underwater-stat-method { border-top:1px solid #365450; padding-top:.8rem; }
+.underwater-stat-method summary { color:#9ce6d4; font-size:.82rem; cursor:pointer; }
+.underwater-stat-method p,.underwater-stat-status { font-size:.85rem; line-height:1.6; color:#bfd3d0; }
+@media(max-width:600px) {
+ .underwater-statistics { padding:1rem; }
+ .underwater-stat-grid { grid-template-columns:1fr 1fr; gap:1rem; }
+ .underwater-stat-card:first-child { grid-column:1 / -1; border-bottom:1px solid #365450; padding-bottom:.8rem; }
+ .underwater-stat-card:nth-child(2) { border-left:0; padding-left:0; }
+ .underwater-stat-card + .underwater-stat-card { padding-right:0; }
+ .underwater-quantiles > div { grid-template-columns:1fr 1fr; }
+}

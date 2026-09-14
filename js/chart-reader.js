@@ -4,7 +4,7 @@
     portfolio_company_valuation_map_yahoo_ttm: ["Free cash flow yield vs. valuation", "Compare cash generation with price to tangible book value. Bubble size shows portfolio weight; dashed lines mark portfolio reference levels.", "Valuation map", "Valuation"],
     portfolio_company_roic_roe_wacc_dashboard: ["Profitability and the cost of capital", "Compare each company’s ROIC, ROE and WACC side by side, then use the detailed notes to interpret the gaps.", "Profitability", "Valuation"],
     stock_momentum_dashboard: ["Price momentum across the portfolio", "Read each company’s price alongside its 100-day and 200-day moving averages to compare the strength of its trend.", "Price momentum", "Momentum & signals"],
-    Portfolio_time_under_water_analysis: ["Time below a previous high", "Compare how long each position has remained below its previous peak, alongside the depth of its drawdown.", "Time underwater", "Drawdowns"],
+    Portfolio_time_under_water_analysis: ["Time below a previous high", "Explore how long your portfolio spent below a previous high, and how deep the drawdown became.", "Time underwater", "Drawdowns"],
     return_required_for_all_time_high: ["The climb back to an all-time high", "Compare the percentage gain each stock would need to regain its previous high.", "Recovery to a high", "Drawdowns"],
     inverse_quantile_dd: ["Current drawdown in historical context", "Compare today’s drawdown with each stock’s historical drawdown distribution. Open the reading notes for the indicator’s interpretation.", "Historical drawdowns", "Drawdowns"],
     potential_buying_signals: ["Potential entry signals", "Review the highlighted signals alongside the underlying price history and moving averages.", "Entry signals", "Momentum & signals"],
