@@ -1,6 +1,7 @@
 /* Shared presentation for the existing chart images; source data stays unchanged. */
 (() => {
   const descriptions = {
+    mises_stationarity_index_quantiles: ["Mises Stationarity Index", "Explore the maximum available history and compare the latest reading with 1-year, 5-year, 10-year and full-history quantiles. Observation counts show how much evidence each comparison uses."],
     portfolio_company_valuation_map_yahoo_ttm: ["Free cash flow yield vs. valuation", "Compare cash generation with price to tangible book value. Bubble size shows portfolio weight; dashed lines mark portfolio reference levels.", "Valuation map", "Valuation"],
     portfolio_company_roic_roe_wacc_dashboard: ["Profitability and the cost of capital", "Compare each company’s ROIC, ROE and WACC side by side, then use the detailed notes to interpret the gaps.", "Profitability", "Valuation"],
     stock_momentum_dashboard: ["Price momentum across the portfolio", "Read each company’s price alongside its 100-day and 200-day moving averages to compare the strength of its trend.", "Price momentum", "Momentum & signals"],

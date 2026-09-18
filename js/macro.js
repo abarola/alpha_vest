@@ -8,6 +8,7 @@ const MACRO_SUMMARY_PATH = "data/macro_summary.json";
 
 // Fallback images list (edit this if you don't use a manifest.json)
 const DEFAULT_IMAGES = [
+  "mises_stationarity_index_quantiles.png",
   "macro_inflation_m1_treasuries.png",
   "ism_manufacturing_actual.png",
   "usd_purchasing_power_depreciation.png",
@@ -29,6 +30,7 @@ const DEFAULT_IMAGES = [
 ];
 
 const DEFAULT_TAGS = {
+  "mises_stationarity_index_quantiles.png": ["overview", "equity", "valuation"],
   "macro_inflation_m1_treasuries.png": [
     "overview",
     "rates",

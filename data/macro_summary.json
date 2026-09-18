@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-12",
-  "as_of": "2026-09-11",
+  "generated_at": "2026-09-17",
+  "as_of": "2026-09-16",
   "metrics": [
     {
       "id": "fed_rate",
       "label": "Current Fed Rate",
       "value": 3.63,
       "unit": "%",
-      "date": "2026-09-10",
+      "date": "2026-09-15",
       "quantile": null,
       "decimals": 2
     },
@@ -33,28 +33,28 @@
     {
       "id": "vix",
       "label": "VIX",
-      "value": 17.84,
+      "value": 17.71,
       "unit": "",
-      "date": "2026-09-10",
-      "quantile": 51.64525227201504,
+      "date": "2026-09-16",
+      "quantile": 50.89276391354286,
       "decimals": 2
     },
     {
       "id": "oil",
       "label": "Brent Oil Price",
-      "value": 109.51,
+      "value": 130.8,
       "unit": "$",
-      "date": "2026-09-09",
-      "quantile": 93.21372854914196,
+      "date": "2026-09-15",
+      "quantile": 99.69785575048734,
       "decimals": 2
     },
     {
       "id": "treasury_spread",
       "label": "10Y-3M Treasury Spread",
-      "value": 0.89,
+      "value": 0.87,
       "unit": "%",
-      "date": "2026-09-11",
-      "quantile": 32.62435677530017,
+      "date": "2026-09-16",
+      "quantile": 32.10151761982337,
       "decimals": 2
     }
   ]
