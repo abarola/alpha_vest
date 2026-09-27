@@ -4,6 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("primary-nav");
   if (!header || !menuBtn || !nav) return;
 
+  // One shared addition serves hand-authored and generated pages without rewriting each page.
+  const research = nav.querySelector("#research-nav");
+  if (research && !research.querySelector('a[href$="spinoffs.html"]')) {
+    const siteIndex = new URL(header.querySelector(".brand a").href);
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = new URL("spinoffs.html", siteIndex).href;
+    link.textContent = "Spinoffs";
+    item.append(link);
+    research.append(item);
+  }
+
   const mobile = window.matchMedia("(max-width: 768px)");
   const toggles = Array.from(nav.querySelectorAll(".dropdown-toggle"));
   const closeDropdowns = () => {
