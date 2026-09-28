@@ -164,6 +164,24 @@ function formatQuantile(metric) {
   return `${quantile}th percentile`;
 }
 
+// Quantiles are percentages (0–100); compare the unrounded source value.
+function isElevatedMacroMetric(metric) {
+  return (
+    (metric.id === "vix" || metric.id === "oil") &&
+    Number.isFinite(metric.value) &&
+    Number.isFinite(metric.quantile) &&
+    metric.quantile > 90 &&
+    metric.quantile <= 100
+  );
+}
+
+function macroMetricAlert(metric) {
+  if (metric.id === "ism" && Number.isFinite(metric.value) && metric.value < 50) {
+    return "Below 50 · Contraction";
+  }
+  return isElevatedMacroMetric(metric) ? "Top 10% of history" : "";
+}
+
 function renderMacroSummary(summary) {
   const root = document.getElementById("macro-summary");
   if (!root) return;
@@ -198,6 +216,8 @@ function renderMacroSummary(summary) {
   for (const metric of summary.metrics) {
     const card = document.createElement("article");
     card.className = "macro-summary-card";
+    const alertLabel = macroMetricAlert(metric);
+    if (alertLabel) card.classList.add("macro-summary-card--elevated");
 
     const label = document.createElement("div");
     label.className = "macro-summary-label";
@@ -218,6 +238,17 @@ function renderMacroSummary(summary) {
     card.appendChild(label);
     card.appendChild(value);
     card.appendChild(detail);
+    if (alertLabel) {
+      const signal = document.createElement("div");
+      signal.className = "macro-summary-signal";
+      const dot = document.createElement("span");
+      dot.className = "macro-summary-signal-dot";
+      dot.setAttribute("aria-hidden", "true");
+      const text = document.createElement("span");
+      text.textContent = alertLabel;
+      signal.append(dot, text);
+      card.appendChild(signal);
+    }
     grid.appendChild(card);
   }
 

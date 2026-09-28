@@ -573,6 +573,79 @@ figcaption {
 }
 
 
+/* High-percentile VIX / Brent: a brief halo draws the eye, then settles. */
+.macro-summary-card--elevated {
+  position: relative;
+  isolation: isolate;
+  border-color: rgba(255, 112, 119, 0.62);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(246, 80, 98, 0.22), transparent 72%),
+    linear-gradient(145deg, #351b27, #241a24);
+  box-shadow: 0 0 0 1px rgba(255, 105, 117, 0.08),
+    0 8px 28px rgba(155, 31, 54, 0.16),
+    inset 0 1px 0 rgba(255, 185, 185, 0.12);
+}
+
+.macro-summary-card--elevated::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: 0 0 24px 4px rgba(250, 77, 97, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  animation: macro-alert-halo 3s ease-in-out 3;
+}
+
+.macro-summary-card--elevated .macro-summary-label {
+  color: #f4c3c8;
+}
+
+.macro-summary-card--elevated .macro-summary-value {
+  color: #ff959e;
+  text-shadow: 0 0 22px rgba(255, 104, 123, 0.22);
+}
+
+.macro-summary-card--elevated .macro-summary-detail {
+  color: #dbb7c1;
+}
+
+.macro-summary-signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(255, 145, 156, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 105, 124, 0.09);
+  color: #ffc3c9;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.macro-summary-signal-dot {
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff8d99;
+  box-shadow: 0 0 8px rgba(255, 105, 124, 0.65);
+}
+
+@keyframes macro-alert-halo {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .macro-summary-card--elevated::before {
+    animation: none;
+  }
+}
+
 /* === Tables (Dashboard Style) === */
 .rankings-context {
   display: grid;
