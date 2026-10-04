@@ -1,55 +1,55 @@
 {
   "schema_version": 1,
   "start": "2017-11-13",
-  "as_of": "2026-09-14",
-  "reference_end": "2026-09-11",
-  "observations": 2145,
-  "current_days": 32,
-  "at_high": false,
+  "as_of": "2026-10-01",
+  "reference_end": "2026-09-30",
+  "observations": 2158,
+  "current_days": 0,
+  "at_high": true,
   "comparisons": {
     "all": {
-      "count": 2144,
+      "count": 2157,
       "counts": {
-        "longer": 1172,
-        "same_duration": 7,
-        "deeper": 1281,
-        "same_depth": 0
+        "longer": 1858,
+        "same_duration": 299,
+        "deeper": 1858,
+        "same_depth": 299
       },
       "percentages": {
-        "longer": 54.66,
-        "same_duration": 0.33,
-        "deeper": 59.75,
-        "same_depth": 0.0
+        "longer": 86.14,
+        "same_duration": 13.86,
+        "deeper": 86.14,
+        "same_depth": 13.86
       },
       "duration_quantiles": {
-        "50": 45.0,
-        "75": 198.0,
-        "90": 400.7,
-        "95": 561.85
+        "50": 44.0,
+        "75": 197.0,
+        "90": 399.4,
+        "95": 561.2
       }
     },
     "underwater": {
-      "count": 1848,
+      "count": 1858,
       "counts": {
-        "longer": 1172,
-        "same_duration": 7,
-        "deeper": 1281,
+        "longer": 1858,
+        "same_duration": 0,
+        "deeper": 1858,
         "same_depth": 0
       },
       "percentages": {
-        "longer": 63.42,
-        "same_duration": 0.38,
-        "deeper": 69.32,
+        "longer": 100.0,
+        "same_duration": 0.0,
+        "deeper": 100.0,
         "same_depth": 0.0
       },
       "duration_quantiles": {
-        "50": 76.5,
-        "75": 230.25,
-        "90": 443.9,
-        "95": 582.65
+        "50": 75.0,
+        "75": 228.75,
+        "90": 442.3,
+        "95": 582.15
       }
     }
   },
   "method": "Daily observed dates, latest excluded; strict worse-than comparisons; equal values counted as ties. Duration in calendar days. Monetary drawdown depth, not percentage loss. Reconstructed portfolio, not realized account performance.",
-  "image_sha256": "4b6a5c419fd3e432fca256baaddca0538ad298afdc415afb8f27ad1c725a55d6"
+  "image_sha256": "bf437a2adb6d18b3ae02f64063f851cc1e3c18b68f622c60d68ebc3b62fc4888"
 }
