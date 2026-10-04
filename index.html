@@ -11,9 +11,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260906d" />
-    <link rel="stylesheet" href="homepage.css?v=20260907b" />
+    <link rel="stylesheet" href="homepage.css?v=20261004a" />
     <link rel="stylesheet" href="valuation-map.css?v=20260908a" />
-    <link rel="stylesheet" href="portfolio-underwater.css?v=20260914b" />
+    <link rel="stylesheet" href="portfolio-underwater.css?v=20260920a" />
   </head>
   <body class="homepage">
     <!-- Add a proper header with navigation -->
@@ -60,6 +60,43 @@
           </svg>
           <span class="signature-caption">Signals <span>→</span> structure</span>
         </div>
+      </section>
+
+      <section class="market-snapshot" aria-labelledby="market-snapshot-title" data-no-reveal>
+        <div class="market-snapshot-heading">
+          <div>
+            <p class="snapshot-eyebrow">Market snapshot</p>
+            <h2 id="market-snapshot-title">At a glance</h2>
+          </div>
+          <span id="index-snapshot-date" class="index-snapshot-date">Loading analysis date…</span>
+        </div>
+        <article id="index-status-card" class="index-status-card" data-state="loading" aria-live="polite">
+          <div class="index-status-copy">
+            <p class="index-card-kicker">Index status <span>CSSPX.MI · S&amp;P 500 tracker</span></p>
+            <h3 id="index-signal" class="index-signal">Loading signal…</h3>
+            <p id="index-signal-detail" class="index-signal-detail">Reading the latest saved drawdown context.</p>
+            <a class="index-source-link" href="#long-run-return-drawdown">Explore return &amp; drawdown context <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="index-score-panel">
+            <div class="index-score-heading">
+              <span class="index-score-label">Drawdown score <span>invquant_dd</span></span>
+              <div class="index-score-number"><strong id="index-score">—</strong><span> / 100</span></div>
+            </div>
+            <div id="index-score-scale" class="index-score-scale" role="img" aria-label="Index drawdown score loading">
+              <div class="index-score-track"><i id="index-score-marker" class="index-score-marker" hidden></i></div>
+              <div class="index-score-ticks" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>80</span><span>100</span></div>
+            </div>
+            <ul class="index-score-legend" aria-label="Signal thresholds">
+              <li><span class="index-legend-dot very-cheap"></span><span>Very cheap<small>&lt;25</small></span></li>
+              <li><span class="index-legend-dot cheap"></span><span>May be cheap<small>25–&lt;50</small></span></li>
+              <li><span class="index-legend-dot expensive"></span><span>Expensive<small>&gt;50–80</small></span></li>
+              <li><span class="index-legend-dot very-expensive"></span><span>Very expensive<small>&gt;80</small></span></li>
+            </ul>
+            <p class="index-score-note">Lower = deeper drawdown · 50 = neutral</p>
+          </div>
+          <p class="index-context-note">“Cheap” describes drawdown relative to the index’s own history; it does not measure fundamental value.</p>
+        </article>
+        <noscript><p class="index-context-note">Enable JavaScript to load the index snapshot, or explore the source chart below.</p></noscript>
       </section>
 
       <nav class="homepage-sections" aria-label="Portfolio sections">
@@ -595,7 +632,7 @@
             <figcaption>Performance oversold strategy</figcaption>
           </figure>
 
-          <figure class="image-card">
+          <figure id="long-run-return-drawdown" class="image-card">
             <img
               src="images/portfolio_performance/bubble_chart_Average_CAGR_invquant_dd.png"
               alt="Bubble chart average CAGR invquant dd"
@@ -1017,9 +1054,10 @@
       <p>&copy; 2025 Financial Analysis Portfolio. All rights reserved.</p>
     </footer>
 
+    <script src="js/index-snapshot.js?v=20261004a" defer></script>
     <script src="js/homepage-motion.js?v=20260907b" defer></script>
     <script src="js/chart-reader.js?v=20260914a" defer></script>
-    <script src="js/portfolio-underwater.js?v=20260914b" defer></script>
+    <script src="js/portfolio-underwater.js?v=20260920a" defer></script>
     <script src="js/valuation-map.js?v=20260908a" defer></script>
     <script src="js/nav.js?v=20260927a" defer></script>
     <script src="js/script.js?v=20260907a" defer></script>

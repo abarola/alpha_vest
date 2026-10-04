@@ -1,5 +1,15 @@
 /* Original image plus verified aggregate statistics; no raw portfolio values in the browser. */
 (() => {
+  function isDeepDrawdown(sample, atHigh) {
+    const n = sample?.count, deeper = sample?.counts?.deeper, tied = sample?.counts?.same_depth;
+    if (atHigh !== false || !Number.isInteger(n) || n <= 0 ||
+        !Number.isInteger(deeper) || !Number.isInteger(tied) ||
+        deeper < 0 || tied < 0 || deeper + tied > n) return false;
+    // Strictly shallower observations only: ties cannot make a drawdown extreme.
+    // Integer comparison avoids rounded percentages changing the 90% boundary.
+    return (n - deeper - tied) * 10 > n * 9;
+  }
+
   async function mountStatistics(card, img) {
     const section = document.createElement('section');
     section.className = 'underwater-statistics';
@@ -46,6 +56,15 @@
         const sample = data.comparisons[section.querySelector('select').value];
         const number = value => value.toLocaleString('en-GB', {maximumFractionDigits:1});
         results.replaceChildren();
+        const deepAlert = isDeepDrawdown(sample, data.at_high);
+        card.classList.toggle('underwater-reader--alert', deepAlert);
+        section.classList.toggle('underwater-statistics--alert', deepAlert);
+        if (deepAlert) {
+          const signal = document.createElement('p');
+          signal.className = 'underwater-depth-signal';
+          signal.textContent = 'Drawdown depth · Top 10%';
+          results.append(signal);
+        }
         const grid = document.createElement('div'); grid.className = 'underwater-stat-grid';
         const current = document.createElement('div'); current.className = 'underwater-stat-card';
         const value = document.createElement('strong'); value.textContent = `${number(data.current_days)} days`;
@@ -58,11 +77,13 @@
           const text = document.createElement('span'); text.textContent = title;
           const detail = document.createElement('small');
           detail.textContent = sample.count ? `${number(sample.counts[key])} of ${number(sample.count)} dates · ${number(sample.percentages[tie])}% tied` : 'No earlier dates were below a high.';
+          if (key === 'deeper' && deepAlert) cell.classList.add('underwater-stat-card--alert');
           cell.append(big, text, detail); grid.append(cell);
         }
         results.append(grid);
         const hint = document.createElement('p'); hint.className = 'underwater-stat-hint';
         hint.textContent = `Lower percentages mean this state was less common in the selected history. Comparison ends ${date(data.reference_end)}.`;
+        if (deepAlert) hint.textContent += ' Current drawdown is strictly deeper than over 90% of the selected earlier dates; tied depths do not count as shallower.';
         results.append(hint);
         if (sample.count) {
           const quantiles = document.createElement('div'); quantiles.className = 'underwater-quantiles';
@@ -81,6 +102,8 @@
       }
       section.querySelector('select').addEventListener('change',render); render();
     } catch (error) {
+      card.classList.remove('underwater-reader--alert');
+      section.classList.remove('underwater-statistics--alert');
       section.replaceChildren();
       const status = document.createElement('p'); status.className = 'underwater-stat-status'; status.setAttribute('role','status');
       status.textContent = error.message === 'mismatch' ? 'Historical statistics do not match this chart version. Regenerate the chart and its statistics together. The original chart is still available below.' : 'Historical statistics could not be verified. The original chart is still available below; regenerate its statistics or refresh to try again.';

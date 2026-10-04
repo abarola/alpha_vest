@@ -62,3 +62,39 @@
  .underwater-stat-card + .underwater-stat-card { padding-right:0; }
  .underwater-quantiles > div { grid-template-columns:1fr 1fr; }
 }
+
+/* Depth warning uses verified counts for the selected historical sample. */
+.underwater-reader.underwater-reader--alert {
+  border-color:rgba(255,112,119,.62);
+  box-shadow:0 0 0 1px rgba(255,105,117,.08), 0 8px 28px rgba(155,31,54,.16);
+}
+.underwater-statistics--alert {
+  position:relative;
+  isolation:isolate;
+  border-color:rgba(255,112,119,.62);
+  background:radial-gradient(ellipse at 100% 0%,rgba(246,80,98,.2),transparent 72%),linear-gradient(145deg,#351b27,#241a24);
+}
+.underwater-statistics--alert::before {
+  content:""; position:absolute; inset:-1px; z-index:-1; border-radius:inherit;
+  box-shadow:0 0 24px 4px rgba(250,77,97,.24); opacity:0; pointer-events:none;
+  animation:underwater-depth-halo 3s ease-in-out 3;
+}
+.underwater-statistics--alert .underwater-kicker,
+.underwater-stat-card--alert strong { color:#ff959e; }
+.underwater-depth-signal {
+  display:inline-flex; align-items:center; gap:.45rem;
+  margin:1rem 0 0; padding:.4rem .7rem; border-radius:999px;
+  border:1px solid rgba(255,145,156,.25); background:rgba(255,105,124,.09);
+  color:#ffc3c9; font-size:.78rem; font-weight:600; line-height:1.4;
+}
+.underwater-depth-signal::before {
+  content:""; flex:0 0 5px; width:5px; height:5px; border-radius:50%;
+  background:#ff8d99; box-shadow:0 0 8px rgba(255,105,124,.65);
+}
+@keyframes underwater-depth-halo {
+  0%,100% { opacity:0; }
+  50% { opacity:1; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .underwater-statistics--alert::before { animation:none; }
+}

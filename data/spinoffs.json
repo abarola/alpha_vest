@@ -3,10 +3,80 @@
   "source": {
     "name": "The Zen of Investing — Recent Spinoffs",
     "url": "https://thezenofinvesting.com/recent-spinoffs/",
-    "source_updated_at": "2026-08-04"
+    "source_updated_at": "2026-10-02"
   },
-  "fetched_at": "2026-09-27T07:51:28Z",
+  "fetched_at": "2026-10-04T07:22:17Z",
   "events": [
+    {
+      "id": "fe622d5927e263ab",
+      "parent": "Modine Manufacturing ( MOD )",
+      "details": "Spin-merge of performance tech business with Gentherm ( THRM )",
+      "parent_tickers": [
+        {
+          "symbol": "MOD",
+          "url": "http://finance.yahoo.com/q?s=MOD"
+        }
+      ],
+      "separated_tickers": [
+        {
+          "symbol": "THRM",
+          "url": "http://finance.yahoo.com/q?s=THRM"
+        }
+      ],
+      "timing": "10/1/2026",
+      "date": "2026-10-01",
+      "documents": [
+        {
+          "label": "Press release",
+          "url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926008087/mod-20260129xex99d1.htm"
+        },
+        {
+          "label": "Inv presentation (1/26)",
+          "url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926008087/mod-20260129xex99d2.htm"
+        },
+        {
+          "label": "Prospectus",
+          "url": "https://www.sec.gov/Archives/edgar/data/903129/000119312526349132/d101885d425.htm"
+        }
+      ]
+    },
+    {
+      "id": "d79450f32c401567",
+      "parent": "Corteva ( CTVA )",
+      "details": "Spin of Vylor seed unit ( VYLR )",
+      "parent_tickers": [
+        {
+          "symbol": "CTVA",
+          "url": "http://finance.yahoo.com/q?s=CTVA"
+        }
+      ],
+      "separated_tickers": [
+        {
+          "symbol": "VYLR",
+          "url": "http://finance.yahoo.com/q?s=VYLR"
+        }
+      ],
+      "timing": "10/1/2026",
+      "date": "2026-10-01",
+      "documents": [
+        {
+          "label": "Press release",
+          "url": "https://www.sec.gov/Archives/edgar/data/1755672/000119312525225842/d867836dex991.htm"
+        },
+        {
+          "label": "Inv presentation (10/25)",
+          "url": "http://thezenofinvesting.com/wp-content/uploads/CTVA-Investor-Call_Final.pdf"
+        },
+        {
+          "label": "Inv presentation (9/26)",
+          "url": "http://thezenofinvesting.com/wp-content/uploads/Vylor-Investor-Day-9.15.26.pdf"
+        },
+        {
+          "label": "Prospectus",
+          "url": "https://www.sec.gov/Archives/edgar/data/2128626/000119312526396054/ck0002128626-ex99_1.htm"
+        }
+      ]
+    },
     {
       "id": "3037d1b9f4768513",
       "parent": "Resideo Technologies ( REZI )",
