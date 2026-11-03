@@ -1,55 +1,55 @@
 {
   "schema_version": 1,
   "start": "2017-11-13",
-  "as_of": "2026-10-01",
-  "reference_end": "2026-09-30",
-  "observations": 2158,
-  "current_days": 0,
-  "at_high": true,
+  "as_of": "2026-10-30",
+  "reference_end": "2026-10-29",
+  "observations": 2179,
+  "current_days": 24,
+  "at_high": false,
   "comparisons": {
     "all": {
-      "count": 2157,
+      "count": 2178,
       "counts": {
-        "longer": 1858,
-        "same_duration": 299,
-        "deeper": 1858,
-        "same_depth": 299
-      },
-      "percentages": {
-        "longer": 86.14,
-        "same_duration": 13.86,
-        "deeper": 86.14,
-        "same_depth": 13.86
-      },
-      "duration_quantiles": {
-        "50": 44.0,
-        "75": 197.0,
-        "90": 399.4,
-        "95": 561.2
-      }
-    },
-    "underwater": {
-      "count": 1858,
-      "counts": {
-        "longer": 1858,
-        "same_duration": 0,
-        "deeper": 1858,
+        "longer": 1244,
+        "same_duration": 10,
+        "deeper": 509,
         "same_depth": 0
       },
       "percentages": {
-        "longer": 100.0,
-        "same_duration": 0.0,
-        "deeper": 100.0,
+        "longer": 57.12,
+        "same_duration": 0.46,
+        "deeper": 23.37,
         "same_depth": 0.0
       },
       "duration_quantiles": {
-        "50": 75.0,
-        "75": 228.75,
-        "90": 442.3,
-        "95": 582.15
+        "50": 43.0,
+        "75": 195.75,
+        "90": 397.3,
+        "95": 560.15
+      }
+    },
+    "underwater": {
+      "count": 1870,
+      "counts": {
+        "longer": 1244,
+        "same_duration": 10,
+        "deeper": 509,
+        "same_depth": 0
+      },
+      "percentages": {
+        "longer": 66.52,
+        "same_duration": 0.53,
+        "deeper": 27.22,
+        "same_depth": 0.0
+      },
+      "duration_quantiles": {
+        "50": 73.0,
+        "75": 226.0,
+        "90": 441.1,
+        "95": 581.55
       }
     }
   },
   "method": "Daily observed dates, latest excluded; strict worse-than comparisons; equal values counted as ties. Duration in calendar days. Monetary drawdown depth, not percentage loss. Reconstructed portfolio, not realized account performance.",
-  "image_sha256": "bf437a2adb6d18b3ae02f64063f851cc1e3c18b68f622c60d68ebc3b62fc4888"
+  "image_sha256": "f27195e485512e1122ea6202e683f872ae7200549e2bfbbde5b95da4d5f3ee8b"
 }

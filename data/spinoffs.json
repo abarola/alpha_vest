@@ -3,10 +3,43 @@
   "source": {
     "name": "The Zen of Investing — Recent Spinoffs",
     "url": "https://thezenofinvesting.com/recent-spinoffs/",
-    "source_updated_at": "2026-10-02"
+    "source_updated_at": "2026-10-27"
   },
-  "fetched_at": "2026-10-04T07:22:17Z",
+  "fetched_at": "2026-11-03T18:42:12Z",
   "events": [
+    {
+      "id": "49f87801bbe87fa6",
+      "parent": "Madison Square Garden Sports ( MSGS )( MSGK )",
+      "details": "Spin of MSG Rangers business ( MSGR )",
+      "parent_tickers": [
+        {
+          "symbol": "MSGS",
+          "url": "http://finance.yahoo.com/q?s=MSGS"
+        },
+        {
+          "symbol": "MSGK",
+          "url": "http://finance.yahoo.com/q?s=MSGK"
+        }
+      ],
+      "separated_tickers": [
+        {
+          "symbol": "MSGR",
+          "url": "http://finance.yahoo.com/q?s=MSGR"
+        }
+      ],
+      "timing": "10/27/2026",
+      "date": "2026-10-27",
+      "documents": [
+        {
+          "label": "Press release",
+          "url": "https://www.sec.gov/ix?doc=/Archives/edgar/data/1636519/000119312526056081/d286117d8k.htm"
+        },
+        {
+          "label": "Prospectus",
+          "url": "https://www.sec.gov/Archives/edgar/data/2132873/000119312526409182/d127770dex991.htm"
+        }
+      ]
+    },
     {
       "id": "fe622d5927e263ab",
       "parent": "Modine Manufacturing ( MOD )",
