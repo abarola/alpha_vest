@@ -1,55 +1,55 @@
 {
   "schema_version": 1,
   "start": "2017-11-13",
-  "as_of": "2026-10-30",
-  "reference_end": "2026-10-29",
-  "observations": 2179,
-  "current_days": 24,
+  "as_of": "2026-11-05",
+  "reference_end": "2026-11-04",
+  "observations": 2183,
+  "current_days": 30,
   "at_high": false,
   "comparisons": {
     "all": {
-      "count": 2178,
+      "count": 2182,
       "counts": {
-        "longer": 1244,
-        "same_duration": 10,
-        "deeper": 509,
+        "longer": 1185,
+        "same_duration": 8,
+        "deeper": 279,
         "same_depth": 0
       },
       "percentages": {
-        "longer": 57.12,
-        "same_duration": 0.46,
-        "deeper": 23.37,
+        "longer": 54.31,
+        "same_duration": 0.37,
+        "deeper": 12.79,
         "same_depth": 0.0
       },
       "duration_quantiles": {
-        "50": 43.0,
-        "75": 195.75,
-        "90": 397.3,
-        "95": 560.15
+        "50": 42.5,
+        "75": 195.0,
+        "90": 396.7,
+        "95": 559.95
       }
     },
     "underwater": {
-      "count": 1870,
+      "count": 1876,
       "counts": {
-        "longer": 1244,
-        "same_duration": 10,
-        "deeper": 509,
+        "longer": 1185,
+        "same_duration": 8,
+        "deeper": 279,
         "same_depth": 0
       },
       "percentages": {
-        "longer": 66.52,
-        "same_duration": 0.53,
-        "deeper": 27.22,
+        "longer": 63.17,
+        "same_duration": 0.43,
+        "deeper": 14.87,
         "same_depth": 0.0
       },
       "duration_quantiles": {
-        "50": 73.0,
-        "75": 226.0,
-        "90": 441.1,
-        "95": 581.55
+        "50": 72.0,
+        "75": 225.25,
+        "90": 440.5,
+        "95": 581.25
       }
     }
   },
   "method": "Daily observed dates, latest excluded; strict worse-than comparisons; equal values counted as ties. Duration in calendar days. Monetary drawdown depth, not percentage loss. Reconstructed portfolio, not realized account performance.",
-  "image_sha256": "f27195e485512e1122ea6202e683f872ae7200549e2bfbbde5b95da4d5f3ee8b"
+  "image_sha256": "4e6d67e454878c0c53ec2124e5b85494a5724fa713833b2f0acf8bc8b094f323"
 }
