@@ -12,6 +12,8 @@
     />
     <link rel="stylesheet" href="styles.css?v=20260906d" />
     <link rel="stylesheet" href="homepage.css?v=20261004a" />
+    <link rel="stylesheet" href="market-movers.css?v=20261109a" />
+    <link rel="stylesheet" href="break-even.css?v=20261110a" />
     <link rel="stylesheet" href="valuation-map.css?v=20260908a" />
     <link rel="stylesheet" href="portfolio-underwater.css?v=20260920a" />
   </head>
@@ -33,6 +35,7 @@
               <li><a href="superinvestors.html">Superinvestors</a></li>
               <li><a href="venture-capital.html">Venture Capital</a></li>
               <li><a href="spinoffs.html">Spinoffs</a></li>
+              <li><a href="sector-monitor.html">Sector Monitor</a></li>
               <li><a href="power_law.html">Power Law</a></li>
               <li><a href="index.html#portfolio">Portfolio Risk Signals</a></li>
               <li><a href="index.html#stats">Index Statistics</a></li>
@@ -309,6 +312,64 @@
           <div class="next-action-links">
             <a class="next-action-link" href="#rankings">Go to Rankings</a>
           </div>
+        </div>
+      </section>
+
+      <section id="break-even" class="content-section break-even" aria-labelledby="break-even-title" data-no-reveal>
+        <h2 id="break-even-title">The Break-Even Curve</h2>
+        <div class="break-even-card">
+          <div class="break-even-copy">
+            <h3>How much gain makes up for a loss?</h3>
+            <p id="break-even-instructions">
+              Move the slider to choose a hypothetical loss. The horizontal axis shows
+              the loss from the starting value. The vertical axis shows the gain the
+              remaining investment needs to get back to that value. The dot marks your selection.
+            </p>
+          </div>
+          <div class="break-even-interactive" hidden>
+            <div class="break-even-readouts">
+              <label for="break-even-loss">Loss <strong data-loss-value aria-hidden="true">50%</strong></label>
+              <output for="break-even-loss" aria-live="polite" aria-atomic="true">
+                Gain needed <strong data-gain-value>+100%</strong>
+              </output>
+            </div>
+            <input id="break-even-loss" type="range" min="0" max="100" step="1" value="50" aria-describedby="break-even-instructions" />
+            <figure class="break-even-figure">
+              <div class="break-even-axis-y">Gain needed (%)</div>
+              <svg class="break-even-plot" role="img" aria-labelledby="break-even-plot-title break-even-plot-desc">
+                <title id="break-even-plot-title">Gain required to recover from a loss</title>
+                <desc id="break-even-plot-desc">The gain rises faster than the loss. The axes expand for losses above 80 percent.</desc>
+                <defs>
+                  <linearGradient id="break-even-area-fill" x2="0" y2="1">
+                    <stop offset="0" stop-opacity=".23" />
+                    <stop offset="1" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <g aria-hidden="true">
+                  <path data-area fill="url(#break-even-area-fill)"></path>
+                  <g data-grid></g>
+                  <path data-curve fill="none"></path>
+                  <g data-selection>
+                    <path data-guides fill="none"></path>
+                    <circle data-dot r="5"></circle>
+                  </g>
+                </g>
+              </svg>
+              <figcaption>Loss from starting value (%)</figcaption>
+            </figure>
+          </div>
+          <div class="break-even-context">
+            <p class="break-even-example">
+              <strong>Example:</strong> A 50% loss takes €100 down to €50.
+              A gain of €50 on the remaining €50 is a <strong>100% gain</strong>.
+            </p>
+            <p class="break-even-note">
+              The curve gets steeper as the amount left gets smaller. At a 100% loss,
+              there is nothing left to grow. This shows the gain needed, not how likely
+              recovery is or how long it might take.
+            </p>
+          </div>
+          <noscript><p class="break-even-note">A 20% loss requires a 25% gain; an 80% loss requires a 400% gain. Enable JavaScript to explore the curve.</p></noscript>
         </div>
       </section>
 
@@ -827,6 +888,47 @@
       <section id="stats" class="content-section">
         <h2>US Stock Market Index Statistics</h2>
 
+        <section id="market-movers" aria-labelledby="market-movers-title">
+          <div class="market-movers-header">
+            <div>
+              <p class="market-movers-eyebrow">Constituent returns</p>
+              <h3 id="market-movers-title">S&amp;P 500 market movers</h3>
+              <p class="market-movers-lead">The strongest gains and steepest losses across the index.</p>
+            </div>
+            <div class="market-movers-switch" role="group" aria-label="Return period" hidden>
+              <button type="button" data-period="1d" aria-pressed="true" aria-controls="market-movers-lists">1 day</button>
+              <button type="button" data-period="3m" aria-pressed="false" aria-controls="market-movers-lists">3 months</button>
+            </div>
+          </div>
+          <p class="market-movers-status" role="status">Market movers data is unavailable.</p>
+          <div class="market-movers-results" hidden>
+            <div id="market-movers-lists" class="market-movers-grid">
+              <section class="market-movers-panel market-movers-up" aria-labelledby="market-movers-up">
+                <header>
+                  <h4 id="market-movers-up"><span aria-hidden="true">↑</span> Gainers</h4>
+                  <span class="market-movers-breadth"></span>
+                </header>
+                <ol role="list" aria-labelledby="market-movers-up"></ol>
+              </section>
+              <section class="market-movers-panel market-movers-down" aria-labelledby="market-movers-down">
+                <header>
+                  <h4 id="market-movers-down"><span aria-hidden="true">↓</span> Losers</h4>
+                  <span class="market-movers-breadth"></span>
+                </header>
+                <ol role="list" aria-labelledby="market-movers-down"></ol>
+              </section>
+            </div>
+            <div class="market-movers-footer">
+              <button class="market-movers-expand" type="button" aria-expanded="false" aria-controls="market-movers-lists">Show all 15 per side</button>
+              <details class="market-movers-notes">
+                <summary>Data and method</summary>
+                <p>Yahoo Finance closes adjusted for dividends and splits, for the current S&amp;P 500 constituents. The one-day window uses consecutive trading closes. The three-month window starts at the trading close on or before the calendar cutoff. Both lists share a linear scale for the selected window.</p>
+                <p class="market-movers-missing"></p>
+              </details>
+            </div>
+          </div>
+        </section>
+
         <div id="gallery-indext-stat" class="image-section">
           <figure class="image-card">
             <img
@@ -1055,11 +1157,13 @@
     </footer>
 
     <script src="js/index-snapshot.js?v=20261004a" defer></script>
+    <script src="js/market-movers.js?v=20261109a" defer></script>
+    <script src="js/break-even.js?v=20261110a" defer></script>
     <script src="js/homepage-motion.js?v=20260907b" defer></script>
     <script src="js/chart-reader.js?v=20260914a" defer></script>
     <script src="js/portfolio-underwater.js?v=20260920a" defer></script>
     <script src="js/valuation-map.js?v=20260908a" defer></script>
-    <script src="js/nav.js?v=20260927a" defer></script>
+    <script src="js/nav.js?v=20261109b" defer></script>
     <script src="js/script.js?v=20260907a" defer></script>
   </body>
 </html>

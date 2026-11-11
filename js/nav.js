@@ -4,16 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("primary-nav");
   if (!header || !menuBtn || !nav) return;
 
-  // One shared addition serves hand-authored and generated pages without rewriting each page.
+  // Shared Research links also serve generated stock pages.
+  const siteIndex = new URL(header.querySelector(".brand a").href);
   const research = nav.querySelector("#research-nav");
-  if (research && !research.querySelector('a[href$="spinoffs.html"]')) {
-    const siteIndex = new URL(header.querySelector(".brand a").href);
-    const item = document.createElement("li");
-    const link = document.createElement("a");
-    link.href = new URL("spinoffs.html", siteIndex).href;
-    link.textContent = "Spinoffs";
-    item.append(link);
-    research.append(item);
+  if (research) {
+    for (const [page, label] of [["spinoffs.html", "Spinoffs"], ["sector-monitor.html", "Sector Monitor"]]) {
+      if (research.querySelector(`a[href$="${page}"]`)) continue;
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = new URL(page, siteIndex).href;
+      link.textContent = label;
+      item.append(link);
+      research.append(item);
+    }
   }
 
   const mobile = window.matchMedia("(max-width: 768px)");
@@ -84,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   mobile.addEventListener("change", closeMenu);
 
-  const siteIndex = new URL(header.querySelector(".brand a").href);
   const currentPath = location.pathname.endsWith("/")
     ? `${location.pathname}index.html`
     : location.pathname;

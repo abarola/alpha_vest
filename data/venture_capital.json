@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-05T13:53:42+00:00",
+  "generated_at": "2026-11-10T09:36:02+00:00",
   "source": "Venture_Capital_portfolio_analysis.xlsx",
   "summary": {
-    "company_count": 498,
+    "company_count": 499,
     "fund_count": 10,
-    "co_invested_count": 49,
+    "co_invested_count": 46,
     "max_overlap": 6,
-    "investment_records": 569
+    "investment_records": 568
   },
   "funds": [
     {
       "id": "NEA_portfolio_invested",
       "name": "NEA",
-      "company_count": 221
+      "company_count": 223
     },
     {
       "id": "kleiner_perkins_portfolio_invested",
@@ -27,17 +27,12 @@
     {
       "id": "sequoia_portfolio_invested",
       "name": "Sequoia Capital",
-      "company_count": 52
+      "company_count": 62
     },
     {
       "id": "mayfield_fund_portfolio_invested",
       "name": "Mayfield",
       "company_count": 37
-    },
-    {
-      "id": "khosla_portfolio_invested",
-      "name": "Khosla Ventures",
-      "company_count": 28
     },
     {
       "id": "index_ventures_portfolio_invested",
@@ -55,6 +50,11 @@
       "company_count": 22
     },
     {
+      "id": "khosla_portfolio_invested",
+      "name": "Khosla Ventures",
+      "company_count": 15
+    },
+    {
       "id": "a16z_portfolio_invested",
       "name": "Andreessen Horowitz",
       "company_count": 13
@@ -63,19 +63,19 @@
   "distribution": [
     {
       "investor_count": 1,
-      "company_count": 449
+      "company_count": 453
     },
     {
       "investor_count": 2,
-      "company_count": 37
+      "company_count": 34
     },
     {
       "investor_count": 3,
-      "company_count": 6
+      "company_count": 5
     },
     {
       "investor_count": 4,
-      "company_count": 3
+      "company_count": 4
     },
     {
       "investor_count": 5,
@@ -152,6 +152,16 @@
       ]
     },
     {
+      "name": "Robinhood",
+      "total_invested": 4,
+      "funds": [
+        "NEA",
+        "Kleiner Perkins",
+        "Sequoia Capital",
+        "Index Ventures"
+      ]
+    },
+    {
       "name": "Coinbase",
       "total_invested": 3,
       "funds": [
@@ -176,15 +186,6 @@
         "Founders Fund",
         "Andreessen Horowitz",
         "Mayfield"
-      ]
-    },
-    {
-      "name": "Robinhood",
-      "total_invested": 3,
-      "funds": [
-        "NEA",
-        "Kleiner Perkins",
-        "Index Ventures"
       ]
     },
     {
@@ -219,14 +220,6 @@
       "funds": [
         "Y Combinator",
         "Sequoia Capital"
-      ]
-    },
-    {
-      "name": "Amyris",
-      "total_invested": 2,
-      "funds": [
-        "Khosla Ventures",
-        "Kleiner Perkins"
       ]
     },
     {
@@ -382,22 +375,6 @@
       ]
     },
     {
-      "name": "Nubank",
-      "total_invested": 2,
-      "funds": [
-        "Founders Fund",
-        "Sequoia Capital"
-      ]
-    },
-    {
-      "name": "Opendoor",
-      "total_invested": 2,
-      "funds": [
-        "Khosla Ventures",
-        "NEA"
-      ]
-    },
-    {
       "name": "Oscar",
       "total_invested": 2,
       "funds": [
@@ -419,14 +396,6 @@
       "funds": [
         "Greylock",
         "Sequoia Capital"
-      ]
-    },
-    {
-      "name": "Pardes Biosciences",
-      "total_invested": 2,
-      "funds": [
-        "Khosla Ventures",
-        "Y Combinator"
       ]
     },
     {
@@ -454,6 +423,14 @@
       ]
     },
     {
+      "name": "ServiceNow",
+      "total_invested": 2,
+      "funds": [
+        "Greylock",
+        "Sequoia Capital"
+      ]
+    },
+    {
       "name": "Snap",
       "total_invested": 2,
       "funds": [
@@ -466,7 +443,7 @@
       "total_invested": 2,
       "funds": [
         "Founders Fund",
-        "Andreessen Horowitz"
+        "Sequoia Capital"
       ]
     },
     {
@@ -719,6 +696,13 @@
       ]
     },
     {
+      "name": "Amyris",
+      "total_invested": 1,
+      "funds": [
+        "Kleiner Perkins"
+      ]
+    },
+    {
       "name": "Anduril",
       "total_invested": 1,
       "funds": [
@@ -842,13 +826,6 @@
       "total_invested": 1,
       "funds": [
         "NEA"
-      ]
-    },
-    {
-      "name": "Ausra",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
       ]
     },
     {
@@ -1174,13 +1151,6 @@
       ]
     },
     {
-      "name": "Citus Data",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
-      ]
-    },
-    {
       "name": "Clarify",
       "total_invested": 1,
       "funds": [
@@ -1192,13 +1162,6 @@
       "total_invested": 1,
       "funds": [
         "NEA"
-      ]
-    },
-    {
-      "name": "Climate Corporation",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
       ]
     },
     {
@@ -1248,13 +1211,6 @@
       "total_invested": 1,
       "funds": [
         "Mayfield"
-      ]
-    },
-    {
-      "name": "Contrail",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
       ]
     },
     {
@@ -2357,6 +2313,13 @@
       ]
     },
     {
+      "name": "Nubank",
+      "total_invested": 1,
+      "funds": [
+        "Founders Fund"
+      ]
+    },
+    {
       "name": "Nutanix",
       "total_invested": 1,
       "funds": [
@@ -2420,6 +2383,13 @@
       ]
     },
     {
+      "name": "Opendoor",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
       "name": "Oportun",
       "total_invested": 1,
       "funds": [
@@ -2449,6 +2419,13 @@
     },
     {
       "name": "Oric",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
+      "name": "Ouro",
       "total_invested": 1,
       "funds": [
         "NEA"
@@ -2504,10 +2481,10 @@
       ]
     },
     {
-      "name": "Passif Semiconductor",
+      "name": "Pardes Biosciences",
       "total_invested": 1,
       "funds": [
-        "Khosla Ventures"
+        "Y Combinator"
       ]
     },
     {
@@ -2515,13 +2492,6 @@
       "total_invested": 1,
       "funds": [
         "Founders Fund"
-      ]
-    },
-    {
-      "name": "PayPal",
-      "total_invested": 1,
-      "funds": [
-        "Sequoia Capital"
       ]
     },
     {
@@ -2784,13 +2754,6 @@
       ]
     },
     {
-      "name": "Raxium",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
-      ]
-    },
-    {
       "name": "Redback Networks",
       "total_invested": 1,
       "funds": [
@@ -2850,7 +2813,7 @@
       "name": "RingCentral",
       "total_invested": 1,
       "funds": [
-        "Khosla Ventures"
+        "Sequoia Capital"
       ]
     },
     {
@@ -2886,6 +2849,13 @@
       "total_invested": 1,
       "funds": [
         "Mayfield"
+      ]
+    },
+    {
+      "name": "Ruckus Networks",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
       ]
     },
     {
@@ -2945,13 +2915,6 @@
       ]
     },
     {
-      "name": "SeaMicro",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
-      ]
-    },
-    {
       "name": "Seattle Genetics",
       "total_invested": 1,
       "funds": [
@@ -2987,13 +2950,6 @@
       ]
     },
     {
-      "name": "ServiceNow",
-      "total_invested": 1,
-      "funds": [
-        "Greylock"
-      ]
-    },
-    {
       "name": "Signal Sciences",
       "total_invested": 1,
       "funds": [
@@ -3015,17 +2971,17 @@
       ]
     },
     {
-      "name": "Skybox Imaging",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
-      ]
-    },
-    {
       "name": "Slack",
       "total_invested": 1,
       "funds": [
         "Andreessen Horowitz"
+      ]
+    },
+    {
+      "name": "Snowflake",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
       ]
     },
     {
@@ -3085,6 +3041,13 @@
       ]
     },
     {
+      "name": "SpaceXSI",
+      "total_invested": 1,
+      "funds": [
+        "Andreessen Horowitz"
+      ]
+    },
+    {
       "name": "Spectrian",
       "total_invested": 1,
       "funds": [
@@ -3131,6 +3094,13 @@
       "total_invested": 1,
       "funds": [
         "NEA"
+      ]
+    },
+    {
+      "name": "Sumo Logic",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
       ]
     },
     {
@@ -3372,6 +3342,20 @@
       ]
     },
     {
+      "name": "UiPath",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
+      "name": "Unity",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
       "name": "Until",
       "total_invested": 1,
       "funds": [
@@ -3442,13 +3426,6 @@
       ]
     },
     {
-      "name": "View",
-      "total_invested": 1,
-      "funds": [
-        "Khosla Ventures"
-      ]
-    },
-    {
       "name": "Virata",
       "total_invested": 1,
       "funds": [
@@ -3491,6 +3468,13 @@
       ]
     },
     {
+      "name": "Wallapop",
+      "total_invested": 1,
+      "funds": [
+        "NEA"
+      ]
+    },
+    {
       "name": "Wave",
       "total_invested": 1,
       "funds": [
@@ -3516,6 +3500,13 @@
       "total_invested": 1,
       "funds": [
         "NEA"
+      ]
+    },
+    {
+      "name": "Western Digital",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
       ]
     },
     {
@@ -3575,6 +3566,13 @@
       ]
     },
     {
+      "name": "Yahoo",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
+      ]
+    },
+    {
       "name": "Zenas BioPharma",
       "total_invested": 1,
       "funds": [
@@ -3600,6 +3598,13 @@
       "total_invested": 1,
       "funds": [
         "Founders Fund"
+      ]
+    },
+    {
+      "name": "Zoom",
+      "total_invested": 1,
+      "funds": [
+        "Sequoia Capital"
       ]
     },
     {

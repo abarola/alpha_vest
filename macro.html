@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Macroeconomic Dashboard</title>
     <link rel="stylesheet" href="styles.css?v=20260920a" />
+    <link rel="stylesheet" href="eurusd-macro.css?v=20261107a" />
     <!-- Add this to the <head> section of your HTML files -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,6 +53,17 @@
           <div class="loading">Loading macro summary...</div>
         </div>
 
+        <section id="eurusd-macro" class="macro-summary fx-panel" aria-labelledby="fx-heading">
+          <div class="macro-summary-header">
+            <div>
+              <h3 id="fx-heading">The euro and the US yield advantage</h3>
+              <p class="fx-intro">EUR/USD alongside the US–Germany 10-year yield spread.</p>
+            </div>
+            <span id="fx-status" class="macro-summary-meta" role="status">Loading currency and rates…</span>
+          </div>
+          <div id="fx-content" hidden></div>
+        </section>
+
         <div class="macro-controls">
           <div class="macro-info"><strong>Folder:</strong> images/macro</div>
           <div id="macro-filters" class="macro-filters"></div>
@@ -77,5 +89,6 @@
     <script src="js/chart-reader.js?v=20260918a" defer></script>
     <script src="js/nav.js?v=20260906c" defer></script>
     <script src="js/macro.js?v=20260920b" defer></script>
+    <script src="js/eurusd-macro.js?v=20261107a" defer></script>
   </body>
 </html>
